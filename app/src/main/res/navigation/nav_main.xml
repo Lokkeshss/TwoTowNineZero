@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main.xml"
+    app:startDestination="@id/homeScreenFragment">
+
+    <fragment
+        android:id="@+id/homeScreenFragment"
+        android:name="com.example.twotwoninezero.dashboard.bottomnavigation.home.HomeScreenFragment"
+        android:label="HomeScreenFragment"
+        tools:layout="@layout/fragment_home_screen">
+    </fragment>
+    <fragment
+        android:id="@+id/fleetScreenFragment"
+        android:name="com.example.twotwoninezero.dashboard.bottomnavigation.fleet.FleetScreenFragment"
+        android:label="FleetScreenFragment"
+        tools:layout="@layout/fragment_fleet_screen">
+
+    </fragment>
+    <fragment
+        android:id="@+id/businessScreenFragment"
+        android:name="com.example.twotwoninezero.dashboard.bottomnavigation.business.BusinessScreenFragment"
+        android:label="BusinessScreenFragment"
+        tools:layout="@layout/fragment_business_screen">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/profileScreenFragment"
+        android:name="com.example.twotwoninezero.dashboard.bottomnavigation.profile.ProfileScreenFragment"
+        android:label="ProfileScreenFragment"
+        tools:layout="@layout/fragment_profile_screen"/>
+
+    <fragment
+        android:id="@+id/aboutUs"
+        android:name="com.example.twotwoninezero.dashboard.sidenavigation.aboutus.AboutUsFragment"
+        android:label="@string/aboutus"
+        tools:layout="@layout/about_us" />
+
+    <fragment
+        android:id="@+id/contactUs"
+        android:name="com.example.twotwoninezero.dashboard.sidenavigation.contactus.ContactUsFragment"
+        android:label="@string/contactus"
+        tools:layout="@layout/contact_us" />
+
+    <fragment
+        android:id="@+id/logOut"
+        android:name="com.example.twotwoninezero.dashboard.sidenavigation.logout.LogoutFragment"
+        android:label="@string/logout"
+        tools:layout="@layout/logout" />
+</navigation>
