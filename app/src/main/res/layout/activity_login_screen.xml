@@ -8,6 +8,7 @@
     tools:context=".loginsignup.LoginScreenActivity">
 
         <LinearLayout
+            android:background="@color/loginheadercolor"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
@@ -19,10 +20,12 @@
             <include layout="@layout/common_header_loginsignup" />
 
             <ScrollView
+                android:layout_marginTop="20dp"
+                android:background="@color/loginheadercolor"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:fillViewport="true"
-                >
+                android:fillViewport="true">
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/loginCardView"
                 android:layout_width="match_parent"
@@ -82,7 +85,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="30dp"
-                        android:hint="First Name"
+                        android:hint="Password"
                         app:hintTextColor="@color/lightGray"
                         app:layout_constraintTop_toBottomOf="@+id/textView">
 

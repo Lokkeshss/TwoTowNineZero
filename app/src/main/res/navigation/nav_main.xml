@@ -33,6 +33,12 @@
         tools:layout="@layout/fragment_profile_screen"/>
 
     <fragment
+        android:id="@+id/morescreenFragment"
+        android:name="com.example.twotwoninezero.dashboard.bottomnavigation.more.MoreFragment"
+        android:label="@string/more"
+        tools:layout="@layout/fragment_more" />
+
+    <fragment
         android:id="@+id/aboutUs"
         android:name="com.example.twotwoninezero.dashboard.sidenavigation.aboutus.AboutUsFragment"
         android:label="@string/aboutus"
@@ -49,4 +55,5 @@
         android:name="com.example.twotwoninezero.dashboard.sidenavigation.logout.LogoutFragment"
         android:label="@string/logout"
         tools:layout="@layout/logout" />
+
 </navigation>

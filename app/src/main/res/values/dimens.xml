@@ -8,7 +8,8 @@
 
     <dimen name="onboard_left">30dp</dimen>
     <dimen name="onboard_right">30dp</dimen>
-
+    <dimen name="dp_50">50dp</dimen>
+    <dimen name="dp_20">20dp</dimen>
 
 
 </resources>

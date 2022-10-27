@@ -3,6 +3,8 @@ package com.example.twotwoninezero.SplashScreen
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.view.ViewGroup
+import android.widget.Button
 import com.example.twotwoninezero.R
 
 class SplashScreenActivity : AppCompatActivity() {
@@ -15,4 +17,5 @@ class SplashScreenActivity : AppCompatActivity() {
             finish()
         }, 3000)
     }
+
 }

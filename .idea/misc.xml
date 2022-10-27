@@ -13,6 +13,9 @@
         <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZero/app/src/main/res/drawable/loginsignup_cardview_cornor.xml" value="0.19" />
         <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZero/app/src/main/res/drawable/navigation_menu.xml" value="0.2135" />
         <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZero/app/src/main/res/drawable/newtruckimage.xml" value="0.2135" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZero/app/src/main/res/drawable/onboard_one.xml" value="0.137" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZero/app/src/main/res/drawable/onboard_three.xml" value="0.137" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZero/app/src/main/res/drawable/onboard_two.xml" value="0.137" />
         <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZero/app/src/main/res/drawable/rounded_corner.xml" value="0.2135" />
         <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZero/app/src/main/res/layout-land/on_boarding_slidescreen.xml" value="0.25364583333333335" />
         <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZero/app/src/main/res/layout-sw600dp/on_boarding_slidescreen.xml" value="0.259375" />
@@ -30,15 +33,17 @@
         <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZero/app/src/main/res/layout/app_bar_dash_board_drawer.xml" value="0.2129115006412997" />
         <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZero/app/src/main/res/layout/checkyour_mail_alert.xml" value="0.2129115006412997" />
         <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZero/app/src/main/res/layout/common_header_loginsignup.xml" value="0.1433990895295903" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZero/app/src/main/res/layout/contact_us.xml" value="0.2129115006412997" />
         <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZero/app/src/main/res/layout/content_dash_board_drawer.xml" value="0.2271897810218978" />
         <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZero/app/src/main/res/layout/fragment_business_screen.xml" value="0.2129115006412997" />
         <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZero/app/src/main/res/layout/fragment_fleet_screen.xml" value="0.1" />
         <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZero/app/src/main/res/layout/fragment_gallery.xml" value="0.2129115006412997" />
         <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZero/app/src/main/res/layout/fragment_home.xml" value="0.2129115006412997" />
-        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZero/app/src/main/res/layout/fragment_home_screen.xml" value="0.2129115006412997" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZero/app/src/main/res/layout/fragment_home_screen.xml" value="0.2" />
         <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZero/app/src/main/res/layout/fragment_more.xml" value="0.2129115006412997" />
         <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZero/app/src/main/res/layout/fragment_profile_screen.xml" value="0.1" />
         <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZero/app/src/main/res/layout/fragment_slideshow.xml" value="0.2129115006412997" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZero/app/src/main/res/layout/logout.xml" value="0.2129115006412997" />
         <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZero/app/src/main/res/layout/nav_header.xml" value="0.2129115006412997" />
         <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZero/app/src/main/res/layout/nav_header_dash_board_drawer.xml" value="0.2129115006412997" />
         <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZero/app/src/main/res/layout/on_boarding_slidescreen.xml" value="0.2128205128205128" />

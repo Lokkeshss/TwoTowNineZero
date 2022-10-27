@@ -14,7 +14,9 @@
     <string name="aboutus">About Us</string>
     <string name="contactus">Contact</string>
     <string name="logout">Logout</string>
+    <string name="more">More</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
     <string name="convienent">convienent</string>
+    <string name="internet_required">Internet Required</string>
 </resources>

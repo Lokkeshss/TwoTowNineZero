@@ -2,12 +2,80 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:background="@color/loginheadercolor"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <include layout="@layout/common_header_loginsignup" />
+
+        <ScrollView
+            android:background="@color/loginheadercolor"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/loginCardView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingStart="30dp"
+                    android:paddingEnd="30dp">
+                    <TextView
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="My Filing-Return Status"
+                        android:textColor="@color/black"
+                        android:textSize="21sp" />
+
+                    <ImageView
+                        android:layout_gravity="end"
+                        android:padding="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:src="@drawable/filtericon" />
+
+                    <ImageView
+                        android:visibility="visible"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:padding="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="40dp"
+                        android:src="@drawable/empty_main_list" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:visibility="gone"
+                    android:background="@color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </ScrollView>
+
+    </LinearLayout>
 
 </FrameLayout>

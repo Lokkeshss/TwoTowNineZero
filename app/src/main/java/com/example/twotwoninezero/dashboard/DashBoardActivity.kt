@@ -22,7 +22,7 @@ class DashBoardActivity : AppCompatActivity() {
             return Intent(context, DashBoardActivity::class.java)
         }
     }
-    lateinit var toggle: ActionBarDrawerToggle
+/*    lateinit var toggle: ActionBarDrawerToggle*/
     private lateinit var binding: ActivityDashBoardBinding
     private lateinit var navController: NavController
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,7 +33,7 @@ class DashBoardActivity : AppCompatActivity() {
         navController=Navigation.findNavController(this,R.id.activity_main_nav_host_fragment)
         setupWithNavController(binding.bottomNavigationView,navController)
 
-/*        binding.apply {
+       /* binding.apply {
             toggle = ActionBarDrawerToggle(this@DashBoardActivity, drawerLayout, R.string.open, R.string.close)
             drawerLayout.addDrawerListener(toggle)
             toggle.syncState()
@@ -64,7 +64,7 @@ class DashBoardActivity : AppCompatActivity() {
 
     }
 
-/*    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+  /*  override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (toggle.onOptionsItemSelected(item)){
             true
         }

@@ -14,4 +14,5 @@
     <color name="bt_color">#0E4375</color>
     <color name="lightGray">#939393</color>
     <color name="checkmailtext">#0E4375</color>
+    <color name="loginheadercolor">#F5F5F5</color>
 </resources>
