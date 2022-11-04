@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">TwoTwoNineZero</string>
+    <string name="by_clicking">By clicking REGISTER you agree to our Terms &amp; Conditions</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_dash_board_drawer">DashBoardDrawerActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="aboutus">About Us</string>
+    <string name="contactus">Contact</string>
+    <string name="logout">Logout</string>
+    <string name="more">More</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="convienent">convienent</string>
+    <string name="internet_required">Internet Required</string>
+    <string name="mybusiness_no_text">You dont have any business at this moment. Go to add new business for filing the tax</string>
+    <string name="myfleet_no_text">You dont have any fleet at this moment.</string>
+    <string name="aboutus_firstpara">E-filing Form 2290 just got easier and more affordable with Simple truck tax. Our user-friendly system allows you to file your return in minutes and makes paying your tax bill a breeze \n \n &#160; &#160; &#160; &#160; &#160; When we designed our product, SimpleTruckTax, we had only one goal in mind - making sure that YOU, the American Truckers, don\'t have to break the bank to keep your trucks running on the road. We looked at several online 2290 products on the market and were saddened to see that NONE of them were easy to use, especially for the fortune that they were charging. The reality was that good hard working American Truckers like you were spending upwards of $100 and wasting hours doing something that nobody likes doing - TAXES! That is when we decided to put our minds to work and figure out how we can make filing your truck taxes not only quick and easy but also affordable</string>
+    <string name="home_no_text">You dont have any return status at this moment.\nGo to business navigation and add a new business</string>
+    <string name="addbusiness_signauth">Would you like to authorize a person to discuss your tax returns with the IRS ? If yes the designee name and the phone number are mandatory</string>
+</resources>

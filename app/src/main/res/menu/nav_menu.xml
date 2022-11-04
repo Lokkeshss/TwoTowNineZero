@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/homeScreenFragment"
+        android:icon="@drawable/homeicon"
+        android:title="Home" />
+    <item
+        android:id="@+id/fleetScreenFragment"
+        android:icon="@drawable/fleeticon"
+        android:title="Fleet" />
+    <item
+        android:id="@+id/businessScreenFragment"
+        android:icon="@drawable/businessicon"
+        android:title="Business" />
+    <item
+        android:id="@+id/profileScreenFragment"
+        android:icon="@drawable/profileicon"
+        android:title="Profile" />
+    <item
+        android:id="@+id/morescreenFragment"
+        android:icon="@drawable/menu"
+        android:title="More" />
+
+</menu>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="deviderline">#66CCCCCC</color>
+    <color name="businesslistbackground">#F6F6F6</color>
+    <color name="skip">#0095DA</color>
+    <color name="next">#0095DA</color>
+    <color name="loginsmalltextcolor">#0095DA</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="on_boardingtextcolor">#EF823F</color>
+    <color name="bt_color">#007BFF</color>
+    <color name="download_bt_color">#28A745</color>
+    <color name="lightGray">#939393</color>
+    <color name="checkmailtext">#0E4375</color>
+    <color name="loginheadercolor">#F5F5F5</color>
+    <color name="blacklignt">#E4E4E4</color>
+    <color name="textcolor">#606060</color>
+    <color name="textred">#FC634F</color>
+    <color name="addnewbusinesstextcolor">#007BFF</color>
+    <color name="lightblue">#1A007BFF</color>
+</resources>

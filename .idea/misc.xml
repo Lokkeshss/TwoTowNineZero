@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/drawable-v24/addnewbusiness_buttongradient.xml" value="0.182" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/drawable-v24/button_withroundcoronor_color.xml" value="0.1615" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/drawable-v24/button_withwhite_roundcoronor_color.xml" value="0.2135" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/drawable-v24/circular_progress_bar.xml" value="0.1885" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/drawable-v24/deleted_businessscreen_roundborder.xml" value="0.146" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/drawable-v24/download_btn_bg_round_cornor_with_moreround_cornor.xml" value="0.146" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/drawable-v24/nexticonwhite.xml" value="0.1885" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/drawable-v24/progressbar_circularshape.xml" value="0.1885" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/drawable/aboutus_background_gradientcolor.xml" value="0.1855" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/drawable/addnewbusiness_questionmark.xml" value="0.182" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/drawable/addnewbusinessicon.xml" value="0.1" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/drawable/archievedbusinessicon.xml" value="0.182" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/drawable/bg_dotted_line_vertical.xml" value="0.2075" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/drawable/bg_horizontal_dotted_line.xml" value="0.2075" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/drawable/btn_bg_round_cornor_with_moreround_cornor.xml" value="0.1" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/drawable/btn_bg_roundcornor.xml" value="0.1615" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/drawable/businessscreen_roundborder.xml" value="0.2" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/drawable/callicon.xml" value="0.2245" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/drawable/edittextdropdownicon.xml" value="0.182" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/drawable/mailicon.xml" value="0.146" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/drawable/nexticon.xml" value="0.2645" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/layout-sw600dp/deleted_business_list_lineitem.xml" value="0.259375" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/layout/about_us.xml" value="0.2129115006412997" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/layout/activity_login_screen.xml" value="0.259375" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/layout/activity_main.xml" value="0.2453125" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/layout/activity_on_boarding_screen.xml" value="0.2129115006412997" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/layout/activity_register_screen.xml" value="0.16510416666666666" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/layout/activity_splash_screen.xml" value="0.2129115006412997" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/layout/archive_business_list.xml" value="0.2129115006412997" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/layout/business_list_lineitem.xml" value="0.2129115006412997" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/layout/common_callemail_dialog.xml" value="0.264" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/layout/common_filling_header_progressbar.xml" value="0.21205643437366395" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/layout/common_header_loginsignup.xml" value="0.259375" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/layout/contact_us.xml" value="0.259375" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/layout/delete_screen.xml" value="0.21021528070915999" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/layout/deleted_business_list_lineitem.xml" value="0.2129115006412997" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/layout/fleetmanagement_line_item.xml" value="0.2129115006412997" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/layout/fragment_aboutus.xml" value="0.259375" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/layout/fragment_add_fleet.xml" value="0.2129115006412997" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/layout/fragment_add_new_business.xml" value="0.2129115006412997" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/layout/fragment_business_screen.xml" value="0.2" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/layout/fragment_filling.xml" value="0.2" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/layout/fragment_fleet_screen.xml" value="0.2" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/layout/fragment_home_screen.xml" value="0.259375" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/layout/fragment_more.xml" value="0.2" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/layout/fragment_profile_screen.xml" value="0.264" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/layout/nosearch_spinner_custom.xml" value="0.21205643437366395" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/layout/search_text_view.xml" value="0.2129115006412997" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/layout/spinner_dialog_custom.xml" value="0.264" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/mipmap-xxxhdpi/ic_launcher.xml" value="0.146" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
