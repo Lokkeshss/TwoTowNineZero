@@ -127,4 +127,57 @@ interface Api {
 
     /*fleetrepo*/
 
+
+    /*Filling*/
+
+    @GET("filings/getForm")
+    @Headers("Content-Type: application/json")
+    fun getFormType(): Deferred<Response<List<GetFillingFormResponse>>>
+
+    @GET("filings/getTaxYear/{formtype}")
+    @Headers("Content-Type: application/json")
+    fun gettaxyear(
+        @Path("formtype") formtype: String,
+    ): Deferred<Response<List<GetFillingTaxYearResponse>>>
+
+    @GET("filings/getFirstUsedMonth/30/{formtype}")
+    @Headers("Content-Type: application/json")
+    fun getFirstUsedMonth(
+        @Path("formtype") formtype: String,
+    ): Deferred<Response<List<getFillingFirstUsedMonthResponse>>>
+
+    @POST("filings/saveFiling")
+    @Headers("Content-Type: application/json")
+    fun saveFiling(@Body i: SaveUpdateFilingRequest?) :
+            Deferred<Response<SaveUpdateFilingResponse>>
+
+    @GET("form2290/getTaxableVehicleByFilingId/{filing}")
+    @Headers("Content-Type: application/json")
+    fun getTaxableVehicleByFilingId( @Path("filing") filing: String) :
+            Deferred<Response<List<GetTaxableVehicleResponse>>>
+
+    @POST("form2290/saveTaxableVehicle/{filing}")
+    @Headers("Content-Type: application/json")
+    fun saveTaxableVehicle(@Path("filing") filing: String,
+                           @Body i: SaveTaxableVehicleRequest?) :
+            Deferred<Response<SaveTaxableVehicleResponse>>
+
+    /*Filling*/
+
+
+    /* Home */
+
+    @POST("filings/getFilingsByUserId")
+    @Headers("Content-Type: application/json")
+    fun getFilingsByUserId(@Body i:HomeScreenGetFilingsByUserIdRequest):Deferred<Response<List<HomeScreenListResponse>>>
+
+    @DELETE("filings/deleteFiling/{filing}")
+    @Headers("Content-Type: application/json")
+    fun deleteFiling(@Path("filing") filing: String):Deferred<Response<DeleteHomeScreenFilingResponse>>
+
+    @POST("filings/searchFiling")
+    @Headers("Content-Type: application/json")
+    fun filterHomeScreenFiling(@Body i: FilingFilterRequest):Deferred<Response<List<HomeScreenListResponse>>>
+
+    /* Home */
 }

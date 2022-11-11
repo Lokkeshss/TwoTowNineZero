@@ -9,13 +9,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.twotwoninezero.R
 import com.example.twotwoninezero.service.AllAndSearchBusinessListResponse
 
-class BusinessListAdapter(var datalist: List<AllAndSearchBusinessListResponse>, var OnMenuClick: (String, Int) -> Unit):RecyclerView.Adapter<BusinessListAdapter.MyHolder>() {
+class BusinessListAdapter(var datalist: List<AllAndSearchBusinessListResponse>, var OnMenuClick: (String,String, Int) -> Unit):RecyclerView.Adapter<BusinessListAdapter.MyHolder>() {
     class MyHolder(itemview:View):RecyclerView.ViewHolder(itemview) {
         val businessName=itemview.findViewById<View>(R.id.businessName) as TextView
         val business_type=itemview.findViewById<View>(R.id.business_type)as TextView
         val business_ein=itemview.findViewById<View>(R.id.business_ein)as TextView
         val business_phone=itemview.findViewById<View>(R.id.business_phone)as TextView
-        val business_addnewpin=itemview.findViewById<View>(R.id.business_addnewpin)as TextView
+        val business_addnewfilling=itemview.findViewById<View>(R.id.business_addnewfilling)as TextView
         val businessDelete=itemview.findViewById<View>(R.id.businessDelete)as ImageView
         val businessEdit=itemview.findViewById<View>(R.id.businessEdit) as ImageView
 
@@ -33,10 +33,13 @@ class BusinessListAdapter(var datalist: List<AllAndSearchBusinessListResponse>, 
         holder.business_ein.text=data.ein
         holder.business_phone.text=data.phone
         holder.businessDelete.setOnClickListener {
-            OnMenuClick.invoke(data.id.toString(),0)
+            OnMenuClick.invoke(data.id.toString(),data.businessName,0)
         }
         holder.businessEdit.setOnClickListener {
-            OnMenuClick.invoke(data.id.toString(),1)
+            OnMenuClick.invoke(data.id.toString(),data.businessName,1)
+        }
+        holder.business_addnewfilling.setOnClickListener {
+            OnMenuClick.invoke(data.id.toString(),data.businessName,2)
         }
     }
 

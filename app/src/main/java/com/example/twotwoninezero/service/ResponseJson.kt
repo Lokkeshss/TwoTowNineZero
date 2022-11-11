@@ -65,11 +65,29 @@ data class ReActivateBusinessResponse(
     val message: String,
 )
 
+data class SaveUpdateFilingResponse(
+    val code: Int,
+    val message: String,
+    val filingId: String,
+)
+
+data class SaveTaxableVehicleResponse(
+    val code: Int,
+    val message: String,
+)
+
+data class DeleteHomeScreenFilingResponse(
+    val code: Int,
+    val message: String,
+)
+
 data class FileDownloadResponse (
     var error: Boolean,
     var msg: String?,
     var file : File?
 )
+
+
 
 data class GetStateReponse(
     val countryId: Int,
@@ -151,3 +169,65 @@ data class GetFleetListResponse(
     val weight: String,
     val weightCategory: String
 )
+
+data class GetFillingFormResponse(
+    val desc: String,
+    val type: String,
+    val xmlTagValue: String
+)
+
+data class GetFillingTaxYearResponse(
+    val displayYear: String,
+    val formType: String,
+    val id: Int,
+    val taxComputationYear: Long,
+    val taxPeriodEndDate: Long,
+    val taxPeriodStartDate: Long,
+    val taxYear: String,
+    val xsdVersion: String
+)
+
+data class getFillingFirstUsedMonthResponse(
+    val firstUsedMonth: String,
+    val firstUsedMonthId: String
+)
+
+data class GetTaxableVehicleResponse(
+    val filingId: Int,
+    val id: Int,
+    val isLogging: String,
+    val taxAmount: String,
+    val vin: String,
+    val weight: String,
+    val weightCategory: String
+)
+
+data class HomeScreenListResponse(
+    val ackCount: Int,
+    val ackReceived: Int,
+    val businessId: Int,
+    val businessName: String,
+    val consentToSubmit: Int,
+    val createdDate: String,
+    val dataMasked: Int,
+    val ein: String,
+    val feedbackstatus: String,
+    val filingId: Int,
+    val filingMonth: String,
+    val filingStatus: String,
+    val filingYear: String,
+    val formType: String,
+    val irsApproved: Int,
+    val limit: Int,
+    val modifiedbyAdmin: Int,
+    val offset: Int,
+    val paymentStatus: String,
+    val pendingCount: Int,
+    val recordCount: Int,
+    val sch1Received: Int,
+    val scheduleCount: Int,
+    val userCompleted: Int,
+    val xmlSubmitted: Int
+)
+
+data class FilterCategory(var name:String,var id:String)

@@ -10,6 +10,24 @@
         android:name="com.example.twotwoninezero.dashboard.bottomnavigation.home.HomeScreenFragment"
         android:label="HomeScreenFragment"
         tools:layout="@layout/fragment_home_screen">
+        <action
+            android:id="@+id/action_homeScreenFragment_to_taxYearAndFormFragment"
+            app:destination="@id/taxYearAndFormFragment" />
+        <action
+            android:id="@+id/action_homeScreenFragment_to_filingFilterFragment"
+            app:destination="@id/filingFilterFragment" />
+        <argument android:name="category" />
+        <argument android:name="fromDate" />
+        <argument android:name="isPartial" />
+        <argument android:name="keyword" />
+        <argument android:name="limit" />
+        <argument android:name="listType" />
+        <argument android:name="offset" />
+        <argument android:name="toDate" />
+        <argument android:name="usethis" />
+        <action
+            android:id="@+id/action_homeScreenFragment_to_homeFilingDetailsViewFragment"
+            app:destination="@id/homeFilingDetailsViewFragment" />
     </fragment>
     <fragment
         android:id="@+id/fleetScreenFragment"
@@ -30,6 +48,9 @@
         <action
             android:id="@+id/action_businessScreenFragment_to_addNewBusinessFragment"
             app:destination="@id/addNewBusinessFragment" />
+        <action
+            android:id="@+id/action_businessScreenFragment_to_taxYearAndFormFragment"
+            app:destination="@id/taxYearAndFormFragment" />
     </fragment>
 
     <fragment
@@ -103,6 +124,62 @@
         <argument android:name="fleetId" />
         <argument android:name="businessName" />
         <argument android:name="weight" />
+    </fragment>
+    <fragment
+        android:id="@+id/taxYearAndFormFragment"
+        android:name="com.example.twotwoninezero.dashboard.bottomnavigation.filling.taxyear_and_forms.TaxYearAndFormFragment"
+        android:label="taxyear_and_forms"
+        tools:layout="@layout/taxyear_and_forms" >
+        <action
+            android:id="@+id/action_taxYearAndFormFragment_to_taxableVehicleInformation"
+            app:destination="@id/taxableVehicleInformation" />
+        <argument android:name="businessName" />
+        <argument android:name="businessId" />
+    </fragment>
+    <fragment
+        android:id="@+id/taxableVehicleInformation"
+        android:name="com.example.twotwoninezero.dashboard.bottomnavigation.filling.vehicles_tax.VehiclesTaxMainMenu"
+        android:label="fragment_taxable_vehicle_information"
+        tools:layout="@layout/vehicles_tax_main_menu" >
+        <action
+            android:id="@+id/action_taxableVehicleInformation_to_taxableVehicleInformationFragment"
+            app:destination="@id/taxableVehicleInformationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/taxableVehicleInformationFragment"
+        android:name="com.example.twotwoninezero.dashboard.bottomnavigation.filling.vehicles_tax.TaxableVehicleInformationFragment"
+        android:label="fragment_taxable_vehicle_information"
+        tools:layout="@layout/fragment_taxable_vehicle_information" >
+        <action
+            android:id="@+id/action_taxableVehicleInformationFragment_to_addNewVehicalFragment"
+            app:destination="@id/addNewVehicalFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addNewVehicalFragment"
+        android:name="com.example.twotwoninezero.dashboard.bottomnavigation.filling.vehicles_tax.AddNewVehicalFragment"
+        android:label="fragment_add_new_vehical"
+        tools:layout="@layout/fragment_add_new_vehical" />
+    <fragment
+        android:id="@+id/filingFilterFragment"
+        android:name="com.example.twotwoninezero.dashboard.bottomnavigation.home.FilingFilterFragment"
+        android:label="fragment_filing_filter"
+        tools:layout="@layout/fragment_filing_filter" >
+        <action
+            android:id="@+id/action_filingFilterFragment_to_homeScreenFragment"
+            app:destination="@id/homeScreenFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeFilingDetailsViewFragment"
+        android:name="com.example.twotwoninezero.dashboard.bottomnavigation.home.HomeFilingDetailsViewFragment"
+        android:label="fragment_home_filing_details_view"
+        tools:layout="@layout/fragment_home_filing_details_view" >
+        <argument android:name="businessName" />
+        <argument android:name="formtype" />
+        <argument android:name="invoiceNo" />
+        <argument android:name="firstUsedMonth" />
+        <argument android:name="createdDate" />
+        <argument android:name="status" />
+        <argument android:name="invoiceStatus" />
     </fragment>
 
 </navigation>

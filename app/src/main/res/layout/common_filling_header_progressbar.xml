@@ -12,7 +12,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ProgressBar
+      <!--  <ProgressBar
             android:id="@+id/countdownProgressbar"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="@dimen/secondary_circle_width"
@@ -24,7 +24,7 @@
             android:progress="@{progressValue}"
             android:progressDrawable="@drawable/circular_progress_bar"
             tools:max="100"
-            tools:progress="65" />
+            tools:progress="65" />-->
 
         <TextView
             android:id="@+id/contTimerText"

@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/taxableVehicleMain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
         app:cardBackgroundColor="@color/businesslistbackground"
         app:cardCornerRadius="8dp"
         app:cardElevation="2dp"
@@ -26,6 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <LinearLayout
+                android:visibility="gone"
                 android:layout_marginTop="@dimen/dp_5"
                 android:layout_marginBottom="@dimen/dp_10"
                 android:layout_width="match_parent"
@@ -38,7 +39,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <TextView
-                        android:id="@+id/fleetBusinessName"
+                        android:id="@+id/taxableVehicleName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dp_10"
@@ -61,14 +62,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
                     <ImageView
-                        android:id="@+id/fleetDelete"
+                        android:id="@+id/taxableVehicleDeleteDummy"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/dp_10"
                         android:src="@drawable/deletelist_icon" />
 
                     <ImageView
-                        android:id="@+id/fleetEdit"
+                        android:id="@+id/taxableVehicleEditDummy"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/dp_10"
@@ -99,7 +100,7 @@
 
                     <TextView
                         android:gravity="center|start"
-                        android:id="@+id/fleetVin"
+                        android:id="@+id/taxableVehicleVin"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:fontFamily="@font/roboto_regular"
@@ -117,15 +118,19 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dp_10"
                         android:fontFamily="@font/roboto_medium"
-                        android:text="Logging Vehicle"
+                        android:text="Tax Amount"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
 
-                    <androidx.appcompat.widget.SwitchCompat
-                        android:clickable="false"
-                        android:id="@+id/fleetlogginvehicle"
+                    <TextView
+                        android:gravity="center|start"
+                        android:id="@+id/taxableVehicletaxAmount"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="Business Name"
+                        android:textColor="@color/next"
+                        android:textSize="16sp" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -150,7 +155,7 @@
 
                     <TextView
                         android:gravity="center|start"
-                        android:id="@+id/fleettaxableweight"
+                        android:id="@+id/taxableVehicletaxableweight"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:fontFamily="@font/roboto_regular"
@@ -169,15 +174,40 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dp_10"
                         android:fontFamily="@font/roboto_medium"
-                        android:text="Agricultural Vehicle"
+                        android:text="Logging"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
 
-                    <androidx.appcompat.widget.SwitchCompat
-                        android:clickable="false"
-                        android:id="@+id/fleetagriculturalvehicle"
+                    <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content">
+                        <androidx.appcompat.widget.SwitchCompat
+                            android:clickable="false"
+                            android:id="@+id/taxableVehicleLogging"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <LinearLayout
+                            android:layout_gravity="end"
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:id="@+id/taxableVehicleDelete"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="@dimen/dp_10"
+                                android:src="@drawable/deletelist_icon" />
+
+                            <ImageView
+                                android:id="@+id/taxableVehicleEdit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="@dimen/dp_10"
+                                android:src="@drawable/editlist_icon" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+
                 </LinearLayout>
 
             </LinearLayout>
@@ -185,8 +215,13 @@
         </LinearLayout>
 
     </com.google.android.material.card.MaterialCardView>
+
     <View
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_10"/>
+        android:layout_height="@dimen/dp_10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/taxableVehicleMain" />
 
-</LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

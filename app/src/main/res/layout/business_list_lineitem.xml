@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/businessProfileMain"
+        android:id="@+id/taxableVehicleMain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -143,7 +143,7 @@
                 android:padding="@dimen/dp_5">
 
                 <TextView
-                    android:id="@+id/business_addnewpin"
+                    android:id="@+id/business_addnewfilling"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
@@ -183,6 +183,6 @@
         android:layout_height="@dimen/dp_10"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/businessProfileMain" />
+        app:layout_constraintTop_toBottomOf="@+id/taxableVehicleMain" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

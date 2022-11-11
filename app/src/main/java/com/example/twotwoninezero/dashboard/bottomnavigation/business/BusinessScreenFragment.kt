@@ -76,16 +76,22 @@ class BusinessScreenFragment : BaseFragment() {
             }else{
                 emptyBusinessList?.visibility=View.GONE
                 myBusinessRV?.visibility=View.VISIBLE
-                mBusinessListAdapter = BusinessListAdapter(allBusinessListResponse){ businessId, type->
+                mBusinessListAdapter = BusinessListAdapter(allBusinessListResponse){ businessId,businessName, type->
                         if (type==1){
                             findNavController().navigate(
                                 BusinessScreenFragmentDirections.actionBusinessScreenFragmentToAddNewBusinessFragment(
                                     businessId
                                 )
                             )
-                        }else{
+                        }else if (type==0){
                             deleteOrActivateByBusinessId(businessId,"delete")
 
+                        }else if (type==2){
+                            findNavController().navigate(
+                                BusinessScreenFragmentDirections.actionBusinessScreenFragmentToTaxYearAndFormFragment(
+                                    businessName,businessId
+                                )
+                            )
                         }
 
                 }

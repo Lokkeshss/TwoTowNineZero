@@ -65,6 +65,27 @@ data class AddNewFleetBusinessRequest(
     val weightCategory: String
 )
 
+data class SaveUpdateFilingRequest(
+    val addressChange: String,
+    val amendedMonth: String,
+    val businessId: String,
+    val filingId: String,
+    val filingMonth: String,
+    val filingYearId: String,
+    val finalReturn: String,
+    val formType: String,
+    val taxYearEndMonth: String
+)
+
+
+data class SaveTaxableVehicleRequest(
+    val filingId: String,
+    val isLogging: String,
+    val vin: String,
+    val weightCategory: String
+)
+
+
 data class SaveAndUpdateFilingRequest(
     val addressChange: String,
     val amendedMonth: String,
@@ -156,3 +177,20 @@ data class SaveCreditOverPaymentReuest(
     val vin: String
 )
 
+data class HomeScreenGetFilingsByUserIdRequest(
+    val limit: Int,
+    val listType: String,
+    val offset: Int
+)
+
+
+data class FilingFilterRequest(
+    val category: String,
+    val fromDate: String,
+    val isPartial: String,
+    val keyword: String,
+    val limit: String,
+    val listType: String,
+    val offset: String,
+    val toDate: String
+)

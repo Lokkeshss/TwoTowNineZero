@@ -20,7 +20,6 @@ import com.example.twotwoninezero.common.SearchAdapter
 import com.example.twotwoninezero.common.StateListSpinnerAdapter
 import com.example.twotwoninezero.dashboard.bottomnavigation.business.model.BusinessViewModel
 import com.example.twotwoninezero.service.*
-import com.google.android.material.card.MaterialCardView
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.common_header_loginsignup.*
 import kotlinx.android.synthetic.main.fragment_add_new_business.*
@@ -391,7 +390,7 @@ class AddNewBusinessFragment : BaseFragment() {
         }
 
         businessProfileChild?.setVisibility(View.VISIBLE)
-        businessProfileMain?.setOnClickListener {
+        taxableVehicleMain?.setOnClickListener {
             if (businessProfileChild?.visibility== View.GONE){
                 TransitionManager.beginDelayedTransition(
                     businessProfileChild!!,

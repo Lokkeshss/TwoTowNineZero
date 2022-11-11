@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".dashboard.bottomnavigation.filling.FillingFragment">
+    tools:context=".dashboard.bottomnavigation.filling.taxyear_and_forms.TaxYearAndFormFragment">
 
     <LinearLayout
         android:background="@color/loginheadercolor"
@@ -58,10 +58,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                app:progressMaxValue="@{analysis.getWeekDutyMax() + 0}"
+            />
+<!--    app:progressMaxValue="@{analysis.getWeekDutyMax() + 0}"
                 app:progressValue="@{analysis.getWeekDutyTotal() + 0}"
-                app:progressText="@{util.spannedProgressTime(util.millisToHHmm(analysis.getWeekDutyTotal()),@string/weekHours)}" />
-
+                app:progressText="@{util.spannedProgressTime(util.millisToHHmm(analysis.getWeekDutyTotal()),@string/weekHours)}" -->
             <TextView
                 android:layout_marginStart="@dimen/dp_10"
                 android:layout_gravity="center"
@@ -86,13 +86,6 @@
             app:cardElevation="2dp"
             app:strokeWidth="1dp"
             app:strokeColor="@color/blacklignt">
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-
-
 
                 <LinearLayout
                     android:visibility="visible"
@@ -112,6 +105,7 @@
                         app:hintTextColor="@color/lightGray">
 
                         <EditText
+                            android:id="@+id/fillingBusinessName"
                             android:textAllCaps="true"
                             android:fontFamily="@font/roboto_regular"
                             android:textSize="14sp"
@@ -134,6 +128,7 @@
                         app:hintTextColor="@color/lightGray">
 
                         <EditText
+                            android:id="@+id/fillingFormType"
                             android:drawableEnd="@drawable/edittextdropdownicon"
                             android:textAllCaps="true"
                             android:fontFamily="@font/roboto_regular"
@@ -148,6 +143,7 @@
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_marginStart="@dimen/dp_5"
+                        android:id="@+id/TIfillingTaxYear"
                         android:layout_marginEnd="@dimen/dp_5"
                         android:layout_marginTop="@dimen/dp_10"
                         style="@style/loginTextInputLayout"
@@ -157,6 +153,7 @@
                         app:hintTextColor="@color/lightGray">
 
                         <EditText
+                            android:id="@+id/fillingTaxYear"
                             android:textAllCaps="true"
                             android:fontFamily="@font/roboto_regular"
                             android:textSize="14sp"
@@ -169,6 +166,7 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/TIfillingFirstUserMonth"
                         android:layout_marginStart="@dimen/dp_5"
                         android:layout_marginEnd="@dimen/dp_5"
                         android:layout_marginTop="@dimen/dp_10"
@@ -179,6 +177,7 @@
                         app:hintTextColor="@color/lightGray">
 
                         <EditText
+                            android:id="@+id/fillingFirstUserMonth"
                             android:textAllCaps="true"
                             android:fontFamily="@font/roboto_regular"
                             android:textSize="14sp"
@@ -191,6 +190,7 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/TTfillingAmendmentMonth"
                         android:layout_marginStart="@dimen/dp_5"
                         android:layout_marginEnd="@dimen/dp_5"
                         android:layout_marginTop="@dimen/dp_10"
@@ -201,6 +201,7 @@
                         app:hintTextColor="@color/lightGray">
 
                         <EditText
+                            android:id="@+id/fillingAmendmentMonth"
                             android:textAllCaps="true"
                             android:fontFamily="@font/roboto_regular"
                             android:textSize="14sp"
@@ -213,6 +214,7 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/TIfillingYourIncomeTax"
                         android:layout_marginStart="@dimen/dp_5"
                         android:layout_marginEnd="@dimen/dp_5"
                         android:layout_marginTop="@dimen/dp_10"
@@ -223,6 +225,7 @@
                         app:hintTextColor="@color/lightGray">
 
                         <EditText
+                            android:id="@+id/fillingYourIncomeTax"
                             android:textAllCaps="true"
                             android:fontFamily="@font/roboto_regular"
                             android:textSize="14sp"
@@ -233,6 +236,14 @@
                             android:inputType="text"
                             android:text="" />
                     </com.google.android.material.textfield.TextInputLayout>
+
+                    <LinearLayout
+                        android:id="@+id/LLSwitch"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+
 
                     <TextView
                         android:layout_marginStart="@dimen/dp_10"
@@ -246,6 +257,7 @@
 
                     <androidx.appcompat.widget.SwitchCompat
                         android:layout_marginTop="@dimen/dp_5"
+                        android:id="@+id/fillingFinalReturn"
                         android:layout_marginStart="@dimen/dp_5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
@@ -269,14 +281,15 @@
                         android:layout_height="wrap_content"/>
 
                     <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/fillingAddressChange"
                         android:layout_marginStart="@dimen/dp_5"
                         android:layout_marginTop="@dimen/dp_10"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
 
-                </LinearLayout>
+                    </LinearLayout>
 
-            </LinearLayout>
+                </LinearLayout>
 
 
         </com.google.android.material.card.MaterialCardView>
@@ -290,7 +303,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
-                android:id="@+id/addNewBusinessCancel"
+                android:id="@+id/fillingCancel"
                 android:fontFamily="@font/roboto_medium"
                 android:textSize="12sp"
                 android:layout_marginEnd="20dp"
@@ -305,7 +318,7 @@
                 android:layout_height="wrap_content"/>
 
             <TextView
-                android:id="@+id/addNewBusinessSubmit"
+                android:id="@+id/fillingSubmit"
                 android:fontFamily="@font/roboto_medium"
                 android:textSize="12sp"
                 android:layout_marginStart="20dp"

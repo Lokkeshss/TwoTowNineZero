@@ -20,7 +20,9 @@
         <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/drawable/btn_bg_round_cornor_with_moreround_cornor.xml" value="0.1" />
         <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/drawable/btn_bg_roundcornor.xml" value="0.1615" />
         <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/drawable/businessscreen_roundborder.xml" value="0.2" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/drawable/calender.xml" value="0.2645" />
         <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/drawable/callicon.xml" value="0.2245" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/drawable/dummycalander.xml" value="0.248" />
         <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/drawable/edittextdropdownicon.xml" value="0.182" />
         <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/drawable/mailicon.xml" value="0.146" />
         <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/drawable/nexticon.xml" value="0.2645" />
@@ -43,15 +45,25 @@
         <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/layout/fragment_aboutus.xml" value="0.259375" />
         <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/layout/fragment_add_fleet.xml" value="0.2129115006412997" />
         <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/layout/fragment_add_new_business.xml" value="0.2129115006412997" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/layout/fragment_add_new_vehical.xml" value="0.2129115006412997" />
         <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/layout/fragment_business_screen.xml" value="0.2" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/layout/fragment_filing_filter.xml" value="0.2129115006412997" />
         <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/layout/fragment_filling.xml" value="0.2" />
         <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/layout/fragment_fleet_screen.xml" value="0.2" />
-        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/layout/fragment_home_screen.xml" value="0.259375" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/layout/fragment_form_summary.xml" value="0.2129115006412997" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/layout/fragment_home_filing_details_view.xml" value="0.2129115006412997" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/layout/fragment_home_screen.xml" value="0.264" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/layout/fragment_i_r_s_payment_options.xml" value="0.2129115006412997" />
         <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/layout/fragment_more.xml" value="0.2" />
         <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/layout/fragment_profile_screen.xml" value="0.264" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/layout/fragment_taxable_vehicle_information.xml" value="0.2129115006412997" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/layout/homescreen_lineitem.xml" value="0.2129115006412997" />
         <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/layout/nosearch_spinner_custom.xml" value="0.21205643437366395" />
         <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/layout/search_text_view.xml" value="0.2129115006412997" />
         <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/layout/spinner_dialog_custom.xml" value="0.264" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/layout/taxable_vehicle_lineitem.xml" value="0.264" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/layout/taxyear_and_forms.xml" value="0.2129115006412997" />
+        <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/layout/vehicles_tax_main_menu.xml" value="0.2129115006412997" />
         <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
         <entry key="..\:/Lokkesh/PhantomCompanyProject/TwoTwoNineZeroNewClone/NewTwoTwoNineZero/app/src/main/res/mipmap-xxxhdpi/ic_launcher.xml" value="0.146" />
       </map>
