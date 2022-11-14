@@ -87,7 +87,7 @@
                             android:layout_margin="5dp"
                             android:layout_marginStart="10dp"
                             android:layout_marginTop="10dp"
-                            android:background="@drawable/businessscreen_roundborder"
+                            android:background="@drawable/businessscreen_roundborder_blue"
                             android:orientation="vertical">
 
                             <ImageView
@@ -117,13 +117,13 @@
                             android:layout_margin="5dp"
                             android:layout_marginStart="10dp"
                             android:layout_marginTop="10dp"
-                            android:background="@drawable/businessscreen_roundborder"
+                            android:background="@drawable/businessscreen_roundborder_blue"
                             android:orientation="vertical">
 
                             <ImageView
                                 android:id="@+id/archiveOrActiveIcon"
                                 android:layout_marginTop="@dimen/dp_10"
-                                android:src="@drawable/archivedfiling"
+                                android:src="@drawable/archivedfiling_blue"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" />
 

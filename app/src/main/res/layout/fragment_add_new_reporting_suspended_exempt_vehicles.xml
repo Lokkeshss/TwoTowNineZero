@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".dashboard.bottomnavigation.filling.vehicles_tax.TaxableVehicleInformation.AddNewVehicalFragment">
+    tools:context=".dashboard.bottomnavigation.filling.vehicles_tax.ReportingSuspended.AddNewReportingSuspendedExemptVehicles">
 
     <LinearLayout
         android:background="@color/loginheadercolor"
@@ -83,11 +83,11 @@
                                 style="@style/loginTextInputLayout"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="Enter Vehicle Identification number"
+                                android:hint="Enter Vehicle Identification Number"
                                 app:hintTextColor="@color/lightGray">
 
                                 <EditText
-                                    android:id="@+id/addnewVehicalVin"
+                                    android:id="@+id/addnewreportingsuspendedVin"
                                     android:textAllCaps="true"
                                     android:fontFamily="@font/roboto_regular"
                                     android:textSize="14sp"
@@ -100,29 +100,34 @@
                                     android:text="" />
                             </com.google.android.material.textfield.TextInputLayout>
 
-                            <com.google.android.material.textfield.TextInputLayout
-                                android:id="@+id/TIfillingYourIncomeTax"
-                                android:layout_marginStart="@dimen/dp_5"
-                                android:layout_marginEnd="@dimen/dp_5"
-                                android:layout_marginTop="@dimen/dp_20"
-                                style="@style/loginTextInputLayout"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint="Taxable Gross Weight (In lbs)"
-                                app:hintTextColor="@color/lightGray">
 
-                                <EditText
-                                    android:id="@+id/addnewVehicalTaxableGrossWeight"
-                                    android:textAllCaps="true"
-                                    android:fontFamily="@font/roboto_regular"
-                                    android:textSize="14sp"
-                                    style="@style/loginTextInputLayout"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890. "
-                                    android:inputType="text"
-                                    android:text="" />
-                            </com.google.android.material.textfield.TextInputLayout>
+                            <LinearLayout
+                                android:layout_marginBottom="@dimen/dp_10"
+                                android:id="@+id/agSwitch"
+                                android:orientation="vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+
+
+                                <TextView
+                                    android:layout_marginStart="@dimen/dp_10"
+                                    android:layout_marginTop="@dimen/dp_20"
+                                    android:layout_marginEnd="@dimen/dp_5"
+                                    android:drawablePadding="10dp"
+                                    android:textColor="@color/textcolor"
+                                    android:text="Is the Vehicle an agricultural vehicle?"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+
+                                <androidx.appcompat.widget.SwitchCompat
+                                    android:layout_marginTop="@dimen/dp_5"
+                                    android:id="@+id/addnewreportingsuspendedAgriculture"
+                                    android:layout_marginStart="@dimen/dp_5"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+
+                            </LinearLayout>
 
                             <LinearLayout
                                 android:layout_marginBottom="@dimen/dp_20"
@@ -145,7 +150,7 @@
 
                                 <androidx.appcompat.widget.SwitchCompat
                                     android:layout_marginTop="@dimen/dp_5"
-                                    android:id="@+id/addnewVehicalLogging"
+                                    android:id="@+id/addnewreportingsuspendedLogging"
                                     android:layout_marginStart="@dimen/dp_5"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"/>
@@ -167,7 +172,7 @@
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:id="@+id/addnewVehicalSubmit"
+                            android:id="@+id/addnewreportingsuspendedSubmit"
                             android:fontFamily="@font/roboto_medium"
                             android:textSize="12sp"
                             android:layout_marginEnd="@dimen/dp_20"
@@ -183,7 +188,7 @@
                             android:layout_height="wrap_content"/>
 
                         <TextView
-                            android:id="@+id/addnewVehicalCancel"
+                            android:id="@+id/addnewreportingsuspendedCancel"
                             android:fontFamily="@font/roboto_medium"
                             android:textSize="12sp"
                             android:layout_marginStart="@dimen/dp_20"
@@ -207,4 +212,5 @@
         </ScrollView>
 
     </LinearLayout>
+
 </FrameLayout>

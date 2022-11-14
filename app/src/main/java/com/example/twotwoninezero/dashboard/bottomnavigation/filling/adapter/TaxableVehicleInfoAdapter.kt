@@ -13,7 +13,7 @@ import com.example.twotwoninezero.service.AllAndSearchBusinessListResponse
 import com.example.twotwoninezero.service.GetFleetListResponse
 import com.example.twotwoninezero.service.GetTaxableVehicleResponse
 
-class TaxableVehicleInfoAdapter(var datalist: List<GetTaxableVehicleResponse>, var OnMenuClick: (String) -> Unit):RecyclerView.Adapter<TaxableVehicleInfoAdapter.MyHolder>() {
+class TaxableVehicleInfoAdapter(var datalist: List<GetTaxableVehicleResponse>, var OnMenuClick: (String,String,String,Int) -> Unit):RecyclerView.Adapter<TaxableVehicleInfoAdapter.MyHolder>() {
     class MyHolder(itemview:View):RecyclerView.ViewHolder(itemview) {
 
         val taxableVehicleName=itemview.findViewById<View>(R.id.taxableVehicleName) as TextView
@@ -37,14 +37,14 @@ class TaxableVehicleInfoAdapter(var datalist: List<GetTaxableVehicleResponse>, v
         holder.taxableVehicleVin.text=data.vin
         holder.taxableVehicletaxAmount.text="$ "+data.taxAmount
         holder.taxableVehicletaxableweight.text=data.weight
-        holder.taxableVehicleLogging.isChecked = data.isLogging.lowercase().equals("Y")
+        holder.taxableVehicleLogging.isChecked = data.isLogging.equals("Y")
 
 
         holder.taxableVehicleDelete.setOnClickListener {
-            OnMenuClick.invoke(data.id.toString())
+            OnMenuClick.invoke(data.id.toString(),data.weight,data.weightCategory,0)
         }
         holder.taxableVehicleEdit.setOnClickListener {
-            OnMenuClick.invoke(data.id.toString())
+            OnMenuClick.invoke(data.id.toString(),data.weight,data.weightCategory,1)
         }
 
     }

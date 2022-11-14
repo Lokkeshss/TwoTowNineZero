@@ -1,20 +1,16 @@
 package com.example.twotwoninezero.dashboard.bottomnavigation.home.adapter
 
-import android.media.Image
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.widget.SwitchCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.twotwoninezero.R
-import com.example.twotwoninezero.dashboard.bottomnavigation.fleet.adapter.FleetListAdapter
-import com.example.twotwoninezero.service.GetFleetListResponse
 import com.example.twotwoninezero.service.HomeScreenListResponse
 
-class HomeScreenAdapter (var datalist: List<HomeScreenListResponse>, var OnMenuClick: (String,String,String,String,Int) -> Unit):
-    RecyclerView.Adapter<HomeScreenAdapter.MyHolder>() {
+class HomeScreenAdapterActivate (var datalist: List<HomeScreenListResponse>, var OnMenuClick: (String, String, String, String,String, Int) -> Unit):
+    RecyclerView.Adapter<HomeScreenAdapterActivate.MyHolder>() {
     class MyHolder(itemview: View): RecyclerView.ViewHolder(itemview) {
         val homeScreenBusinessName=itemview.findViewById<View>(R.id.homeScreenBusinessName) as TextView
         val homeScreenFormType=itemview.findViewById<View>(R.id.homeScreenFormType) as TextView
@@ -24,7 +20,7 @@ class HomeScreenAdapter (var datalist: List<HomeScreenListResponse>, var OnMenuC
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.homescreen_lineitem,parent,false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.homescreen_lineitem_active,parent,false)
         return MyHolder(view)
     }
 
@@ -34,14 +30,14 @@ class HomeScreenAdapter (var datalist: List<HomeScreenListResponse>, var OnMenuC
         holder.homeScreenFormType.text=data.formType
 
         holder.homeScreenDelete.setOnClickListener {
-                OnMenuClick.invoke(data.filingId.toString(),data.formType,data.createdDate,data.filingStatus,0)
+                OnMenuClick.invoke(data.filingId.toString(),data.formType,data.createdDate,data.filingStatus,data.filingMonth,0)
         }
         holder.homeScreenEdit.setOnClickListener {
-            OnMenuClick.invoke(data.filingId.toString(),data.formType,data.createdDate,data.filingStatus,1)
+            OnMenuClick.invoke(data.filingId.toString(),data.formType,data.createdDate,data.filingStatus,data.filingMonth,1)
         }
 
         holder.itemView.setOnClickListener {
-            OnMenuClick.invoke(data.businessName,data.formType,data.createdDate,data.filingStatus,2)
+            OnMenuClick.invoke(data.businessName,data.formType,data.createdDate,data.filingStatus,data.filingMonth,2)
         }
 
     }

@@ -13,6 +13,10 @@ class HomeRepo(private val api: Api):BaseRepository() {
         val resp = doApiCall { api.deleteFiling(filing).await() }
         return resp
     }
+    suspend fun reactivateFiling(filing: String): ApiResponse<ReactivateHomeScreenFilingResponse>? {
+        val resp = doApiCall { api.reactivateFiling(filing).await() }
+        return resp
+    }
     suspend fun filterHomeScreenFiling(i: FilingFilterRequest): ApiResponse<List<HomeScreenListResponse>>? {
         val resp = doApiCall { api.filterHomeScreenFiling(i).await() }
         return resp

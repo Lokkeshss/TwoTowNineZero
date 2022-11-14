@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.twotwoninezero.R
 import com.example.twotwoninezero.base.BaseFragment
 import com.example.twotwoninezero.common.BusinessTypeListSpinnerAdapter
-import com.example.twotwoninezero.dashboard.bottomnavigation.business.BusinessScreenFragmentDirections
+import com.example.twotwoninezero.dashboard.bottomnavigation.filling.adapter.BusinessNameListAdapter
 import com.example.twotwoninezero.dashboard.bottomnavigation.filling.adapter.FirstUsedMonthAdapter
 import com.example.twotwoninezero.dashboard.bottomnavigation.filling.adapter.FormTypeAdapter
 import com.example.twotwoninezero.dashboard.bottomnavigation.filling.adapter.TaxYearAdapter
@@ -25,11 +25,11 @@ import kotlinx.android.synthetic.main.taxyear_and_forms.*
 
 class TaxYearAndFormFragment : BaseFragment() {
     private lateinit var mFillingViewModel : FillingViewModel
-    var mGetBusinessTypeRequestItemAdapterList:List<GetBusinessTypeRequestItem> = ArrayList()
+    var mGetBusinessTypeRequestItemAdapterList:List<AllAndSearchBusinessListResponse> = ArrayList()
     var mGetFillingFormResponseAdapterList:List<GetFillingFormResponse> = ArrayList()
     var mGetFillingTaxYearResponseAdapterList:List<GetFillingTaxYearResponse> = ArrayList()
     var mgetFillingFirstUsedMonthResponseAdapterList:List<getFillingFirstUsedMonthResponse> = ArrayList()
-    var mBusinessTypeListSpinnerAdapter: BusinessTypeListSpinnerAdapter?=null
+    var mBusinessNameListAdapter: BusinessNameListAdapter?=null
     var mFormTypeAdapter: FormTypeAdapter?=null
     var mTaxYearAdapter: TaxYearAdapter?=null
     var mFirstUsedMonthAdapter: FirstUsedMonthAdapter?=null
@@ -107,7 +107,7 @@ class TaxYearAndFormFragment : BaseFragment() {
             }
         }
 
-        mFillingViewModel.getBusinessTypeRequestItem()
+        mFillingViewModel.getallbusinesslist("active","0","0","active")
         mFillingViewModel.getFormType()
 
         TIfillingFirstUserMonth.visibility=View.GONE
@@ -202,8 +202,8 @@ class TaxYearAndFormFragment : BaseFragment() {
 
         if (type.equals("business")){
             title.text="Business Type"
-            mBusinessTypeListSpinnerAdapter=
-                BusinessTypeListSpinnerAdapter(mGetBusinessTypeRequestItemAdapterList){ businesstype, id->
+            mBusinessNameListAdapter=
+                BusinessNameListAdapter(mGetBusinessTypeRequestItemAdapterList){ businesstype, id->
                     fillingBusinessName?.setText(businesstype)
                     businesid=id.toString()
                     customDialog.dismiss()
@@ -211,7 +211,7 @@ class TaxYearAndFormFragment : BaseFragment() {
 
             val mLayoutManager = LinearLayoutManager(requireContext())
             custom_rv?.layoutManager = mLayoutManager
-            custom_rv?.adapter = mBusinessTypeListSpinnerAdapter
+            custom_rv?.adapter = mBusinessNameListAdapter
 
         }else if (type.equals("formtype")){
             title.text="Form Type"

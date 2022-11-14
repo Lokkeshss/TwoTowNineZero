@@ -1,7 +1,6 @@
-package com.example.twotwoninezero.dashboard.bottomnavigation.filling.vehicles_tax
+package com.example.twotwoninezero.dashboard.bottomnavigation.filling.vehicles_tax.TaxableVehicleInformation
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,6 +25,8 @@ class AddNewVehicalFragment : BaseFragment() {
     var mTaxableWeightSpinnerAdapter: TaxableWeightSpinnerAdapter?=null
     var addnewVehicalTaxableGrossWeightId=""
     var isLogging="N"
+    var businessId:String?=null
+
     override fun initViewModel() {
         mFillingViewModel = ViewModelProvider(
             viewModelStore,
@@ -35,6 +36,13 @@ class AddNewVehicalFragment : BaseFragment() {
 
         mFillingViewModel.mTaxableWeightResponseList.observe(this, Observer {
             mTaxableWeightList = it
+        })
+
+        mFillingViewModel.mEditTaxableVehicleByIdResponse.observe(this, Observer {
+            addnewVehicalVin.setText(it.vin)
+            isLogging=it.isLogging
+            addnewVehicalLogging.isChecked = !it.isLogging.equals("N")
+
         })
 
         mFillingViewModel.mSaveTaxableVehicleResponse.observe(this, Observer {
@@ -65,6 +73,21 @@ class AddNewVehicalFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        arguments?.let {
+
+            val weight = it.getString("weight")
+            val weight_category = it.getString("weight_category")
+             businessId = it.getString("id")
+
+            if (businessId != null && !businessId.isNullOrEmpty()) {
+                addnewVehicalTaxableGrossWeight?.setText(weight)
+                addnewVehicalTaxableGrossWeightId= weight_category.toString()
+                mFillingViewModel.getTaxableVehicleById(businessId!!, filingId)
+                addnewVehicalSubmit.setText("Update")
+            }
+
+        }
+
 
         mFillingViewModel.gettaxableweight()
 
@@ -89,10 +112,18 @@ class AddNewVehicalFragment : BaseFragment() {
            }else if (addnewVehicalTaxableGrossWeight.text.toString().isNullOrEmpty()){
                showToast("Select Taxable Gross Weight")
            }else{
+               if (addnewVehicalSubmit.text.toString().equals("Save ")){
 
-                val i = SaveTaxableVehicleRequest(filingId,isLogging,addnewVehicalVin.text.toString(),addnewVehicalTaxableGrossWeightId)
+                   val i = SaveTaxableVehicleRequest(filingId,isLogging,addnewVehicalVin.text.toString(),addnewVehicalTaxableGrossWeightId)
+                   mFillingViewModel.saveTaxableVehicle(filingId,i)
 
-               mFillingViewModel.saveTaxableVehicle(filingId,i)
+               }else{
+
+                   val i = SaveTaxableVehicleRequest(filingId,isLogging,addnewVehicalVin.text.toString(),addnewVehicalTaxableGrossWeightId)
+                   mFillingViewModel.updateTaxableVehicle(businessId.toString(),filingId,i)
+
+               }
+
            }
         }
 

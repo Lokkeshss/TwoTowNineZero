@@ -162,6 +162,63 @@ interface Api {
                            @Body i: SaveTaxableVehicleRequest?) :
             Deferred<Response<SaveTaxableVehicleResponse>>
 
+    @PUT("form2290/updateTaxableVehicle/{businessId}/{filing}")
+    @Headers("Content-Type: application/json")
+    fun updateTaxableVehicle(@Path("businessId") businessId: String,
+                             @Path("filing") filing: String,
+                           @Body i: SaveTaxableVehicleRequest?) :
+            Deferred<Response<SaveTaxableVehicleResponse>>
+
+    @DELETE("form2290/deleteTaxableVehicleById/{businessId}/{filing}")
+    @Headers("Content-Type: application/json")
+    fun deleteTaxableVehicleById(@Path("businessId") businessId: String,
+                             @Path("filing") filing: String) :
+            Deferred<Response<DeleteTaxableVehicleResponse>>
+    @DELETE("form2290/deleteCurrentSuspendedeById/{id}/{filing}")
+    @Headers("Content-Type: application/json")
+    fun deleteCurrentSuspendedeById(@Path("id") businessId: String,
+                             @Path("filing") filing: String) :
+            Deferred<Response<DeleteCurrentSuspendedeById>>
+
+    @GET("form2290/getCurrentSuspendedByFilingId/{filing}")
+    @Headers("Content-Type: application/json")
+    fun GetCurrentSuspendedByFilingId(@Path("filing") filing: String):
+            Deferred<Response<List<GetCurrentSuspendedByFilingIdResponse>>>
+
+    @POST("form2290/saveCurrentSuspended/{filing}")
+    @Headers("Content-Type: application/json")
+    fun saveCurrentSuspended(@Path("filing") filing: String,@Body i:SaveCurrentSuspendRequest):
+            Deferred<Response<SaveCurrentSuspendResponse>>
+
+    @PUT("form2290/updateCurrentSuspended/{id}/{filing}")
+    @Headers("Content-Type: application/json")
+    fun updateCurrentSuspended(@Path("id") id: String,@Path("filing") filing: String,@Body i:UpdateCurrentSuspendRequest):
+            Deferred<Response<UpdateCurrentSuspendResponse>>
+
+    @PUT("form2290/updatePriorSuspended/{id}/{filing}")
+    @Headers("Content-Type: application/json")
+    fun updatePriorSuspended(@Path("id") id: String,@Path("filing") filing: String,@Body i:UpdatePriorSuspendedRequest):
+            Deferred<Response<UpdatePriorSuspendedResponse>>
+
+    @GET("form2290/getCurrentSuspendedById/{id}/{filing}")
+    @Headers("Content-Type: application/json")
+    fun editGetCurrentSuspendedById(@Path("id") id: String,@Path("filing") filing: String):
+            Deferred<Response<EditGetCurrentSuspendedByIdResponse>>
+
+
+    @GET("form2290/getPriorSuspendedByFilingId/{filing}")
+    @Headers("Content-Type: application/json")
+    fun getPriorSuspendedByFilingId(@Path("filing") filing: String):
+            Deferred<Response<List<GetPriorSuspendedByFilingIdResponse>>>
+
+    @POST("form2290/savePriorSuspended/{filing}")
+    @Headers("Content-Type: application/json")
+    fun savePriorSuspended(@Path("filing") filing: String,@Body i : SavePriorSuspendedRequest):
+            Deferred<Response<SavePriorSuspendedResponse>>
+
+
+
+
     /*Filling*/
 
 
@@ -178,6 +235,14 @@ interface Api {
     @POST("filings/searchFiling")
     @Headers("Content-Type: application/json")
     fun filterHomeScreenFiling(@Body i: FilingFilterRequest):Deferred<Response<List<HomeScreenListResponse>>>
+
+    @PUT("filings/reactivateFiling/{filing}")
+    @Headers("Content-Type: application/json")
+    fun reactivateFiling(@Path("filing") filing: String):Deferred<Response<ReactivateHomeScreenFilingResponse>>
+
+    @GET("form2290/getTaxableVehicleById/{businessId}/{filingId}")
+    @Headers("Content-Type: application/json")
+    fun getTaxableVehicleById(@Path("businessId") businessId: String,@Path("filingId") filingId: String):Deferred<Response<EditTaxableVehicleByIdResponse>>
 
     /* Home */
 }

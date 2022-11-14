@@ -152,7 +152,7 @@
                     android:layout_margin="5dp"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/businessscreen_roundborder"
+                    android:background="@drawable/businessscreen_roundborder_blue"
                     android:orientation="vertical">
 
                     <ImageView
@@ -182,7 +182,7 @@
                     android:layout_margin="5dp"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/businessscreen_roundborder"
+                    android:background="@drawable/businessscreen_roundborder_blue"
                     android:orientation="vertical">
 
                     <ImageView

@@ -194,3 +194,33 @@ data class FilingFilterRequest(
     val offset: String,
     val toDate: String
 )
+
+data class SaveCurrentSuspendRequest(
+    val filingId: String,
+    val isAgriculture: String,
+    val isLogging: String,
+    val vin: String
+)
+
+data class UpdateCurrentSuspendRequest(
+    val isAgriculture: String,
+    val isLogging: String,
+    val vin: String
+)
+
+data class UpdatePriorSuspendedRequest(
+    val isExceededMileage: String,
+    val isVehicleSold: String,
+    val soldDate: String,
+    val soldToWhom: String,
+    val vin: String
+)
+
+data class SavePriorSuspendedRequest(
+    val filingId: String,
+    val isExceededMileage: String,
+    val isVehicleSold: String,
+    val soldDate: String,
+    val soldToWhom: String,
+    val vin: String
+)

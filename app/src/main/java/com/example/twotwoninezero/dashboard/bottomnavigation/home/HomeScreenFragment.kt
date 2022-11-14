@@ -1,10 +1,12 @@
 package com.example.twotwoninezero.dashboard.bottomnavigation.home
 
-import android.app.DatePickerDialog
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -12,21 +14,17 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.twotwoninezero.R
 import com.example.twotwoninezero.base.BaseFragment
-import com.example.twotwoninezero.dashboard.bottomnavigation.fleet.adapter.FleetListAdapter
-import com.example.twotwoninezero.dashboard.bottomnavigation.home.adapter.HomeScreenAdapter
+import com.example.twotwoninezero.dashboard.bottomnavigation.home.adapter.HomeScreenAdapterActivate
+import com.example.twotwoninezero.dashboard.bottomnavigation.home.adapter.HomeScreenAdapterArchive
 import com.example.twotwoninezero.dashboard.bottomnavigation.home.model.HomeViewModel
 import com.example.twotwoninezero.service.FilingFilterRequest
 import com.example.twotwoninezero.service.HomeScreenGetFilingsByUserIdRequest
-import kotlinx.android.synthetic.main.delete_or_activate_by_businessid.*
-import kotlinx.android.synthetic.main.fragment_filing_filter.*
-import kotlinx.android.synthetic.main.fragment_fleet_screen.*
 import kotlinx.android.synthetic.main.fragment_home_screen.*
-import java.text.SimpleDateFormat
-import java.util.*
 
 class HomeScreenFragment : BaseFragment() {
     private lateinit var homeViewModel: HomeViewModel
-    var mHomeScreenAdapter: HomeScreenAdapter?=null
+    var mHomeScreenAdapterActivate: HomeScreenAdapterActivate?=null
+    var mHomeScreenAdapterArchive: HomeScreenAdapterArchive?=null
     private var customDialog: AlertDialog?=null
     var usethis:String?=null
     companion object{
@@ -38,44 +36,25 @@ class HomeScreenFragment : BaseFragment() {
             HomeViewModel::class.java
         )
         setViewModel(homeViewModel)
-        homeViewModel.mHomeScreenListResponse.observe(this, Observer {
+        homeViewModel.mHomeScreenListResponseArchive.observe(this, Observer {
             if (it.isNullOrEmpty()){
                 noFiling.visibility=View.VISIBLE
                 homeScreenRV.visibility=View.GONE
             }else{
                 noFiling.visibility=View.GONE
                 homeScreenRV.visibility=View.VISIBLE
-
-                if (requestType.equals("active")){
-                    if (usethis.isNullOrEmpty()){
-                        requestType="archive"
-                    }else{
-                        requestType="active"
-                    }
-                   // requestType="archive"
-                    archiveOrActiveText.setText("Archived Filing")
-                }else{
-                    if (usethis.isNullOrEmpty()){
-                        requestType="active"
-                    }else{
-                        requestType="archive"
-                    }
-                   // requestType="active"
-                    archiveOrActiveText.setText("Activate Filing")
-                }
             }
 
-            mHomeScreenAdapter= HomeScreenAdapter(it){ filingIdorBusinessName,formtype,createdDate,filingstaus,type->
+            mHomeScreenAdapterArchive= HomeScreenAdapterArchive(it){ filingIdorBusinessName, formtype, createdDate, filingstaus,firstusedMonth, type->
                 if (type==0){
 
-                    deleteFilingId(filingIdorBusinessName)
-
                 }else if (type==1){
-
+                    deleteOrReactiveFilingId(filingIdorBusinessName,"activate")
                 }else if (type ==2){
+
                     findNavController().navigate(HomeScreenFragmentDirections.actionHomeScreenFragmentToHomeFilingDetailsViewFragment(
                         filingIdorBusinessName,formtype,"",
-                        "",createdDate,filingstaus,""
+                        firstusedMonth,createdDate,filingstaus,""
                     ))
                 }else{
 
@@ -83,7 +62,38 @@ class HomeScreenFragment : BaseFragment() {
             }
             val mLayoutManager = LinearLayoutManager(requireContext())
             homeScreenRV?.layoutManager = mLayoutManager
-            homeScreenRV?.adapter = mHomeScreenAdapter
+            homeScreenRV?.adapter = mHomeScreenAdapterArchive
+
+        })
+        homeViewModel.mHomeScreenListResponseActive.observe(this, Observer {
+            if (it.isNullOrEmpty()){
+                noFiling.visibility=View.VISIBLE
+                homeScreenRV.visibility=View.GONE
+            }else{
+                noFiling.visibility=View.GONE
+                homeScreenRV.visibility=View.VISIBLE
+            }
+
+            mHomeScreenAdapterActivate= HomeScreenAdapterActivate(it){ filingIdorBusinessName, formtype, createdDate, filingstaus,firstusedMonth, type->
+                if (type==0){
+
+                    deleteOrReactiveFilingId(filingIdorBusinessName,"archive")
+
+                }else if (type==1){
+
+                }else if (type ==2){
+
+                    findNavController().navigate(HomeScreenFragmentDirections.actionHomeScreenFragmentToHomeFilingDetailsViewFragment(
+                        filingIdorBusinessName,formtype,"",
+                        firstusedMonth,createdDate,filingstaus,""
+                    ))
+                }else{
+
+                }
+            }
+            val mLayoutManager = LinearLayoutManager(requireContext())
+            homeScreenRV?.layoutManager = mLayoutManager
+            homeScreenRV?.adapter = mHomeScreenAdapterActivate
         })
 
         homeViewModel.mDeleteHomeScreenFilingResponse.observe(this, Observer {
@@ -92,7 +102,18 @@ class HomeScreenFragment : BaseFragment() {
                     showToast(it.message)
                     customDialog?.dismiss()
                     val i= HomeScreenGetFilingsByUserIdRequest(10,requestType,0)
-                    homeViewModel.getFilingsByUserId(i)
+                    homeViewModel.getFilingsByUserId(i,requestType)
+                }else{
+                    showToast(it.message)
+                }
+        })
+        homeViewModel.mReactivateHomeScreenFilingResponse.observe(this, Observer {
+                if (it.code==200){
+
+                    showToast(it.message)
+                    customDialog?.dismiss()
+                    val i= HomeScreenGetFilingsByUserIdRequest(10,requestType,0)
+                    homeViewModel.getFilingsByUserId(i,requestType)
                 }else{
                     showToast(it.message)
                 }
@@ -117,7 +138,6 @@ class HomeScreenFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         arguments?.let {
 
             val category = it.getString("category")
@@ -131,14 +151,21 @@ class HomeScreenFragment : BaseFragment() {
              usethis = it.getString("usethis")
 
             if (usethis != null && !usethis.isNullOrEmpty() && usethis.equals("YES")) {
-
-                val fi =  FilingFilterRequest(category.toString(),fromDate.toString(),isPartial.toString(),keyword.toString(),limit.toString(),listType.toString()
+                val fi =  FilingFilterRequest(category.toString(),fromDate.toString(),isPartial.toString(),keyword.toString(),limit.toString(),requestType
                     ,offset.toString(),toDate.toString())
-                 homeViewModel.filterHomeScreenFiling(fi)
+                 homeViewModel.filterHomeScreenFiling(fi,requestType)
             }else{
                 val i= HomeScreenGetFilingsByUserIdRequest(10,requestType,0)
-                homeViewModel.getFilingsByUserId(i)
+                homeViewModel.getFilingsByUserId(i,requestType)
             }
+        }
+
+        if (requestType.equals("active")){
+            blue()
+            archiveOrActiveText.setText("Archived Filing")
+        }else{
+            green()
+            archiveOrActiveText.setText("Activate Filing")
         }
 
 
@@ -151,14 +178,25 @@ class HomeScreenFragment : BaseFragment() {
         }
 
         activeORarchievFilingList.setOnClickListener {
+
+            if (requestType.equals("active")){
+                green()
+                requestType="archive"
+                archiveOrActiveText.setText("Activate Filing")
+            }else{
+                blue()
+                requestType="active"
+                archiveOrActiveText.setText("Archived Filing")
+            }
+
             val i= HomeScreenGetFilingsByUserIdRequest(10,requestType,0)
-            homeViewModel.getFilingsByUserId(i)
+            homeViewModel.getFilingsByUserId(i,requestType)
         }
     }
 
 
 
-    private fun deleteFilingId(filingId: String) {
+    private fun deleteOrReactiveFilingId(filingId: String, type:String) {
         val dialogView = layoutInflater.inflate(R.layout.delete_or_activate_by_businessid, null)
 
         customDialog = AlertDialog.Builder(requireContext())
@@ -166,16 +204,45 @@ class HomeScreenFragment : BaseFragment() {
             .show()
         customDialog?.setCancelable(false)
 
+        val cancel = dialogView.findViewById<TextView>(R.id.cancel)
+        val delete = dialogView.findViewById<TextView>(R.id.delete)
+        val deleteText = dialogView.findViewById<TextView>(R.id.textfields)
+        val deleteIcon = dialogView.findViewById<ImageView>(R.id.icons)
+
+        if (type.equals("activate")){
+            deleteText.text="Do you want to activate the filing?"
+            delete.text="Activate"
+            deleteIcon.setImageResource(R.drawable.rusureicon)
+        }else{
+
+        }
+
         cancel.setOnClickListener {
 
             customDialog?.dismiss()
         }
 
         delete.setOnClickListener {
-            homeViewModel.deleteFiling(filingId)
+
+            if (type.equals("activate")){
+                homeViewModel.reactivateFiling(filingId)
+            }else{
+                homeViewModel.deleteFiling(filingId)
+            }
 
         }
+    }
 
+    fun blue(){
+        archiveOrActiveIcon.setImageResource(R.drawable.archivedfiling_blue)
+        archiveOrActiveText.setTextColor(Color.parseColor("#007BFF"))
+        activeORarchievFilingList.setBackground(getResources().getDrawable(R.drawable.businessscreen_roundborder_blue))
+    }
+
+    fun green(){
+        archiveOrActiveIcon.setImageResource(R.drawable.archivedfiling_green)
+        archiveOrActiveText.setTextColor(Color.parseColor("#218838"))
+        activeORarchievFilingList.setBackground(getResources().getDrawable(R.drawable.businessscreen_roundborder_green))
     }
 
 }

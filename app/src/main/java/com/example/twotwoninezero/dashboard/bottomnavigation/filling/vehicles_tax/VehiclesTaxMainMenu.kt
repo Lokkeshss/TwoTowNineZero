@@ -38,7 +38,9 @@ class VehiclesTaxMainMenu : BaseFragment() {
         }
 
         reportingsuspended.setOnClickListener {
-
+            findNavController().navigate(
+                VehiclesTaxMainMenuDirections.actionTaxableVehicleInformationToReportingSuspendedExemptVehicleFragment()
+            )
         }
         priorYearSuspended.setOnClickListener {
 

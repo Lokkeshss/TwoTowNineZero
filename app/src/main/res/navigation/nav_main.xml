@@ -144,10 +144,13 @@
         <action
             android:id="@+id/action_taxableVehicleInformation_to_taxableVehicleInformationFragment"
             app:destination="@id/taxableVehicleInformationFragment" />
+        <action
+            android:id="@+id/action_taxableVehicleInformation_to_reportingSuspendedExemptVehicleFragment"
+            app:destination="@id/reportingSuspendedExemptVehicleFragment" />
     </fragment>
     <fragment
         android:id="@+id/taxableVehicleInformationFragment"
-        android:name="com.example.twotwoninezero.dashboard.bottomnavigation.filling.vehicles_tax.TaxableVehicleInformationFragment"
+        android:name="com.example.twotwoninezero.dashboard.bottomnavigation.filling.vehicles_tax.TaxableVehicleInformation.TaxableVehicleInformationFragment"
         android:label="fragment_taxable_vehicle_information"
         tools:layout="@layout/fragment_taxable_vehicle_information" >
         <action
@@ -156,9 +159,13 @@
     </fragment>
     <fragment
         android:id="@+id/addNewVehicalFragment"
-        android:name="com.example.twotwoninezero.dashboard.bottomnavigation.filling.vehicles_tax.AddNewVehicalFragment"
+        android:name="com.example.twotwoninezero.dashboard.bottomnavigation.filling.vehicles_tax.TaxableVehicleInformation.AddNewVehicalFragment"
         android:label="fragment_add_new_vehical"
-        tools:layout="@layout/fragment_add_new_vehical" />
+        tools:layout="@layout/fragment_add_new_vehical" >
+        <argument android:name="weight" />
+        <argument android:name="weight_category" />
+        <argument android:name="id" />
+    </fragment>
     <fragment
         android:id="@+id/filingFilterFragment"
         android:name="com.example.twotwoninezero.dashboard.bottomnavigation.home.FilingFilterFragment"
@@ -180,6 +187,23 @@
         <argument android:name="createdDate" />
         <argument android:name="status" />
         <argument android:name="invoiceStatus" />
+    </fragment>
+    <fragment
+        android:id="@+id/addNewReportingSuspendedExemptVehicles"
+        android:name="com.example.twotwoninezero.dashboard.bottomnavigation.filling.vehicles_tax.ReportingSuspended.AddNewReportingSuspendedExemptVehicles"
+        android:label="fragment_add_new_reporting_suspended_exempt_vehicles"
+        tools:layout="@layout/fragment_add_new_reporting_suspended_exempt_vehicles" >
+        <argument android:name="id" />
+        <argument android:name="filingId" />
+    </fragment>
+    <fragment
+        android:id="@+id/reportingSuspendedExemptVehicleFragment"
+        android:name="com.example.twotwoninezero.dashboard.bottomnavigation.filling.vehicles_tax.ReportingSuspended.ReportingSuspendedExemptVehicleFragment"
+        android:label="fragment_reporting_suspended_exempt_vehicle"
+        tools:layout="@layout/fragment_reporting_suspended_exempt_vehicle" >
+        <action
+            android:id="@+id/action_reportingSuspendedExemptVehicleFragment_to_addNewReportingSuspendedExemptVehicles"
+            app:destination="@id/addNewReportingSuspendedExemptVehicles" />
     </fragment>
 
 </navigation>

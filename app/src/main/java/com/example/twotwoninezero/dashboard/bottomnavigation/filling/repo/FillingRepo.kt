@@ -11,10 +11,10 @@ import java.io.InputStream
 class FillingRepo(private val api: Api) : BaseRepository()  {
 
 
-    suspend fun getBusinessTypeRequestItem(): ApiResponse<List<GetBusinessTypeRequestItem>>? {
-        val resp = doApiCall { api.getBusinessTypeRequestItem().await() }
+   /* suspend fun getallbusinesslist(): ApiResponse<List<AllAndSearchBusinessListResponse>>? {
+        val resp = doApiCall { api.getallbusinesslist().await() }
         return resp
-    }
+    }*/
 
     suspend fun getFormType(): ApiResponse<List<GetFillingFormResponse>>? {
         val resp = doApiCall { api.getFormType().await() }
@@ -44,6 +44,48 @@ class FillingRepo(private val api: Api) : BaseRepository()  {
         val resp = doApiCall { api.saveTaxableVehicle(filling,i).await() }
         return resp
     }
+    suspend fun updateTaxableVehicle(businessId:String,filling:String,i: SaveTaxableVehicleRequest?): ApiResponse<SaveTaxableVehicleResponse>? {
+        val resp = doApiCall { api.updateTaxableVehicle(businessId,filling,i).await() }
+        return resp
+    }
+    suspend fun deleteTaxableVehicleById(businessId:String,filling:String): ApiResponse<DeleteTaxableVehicleResponse>? {
+        val resp = doApiCall { api.deleteTaxableVehicleById(businessId,filling).await() }
+        return resp
+    }
+    suspend fun deleteCurrentSuspendedeById(businessId:String,filling:String): ApiResponse<DeleteCurrentSuspendedeById>? {
+        val resp = doApiCall { api.deleteCurrentSuspendedeById(businessId,filling).await() }
+        return resp
+    }
+    suspend fun GetCurrentSuspendedByFilingId(filling:String): ApiResponse<List<GetCurrentSuspendedByFilingIdResponse>>? {
+        val resp = doApiCall { api.GetCurrentSuspendedByFilingId(filling).await() }
+        return resp
+    }
+    suspend fun saveCurrentSuspended(filling:String,i:SaveCurrentSuspendRequest): ApiResponse<SaveCurrentSuspendResponse>? {
+        val resp = doApiCall { api.saveCurrentSuspended(filling,i).await() }
+        return resp
+    }
+    suspend fun updateCurrentSuspended(id: String,filling:String,i:UpdateCurrentSuspendRequest): ApiResponse<UpdateCurrentSuspendResponse>? {
+        val resp = doApiCall { api.updateCurrentSuspended(id,filling,i).await() }
+        return resp
+    }
+    suspend fun updatePriorSuspended(id: String,filling:String,i:UpdatePriorSuspendedRequest): ApiResponse<UpdatePriorSuspendedResponse>? {
+        val resp = doApiCall { api.updatePriorSuspended(id,filling,i).await() }
+        return resp
+    }
+    suspend fun editGetCurrentSuspendedById(id: String,filling:String): ApiResponse<EditGetCurrentSuspendedByIdResponse>? {
+        val resp = doApiCall { api.editGetCurrentSuspendedById(id,filling).await() }
+        return resp
+    }
+
+    suspend fun getPriorSuspendedByFilingId(filling:String): ApiResponse<List<GetPriorSuspendedByFilingIdResponse>>? {
+        val resp = doApiCall { api.getPriorSuspendedByFilingId(filling).await() }
+        return resp
+    }
+
+    suspend fun savePriorSuspended(filling:String, i : SavePriorSuspendedRequest): ApiResponse<SavePriorSuspendedResponse>? {
+        val resp = doApiCall { api.savePriorSuspended(filling,i).await() }
+        return resp
+    }
 
     suspend fun saveFiling(i: SaveUpdateFilingRequest?): ApiResponse<SaveUpdateFilingResponse>? {
         val resp = doApiCall { api.saveFiling(i).await() }
@@ -64,6 +106,11 @@ class FillingRepo(private val api: Api) : BaseRepository()  {
 
     suspend fun getallbusinesslist( listType: String?,limit: String?,offset: String?): ApiResponse<List<AllAndSearchBusinessListResponse>>? {
         val resp = doApiCall { api.getallbusinesslist(listType,limit,offset).await() }
+        return resp
+    }
+
+    suspend fun getTaxableVehicleById(businessId:String,filing: String): ApiResponse<EditTaxableVehicleByIdResponse>? {
+        val resp = doApiCall { api.getTaxableVehicleById(businessId,filing).await() }
         return resp
     }
 

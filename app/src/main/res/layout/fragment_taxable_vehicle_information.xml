@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".dashboard.bottomnavigation.filling.vehicles_tax.TaxableVehicleInformationFragment">
+    tools:context=".dashboard.bottomnavigation.filling.vehicles_tax.TaxableVehicleInformation.TaxableVehicleInformationFragment">
 
     <LinearLayout
         android:background="@color/loginheadercolor"
@@ -121,7 +121,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/dp_20"
-                android:background="@drawable/businessscreen_roundborder"
+                android:background="@drawable/businessscreen_roundborder_blue"
                 android:orientation="vertical">
 
                 <ImageView
@@ -149,7 +149,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_20"
-                android:background="@drawable/businessscreen_roundborder"
+                android:background="@drawable/businessscreen_roundborder_blue"
                 android:orientation="vertical">
 
                 <ImageView
@@ -180,7 +180,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_20"
-            android:background="@drawable/businessscreen_roundborder"
+            android:background="@drawable/businessscreen_roundborder_blue"
             android:orientation="vertical">
 
             <ImageView

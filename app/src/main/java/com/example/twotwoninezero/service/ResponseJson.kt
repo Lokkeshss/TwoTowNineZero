@@ -64,6 +64,22 @@ data class ReActivateBusinessResponse(
     val code: Int,
     val message: String,
 )
+data class SaveCurrentSuspendResponse(
+    val code: Int,
+    val message: String,
+)
+data class UpdateCurrentSuspendResponse(
+    val code: Int,
+    val message: String,
+)
+data class UpdatePriorSuspendedResponse(
+    val code: Int,
+    val message: String,
+)
+data class SavePriorSuspendedResponse(
+    val code: Int,
+    val message: String,
+)
 
 data class SaveUpdateFilingResponse(
     val code: Int,
@@ -76,7 +92,22 @@ data class SaveTaxableVehicleResponse(
     val message: String,
 )
 
+data class DeleteTaxableVehicleResponse(
+    val code: Int,
+    val message: String,
+)
+
+data class DeleteCurrentSuspendedeById(
+    val code: Int,
+    val message: String,
+)
+
 data class DeleteHomeScreenFilingResponse(
+    val code: Int,
+    val message: String,
+)
+
+data class ReactivateHomeScreenFilingResponse(
     val code: Int,
     val message: String,
 )
@@ -231,3 +262,36 @@ data class HomeScreenListResponse(
 )
 
 data class FilterCategory(var name:String,var id:String)
+
+data class EditTaxableVehicleByIdResponse(
+    val filingId: Int,
+    val id: Int,
+    val isLogging: String,
+    val taxAmount: String,
+    val vin: String,
+    val weightCategory: String
+)
+
+data class GetCurrentSuspendedByFilingIdResponse(
+    val filingId: Int,
+    val id: Int,
+    val isAgriculture: String,
+    val isLogging: String,
+    val vin: String
+)
+data class EditGetCurrentSuspendedByIdResponse(
+    val filingId: Int,
+    val id: Int,
+    val isAgriculture: String,
+    val isLogging: String,
+    val vin: String
+)
+
+data class GetPriorSuspendedByFilingIdResponse(
+    val id: Int,
+    val isExceededMileage: String,
+    val isVehicleSold: String,
+    val soldToWhom: String,
+    val vin: String,
+    val soldDate: String
+)
