@@ -225,6 +225,36 @@
 
         </com.google.android.material.card.MaterialCardView>
 
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_20"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="2dp"
+            app:strokeWidth="1dp"
+            android:padding="@dimen/dp_10"
+            app:strokeColor="@color/blacklignt">
+
+            <LinearLayout
+                android:padding="@dimen/dp_10"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/creditforoverpayment"
+                    android:drawablePadding="@dimen/dp_10"
+                    android:padding="@dimen/dp_10"
+                    android:drawableStart="@drawable/creditforoverpayment"
+                    android:text="Low Mileage Vehicle (Credit)"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
+
 
         <LinearLayout
             android:padding="@dimen/dp_5"

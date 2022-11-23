@@ -119,6 +119,7 @@ class AddFleetFragment : BaseFragment() {
         addfleetSelectWeight?.isFocusable = false
         addfleetSelectWeight?.isClickable = true
 
+
         arguments?.let {
             val id = it.getString("fleetId")
             val businessName = it.getString("businessName")

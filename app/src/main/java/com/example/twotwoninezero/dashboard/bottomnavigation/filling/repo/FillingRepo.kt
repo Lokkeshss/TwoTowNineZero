@@ -56,6 +56,18 @@ class FillingRepo(private val api: Api) : BaseRepository()  {
         val resp = doApiCall { api.deleteCurrentSuspendedeById(businessId,filling).await() }
         return resp
     }
+    suspend fun deleteSoldDestroyedById(businessId:String,filling:String): ApiResponse<DeleteSoldDestroyedResponse>? {
+        val resp = doApiCall { api.deleteSoldDestroyedById(businessId,filling).await() }
+        return resp
+    }
+    suspend fun deleteCreditOverPaymentById(businessId:String,filling:String): ApiResponse<DeleteCreditOverPaymentById>? {
+        val resp = doApiCall { api.deleteCreditOverPaymentById(businessId,filling).await() }
+        return resp
+    }
+    suspend fun deleteLowMileageById(businessId:String,filling:String): ApiResponse<DeleteLowMileageByIdResponse>? {
+        val resp = doApiCall { api.deleteLowMileageById(businessId,filling).await() }
+        return resp
+    }
     suspend fun GetCurrentSuspendedByFilingId(filling:String): ApiResponse<List<GetCurrentSuspendedByFilingIdResponse>>? {
         val resp = doApiCall { api.GetCurrentSuspendedByFilingId(filling).await() }
         return resp
@@ -76,6 +88,18 @@ class FillingRepo(private val api: Api) : BaseRepository()  {
         val resp = doApiCall { api.editGetCurrentSuspendedById(id,filling).await() }
         return resp
     }
+    suspend fun editgetSoldDestroyedById(id: String,filling:String): ApiResponse<EditgetSoldDestroyedByIdResponse>? {
+        val resp = doApiCall { api.editgetSoldDestroyedById(id,filling).await() }
+        return resp
+    }
+    suspend fun getCreditOverPaymentById(id: String,filling:String): ApiResponse<GetCreditOverPaymentByIdResponse>? {
+        val resp = doApiCall { api.getCreditOverPaymentById(id,filling).await() }
+        return resp
+    }
+    suspend fun getLowMileageById(id: String,filling:String): ApiResponse<GetLowMileageByIdResponse>? {
+        val resp = doApiCall { api.getLowMileageById(id,filling).await() }
+        return resp
+    }
 
     suspend fun getPriorSuspendedByFilingId(filling:String): ApiResponse<List<GetPriorSuspendedByFilingIdResponse>>? {
         val resp = doApiCall { api.getPriorSuspendedByFilingId(filling).await() }
@@ -84,6 +108,57 @@ class FillingRepo(private val api: Api) : BaseRepository()  {
 
     suspend fun savePriorSuspended(filling:String, i : SavePriorSuspendedRequest): ApiResponse<SavePriorSuspendedResponse>? {
         val resp = doApiCall { api.savePriorSuspended(filling,i).await() }
+        return resp
+    }
+
+    suspend fun deletePriorSuspendedById(id:String,filling:String): ApiResponse<DeletePriorSuspendedResponse>? {
+        val resp = doApiCall { api.deletePriorSuspendedById(id,filling).await() }
+        return resp
+    }
+
+    suspend fun getPriorSuspendedById(id:String,filling:String): ApiResponse<GetPriorSuspendedByIdResponse>? {
+        val resp = doApiCall { api.getPriorSuspendedById(id,filling).await() }
+        return resp
+    }
+
+    suspend fun saveSoldDestroyedVehicle(filling:String,i:SaveSoldDestroyedVehicleRequest): ApiResponse<SaveSoldDestroyedVehicleResponse>? {
+        val resp = doApiCall { api.saveSoldDestroyedVehicle(filling,i).await() }
+        return resp
+    }
+    suspend fun saveCreditOverPayment(filling:String,i:SaveCreditOverPaymentRequest): ApiResponse<SaveCreditOverPaymentResponse>? {
+        val resp = doApiCall { api.saveCreditOverPayment(filling,i).await() }
+        return resp
+    }
+    suspend fun updateCreditOverPayment(id:String,filling:String,i:UpdateCreditOverPaymentRequest): ApiResponse<UpdateCreditOverPaymentResponse>? {
+        val resp = doApiCall { api.updateCreditOverPayment(id,filling,i).await() }
+        return resp
+    }
+    suspend fun saveLowMileageVehicle(filling:String,i:SaveLowMileageVehicleRequest): ApiResponse<SaveLowMileageVehicleResponse>? {
+        val resp = doApiCall { api.saveLowMileageVehicle(filling,i).await() }
+        return resp
+    }
+    suspend fun updateLowMileageVehicle(id:String,filling:String,i:UpdateLowMileageVehicleRequest): ApiResponse<UpdateLowMileageVehicleResponse>? {
+        val resp = doApiCall { api.updateLowMileageVehicle(id,filling,i).await() }
+        return resp
+    }
+    suspend fun updateSoldDestroyedVehicle(id:String,filling:String,i:UpdateSoldDestroyedVehicleRequest): ApiResponse<updateSoldDestroyedVehicle>? {
+        val resp = doApiCall { api.updateSoldDestroyedVehicle(id,filling,i).await() }
+        return resp
+    }
+
+    suspend fun getSoldDestroyedByFilingId(filling:String): ApiResponse<List<GetSoldDestroyedByFilingIdResponse>>? {
+        val resp = doApiCall { api.getSoldDestroyedByFilingId(filling).await() }
+        return resp
+    }
+
+    suspend fun getCreditOverPaymentByFilingId(filling:String): ApiResponse<List<GetCreditOverPaymentByFilingIdResponse>>? {
+        val resp = doApiCall { api.getCreditOverPaymentByFilingId(filling).await() }
+        return resp
+    }
+
+
+    suspend fun getLowMileageByFilingId(filling:String): ApiResponse<List<GetLowMileageByFilingIdResponse>>? {
+        val resp = doApiCall { api.getLowMileageByFilingId(filling).await() }
         return resp
     }
 

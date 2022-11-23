@@ -91,6 +91,11 @@ class FleetScreenFragment : BaseFragment() {
             .show()
         customDialog?.setCancelable(false)
 
+        val cancel = dialogView.findViewById<TextView>(R.id.cancel)
+        val delete = dialogView.findViewById<TextView>(R.id.delete)
+        val deleteText = dialogView.findViewById<TextView>(R.id.textfields)
+        val deleteIcon = dialogView.findViewById<ImageView>(R.id.icons)
+
         cancel.setOnClickListener {
 
             customDialog?.dismiss()

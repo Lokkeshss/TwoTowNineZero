@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.Switch
 import android.widget.TextView
 import androidx.appcompat.widget.SwitchCompat
@@ -21,6 +22,8 @@ class PriorYearSuspendedAdapter(var datalist: List<GetPriorSuspendedByFilingIdRe
         val priorYearSuspendedmileageuse=itemview.findViewById<View>(R.id.priorYearSuspendedmileageuse) as SwitchCompat
         val priorYearSuspendedDelete=itemview.findViewById<View>(R.id.priorYearSuspendedDelete) as ImageView
         val priorYearSuspendedEdit=itemview.findViewById<View>(R.id.priorYearSuspendedEdit) as ImageView
+        val priorYearSuspendedTransferLL=itemview.findViewById<View>(R.id.priorYearSuspendedTransferLL) as LinearLayout
+        val priorYearSuspendedtransferdateLL=itemview.findViewById<View>(R.id.priorYearSuspendedtransferdateLL) as LinearLayout
 
     }
 
@@ -33,9 +36,16 @@ class PriorYearSuspendedAdapter(var datalist: List<GetPriorSuspendedByFilingIdRe
         val data=datalist[position]
        // holder.taxableVehicleName.text=data.businessName
         holder.priorYearSuspendedVin.text=data.vin
+        if (data.soldDate.isNullOrEmpty()){
+            holder.priorYearSuspendedtransferdateLL.visibility=View.GONE
+        }
+
+        if (data.soldToWhom.isNullOrEmpty()){
+            holder.priorYearSuspendedTransferLL.visibility=View.GONE
+        }
         holder.priorYearSuspendedtransferdate.text=data.soldDate
         holder.priorYearSuspendedTransferTo.text=data.soldToWhom
-        holder.priorYearSuspendedSold.isChecked=data.isExceededMileage.equals("Y")
+        holder.priorYearSuspendedSold.isChecked=data.isVehicleSold.equals("Y")
         holder.priorYearSuspendedmileageuse.isChecked=data.isExceededMileage.equals("Y")
 
 

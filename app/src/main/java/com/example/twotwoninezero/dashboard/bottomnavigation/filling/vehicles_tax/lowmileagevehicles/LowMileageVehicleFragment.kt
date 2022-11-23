@@ -1,6 +1,7 @@
-package com.example.twotwoninezero.dashboard.bottomnavigation.filling.vehicles_tax.TaxableVehicleInformation
+package com.example.twotwoninezero.dashboard.bottomnavigation.filling.vehicles_tax.lowmileagevehicles
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,54 +14,49 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.twotwoninezero.R
 import com.example.twotwoninezero.base.BaseFragment
-import com.example.twotwoninezero.dashboard.bottomnavigation.filling.adapter.TaxableVehicleInfoAdapter
+import com.example.twotwoninezero.dashboard.bottomnavigation.filling.adapter.LowMileageVehicleAdapter
+import com.example.twotwoninezero.dashboard.bottomnavigation.filling.adapter.SoldDestroyedAdapter
 import com.example.twotwoninezero.dashboard.bottomnavigation.filling.model.FillingViewModel
 import com.example.twotwoninezero.dashboard.bottomnavigation.filling.taxyear_and_forms.TaxYearAndFormFragment
 import com.example.twotwoninezero.dashboard.bottomnavigation.filling.taxyear_and_forms.TaxYearAndFormFragment.Companion.filingId
-import kotlinx.android.synthetic.main.fragment_taxable_vehicle_information.*
+import com.example.twotwoninezero.dashboard.bottomnavigation.filling.vehicles_tax.solddestroyedstolenvehicle.SoldDestroyedorStolenVehicleFragmentDirections
+import kotlinx.android.synthetic.main.fragment_low_mileage_vehicle.*
+import kotlinx.android.synthetic.main.fragment_sold_destroyedor_stolen_vehicle.*
 
 
-class TaxableVehicleInformationFragment : BaseFragment() {
-    private lateinit var mFillingViewModel : FillingViewModel
-    var mTaxableVehicleInfoAdapter: TaxableVehicleInfoAdapter?=null
+class LowMileageVehicleFragment : BaseFragment() {
+    private lateinit var mFillingViewModel: FillingViewModel
+    var mLowMileageVehicleAdapter: LowMileageVehicleAdapter?=null
     private var customDialog: AlertDialog?=null
     override fun initViewModel() {
-        mFillingViewModel = ViewModelProvider(
-            viewModelStore,
-            defaultViewModelProviderFactory
-        ).get(FillingViewModel::class.java)
+        mFillingViewModel = ViewModelProvider(viewModelStore,defaultViewModelProviderFactory).get(FillingViewModel::class.java)
         setViewModel(mFillingViewModel)
 
-        mFillingViewModel.mGetTaxableVehicleResponse.observe(this, Observer {
-            mTaxableVehicleInfoAdapter=
-                TaxableVehicleInfoAdapter(it){ businessId,weight,weightCategory,requestType->
-
-                    if (requestType==0){
-                        // delete
-                        deleteOrReactiveFilingId(businessId, filingId)
-                    mFillingViewModel.deleteTaxableVehicleById(businessId, filingId)
-                    }else if (requestType==1){
-                        // edit
-                        findNavController().navigate(
-                            TaxableVehicleInformationFragmentDirections.actionTaxableVehicleInformationFragmentToAddNewVehicalFragment(weight,weightCategory,businessId))
-                    }
+        mFillingViewModel.mGetLowMileageByFilingIdResponse.observe(this, Observer {
+            mLowMileageVehicleAdapter=LowMileageVehicleAdapter(it){id,weight,requestType->
+                if (requestType==0){
+                    // delete
+                    deleteOrReactiveFilingId(id, TaxYearAndFormFragment.filingId)
+                }else if (requestType==1){
+                    // edit
+                    findNavController().navigate(LowMileageVehicleFragmentDirections.actionLowMileageVehicleFragmentToAddNewLowMileageVehicleFragment(id,filingId,weight))
                 }
-
+            }
             val mLayoutManager = LinearLayoutManager(requireContext())
-            taxableVehicleRecyclerView?.layoutManager = mLayoutManager
-            taxableVehicleRecyclerView?.adapter = mTaxableVehicleInfoAdapter
+            lowMileageVehicleRecyclerView?.layoutManager = mLayoutManager
+            lowMileageVehicleRecyclerView?.adapter = mLowMileageVehicleAdapter
         })
 
-        mFillingViewModel.mDeleteTaxableVehicleResponse.observe(this, Observer {
+        mFillingViewModel.mDeleteLowMileageByIdResponse.observe(this, Observer {
             if (it.code==200){
                 showToast(it.message)
-                mFillingViewModel.getTaxableVehicleByFilingId(filingId)
-                customDialog?.dismiss()
+                mFillingViewModel.getLowMileageByFilingId(filingId)
             }else{
                 showToast(it.message)
             }
-        })
 
+            customDialog?.dismiss()
+        })
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -73,24 +69,17 @@ class TaxableVehicleInformationFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view =  inflater.inflate(R.layout.fragment_taxable_vehicle_information, container, false)
-
-        return view
+        return inflater.inflate(R.layout.fragment_low_mileage_vehicle, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        mFillingViewModel.getLowMileageByFilingId(filingId)
 
-        mFillingViewModel.getTaxableVehicleByFilingId(TaxYearAndFormFragment.filingId)
-
-        taxableVehicleAddNewVechicle.setOnClickListener {
-                findNavController().navigate(
-                    TaxableVehicleInformationFragmentDirections.actionTaxableVehicleInformationFragmentToAddNewVehicalFragment("","","")
-                )
+        lowMileageVehicleAddNewVechicle.setOnClickListener {
+            findNavController().navigate(LowMileageVehicleFragmentDirections.actionLowMileageVehicleFragmentToAddNewLowMileageVehicleFragment("","",""))
         }
-
-
     }
 
     private fun deleteOrReactiveFilingId(businessId: String, filingId: String) {
@@ -112,8 +101,9 @@ class TaxableVehicleInformationFragment : BaseFragment() {
         }
 
         delete.setOnClickListener {
-                mFillingViewModel.deleteTaxableVehicleById(businessId,filingId)
+            mFillingViewModel.deleteLowMileageById(businessId,filingId)
         }
     }
+
 
 }

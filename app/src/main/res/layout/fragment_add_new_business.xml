@@ -444,6 +444,7 @@
                         app:hintTextColor="@color/lightGray">
 
                         <EditText
+                            android:maxLength="5"
                             android:id="@+id/contactInfoZipCode"
                             android:fontFamily="@font/roboto_regular"
                             android:textSize="14sp"

@@ -163,7 +163,7 @@ class FilingFilterFragment : BaseFragment() {
         filterToDate?.setText(dateFormat.format(myCalendarToDate.time))
         val myFormatS = "yyyy/MM/dd"
         val dateFormatS = SimpleDateFormat(myFormatS, Locale.US)
-        filterToDateValue=dateFormatS.format(myCalendarFromDate.time)
+        filterToDateValue=dateFormatS.format(myCalendarToDate.time)
     }
 
     private fun FilterCategory() {

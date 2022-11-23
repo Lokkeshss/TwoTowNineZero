@@ -3,12 +3,266 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".dashboard.bottomnavigation.filling.vehicles_tax.PriorYearSuspended.AddNewPriorYearSuspendedExemptVehicles">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:background="@color/loginheadercolor"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
+    <include layout="@layout/common_header_loginsignup" />
+
+    <ScrollView
+        android:background="@color/loginheadercolor"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/loginCardView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp">
+    <TextView
+        android:id="@+id/test"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/roboto_regular"
+        android:text="Add New Vehicle"
+        android:textColor="@color/black"
+        android:textSize="21sp"/>
+
+    <TextView
+        android:layout_gravity="start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
+        android:fontFamily="@font/roboto_regular"
+        android:text="Business Name"
+        android:textColor="@color/black"
+        android:textSize="21sp"/>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_20"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="2dp"
+        app:strokeWidth="1dp"
+        app:strokeColor="@color/blacklignt">
+
+    <LinearLayout
+        android:visibility="visible"
+        android:id="@+id/businessProfileChild"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_marginStart="@dimen/dp_5"
+            android:layout_marginEnd="@dimen/dp_5"
+            android:layout_marginTop="@dimen/dp_20"
+            style="@style/loginTextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Vehicle Identification Number"
+            app:hintTextColor="@color/lightGray">
+
+            <EditText
+                android:id="@+id/addNewPriorYearVin"
+                android:textAllCaps="true"
+                android:fontFamily="@font/roboto_regular"
+                android:textSize="14sp"
+                style="@style/loginTextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890. "
+                android:inputType="text"
+                android:maxLength="17"
+                android:text="" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:layout_marginTop="@dimen/dp_20"
+            android:layout_marginStart="@dimen/dp_5"
+            android:fontFamily="@font/roboto_regular"
+            android:textSize="12sp"
+            android:textColor="@color/black"
+            android:text="Last Year Suspended Vehicle "
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"/>
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/dp_10"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_marginStart="@dimen/dp_20"
+                android:layout_weight="1"
+                android:padding="@dimen/dp_10"
+                android:id="@+id/addNewPriorYearExceeded"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="@dimen/dp_20"
+                android:background="@drawable/businessscreen_roundborder_blue"
+                android:orientation="vertical">
+
+                <TextView
+                    android:textAlignment="center"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textColor="@color/addnewbusinesstextcolor"
+                    android:textSize="12sp"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:layout_marginBottom="@dimen/dp_10"
+                    android:text="Exceeded Mileage Use Limit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginEnd="@dimen/dp_20"
+                android:layout_weight="1"
+                android:id="@+id/addNewPriorYearSold"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:padding="@dimen/dp_10"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/dp_20"
+                android:background="@drawable/businessscreen_roundborder_blue"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/archiveOrActiveText"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textColor="@color/addnewbusinesstextcolor"
+                    android:textSize="12sp"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:layout_marginBottom="@dimen/dp_10"
+                    android:text="Sold/Transferred"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/addNewPriorYearSoldTransferredTL"
+            android:layout_marginStart="@dimen/dp_5"
+            android:layout_marginEnd="@dimen/dp_5"
+            android:layout_marginTop="@dimen/dp_20"
+            style="@style/loginTextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Sold/Transferred to"
+            app:hintTextColor="@color/lightGray">
+
+            <EditText
+                android:id="@+id/addNewPriorYearSoldTransferred"
+                android:textAllCaps="true"
+                android:fontFamily="@font/roboto_regular"
+                android:textSize="14sp"
+                style="@style/loginTextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890. "
+                android:inputType="text"
+                android:maxLength="17"
+                android:text="" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_marginStart="@dimen/dp_5"
+
+            android:id="@+id/addNewPriorYearDateOfTransferTL"
+            android:layout_marginEnd="@dimen/dp_5"
+            android:layout_marginTop="@dimen/dp_20"
+            style="@style/loginTextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Date of Transfer/Sold"
+            app:hintTextColor="@color/lightGray">
+
+            <EditText
+                android:id="@+id/addNewPriorYearDateOfTransfer"
+                android:textAllCaps="true"
+                android:fontFamily="@font/roboto_regular"
+                android:textSize="14sp"
+                style="@style/loginTextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890. "
+                android:inputType="text"
+                android:maxLength="17"
+                android:text="" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+    </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+        <LinearLayout
+            android:padding="@dimen/dp_5"
+            android:layout_marginTop="@dimen/dp_40"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/addNewPriorYearSubmit"
+                android:fontFamily="@font/roboto_medium"
+                android:textSize="12sp"
+                android:layout_marginEnd="@dimen/dp_20"
+                android:drawablePadding="@dimen/dp_20"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:padding="15dp"
+                android:textColor="@color/white"
+                android:background="@drawable/btn_bg_round_cornor_with_moreround_cornor"
+                android:drawableStart="@drawable/saveicon"
+                android:text="Save "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/addNewPriorYearCancel"
+                android:fontFamily="@font/roboto_medium"
+                android:textSize="12sp"
+                android:layout_marginStart="@dimen/dp_20"
+                android:drawablePadding="@dimen/dp_20"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:padding="15dp"
+                android:background="@drawable/button_withwhite_roundcoronor_color"
+                android:drawableStart="@drawable/addbusiness_cancelbuttonicon"
+                android:text="Cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+    </LinearLayout>
+    </androidx.cardview.widget.CardView>
+    </ScrollView>
+    </LinearLayout>
 </FrameLayout>

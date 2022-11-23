@@ -43,14 +43,23 @@ class VehiclesTaxMainMenu : BaseFragment() {
             )
         }
         priorYearSuspended.setOnClickListener {
-
+            findNavController().navigate(
+                VehiclesTaxMainMenuDirections.actionTaxableVehicleInformationToPriorYearSuspendedExemptVehiclesFragment()
+            )
         }
+
         soldDestroyedStolenVehicle.setOnClickListener {
-
+            findNavController().navigate(VehiclesTaxMainMenuDirections.actionTaxableVehicleInformationToSoldDestroyedorStolenVehicleFragment())
         }
+
         lowMileageVehicle.setOnClickListener {
-
+            findNavController().navigate(VehiclesTaxMainMenuDirections.actionTaxableVehicleInformationToLowMileageVehicleFragment())
         }
+
+        creditforoverpayment.setOnClickListener {
+            findNavController().navigate(VehiclesTaxMainMenuDirections.actionTaxableVehicleInformationToCreditForAnOverpaymentOfTaxFragment())
+        }
+
     }
 
 }

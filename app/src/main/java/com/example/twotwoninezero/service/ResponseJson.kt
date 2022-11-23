@@ -80,6 +80,39 @@ data class SavePriorSuspendedResponse(
     val code: Int,
     val message: String,
 )
+data class DeletePriorSuspendedResponse(
+    val code: Int,
+    val message: String,
+)
+
+data class SaveSoldDestroyedVehicleResponse(
+    val code: Int,
+    val message: String,
+)
+data class SaveCreditOverPaymentResponse(
+    val code: Int,
+    val message: String,
+)
+data class UpdateCreditOverPaymentResponse(
+    val code: Int,
+    val message: String,
+)
+
+data class SaveLowMileageVehicleResponse(
+    val code: Int,
+    val message: String,
+)
+data class UpdateLowMileageVehicleResponse(
+    val code: Int,
+    val message: String,
+)
+
+
+data class updateSoldDestroyedVehicle(
+    val code: Int,
+    val message: String,
+)
+
 
 data class SaveUpdateFilingResponse(
     val code: Int,
@@ -98,6 +131,18 @@ data class DeleteTaxableVehicleResponse(
 )
 
 data class DeleteCurrentSuspendedeById(
+    val code: Int,
+    val message: String,
+)
+data class DeleteSoldDestroyedResponse(
+    val code: Int,
+    val message: String,
+)
+data class DeleteCreditOverPaymentById(
+    val code: Int,
+    val message: String,
+)
+data class DeleteLowMileageByIdResponse(
     val code: Int,
     val message: String,
 )
@@ -287,6 +332,30 @@ data class EditGetCurrentSuspendedByIdResponse(
     val vin: String
 )
 
+data class EditgetSoldDestroyedByIdResponse(
+    val creditAmount: String,
+    val documentName: String,
+    val filingId: Int,
+    val firstUsedMonth: String,
+    val id: Int,
+    val isLogging: String,
+    val lossType: String,
+    val refundExplanation: String,
+    val soldDestroyedDate: String,
+    val vin: String,
+    val weightCategory: String
+)
+
+data class GetCreditOverPaymentByIdResponse(
+    val amountOfClaim: String,
+    val documentName: String,
+    val explanation: String,
+    val filingId: Int,
+    val id: Int,
+    val paymentDate: String,
+    val vin: String
+)
+
 data class GetPriorSuspendedByFilingIdResponse(
     val id: Int,
     val isExceededMileage: String,
@@ -294,4 +363,64 @@ data class GetPriorSuspendedByFilingIdResponse(
     val soldToWhom: String,
     val vin: String,
     val soldDate: String
+)
+
+data class GetPriorSuspendedByIdResponse(
+    val filingId: Int,
+    val id: Int,
+    val isExceededMileage: String,
+    val isVehicleSold: String,
+    val soldDate: String,
+    val soldToWhom: String,
+    val vin: String
+)
+
+data class GetSoldDestroyedByFilingIdResponse(
+    val creditAmount: String,
+    val documentName: String,
+    val filingId: Int,
+    val firstUsedMonth: String,
+    val id: Int,
+    val isLogging: String,
+    val lossType: String,
+    val refundExplanation: String,
+    val soldDestroyedDate: String,
+    val vin: String,
+    val weight: String,
+    val weightCategory: String
+)
+
+
+data class GetCreditOverPaymentByFilingIdResponse(
+    val amountOfClaim: String,
+    val documentName: Any,
+    val explanation: String,
+    val filingId: Any,
+    val id: Int,
+    val paymentDate: String,
+    val vin: String
+)
+
+data class GetLowMileageByFilingIdResponse(
+    val creditAmount: String,
+    val documentName: String,
+    val firstUsedMonth: String,
+    val id: Int,
+    val isLogging: String,
+    val refundExplanation: String,
+    val vin: String,
+    val weight: String,
+    val weightCategory: String
+)
+
+data class GetLowMileageByIdResponse(
+    val creditAmount: String,
+    val documentName: String,
+    val filingId: Int,
+    val firstUsedMonth: String,
+    val id: Int,
+    val isLogging: String,
+    val refundExplanation: String,
+    val vin: String,
+    val weightCategory: String
 )

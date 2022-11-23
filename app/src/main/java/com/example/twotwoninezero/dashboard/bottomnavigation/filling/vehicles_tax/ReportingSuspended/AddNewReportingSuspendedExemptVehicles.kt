@@ -26,6 +26,7 @@ class AddNewReportingSuspendedExemptVehicles : BaseFragment() {
             defaultViewModelProviderFactory
         ).get(FillingViewModel::class.java)
         setViewModel(mFillingViewModel)
+
         mFillingViewModel.mSaveCurrentSuspendResponse.observe(this, Observer {
           if (it.code==200){
               showToast(it.message)

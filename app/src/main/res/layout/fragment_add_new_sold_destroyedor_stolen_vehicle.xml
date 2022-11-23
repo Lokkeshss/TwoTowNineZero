@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".dashboard.bottomnavigation.filling.vehicles_tax.solddestroyedstolenvehicle.AddNewSoldDestroyedorStolenVehicle">
+
+    <LinearLayout
+        android:background="@color/loginheadercolor"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    <include layout="@layout/common_header_loginsignup" />
+
+    <ScrollView
+        android:background="@color/loginheadercolor"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/loginCardView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp">
+    <TextView
+        android:id="@+id/test"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/roboto_regular"
+        android:text="Add New Vehicle"
+        android:textColor="@color/black"
+        android:textSize="21sp"/>
+
+    <TextView
+        android:layout_gravity="start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginBottom="@dimen/dp_10"
+        android:fontFamily="@font/roboto_regular"
+        android:text="Business Name"
+        android:textColor="@color/black"
+        android:textSize="21sp"/>
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_20"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="2dp"
+            app:strokeWidth="1dp"
+            app:strokeColor="@color/blacklignt">
+
+        <LinearLayout
+            android:visibility="visible"
+            android:id="@+id/businessProfileChild"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginStart="@dimen/dp_5"
+                android:layout_marginEnd="@dimen/dp_5"
+                android:layout_marginTop="@dimen/dp_20"
+                style="@style/loginTextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="VIN"
+                app:hintTextColor="@color/lightGray">
+
+                <EditText
+                    android:id="@+id/addnewDestroyedStolenVehicleVIN"
+                    android:textAllCaps="true"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textSize="14sp"
+                    style="@style/loginTextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890. "
+                    android:inputType="text"
+                    android:maxLength="17"
+                    android:text="" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginStart="@dimen/dp_5"
+                android:layout_marginEnd="@dimen/dp_5"
+                android:layout_marginTop="@dimen/dp_20"
+                style="@style/loginTextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Taxable Gross Weight (in lbs)"
+                app:hintTextColor="@color/lightGray">
+
+                <EditText
+                    android:drawableEnd="@drawable/edittextdropdownicon"
+                    android:id="@+id/addnewDestroyedStolenVehicleTaxableWeight"
+                    android:textAllCaps="true"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textSize="14sp"
+                    style="@style/loginTextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890. "
+                    android:inputType="text"
+                    android:maxLength="17"
+                    android:text="" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginStart="@dimen/dp_5"
+                android:layout_marginEnd="@dimen/dp_5"
+                android:layout_marginTop="@dimen/dp_20"
+                style="@style/loginTextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="First used month for your prior filed return"
+                app:hintTextColor="@color/lightGray">
+
+                <EditText
+                    android:drawableEnd="@drawable/edittextdropdownicon"
+                    android:id="@+id/addnewDestroyedStolenVehicleFirstUsedMonth"
+                    android:textAllCaps="true"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textSize="14sp"
+                    style="@style/loginTextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890. "
+                    android:inputType="text"
+                    android:maxLength="17"
+                    android:text="" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginStart="@dimen/dp_5"
+                android:layout_marginEnd="@dimen/dp_5"
+                android:layout_marginTop="@dimen/dp_20"
+                style="@style/loginTextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Sold/Destroyed date"
+                app:hintTextColor="@color/lightGray">
+
+                <EditText
+                    android:drawableEnd="@drawable/edittextdropdownicon"
+                    android:id="@+id/addnewDestroyedSoldVehicleDestroyedDate"
+                    android:textAllCaps="true"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textSize="14sp"
+                    style="@style/loginTextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890. "
+                    android:inputType="text"
+                    android:maxLength="17"
+                    android:text="" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginStart="@dimen/dp_5"
+                android:layout_marginEnd="@dimen/dp_5"
+                android:layout_marginTop="@dimen/dp_20"
+                style="@style/loginTextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Type of loss"
+                app:hintTextColor="@color/lightGray">
+
+                <EditText
+                    android:drawableEnd="@drawable/edittextdropdownicon"
+                    android:id="@+id/addnewDestroyedStolenVehicleTypeLoss"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textSize="14sp"
+                    style="@style/loginTextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890. "
+                    android:inputType="text"
+                    android:maxLength="17"
+                    android:text="" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:id="@+id/agSwitch"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+
+                <TextView
+                    android:layout_marginStart="@dimen/dp_10"
+                    android:layout_marginTop="@dimen/dp_20"
+                    android:layout_marginEnd="@dimen/dp_5"
+                    android:drawablePadding="10dp"
+                    android:textColor="@color/textcolor"
+                    android:text="Is the Vehicle used for Logging ? "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:id="@+id/addnewDestroyedStolenVehicleLogging"
+                    android:layout_marginStart="@dimen/dp_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/TTfillingAmendmentMonth"
+                android:layout_marginStart="@dimen/dp_5"
+                android:layout_marginEnd="@dimen/dp_5"
+                android:layout_marginTop="@dimen/dp_20"
+                style="@style/loginTextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:hint="Explanation for VIN correction"
+                app:hintTextColor="@color/lightGray">
+
+                <EditText
+                    android:id="@+id/addnewDestroyedStolenVehicleVINCorrection"
+                    android:textAllCaps="true"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textSize="14sp"
+                    style="@style/loginTextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890. "
+                    android:inputType="text"
+                    android:maxLength="17"
+                    android:text="" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:layout_marginTop="@dimen/dp_10"
+                android:padding="@dimen/dp_20"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_marginBottom="@dimen/dp_10"
+                    android:src="@drawable/uploadimage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/dp_10"
+                    android:textAlignment="center"
+                    android:text="Select a supporting PDF document file to Upload"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+        </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <LinearLayout
+            android:padding="@dimen/dp_5"
+            android:layout_marginTop="@dimen/dp_40"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/addnewDestroyedStolenVehicleSubmit"
+                android:fontFamily="@font/roboto_medium"
+                android:textSize="12sp"
+                android:layout_marginEnd="@dimen/dp_20"
+                android:drawablePadding="@dimen/dp_20"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:padding="15dp"
+                android:textColor="@color/white"
+                android:background="@drawable/btn_bg_round_cornor_with_moreround_cornor"
+                android:drawableStart="@drawable/saveicon"
+                android:text="Save "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/addnewDestroyedStolenVehicleCancel"
+                android:fontFamily="@font/roboto_medium"
+                android:textSize="12sp"
+                android:layout_marginStart="@dimen/dp_20"
+                android:drawablePadding="@dimen/dp_20"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:padding="15dp"
+                android:background="@drawable/button_withwhite_roundcoronor_color"
+                android:drawableStart="@drawable/addbusiness_cancelbuttonicon"
+                android:text="Cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+    </androidx.cardview.widget.CardView>
+    </ScrollView>
+    </LinearLayout>
+</FrameLayout>

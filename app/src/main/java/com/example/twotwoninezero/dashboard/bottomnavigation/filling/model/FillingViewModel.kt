@@ -20,11 +20,28 @@ class FillingViewModel:BaseViewModel() {
     var mSaveTaxableVehicleResponse: MutableLiveData<SaveTaxableVehicleResponse> = MutableLiveData()
     var mDeleteTaxableVehicleResponse: MutableLiveData<DeleteTaxableVehicleResponse> = MutableLiveData()
     var mDeleteCurrentSuspendedeById: MutableLiveData<DeleteCurrentSuspendedeById> = MutableLiveData()
+    var mDeleteSoldDestroyedResponse: MutableLiveData<DeleteSoldDestroyedResponse> = MutableLiveData()
+    var mDeleteCreditOverPaymentById: MutableLiveData<DeleteCreditOverPaymentById> = MutableLiveData()
+    var mDeleteLowMileageByIdResponse: MutableLiveData<DeleteLowMileageByIdResponse> = MutableLiveData()
     var mSaveCurrentSuspendResponse: MutableLiveData<SaveCurrentSuspendResponse> = MutableLiveData()
     var mUpdateCurrentSuspendResponse: MutableLiveData<UpdateCurrentSuspendResponse> = MutableLiveData()
     var mUpdatePriorSuspendedResponse: MutableLiveData<UpdatePriorSuspendedResponse> = MutableLiveData()
     var mEditGetCurrentSuspendedByIdResponse: MutableLiveData<EditGetCurrentSuspendedByIdResponse> = MutableLiveData()
+    var mEditgetSoldDestroyedByIdResponse: MutableLiveData<EditgetSoldDestroyedByIdResponse> = MutableLiveData()
+    var mGetCreditOverPaymentByIdResponse: MutableLiveData<GetCreditOverPaymentByIdResponse> = MutableLiveData()
+    var mGetLowMileageByIdResponse: MutableLiveData<GetLowMileageByIdResponse> = MutableLiveData()
+    var mGetPriorSuspendedByIdResponse: MutableLiveData<GetPriorSuspendedByIdResponse> = MutableLiveData()
+    var mSaveSoldDestroyedVehicleResponse: MutableLiveData<SaveSoldDestroyedVehicleResponse> = MutableLiveData()
+    var mSaveCreditOverPaymentResponse: MutableLiveData<SaveCreditOverPaymentResponse> = MutableLiveData()
+    var mUpdateCreditOverPaymentResponse: MutableLiveData<UpdateCreditOverPaymentResponse> = MutableLiveData()
+    var mSaveLowMileageVehicleResponse: MutableLiveData<SaveLowMileageVehicleResponse> = MutableLiveData()
+    var mUpdateLowMileageVehicleResponse: MutableLiveData<UpdateLowMileageVehicleResponse> = MutableLiveData()
+    var mupdateSoldDestroyedVehicle: MutableLiveData<updateSoldDestroyedVehicle> = MutableLiveData()
     var mGetPriorSuspendedByFilingIdResponse: MutableLiveData<List<GetPriorSuspendedByFilingIdResponse>> = MutableLiveData()
+    var mGetSoldDestroyedByFilingIdResponse: MutableLiveData<List<GetSoldDestroyedByFilingIdResponse>> = MutableLiveData()
+    var mGetCreditOverPaymentByFilingIdResponse: MutableLiveData<List<GetCreditOverPaymentByFilingIdResponse>> = MutableLiveData()
+    var mGetLowMileageByFilingIdResponse: MutableLiveData<List<GetLowMileageByFilingIdResponse>> = MutableLiveData()
+    var mDeletePriorSuspendedResponse: MutableLiveData<DeletePriorSuspendedResponse> = MutableLiveData()
     var mSavePriorSuspendedResponse: MutableLiveData<SavePriorSuspendedResponse> = MutableLiveData()
     var mGetCurrentSuspendedByFilingIdResponse: MutableLiveData<List<GetCurrentSuspendedByFilingIdResponse>> = MutableLiveData()
     var mTaxableWeightResponseList : MutableLiveData<List<TaxableWeightResponse>> = MutableLiveData()
@@ -250,6 +267,63 @@ class FillingViewModel:BaseViewModel() {
         }
 
     }
+
+    fun deleteSoldDestroyedById(businessId:String,filling:String) {
+
+        mIsLoading.postValue(true)
+        scope.launch {
+            val apiResponse = repository.deleteSoldDestroyedById(businessId,filling)
+            mIsLoading.postValue(false)
+            if (apiResponse?.error == true) {
+                Log.d("API Error", apiResponse?.msg.toString())
+                mFailureMessage.postValue(apiResponse?.msg)
+            } else {
+                val loginResp = apiResponse?.data as DeleteSoldDestroyedResponse
+                Log.d(" API SUCCESS ", loginResp.toString())
+                mDeleteSoldDestroyedResponse.postValue(loginResp)
+                // println("loginResploginResp "+loginResp.toString())
+            }
+        }
+
+    }
+    fun deleteCreditOverPaymentById(businessId:String,filling:String) {
+
+        mIsLoading.postValue(true)
+        scope.launch {
+            val apiResponse = repository.deleteCreditOverPaymentById(businessId,filling)
+            mIsLoading.postValue(false)
+            if (apiResponse?.error == true) {
+                Log.d("API Error", apiResponse?.msg.toString())
+                mFailureMessage.postValue(apiResponse?.msg)
+            } else {
+                val loginResp = apiResponse?.data as DeleteCreditOverPaymentById
+                Log.d(" API SUCCESS ", loginResp.toString())
+                mDeleteCreditOverPaymentById.postValue(loginResp)
+                // println("loginResploginResp "+loginResp.toString())
+            }
+        }
+
+    }
+
+    fun deleteLowMileageById(businessId:String,filling:String) {
+
+        mIsLoading.postValue(true)
+        scope.launch {
+            val apiResponse = repository.deleteLowMileageById(businessId,filling)
+            mIsLoading.postValue(false)
+            if (apiResponse?.error == true) {
+                Log.d("API Error", apiResponse?.msg.toString())
+                mFailureMessage.postValue(apiResponse?.msg)
+            } else {
+                val loginResp = apiResponse?.data as DeleteLowMileageByIdResponse
+                Log.d(" API SUCCESS ", loginResp.toString())
+                mDeleteLowMileageByIdResponse.postValue(loginResp)
+                // println("loginResploginResp "+loginResp.toString())
+            }
+        }
+
+    }
+
     fun GetCurrentSuspendedByFilingId(filling:String) {
 
         mIsLoading.postValue(true)
@@ -346,6 +420,63 @@ class FillingViewModel:BaseViewModel() {
 
     }
 
+    fun editgetSoldDestroyedById(id: String,filling:String) {
+
+        mIsLoading.postValue(true)
+        scope.launch {
+            val apiResponse = repository.editgetSoldDestroyedById(id,filling)
+            mIsLoading.postValue(false)
+            if (apiResponse?.error == true) {
+                Log.d("API Error", apiResponse?.msg.toString())
+                mFailureMessage.postValue(apiResponse?.msg)
+            }else {
+                val loginResp = apiResponse?.data as EditgetSoldDestroyedByIdResponse
+                Log.d(" API SUCCESS ", loginResp.toString())
+                mEditgetSoldDestroyedByIdResponse.postValue(loginResp)
+                // println("loginResploginResp "+loginResp.toString())
+            }
+        }
+
+    }
+
+    fun getCreditOverPaymentById(id: String,filling:String) {
+
+        mIsLoading.postValue(true)
+        scope.launch {
+            val apiResponse = repository.getCreditOverPaymentById(id,filling)
+            mIsLoading.postValue(false)
+            if (apiResponse?.error == true) {
+                Log.d("API Error", apiResponse?.msg.toString())
+                mFailureMessage.postValue(apiResponse?.msg)
+            }else {
+                val loginResp = apiResponse?.data as GetCreditOverPaymentByIdResponse
+                Log.d(" API SUCCESS ", loginResp.toString())
+                mGetCreditOverPaymentByIdResponse.postValue(loginResp)
+                // println("loginResploginResp "+loginResp.toString())
+            }
+        }
+
+    }
+
+    fun getLowMileageById(id: String,filling:String) {
+
+        mIsLoading.postValue(true)
+        scope.launch {
+            val apiResponse = repository.getLowMileageById(id,filling)
+            mIsLoading.postValue(false)
+            if (apiResponse?.error == true) {
+                Log.d("API Error", apiResponse?.msg.toString())
+                mFailureMessage.postValue(apiResponse?.msg)
+            }else {
+                val loginResp = apiResponse?.data as GetLowMileageByIdResponse
+                Log.d(" API SUCCESS ", loginResp.toString())
+                mGetLowMileageByIdResponse.postValue(loginResp)
+                // println("loginResploginResp "+loginResp.toString())
+            }
+        }
+
+    }
+
     fun getPriorSuspendedByFilingId(filling:String) {
 
         mIsLoading.postValue(true)
@@ -384,6 +515,218 @@ class FillingViewModel:BaseViewModel() {
         }
 
     }
+
+    fun deletePriorSuspendedById(id:String,filling:String) {
+
+        mIsLoading.postValue(true)
+        scope.launch {
+            val apiResponse = repository.deletePriorSuspendedById(id,filling)
+            mIsLoading.postValue(false)
+            if (apiResponse?.error == true) {
+                Log.d("API Error", apiResponse?.msg.toString())
+                mFailureMessage.postValue(apiResponse?.msg)
+            }else {
+                val loginResp = apiResponse?.data as DeletePriorSuspendedResponse
+                Log.d(" API SUCCESS ", loginResp.toString())
+                mDeletePriorSuspendedResponse.postValue(loginResp)
+                // println("loginResploginResp "+loginResp.toString())
+            }
+        }
+
+    }
+
+    fun getPriorSuspendedById(id:String,filling:String) {
+
+        mIsLoading.postValue(true)
+        scope.launch {
+            val apiResponse = repository.getPriorSuspendedById(id,filling)
+            mIsLoading.postValue(false)
+            if (apiResponse?.error == true) {
+                Log.d("API Error", apiResponse?.msg.toString())
+                mFailureMessage.postValue(apiResponse?.msg)
+            }else {
+                val loginResp = apiResponse?.data as GetPriorSuspendedByIdResponse
+                Log.d(" API SUCCESS ", loginResp.toString())
+                mGetPriorSuspendedByIdResponse.postValue(loginResp)
+                // println("loginResploginResp "+loginResp.toString())
+            }
+        }
+
+    }
+
+
+    fun saveSoldDestroyedVehicle(filling:String,i:SaveSoldDestroyedVehicleRequest) {
+
+        mIsLoading.postValue(true)
+        scope.launch {
+            val apiResponse = repository.saveSoldDestroyedVehicle(filling,i)
+            mIsLoading.postValue(false)
+            if (apiResponse?.error == true) {
+                Log.d("API Error", apiResponse?.msg.toString())
+                mFailureMessage.postValue(apiResponse?.msg)
+            }else {
+                val loginResp = apiResponse?.data as SaveSoldDestroyedVehicleResponse
+                Log.d(" API SUCCESS ", loginResp.toString())
+                mSaveSoldDestroyedVehicleResponse.postValue(loginResp)
+                // println("loginResploginResp "+loginResp.toString())
+            }
+        }
+
+    }
+    fun saveCreditOverPayment(filling:String,i:SaveCreditOverPaymentRequest) {
+
+        mIsLoading.postValue(true)
+        scope.launch {
+            val apiResponse = repository.saveCreditOverPayment(filling,i)
+            mIsLoading.postValue(false)
+            if (apiResponse?.error == true) {
+                Log.d("API Error", apiResponse?.msg.toString())
+                mFailureMessage.postValue(apiResponse?.msg)
+            }else {
+                val loginResp = apiResponse?.data as SaveCreditOverPaymentResponse
+                Log.d(" API SUCCESS ", loginResp.toString())
+                mSaveCreditOverPaymentResponse.postValue(loginResp)
+                // println("loginResploginResp "+loginResp.toString())
+            }
+        }
+
+    }
+    fun updateCreditOverPayment(id:String,filling:String,i:UpdateCreditOverPaymentRequest) {
+
+        mIsLoading.postValue(true)
+        scope.launch {
+            val apiResponse = repository.updateCreditOverPayment(id,filling,i)
+            mIsLoading.postValue(false)
+            if (apiResponse?.error == true) {
+                Log.d("API Error", apiResponse?.msg.toString())
+                mFailureMessage.postValue(apiResponse?.msg)
+            }else {
+                val loginResp = apiResponse?.data as UpdateCreditOverPaymentResponse
+                Log.d(" API SUCCESS ", loginResp.toString())
+                mUpdateCreditOverPaymentResponse.postValue(loginResp)
+                // println("loginResploginResp "+loginResp.toString())
+            }
+        }
+
+    }
+
+    fun saveLowMileageVehicle(filling:String,i:SaveLowMileageVehicleRequest) {
+
+        mIsLoading.postValue(true)
+        scope.launch {
+            val apiResponse = repository.saveLowMileageVehicle(filling,i)
+            mIsLoading.postValue(false)
+            if (apiResponse?.error == true) {
+                Log.d("API Error", apiResponse?.msg.toString())
+                mFailureMessage.postValue(apiResponse?.msg)
+            }else {
+                val loginResp = apiResponse?.data as SaveLowMileageVehicleResponse
+                Log.d(" API SUCCESS ", loginResp.toString())
+                mSaveLowMileageVehicleResponse.postValue(loginResp)
+                // println("loginResploginResp "+loginResp.toString())
+            }
+        }
+
+    }
+    fun updateLowMileageVehicle(id:String,filling:String,i:UpdateLowMileageVehicleRequest) {
+
+        mIsLoading.postValue(true)
+        scope.launch {
+            val apiResponse = repository.updateLowMileageVehicle(id,filling,i)
+            mIsLoading.postValue(false)
+            if (apiResponse?.error == true) {
+                Log.d("API Error", apiResponse?.msg.toString())
+                mFailureMessage.postValue(apiResponse?.msg)
+            }else {
+                val loginResp = apiResponse?.data as UpdateLowMileageVehicleResponse
+                Log.d(" API SUCCESS ", loginResp.toString())
+                mUpdateLowMileageVehicleResponse.postValue(loginResp)
+                // println("loginResploginResp "+loginResp.toString())
+            }
+        }
+
+    }
+
+    fun updateSoldDestroyedVehicle(id:String,filling:String,i:UpdateSoldDestroyedVehicleRequest) {
+
+        mIsLoading.postValue(true)
+        scope.launch {
+            val apiResponse = repository.updateSoldDestroyedVehicle(id,filling,i)
+            mIsLoading.postValue(false)
+            if (apiResponse?.error == true) {
+                Log.d("API Error", apiResponse?.msg.toString())
+                mFailureMessage.postValue(apiResponse?.msg)
+            }else {
+                val loginResp = apiResponse?.data as updateSoldDestroyedVehicle
+                Log.d(" API SUCCESS ", loginResp.toString())
+                mupdateSoldDestroyedVehicle.postValue(loginResp)
+                // println("loginResploginResp "+loginResp.toString())
+            }
+        }
+
+    }
+
+
+    fun getSoldDestroyedByFilingId(filling:String) {
+
+        mIsLoading.postValue(true)
+        scope.launch {
+            val apiResponse = repository.getSoldDestroyedByFilingId(filling)
+            mIsLoading.postValue(false)
+            if (apiResponse?.error == true) {
+                Log.d("API Error", apiResponse?.msg.toString())
+                mFailureMessage.postValue(apiResponse?.msg)
+            }else {
+                val loginResp = apiResponse?.data as List<GetSoldDestroyedByFilingIdResponse>
+                Log.d(" API SUCCESS ", loginResp.toString())
+                mGetSoldDestroyedByFilingIdResponse.postValue(loginResp)
+                // println("loginResploginResp "+loginResp.toString())
+            }
+        }
+
+    }
+
+    fun getCreditOverPaymentByFilingId(filling:String) {
+
+        mIsLoading.postValue(true)
+        scope.launch {
+            val apiResponse = repository.getCreditOverPaymentByFilingId(filling)
+            mIsLoading.postValue(false)
+            if (apiResponse?.error == true) {
+                Log.d("API Error", apiResponse?.msg.toString())
+                mFailureMessage.postValue(apiResponse?.msg)
+            }else {
+                val loginResp = apiResponse?.data as List<GetCreditOverPaymentByFilingIdResponse>
+                Log.d(" API SUCCESS ", loginResp.toString())
+                mGetCreditOverPaymentByFilingIdResponse.postValue(loginResp)
+                // println("loginResploginResp "+loginResp.toString())
+            }
+        }
+
+    }
+
+
+    fun getLowMileageByFilingId(filling:String) {
+
+        mIsLoading.postValue(true)
+        scope.launch {
+            val apiResponse = repository.getLowMileageByFilingId(filling)
+            mIsLoading.postValue(false)
+            if (apiResponse?.error == true) {
+                Log.d("API Error", apiResponse?.msg.toString())
+                mFailureMessage.postValue(apiResponse?.msg)
+            }else {
+                val loginResp = apiResponse?.data as List<GetLowMileageByFilingIdResponse>
+                Log.d(" API SUCCESS ", loginResp.toString())
+                mGetLowMileageByFilingIdResponse.postValue(loginResp)
+                // println("loginResploginResp "+loginResp.toString())
+            }
+        }
+
+    }
+
+
+
 
 
 

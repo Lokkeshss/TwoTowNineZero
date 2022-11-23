@@ -110,20 +110,10 @@
                 android:text="" />
         </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
-                android:layout_marginTop="@dimen/dp_20"
-                android:layout_marginBottom="@dimen/dp_5"
-                android:layout_marginStart="@dimen/dp_5"
-                android:fontFamily="@font/roboto_medium"
-                android:textColor="@color/textcolor"
-                android:textSize="12sp"
-                android:text="Is the Vehicle used for Logging ?"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
         <com.google.android.material.textfield.TextInputLayout
             android:layout_marginStart="@dimen/dp_5"
             android:layout_marginEnd="@dimen/dp_5"
+            android:layout_marginTop="@dimen/dp_20"
             style="@style/loginTextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

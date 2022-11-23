@@ -147,6 +147,18 @@
         <action
             android:id="@+id/action_taxableVehicleInformation_to_reportingSuspendedExemptVehicleFragment"
             app:destination="@id/reportingSuspendedExemptVehicleFragment" />
+        <action
+            android:id="@+id/action_taxableVehicleInformation_to_priorYearSuspendedExemptVehiclesFragment"
+            app:destination="@id/priorYearSuspendedExemptVehiclesFragment" />
+        <action
+            android:id="@+id/action_taxableVehicleInformation_to_soldDestroyedorStolenVehicleFragment"
+            app:destination="@id/soldDestroyedorStolenVehicleFragment" />
+        <action
+            android:id="@+id/action_taxableVehicleInformation_to_lowMileageVehicleFragment"
+            app:destination="@id/lowMileageVehicleFragment" />
+        <action
+            android:id="@+id/action_taxableVehicleInformation_to_creditForAnOverpaymentOfTaxFragment"
+            app:destination="@id/creditForAnOverpaymentOfTaxFragment" />
     </fragment>
     <fragment
         android:id="@+id/taxableVehicleInformationFragment"
@@ -204,6 +216,81 @@
         <action
             android:id="@+id/action_reportingSuspendedExemptVehicleFragment_to_addNewReportingSuspendedExemptVehicles"
             app:destination="@id/addNewReportingSuspendedExemptVehicles" />
+    </fragment>
+    <fragment
+        android:id="@+id/priorYearSuspendedExemptVehiclesFragment"
+        android:name="com.example.twotwoninezero.dashboard.bottomnavigation.filling.vehicles_tax.PriorYearSuspended.PriorYearSuspendedExemptVehiclesFragment"
+        android:label="fragment_prior_year_suspended_exempt_vehicles"
+        tools:layout="@layout/fragment_prior_year_suspended_exempt_vehicles" >
+        <action
+            android:id="@+id/action_priorYearSuspendedExemptVehiclesFragment_to_addNewPriorYearSuspendedExemptVehicles"
+            app:destination="@id/addNewPriorYearSuspendedExemptVehicles" />
+    </fragment>
+    <fragment
+        android:id="@+id/addNewPriorYearSuspendedExemptVehicles"
+        android:name="com.example.twotwoninezero.dashboard.bottomnavigation.filling.vehicles_tax.PriorYearSuspended.AddNewPriorYearSuspendedExemptVehicles"
+        android:label="fragment_add_new_prior_year_suspended_exempt_vehicles"
+        tools:layout="@layout/fragment_add_new_prior_year_suspended_exempt_vehicles" >
+        <argument android:name="id" />
+    </fragment>
+    <fragment
+        android:id="@+id/soldDestroyedorStolenVehicleFragment"
+        android:name="com.example.twotwoninezero.dashboard.bottomnavigation.filling.vehicles_tax.solddestroyedstolenvehicle.SoldDestroyedorStolenVehicleFragment"
+        android:label="fragment_sold_destroyedor_stolen_vehicle"
+        tools:layout="@layout/fragment_sold_destroyedor_stolen_vehicle" >
+        <action
+            android:id="@+id/action_soldDestroyedorStolenVehicleFragment_to_addNewSoldDestroyedorStolenVehicle"
+            app:destination="@id/addNewSoldDestroyedorStolenVehicle" />
+    </fragment>
+    <fragment
+        android:id="@+id/addNewSoldDestroyedorStolenVehicle"
+        android:name="com.example.twotwoninezero.dashboard.bottomnavigation.filling.vehicles_tax.solddestroyedstolenvehicle.AddNewSoldDestroyedorStolenVehicle"
+        android:label="fragment_add_new_sold_destroyedor_stolen_vehicle"
+        tools:layout="@layout/fragment_add_new_sold_destroyedor_stolen_vehicle" >
+        <argument android:name="weight"
+            app:argType="string" />
+        <argument android:name="id"
+            app:argType="string" />
+        <argument
+            android:name="filingId"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/lowMileageVehicleFragment"
+        android:name="com.example.twotwoninezero.dashboard.bottomnavigation.filling.vehicles_tax.lowmileagevehicles.LowMileageVehicleFragment"
+        android:label="fragment_low_mileage_vehicle"
+        tools:layout="@layout/fragment_low_mileage_vehicle" >
+        <action
+            android:id="@+id/action_lowMileageVehicleFragment_to_addNewLowMileageVehicleFragment"
+            app:destination="@id/addNewLowMileageVehicleFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addNewLowMileageVehicleFragment"
+        android:name="com.example.twotwoninezero.dashboard.bottomnavigation.filling.vehicles_tax.lowmileagevehicles.AddNewLowMileageVehicleFragment"
+        android:label="fragment_add_new_low_mileage_vehicle"
+        tools:layout="@layout/fragment_add_new_low_mileage_vehicle" >
+        <argument
+            android:name="id"
+            app:argType="string" />
+        <argument android:name="filingId" />
+        <argument android:name="weight" />
+    </fragment>
+    <fragment
+        android:id="@+id/creditForAnOverpaymentOfTaxFragment"
+        android:name="com.example.twotwoninezero.dashboard.bottomnavigation.filling.vehicles_tax.creditforanapproval.CreditForAnOverpaymentOfTaxFragment"
+        android:label="fragment_credit_for_an_overpayment_of_tax"
+        tools:layout="@layout/fragment_credit_for_an_overpayment_of_tax" >
+        <action
+            android:id="@+id/action_creditForAnOverpaymentOfTaxFragment_to_addNewCreditForAnOverpaymentOfTaxFragment"
+            app:destination="@id/addNewCreditForAnOverpaymentOfTaxFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addNewCreditForAnOverpaymentOfTaxFragment"
+        android:name="com.example.twotwoninezero.dashboard.bottomnavigation.filling.vehicles_tax.creditforanapproval.AddNewCreditForAnOverpaymentOfTaxFragment"
+        android:label="fragment_add_new_credit_for_an_overpayment_of_tax"
+        tools:layout="@layout/fragment_add_new_credit_for_an_overpayment_of_tax" >
+        <argument android:name="id" />
+        <argument android:name="filingId" />
     </fragment>
 
 </navigation>

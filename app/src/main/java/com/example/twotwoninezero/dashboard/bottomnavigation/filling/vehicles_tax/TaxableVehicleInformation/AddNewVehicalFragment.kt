@@ -88,8 +88,10 @@ class AddNewVehicalFragment : BaseFragment() {
 
         }
 
-
         mFillingViewModel.gettaxableweight()
+
+        addnewVehicalTaxableGrossWeight.isFocusable=false
+        addnewVehicalTaxableGrossWeight.isClickable=true
 
         addnewVehicalTaxableGrossWeight.setOnClickListener {
             showTaxableWeight()

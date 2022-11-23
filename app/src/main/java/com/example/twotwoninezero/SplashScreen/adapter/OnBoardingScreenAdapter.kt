@@ -52,7 +52,7 @@ class OnBoardingScreenAdapter(var mContext: Context) :PagerAdapter(){
         when (position) {
             0 -> {
                 onBoardLogo.setImageResource(R.drawable.onboard_one)
-                obBoardTitle.text = "convienent"
+                obBoardTitle.text = "Convenient"
                 onBoardDes.text = "E-File Form 2290 and pay your Heavy Vehicle Truck Tax today"
                 onBoardIndicater.setImageResource(R.drawable.dot_one)
                 onBoardNext.visibility=View.VISIBLE
@@ -62,7 +62,7 @@ class OnBoardingScreenAdapter(var mContext: Context) :PagerAdapter(){
             1 -> {
                 onBoardLogo.setImageResource(R.drawable.onboard_two)
                 obBoardTitle.text = "quick"
-                onBoardDes.text = "Get your IRS Watermarked Schedule 1 in \\njust Two Minutes!"
+                onBoardDes.text = "Get your IRS Watermarked Schedule 1 in \n just Two Minutes!"
                 onBoardIndicater.setImageResource(R.drawable.dot_two)
                 onBoardGetStart.visibility=View.INVISIBLE
                 onBoardNext.visibility=View.VISIBLE

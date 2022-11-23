@@ -16,6 +16,7 @@
     <dimen name="dp_25">25dp</dimen>
     <dimen name="dp_30">30dp</dimen>
     <dimen name="dp_40">40dp</dimen>
+    <dimen name="dp_200">200dp</dimen>
 
     <dimen name="secondary_circle_width">90dp</dimen>
     <dimen name="secondary_circle_height">90dp</dimen>

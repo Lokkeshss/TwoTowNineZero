@@ -224,3 +224,64 @@ data class SavePriorSuspendedRequest(
     val soldToWhom: String,
     val vin: String
 )
+
+data class SaveSoldDestroyedVehicleRequest(
+    val documentName: String,
+    val filingId: String,
+    val firstUsedMonth: String,
+    val isLogging: String,
+    val lossType: String,
+    val refundExplanation: String,
+    val soldDate: String,
+    val vin: String,
+    val weightCategory: String
+)
+
+
+data class SaveCreditOverPaymentRequest(
+    val amountOfClaim: String,
+    val documentName: String,
+    val explanation: String,
+    val filingId: String,
+    val paymentDate: String,
+    val vin: String
+)
+
+data class UpdateCreditOverPaymentRequest(
+    val amountOfClaim: String,
+    val documentName: String,
+    val explanation: String,
+    val filingId: String,
+    val paymentDate: String,
+    val vin: String
+)
+
+data class SaveLowMileageVehicleRequest(
+    val documentName: String,
+    val filingId: String,
+    val firstUsedMonth: String,
+    val isLogging: String,
+    val refundExplanation: String,
+    val vin: String,
+    val weightCategory: String
+)
+
+data class UpdateLowMileageVehicleRequest(
+    val documentName: String,
+    val firstUsedMonth: String,
+    val isLogging: String,
+    val refundExplanation: String,
+    val vin: String,
+    val weightCategory: String
+)
+
+data class UpdateSoldDestroyedVehicleRequest(
+    val documentName: String,
+    val firstUsedMonth: String,
+    val isLogging: String,
+    val lossType: String,
+    val refundExplanation: String,
+    val soldDate: String,
+    val vin: String,
+    val weightCategory: String
+)

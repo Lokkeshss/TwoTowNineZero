@@ -691,6 +691,8 @@ class AddNewBusinessFragment : BaseFragment() {
             showToast("Please Enter City")
         }else if (contactInfoZipCode?.text.toString().isNullOrEmpty()){
             showToast("Please Enter ZipCode")
+        }else if (contactInfoZipCode?.text.toString().length<5){
+            showToast("Please Enter Valid ZipCode")
         }else if (contactInfoPhoneNumber?.text.toString().isNullOrEmpty()){
             showToast("Please Enter Contact Phone Number")
         }else if (contactInfoEmailAddress?.text.toString().isNullOrEmpty()){

@@ -180,6 +180,24 @@ interface Api {
                              @Path("filing") filing: String) :
             Deferred<Response<DeleteCurrentSuspendedeById>>
 
+    @DELETE("form2290/deleteSoldDestroyedById/{id}/{filing}")
+    @Headers("Content-Type: application/json")
+    fun deleteSoldDestroyedById(@Path("id") businessId: String,
+                             @Path("filing") filing: String) :
+            Deferred<Response<DeleteSoldDestroyedResponse>>
+
+    @DELETE("form2290/deleteCreditOverPaymentById/{id}/{filing}")
+    @Headers("Content-Type: application/json")
+    fun deleteCreditOverPaymentById(@Path("id") businessId: String,
+                             @Path("filing") filing: String) :
+            Deferred<Response<DeleteCreditOverPaymentById>>
+
+    @DELETE("form2290/deleteLowMileageById/{id}/{filing}")
+    @Headers("Content-Type: application/json")
+    fun deleteLowMileageById(@Path("id") businessId: String,
+                             @Path("filing") filing: String) :
+            Deferred<Response<DeleteLowMileageByIdResponse>>
+
     @GET("form2290/getCurrentSuspendedByFilingId/{filing}")
     @Headers("Content-Type: application/json")
     fun GetCurrentSuspendedByFilingId(@Path("filing") filing: String):
@@ -205,6 +223,20 @@ interface Api {
     fun editGetCurrentSuspendedById(@Path("id") id: String,@Path("filing") filing: String):
             Deferred<Response<EditGetCurrentSuspendedByIdResponse>>
 
+    @GET("form2290/getSoldDestroyedById/{id}/{filing}")
+    @Headers("Content-Type: application/json")
+    fun editgetSoldDestroyedById(@Path("id") id: String,@Path("filing") filing: String):
+            Deferred<Response<EditgetSoldDestroyedByIdResponse>>
+
+    @GET("form2290/getCreditOverPaymentById/{id}/{filing}")
+    @Headers("Content-Type: application/json")
+    fun getCreditOverPaymentById(@Path("id") id: String,@Path("filing") filing: String):
+            Deferred<Response<GetCreditOverPaymentByIdResponse>>
+
+    @GET("form2290/getLowMileageById/{id}/{filing}")
+    @Headers("Content-Type: application/json")
+    fun getLowMileageById(@Path("id") id: String,@Path("filing") filing: String):
+            Deferred<Response<GetLowMileageByIdResponse>>
 
     @GET("form2290/getPriorSuspendedByFilingId/{filing}")
     @Headers("Content-Type: application/json")
@@ -216,6 +248,65 @@ interface Api {
     fun savePriorSuspended(@Path("filing") filing: String,@Body i : SavePriorSuspendedRequest):
             Deferred<Response<SavePriorSuspendedResponse>>
 
+    @DELETE("form2290/deletePriorSuspendedById/{id}/{filing}")
+    @Headers("Content-Type: application/json")
+    fun deletePriorSuspendedById(@Path("id") businessId: String,@Path("filing") filing: String):
+            Deferred<Response<DeletePriorSuspendedResponse>>
+
+    @GET("form2290/getPriorSuspendedById/{id}/{filing}")
+    @Headers("Content-Type: application/json")
+    fun getPriorSuspendedById(@Path("id") businessId: String,@Path("filing") filing: String):
+            Deferred<Response<GetPriorSuspendedByIdResponse>>
+
+
+
+
+
+    @POST("form2290/saveCreditOverPayment/{filing}")
+    @Headers("Content-Type: application/json")
+    fun saveCreditOverPayment(@Path("filing") filing: String,@Body i:SaveCreditOverPaymentRequest):
+            Deferred<Response<SaveCreditOverPaymentResponse>>
+
+    @PUT("form2290/updateCreditOverPayment/{id}/{filing}")
+    @Headers("Content-Type: application/json")
+    fun updateCreditOverPayment(@Path("id") id: String,@Path("filing") filing: String,@Body i:UpdateCreditOverPaymentRequest):
+            Deferred<Response<UpdateCreditOverPaymentResponse>>
+
+    @POST("form2290/saveSoldDestroyedVehicle/{filing}")
+    @Headers("Content-Type: application/json")
+    fun saveSoldDestroyedVehicle(@Path("filing") filing: String,@Body i:SaveSoldDestroyedVehicleRequest):
+            Deferred<Response<SaveSoldDestroyedVehicleResponse>>
+
+    @PUT("form2290/updateSoldDestroyedVehicle/{id}/{filing}")
+    @Headers("Content-Type: application/json")
+    fun updateSoldDestroyedVehicle(@Path("id") id: String,@Path("filing") filing: String,@Body i:UpdateSoldDestroyedVehicleRequest):
+            Deferred<Response<updateSoldDestroyedVehicle>>
+
+    @GET("form2290/getSoldDestroyedByFilingId/{filing}")
+    @Headers("Content-Type: application/json")
+    fun getSoldDestroyedByFilingId(@Path("filing") filing: String):
+            Deferred<Response<List<GetSoldDestroyedByFilingIdResponse>>>
+
+    @GET("form2290/getCreditOverPaymentByFilingId/{filing}")
+    @Headers("Content-Type: application/json")
+    fun getCreditOverPaymentByFilingId(@Path("filing") filing: String):
+            Deferred<Response<List<GetCreditOverPaymentByFilingIdResponse>>>
+
+    @GET("form2290/getLowMileageByFilingId/{filing}")
+    @Headers("Content-Type: application/json")
+    fun getLowMileageByFilingId(@Path("filing") filing: String):
+            Deferred<Response<List<GetLowMileageByFilingIdResponse>>>
+
+
+    @POST("form2290/saveLowMileageVehicle/{filing}")
+    @Headers("Content-Type: application/json")
+    fun saveLowMileageVehicle(@Path("filing") filing: String,@Body i:SaveLowMileageVehicleRequest):
+            Deferred<Response<SaveLowMileageVehicleResponse>>
+
+    @PUT("form2290/updateLowMileageVehicle/{id}/{filing}")
+    @Headers("Content-Type: application/json")
+    fun updateLowMileageVehicle(@Path("id") id: String,@Path("filing") filing: String,@Body i:UpdateLowMileageVehicleRequest):
+            Deferred<Response<UpdateLowMileageVehicleResponse>>
 
 
 
