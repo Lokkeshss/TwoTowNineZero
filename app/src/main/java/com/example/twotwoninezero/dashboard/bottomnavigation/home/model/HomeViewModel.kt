@@ -6,6 +6,7 @@ import com.example.twotwoninezero.base.BaseViewModel
 import com.example.twotwoninezero.dashboard.bottomnavigation.home.repo.HomeRepo
 import com.example.twotwoninezero.service.*
 import kotlinx.coroutines.launch
+import java.io.File
 
 class HomeViewModel:BaseViewModel() {
 
@@ -15,6 +16,7 @@ class HomeViewModel:BaseViewModel() {
     var mDeleteHomeScreenFilingResponse : MutableLiveData<DeleteHomeScreenFilingResponse> = MutableLiveData()
     var mReactivateHomeScreenFilingResponse : MutableLiveData<ReactivateHomeScreenFilingResponse> = MutableLiveData()
     var mEditTaxableVehicleByIdResponse : MutableLiveData<EditTaxableVehicleByIdResponse> = MutableLiveData()
+    var mFileDownloadResponse : MutableLiveData<FileDownloadResponse> = MutableLiveData()
 
     fun getFilingsByUserId(i: HomeScreenGetFilingsByUserIdRequest,requestType:String) {
 
@@ -93,6 +95,27 @@ class HomeViewModel:BaseViewModel() {
                 }
 
                 // println("loginResploginResp "+loginResp.toString())
+            }
+        }
+    }
+
+    fun downloadPDF(filename: String, file: File) {
+
+        mIsLoading.postValue(true)
+        scope.launch {
+            var fileResponse = repository.downloadPDF(filename, file)
+            mIsLoading.postValue(false)
+            if (fileResponse.error) {
+                Log.d("API Error", fileResponse?.msg.toString())
+                mFailureMessage.postValue(fileResponse.msg)
+            } else {
+                Log.d(" API SUCCESS ", fileResponse.toString())
+                //mFileDownloadResponse.postValue(fileResponse)
+                if (fileResponse.file != null) {
+                    mFileDownloadResponse.postValue(fileResponse)
+                } else {
+                    // mFailureMessage.postValue("File download failed due to network connection, Please try again later")
+                }
             }
         }
     }

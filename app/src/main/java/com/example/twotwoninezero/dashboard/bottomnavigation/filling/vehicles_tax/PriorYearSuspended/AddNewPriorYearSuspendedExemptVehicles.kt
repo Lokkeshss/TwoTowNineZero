@@ -9,8 +9,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.twotwoninezero.R
 import com.example.twotwoninezero.base.BaseFragment
+import com.example.twotwoninezero.common.*
 import com.example.twotwoninezero.dashboard.bottomnavigation.filling.model.FillingViewModel
-import com.example.twotwoninezero.dashboard.bottomnavigation.filling.taxyear_and_forms.TaxYearAndFormFragment.Companion.filingId
+import com.example.twotwoninezero.dashboard.bottomnavigation.filling.taxyear_and_forms.TaxYearAndFormFragment
 import com.example.twotwoninezero.service.SavePriorSuspendedRequest
 import com.example.twotwoninezero.service.UpdatePriorSuspendedRequest
 import kotlinx.android.synthetic.main.fragment_add_new_prior_year_suspended_exempt_vehicles.*
@@ -24,19 +25,26 @@ class AddNewPriorYearSuspendedExemptVehicles : BaseFragment() {
 
     var ifsoldDate=false
     var id:String?=null
+    var filingId:String=""
     var soldDate=""
     var soldDateViewModel=""
     var soldToWhomViewModel=""
     var isExceedMilage="N"
     var isVehicleSold="N"
     val myCalendarToDate = Calendar.getInstance()
-
+    var minDate:String=""
+    var maxDate:String=""
     override fun initViewModel() {
         mFillingViewModel = ViewModelProvider(
             viewModelStore,
             defaultViewModelProviderFactory
         ).get(FillingViewModel::class.java)
         setViewModel(mFillingViewModel)
+
+        mFillingViewModel.mGetPriorSoldDateResponse.observe(this, Observer {
+            minDate=it.minDate
+            maxDate=it.maxDate
+        })
 
         mFillingViewModel.mSavePriorSuspendedResponse.observe(this, Observer {
             if (it.code==200){
@@ -61,7 +69,8 @@ class AddNewPriorYearSuspendedExemptVehicles : BaseFragment() {
             addNewPriorYearSoldTransferred.setText(soldToWhomViewModel)
             soldDateViewModel=it.soldDate
             soldDate=soldDateViewModel
-            addNewPriorYearDateOfTransfer.setText(soldDateViewModel)
+          //  addNewPriorYearDateOfTransfer.setText(soldDateViewModel)
+            addNewPriorYearDateOfTransfer.setText(convertToRightDateFormate(soldDateViewModel).toString())
             isExceedMilage=it.isExceededMileage
             isVehicleSold=it.isVehicleSold
 
@@ -109,6 +118,8 @@ class AddNewPriorYearSuspendedExemptVehicles : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+
         addNewPriorYearDateOfTransfer?.isFocusable = false
         addNewPriorYearDateOfTransfer?.isClickable = true
 
@@ -116,6 +127,7 @@ class AddNewPriorYearSuspendedExemptVehicles : BaseFragment() {
         arguments?.let {
 
             id = it.getString("id").toString()
+            id = it.getString("filingId").toString()
 
             if (id != null && !id.isNullOrEmpty()) {
                 mFillingViewModel.getPriorSuspendedById(id!!, filingId.toString())
@@ -123,6 +135,7 @@ class AddNewPriorYearSuspendedExemptVehicles : BaseFragment() {
             }
 
         }
+        mFillingViewModel.getPriorSoldDate(filingId)
 
         addNewPriorYearDateOfTransferTL.setBackgroundResource(R.color.blacklignt)
         addNewPriorYearSoldTransferredTL.setBackgroundResource(R.color.blacklignt)
@@ -157,7 +170,11 @@ class AddNewPriorYearSuspendedExemptVehicles : BaseFragment() {
             isVehicleSold="Y"
             soldDate=soldDateViewModel
             addNewPriorYearSoldTransferred.setText(soldToWhomViewModel)
-            addNewPriorYearDateOfTransfer.setText(soldDateViewModel)
+           // addNewPriorYearDateOfTransfer.setText(soldDateViewModel)
+            if (!soldDateViewModel.isNullOrEmpty()){
+                addNewPriorYearDateOfTransfer.setText(convertToRightDateFormate(soldDateViewModel).toString())
+            }
+
         }
 
         val toDate: DatePickerDialog.OnDateSetListener = object : DatePickerDialog.OnDateSetListener {
@@ -176,13 +193,27 @@ class AddNewPriorYearSuspendedExemptVehicles : BaseFragment() {
 
         addNewPriorYearDateOfTransfer.setOnClickListener {
             if (ifsoldDate){
-                DatePickerDialog(
+                val mDialog= DatePickerDialog(
                     requireContext(),
                     toDate,
                     myCalendarToDate[Calendar.YEAR],
                     myCalendarToDate[Calendar.MONTH],
                     myCalendarToDate[Calendar.DAY_OF_MONTH]
-                ).show()
+                )
+                val minDay = getOnlyDateFromDate(minDate).toInt()
+                val minMonth =  getOnlyMonthFromDate(minDate).toInt()
+                val minYear =  getOnlyyearFromDate(minDate).toInt()
+                myCalendarToDate.set(minYear, minMonth-1, minDay)
+                mDialog.datePicker.minDate = myCalendarToDate.timeInMillis
+
+                // Changing mCalendar date from current to
+                // some random MAX day 20/08/2021 20 Aug 2021
+                val maxDay = getOnlyDateFromDate(maxDate).toInt()
+                val maxMonth = getOnlyMonthFromDate(maxDate).toInt()
+                val maxYear = getOnlyyearFromDate(maxDate).toInt()
+                myCalendarToDate.set(maxYear, maxMonth-1, maxDay)
+                mDialog.datePicker.maxDate = myCalendarToDate.timeInMillis
+                mDialog.show()
             }
 
         }
@@ -191,24 +222,47 @@ class AddNewPriorYearSuspendedExemptVehicles : BaseFragment() {
 
         addNewPriorYearSubmit.setOnClickListener {
             if (addNewPriorYearVin.text.toString().isNullOrEmpty()){
-                showToast("Enter VIN number")
+                showToast("Vehicle identification number is required")
             }else if (addNewPriorYearVin.text.toString().length<17){
                 showToast("VIN must be at least 17 characters long.")
             }else{
 
-                if (addNewPriorYearSubmit.text.toString().equals("Save ")){
-                    val i = SavePriorSuspendedRequest(
-                        filingId,isExceedMilage,
-                        isVehicleSold,soldDate,
-                        addNewPriorYearSoldTransferred.text.toString(),addNewPriorYearVin.text.toString())
-                    mFillingViewModel.savePriorSuspended(filingId,i)
-                }else{
-                    val i = UpdatePriorSuspendedRequest(
-                        isExceedMilage,
-                        isVehicleSold,soldDate,
-                        addNewPriorYearSoldTransferred.text.toString(),addNewPriorYearVin.text.toString())
-                    mFillingViewModel.updatePriorSuspended(id.toString(), filingId,i)
-                }
+                    if (isVehicleSold.equals("Y")){
+                        if (addNewPriorYearSoldTransferred.text.toString().isNullOrEmpty()){
+                                        showToast("Sold/Transferred To Required")
+                        }else if (addNewPriorYearDateOfTransfer.text.toString().isNullOrEmpty()){
+                                        showToast("Date of Transfer/Sold Required")
+                        }else{
+                            if (addNewPriorYearSubmit.text.toString().equals("Save ")){
+                                val i = SavePriorSuspendedRequest(
+                                    filingId,isExceedMilage,
+                                    isVehicleSold,soldDate,
+                                    addNewPriorYearSoldTransferred.text.toString(),addNewPriorYearVin.text.toString())
+                                mFillingViewModel.savePriorSuspended(filingId,i)
+                            }else{
+                                val i = UpdatePriorSuspendedRequest(
+                                    isExceedMilage,
+                                    isVehicleSold,soldDate,
+                                    addNewPriorYearSoldTransferred.text.toString(),addNewPriorYearVin.text.toString())
+                                mFillingViewModel.updatePriorSuspended(id.toString(), filingId,i)
+                            }
+                        }
+                    }else{
+                        if (addNewPriorYearSubmit.text.toString().equals("Save ")){
+                            val i = SavePriorSuspendedRequest(
+                                filingId,isExceedMilage,
+                                isVehicleSold,soldDate,
+                                addNewPriorYearSoldTransferred.text.toString(),addNewPriorYearVin.text.toString())
+                            mFillingViewModel.savePriorSuspended(filingId,i)
+                        }else{
+                            val i = UpdatePriorSuspendedRequest(
+                                isExceedMilage,
+                                isVehicleSold,soldDate,
+                                addNewPriorYearSoldTransferred.text.toString(),addNewPriorYearVin.text.toString())
+                            mFillingViewModel.updatePriorSuspended(id.toString(), filingId,i)
+                        }
+                    }
+
 
             }
 
@@ -226,9 +280,10 @@ class AddNewPriorYearSuspendedExemptVehicles : BaseFragment() {
         addNewPriorYearDateOfTransfer?.setText(dateFormat.format(myCalendarToDate.time))
         val myFormatS = "yyyy-dd-MM"
         val dateFormatS = SimpleDateFormat(myFormatS, Locale.US)
+       // soldDate=dateFormatS.format(myCalendarToDate.time)
         soldDate=dateFormatS.format(myCalendarToDate.time)
        // filterToDateValue=dateFormatS.format(myCalendarFromDate.time)
+       // Log.d("Date Format:", "Final Date:"+finalDate)
     }
-
 
 }

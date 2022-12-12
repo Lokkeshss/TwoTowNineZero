@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/loginheadercolor"
     tools:context=".dashboard.bottomnavigation.fleet.AddFleetFragment">
 
     <LinearLayout
@@ -18,7 +19,8 @@
 
     <include layout="@layout/common_header_loginsignup" />
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
+        android:layout_weight="1"
         android:background="@color/loginheadercolor"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -42,10 +44,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
-        android:fontFamily="@font/roboto_regular"
+        android:fontFamily="@font/roboto_bold"
         android:text="Add Fleet"
         android:textColor="@color/black"
-        android:textSize="21sp"/>
+        android:textSize="@dimen/page_topheading_textsize"/>
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
@@ -78,7 +80,6 @@
                 android:textAllCaps="true"
                 android:id="@+id/addfleetBusinessName"
                 android:fontFamily="@font/roboto_regular"
-                android:textSize="14sp"
                 style="@style/loginTextInputEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -101,7 +102,6 @@
                 android:textAllCaps="true"
                 android:id="@+id/addFleetVinNo"
                 android:fontFamily="@font/roboto_regular"
-                android:textSize="14sp"
                 style="@style/loginTextInputEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -125,7 +125,6 @@
                 android:textAllCaps="true"
                 android:id="@+id/addfleetSelectWeight"
                 android:fontFamily="@font/roboto_regular"
-                android:textSize="14sp"
                 style="@style/loginTextInputEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -139,7 +138,7 @@
                 android:layout_marginStart="@dimen/dp_5"
                 android:fontFamily="@font/roboto_medium"
                 android:textColor="@color/textcolor"
-                android:textSize="12sp"
+                android:textSize="@dimen/page_title_textsize"
                 android:text="Is the Vehicle used for Logging ?"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -156,7 +155,7 @@
                 android:layout_marginStart="@dimen/dp_5"
                 android:fontFamily="@font/roboto_medium"
                 android:textColor="@color/textcolor"
-                android:textSize="12sp"
+                android:textSize="@dimen/page_title_textsize"
                 android:text="Is the Vehicle an agricultural Vehicle ?"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -173,9 +172,17 @@
 
     </com.google.android.material.card.MaterialCardView>
 
+
+
+    </LinearLayout>
+    </androidx.cardview.widget.CardView>
+    </androidx.core.widget.NestedScrollView>
+
         <LinearLayout
+            android:background="@color/transparant"
             android:padding="@dimen/dp_5"
-            android:layout_marginTop="@dimen/dp_40"
+            android:layout_marginTop="@dimen/dp_5"
+            android:layout_marginBottom="@dimen/dp_20"
             android:gravity="center"
             android:layout_gravity="center"
             android:orientation="horizontal"
@@ -184,7 +191,7 @@
             <TextView
                 android:id="@+id/addNewFleetCancel"
                 android:fontFamily="@font/roboto_medium"
-                android:textSize="12sp"
+                android:textSize="@dimen/page_button_textsize"
                 android:layout_marginEnd="20dp"
                 android:drawablePadding="20dp"
                 android:gravity="center"
@@ -199,7 +206,7 @@
             <TextView
                 android:id="@+id/addNewFleetSubmit"
                 android:fontFamily="@font/roboto_medium"
-                android:textSize="12sp"
+                android:textSize="@dimen/page_button_textsize"
                 android:layout_marginStart="20dp"
                 android:drawablePadding="20dp"
                 android:gravity="center"
@@ -212,11 +219,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
-
-    </LinearLayout>
-    </androidx.cardview.widget.CardView>
-    </ScrollView>
-
     </LinearLayout>
 
 

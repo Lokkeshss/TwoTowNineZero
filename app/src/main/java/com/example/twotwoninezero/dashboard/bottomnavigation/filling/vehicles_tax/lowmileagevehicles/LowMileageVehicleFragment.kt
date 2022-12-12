@@ -1,7 +1,6 @@
 package com.example.twotwoninezero.dashboard.bottomnavigation.filling.vehicles_tax.lowmileagevehicles
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,19 +14,18 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.twotwoninezero.R
 import com.example.twotwoninezero.base.BaseFragment
 import com.example.twotwoninezero.dashboard.bottomnavigation.filling.adapter.LowMileageVehicleAdapter
-import com.example.twotwoninezero.dashboard.bottomnavigation.filling.adapter.SoldDestroyedAdapter
 import com.example.twotwoninezero.dashboard.bottomnavigation.filling.model.FillingViewModel
-import com.example.twotwoninezero.dashboard.bottomnavigation.filling.taxyear_and_forms.TaxYearAndFormFragment
-import com.example.twotwoninezero.dashboard.bottomnavigation.filling.taxyear_and_forms.TaxYearAndFormFragment.Companion.filingId
+import com.example.twotwoninezero.dashboard.bottomnavigation.filling.vehicles_tax.TaxableVehicleInformation.TaxableVehicleInformationFragmentDirections
 import com.example.twotwoninezero.dashboard.bottomnavigation.filling.vehicles_tax.solddestroyedstolenvehicle.SoldDestroyedorStolenVehicleFragmentDirections
 import kotlinx.android.synthetic.main.fragment_low_mileage_vehicle.*
-import kotlinx.android.synthetic.main.fragment_sold_destroyedor_stolen_vehicle.*
+import kotlinx.android.synthetic.main.progress_bar_view.*
 
 
 class LowMileageVehicleFragment : BaseFragment() {
     private lateinit var mFillingViewModel: FillingViewModel
     var mLowMileageVehicleAdapter: LowMileageVehicleAdapter?=null
     private var customDialog: AlertDialog?=null
+    var filingId:String=""
     override fun initViewModel() {
         mFillingViewModel = ViewModelProvider(viewModelStore,defaultViewModelProviderFactory).get(FillingViewModel::class.java)
         setViewModel(mFillingViewModel)
@@ -36,7 +34,7 @@ class LowMileageVehicleFragment : BaseFragment() {
             mLowMileageVehicleAdapter=LowMileageVehicleAdapter(it){id,weight,requestType->
                 if (requestType==0){
                     // delete
-                    deleteOrReactiveFilingId(id, TaxYearAndFormFragment.filingId)
+                    deleteOrReactiveFilingId(id, filingId)
                 }else if (requestType==1){
                     // edit
                     findNavController().navigate(LowMileageVehicleFragmentDirections.actionLowMileageVehicleFragmentToAddNewLowMileageVehicleFragment(id,filingId,weight))
@@ -57,6 +55,41 @@ class LowMileageVehicleFragment : BaseFragment() {
 
             customDialog?.dismiss()
         })
+
+
+        mFillingViewModel.mGetSummaryDetailsByFilingIdResponse.observe(this, Observer {
+
+            if (it.filingInfo.formType.equals("2290")){
+                if (it.totalDueToIRS.equals("0.00") && it.totalCreditAmt.equals("0.00") && it.totalTaxAmt.equals("0.00")){
+                    // form summary
+                    findNavController().navigate(LowMileageVehicleFragmentDirections.actionLowMileageVehicleFragmentToFormSummaryFragment(filingId))
+
+                }else{
+
+                    if (it.irsPayment!!.paymentMode.isNullOrEmpty()){
+                        // irs payment option
+                        findNavController().navigate(LowMileageVehicleFragmentDirections.actionLowMileageVehicleFragmentToIRSPaymentOptionsFragment(filingId))
+                    }else{
+
+                        // form summary
+                        findNavController().navigate(LowMileageVehicleFragmentDirections.actionLowMileageVehicleFragmentToFormSummaryFragment(filingId))
+
+                    }
+
+                }
+            }else if (it.filingInfo.formType.equals("8849S6")){
+
+                findNavController().navigate(LowMileageVehicleFragmentDirections.actionLowMileageVehicleFragmentToFormSummaryFragment(filingId))
+
+            }
+
+        })
+
+        mFillingViewModel.mGetSummaryDetailsByFilingIdResponseBack.observe(this, Observer {
+
+            findNavController().navigate(LowMileageVehicleFragmentDirections.actionLowMileageVehicleFragmentToTaxableVehicleInformation(filingId,it.filingInfo.formType))
+
+        })
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -75,10 +108,29 @@ class LowMileageVehicleFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+        arguments?.let {
+            filingId= it.getString("filingId").toString()
+        }
+
+        progress_bar.progress=33
+        progress_text.setText("2 of 6")
+
+
         mFillingViewModel.getLowMileageByFilingId(filingId)
 
         lowMileageVehicleAddNewVechicle.setOnClickListener {
             findNavController().navigate(LowMileageVehicleFragmentDirections.actionLowMileageVehicleFragmentToAddNewLowMileageVehicleFragment("","",""))
+        }
+
+        lowMileageVehicleNext.setOnClickListener {
+            mFillingViewModel.GetSummaryDetailsByFilingIdResponse(filingId)
+
+        }
+
+        lowMileageVehiclePrevious.setOnClickListener {
+            mFillingViewModel.GetSummaryDetailsByFilingIdResponseForBack(filingId)
+
         }
     }
 

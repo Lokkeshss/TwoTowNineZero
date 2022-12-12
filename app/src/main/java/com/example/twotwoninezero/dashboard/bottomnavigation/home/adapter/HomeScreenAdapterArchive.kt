@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.twotwoninezero.R
 import com.example.twotwoninezero.service.HomeScreenListResponse
 
-class HomeScreenAdapterArchive (var datalist: List<HomeScreenListResponse>, var OnMenuClick: (String, String, String, String,String, Int) -> Unit):
+class HomeScreenAdapterArchive (var datalist: List<HomeScreenListResponse>, var OnMenuClick: (String, String, String, String,String,String,String, Int) -> Unit):
     RecyclerView.Adapter<HomeScreenAdapterArchive.MyHolder>() {
     class MyHolder(itemview: View): RecyclerView.ViewHolder(itemview) {
         val homeScreenBusinessName=itemview.findViewById<View>(R.id.homeScreenBusinessName) as TextView
@@ -28,17 +28,22 @@ class HomeScreenAdapterArchive (var datalist: List<HomeScreenListResponse>, var 
         holder.homeScreenFormType.text=data.formType
 
         holder.itemView.setOnClickListener {
-            OnMenuClick.invoke(data.businessName,data.formType,data.createdDate,data.filingStatus,data.filingMonth,2)
+            OnMenuClick.invoke(data.businessName,data.formType,data.createdDate,data.filingStatus,data.filingMonth,data.paymentStatus,data.filingStatus,2)
         }
 
         holder.filing_activate.setOnClickListener {
-            OnMenuClick.invoke(data.filingId.toString(),data.formType,data.createdDate,data.filingStatus,data.filingMonth,1)
+            OnMenuClick.invoke(data.filingId.toString(),data.formType,data.createdDate,data.filingStatus,data.filingMonth,data.paymentStatus,data.filingStatus,1)
         }
 
     }
 
     override fun getItemCount(): Int {
         return datalist.size
+    }
+
+    fun setpageNation(it: List<HomeScreenListResponse>) {
+        datalist=it
+
     }
 
 

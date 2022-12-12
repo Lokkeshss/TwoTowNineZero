@@ -19,14 +19,18 @@ import com.example.twotwoninezero.dashboard.bottomnavigation.filling.adapter.Sol
 import com.example.twotwoninezero.dashboard.bottomnavigation.filling.model.FillingViewModel
 import com.example.twotwoninezero.dashboard.bottomnavigation.filling.taxyear_and_forms.TaxYearAndFormFragment
 import com.example.twotwoninezero.dashboard.bottomnavigation.filling.vehicles_tax.ReportingSuspended.ReportingSuspendedExemptVehicleFragmentDirections
+import com.example.twotwoninezero.dashboard.bottomnavigation.filling.vehicles_tax.TaxableVehicleInformation.TaxableVehicleInformationFragmentDirections
+import com.example.twotwoninezero.dashboard.bottomnavigation.filling.vehicles_tax.vincorrectiontaxablevehicleinformation.VinCorrectionTaxableVehicleFragmentDirections
 import kotlinx.android.synthetic.main.fragment_reporting_suspended_exempt_vehicle.*
 import kotlinx.android.synthetic.main.fragment_sold_destroyedor_stolen_vehicle.*
+import kotlinx.android.synthetic.main.progress_bar_view.*
 
 
 class SoldDestroyedorStolenVehicleFragment : BaseFragment() {
     private lateinit var mFillingViewModel: FillingViewModel
     var mSoldDestroyedAdapter: SoldDestroyedAdapter?=null
     private var customDialog: AlertDialog?=null
+    var filingId:String=""
     override fun initViewModel() {
         mFillingViewModel = ViewModelProvider(viewModelStore,defaultViewModelProviderFactory).get(FillingViewModel::class.java)
         setViewModel(mFillingViewModel)
@@ -35,12 +39,12 @@ class SoldDestroyedorStolenVehicleFragment : BaseFragment() {
             mSoldDestroyedAdapter=SoldDestroyedAdapter(it){ weight,id,requestType->
                 if (requestType==0){
                     // delete
-                    deleteOrReactiveFilingId(id, TaxYearAndFormFragment.filingId)
+                    deleteOrReactiveFilingId(id, filingId)
                 }else if (requestType==1){
                     // edit
                     findNavController().navigate(
                         SoldDestroyedorStolenVehicleFragmentDirections.actionSoldDestroyedorStolenVehicleFragmentToAddNewSoldDestroyedorStolenVehicle(weight,id,
-                            TaxYearAndFormFragment.filingId
+                            filingId
                         )
                     )
                 }
@@ -54,11 +58,46 @@ class SoldDestroyedorStolenVehicleFragment : BaseFragment() {
 
             if (it.code==200){
                 showToast(it.message)
-                mFillingViewModel.getSoldDestroyedByFilingId(TaxYearAndFormFragment.filingId)
+                mFillingViewModel.getSoldDestroyedByFilingId(filingId)
             }else{
                 showToast(it.message)
             }
             customDialog?.dismiss()
+        })
+
+
+        mFillingViewModel.mGetSummaryDetailsByFilingIdResponse.observe(this, Observer {
+
+            if (it.filingInfo.formType.equals("2290")){
+                if (it.totalDueToIRS.equals("0.00") && it.totalCreditAmt.equals("0.00") && it.totalTaxAmt.equals("0.00")){
+                    // form summary
+                    findNavController().navigate(SoldDestroyedorStolenVehicleFragmentDirections.actionSoldDestroyedorStolenVehicleFragmentToFormSummaryFragment(filingId))
+
+                }else{
+
+                    if (it.irsPayment!!.paymentMode.isNullOrEmpty()){
+                        // irs payment option
+                        findNavController().navigate(SoldDestroyedorStolenVehicleFragmentDirections.actionSoldDestroyedorStolenVehicleFragmentToIRSPaymentOptionsFragment(filingId))
+                    }else{
+
+                        // form summary
+                        findNavController().navigate(SoldDestroyedorStolenVehicleFragmentDirections.actionSoldDestroyedorStolenVehicleFragmentToFormSummaryFragment(filingId))
+
+                    }
+
+                }
+            }else if (it.filingInfo.formType.equals("8849S6")){
+
+                findNavController().navigate(SoldDestroyedorStolenVehicleFragmentDirections.actionSoldDestroyedorStolenVehicleFragmentToFormSummaryFragment(filingId))
+
+            }
+
+        })
+
+        mFillingViewModel.mGetSummaryDetailsByFilingIdResponseBack.observe(this, Observer {
+
+            findNavController().navigate(SoldDestroyedorStolenVehicleFragmentDirections.actionSoldDestroyedorStolenVehicleFragmentToTaxableVehicleInformation(filingId,it.filingInfo.formType))
+
         })
     }
 
@@ -79,11 +118,30 @@ class SoldDestroyedorStolenVehicleFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        mFillingViewModel.getSoldDestroyedByFilingId(TaxYearAndFormFragment.filingId)
+
+        arguments?.let {
+            filingId= it.getString("filingId").toString()
+        }
+
+        progress_bar.progress=33
+        progress_text.setText("2 of 6")
+
+
+        mFillingViewModel.getSoldDestroyedByFilingId(filingId)
 
         soldDestoryedStolenAddNewVechicle.setOnClickListener {
             findNavController().navigate(
                 SoldDestroyedorStolenVehicleFragmentDirections.actionSoldDestroyedorStolenVehicleFragmentToAddNewSoldDestroyedorStolenVehicle("","",""))
+        }
+
+        soldDestoryedStolenNext.setOnClickListener {
+
+            mFillingViewModel.GetSummaryDetailsByFilingIdResponse(filingId)
+        }
+
+        soldDestoryedStolenCancel.setOnClickListener {
+           // findNavController().navigate(SoldDestroyedorStolenVehicleFragmentDirections.ac)
+            mFillingViewModel.GetSummaryDetailsByFilingIdResponseForBack(filingId)
         }
     }
 

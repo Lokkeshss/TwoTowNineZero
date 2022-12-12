@@ -14,7 +14,6 @@ import com.example.twotwoninezero.R
 import com.example.twotwoninezero.base.BaseFragment
 import com.example.twotwoninezero.common.TaxableWeightSpinnerAdapter
 import com.example.twotwoninezero.dashboard.bottomnavigation.filling.model.FillingViewModel
-import com.example.twotwoninezero.dashboard.bottomnavigation.filling.taxyear_and_forms.TaxYearAndFormFragment.Companion.filingId
 import com.example.twotwoninezero.service.SaveTaxableVehicleRequest
 import com.example.twotwoninezero.service.TaxableWeightResponse
 import kotlinx.android.synthetic.main.fragment_add_new_vehical.*
@@ -26,6 +25,7 @@ class AddNewVehicalFragment : BaseFragment() {
     var addnewVehicalTaxableGrossWeightId=""
     var isLogging="N"
     var businessId:String?=null
+    var filingId:String?=""
 
     override fun initViewModel() {
         mFillingViewModel = ViewModelProvider(
@@ -78,11 +78,12 @@ class AddNewVehicalFragment : BaseFragment() {
             val weight = it.getString("weight")
             val weight_category = it.getString("weight_category")
              businessId = it.getString("id")
+            filingId = it.getString("filingId").toString()
 
             if (businessId != null && !businessId.isNullOrEmpty()) {
                 addnewVehicalTaxableGrossWeight?.setText(weight)
                 addnewVehicalTaxableGrossWeightId= weight_category.toString()
-                mFillingViewModel.getTaxableVehicleById(businessId!!, filingId)
+                mFillingViewModel.getTaxableVehicleById(businessId!!, filingId!!)
                 addnewVehicalSubmit.setText("Update")
             }
 
@@ -116,13 +117,13 @@ class AddNewVehicalFragment : BaseFragment() {
            }else{
                if (addnewVehicalSubmit.text.toString().equals("Save ")){
 
-                   val i = SaveTaxableVehicleRequest(filingId,isLogging,addnewVehicalVin.text.toString(),addnewVehicalTaxableGrossWeightId)
-                   mFillingViewModel.saveTaxableVehicle(filingId,i)
+                   val i = SaveTaxableVehicleRequest(filingId!!,isLogging,addnewVehicalVin.text.toString(),addnewVehicalTaxableGrossWeightId)
+                   mFillingViewModel.saveTaxableVehicle(filingId!!,i)
 
                }else{
 
-                   val i = SaveTaxableVehicleRequest(filingId,isLogging,addnewVehicalVin.text.toString(),addnewVehicalTaxableGrossWeightId)
-                   mFillingViewModel.updateTaxableVehicle(businessId.toString(),filingId,i)
+                   val i = SaveTaxableVehicleRequest(filingId!!,isLogging,addnewVehicalVin.text.toString(),addnewVehicalTaxableGrossWeightId)
+                   mFillingViewModel.updateTaxableVehicle(businessId.toString(),filingId!!,i)
 
                }
 

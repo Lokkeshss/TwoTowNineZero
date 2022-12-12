@@ -16,10 +16,11 @@ import kotlinx.android.synthetic.main.fragment_add_new_reporting_suspended_exemp
 
 
 class AddNewReportingSuspendedExemptVehicles : BaseFragment() {
-    var reportingsuspendedLogging=""
-    var reportingsuspendedAgriculture=""
+    var reportingsuspendedLogging="N"
+    var reportingsuspendedAgriculture="N"
     private lateinit var mFillingViewModel : FillingViewModel
     var id=""
+    var filingId=""
     override fun initViewModel() {
         mFillingViewModel = ViewModelProvider(
             viewModelStore,
@@ -79,7 +80,7 @@ class AddNewReportingSuspendedExemptVehicles : BaseFragment() {
 
         arguments?.let {
 
-            val filingId = it.getString("filingId")
+             filingId = it.getString("filingId").toString()
 
             id = it.getString("id").toString()
 
@@ -111,17 +112,17 @@ class AddNewReportingSuspendedExemptVehicles : BaseFragment() {
 
         addnewreportingsuspendedSubmit.setOnClickListener {
             if (addnewreportingsuspendedVin.text.toString().isNullOrEmpty()){
-                showToast("Please enter VIN")
+                showToast("Vehicle identification number is required")
             } else if (addnewreportingsuspendedVin.text.toString().length<17){
                 showToast("VIN must be at least 17 characters long.")
             }else{
                 if (addnewreportingsuspendedSubmit.text.equals("Save ")){
-                    val i = SaveCurrentSuspendRequest(TaxYearAndFormFragment.filingId,reportingsuspendedAgriculture,reportingsuspendedLogging,addnewreportingsuspendedVin.text.toString())
-                    mFillingViewModel.saveCurrentSuspended(TaxYearAndFormFragment.filingId,i)
+                    val i = SaveCurrentSuspendRequest(filingId,reportingsuspendedAgriculture,reportingsuspendedLogging,addnewreportingsuspendedVin.text.toString())
+                    mFillingViewModel.saveCurrentSuspended(filingId,i)
                 }else{
 
                     val i = UpdateCurrentSuspendRequest(reportingsuspendedAgriculture,reportingsuspendedLogging,addnewreportingsuspendedVin.text.toString())
-                    mFillingViewModel.updateCurrentSuspended(id,TaxYearAndFormFragment.filingId,i)
+                    mFillingViewModel.updateCurrentSuspended(id,filingId,i)
 
                 }
 

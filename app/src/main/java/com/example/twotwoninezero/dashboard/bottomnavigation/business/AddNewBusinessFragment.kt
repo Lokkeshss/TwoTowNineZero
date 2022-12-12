@@ -1,10 +1,12 @@
 package com.example.twotwoninezero.dashboard.bottomnavigation.business
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -39,39 +41,6 @@ class AddNewBusinessFragment : BaseFragment() {
     var mStateListSpinnerAdapter: StateListSpinnerAdapter?=null
     var mBusinessTypeListSpinnerAdapter: BusinessTypeListSpinnerAdapter?=null
     var mSearchAdapter: SearchAdapter?=null
-
-    /*   var commonContactCallMain:ImageView?=null
-     var notification:ImageView?=null
-
-    var businessProfileMain:MaterialCardView?=null
-    var signingAuthInfoMain:MaterialCardView?=null
-    var contactInfoMain:MaterialCardView?=null
-    var thirdPartydesignMain:MaterialCardView?=null
-    var businessProfileChild:LinearLayout?=null
-   var signingAuthInfoChild:LinearLayout?=null
-   var contactInfoChild:LinearLayout?=null
-   var thirdPartydesignChild:LinearLayout?=null
-   var thirdPartydesign_childtwo:LinearLayout?=null
-   var test:TextView?=null
-     var addNewBusinessCancel:TextView?=null
-     var addNewBusinessSubmit:TextView?=null
-
-    var businessProfileBusinessName:EditText?=null
-     var businessProfileEin:EditText?=null
-     var businessProfileBusinessType:EditText?=null
-     var signingAuthInfoName:EditText?=null
-     var signingAuthInfoPhone:EditText?=null
-     var signingAuthInfoTitle:EditText?=null
-     var contactInfoAddress:EditText?=null
-     var contactInfoCounty:EditText?=null
-     var contactInfostate:EditText?=null
-     var contactInfocity:EditText?=null
-     var contactInfoZipCode:EditText?=null
-     var contactInfoPhoneNumber:EditText?=null
-     var contactInfoEmailAddress:EditText?=null
-     var ThirdPartyDesignName:EditText?=null
-     var ThirdPartyDesignPhonenumber:EditText?=null
-     var thirdPartydesign_checkbox:CheckBox?=null*/
 
     var businessProfileBusinessTypeId:Int?=null
     var contactInfostateId:String?=null
@@ -112,7 +81,6 @@ class AddNewBusinessFragment : BaseFragment() {
                     requireActivity().onBackPressed()
                 }else{
                     showToast(it.message)
-
                 }
         })
     }
@@ -128,205 +96,6 @@ class AddNewBusinessFragment : BaseFragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_add_new_business, container, false)
-
-        /*test=view.findViewById(R.id.test)
-
-        commonContactCallMain = view.findViewById(R.id.commonContactCallMain)
-        notification = view.findViewById(R.id.notification)
-
-        businessProfileMain=view.findViewById(R.id.businessProfileMain)
-        businessProfileChild=view.findViewById(R.id.businessProfileChild)
-        businessProfileBusinessName=view.findViewById(R.id.businessProfileBusinessName)
-        businessProfileEin=view.findViewById(R.id.businessProfileEin)
-        businessProfileBusinessType=view.findViewById(R.id.businessProfileBusinessType)
-
-        signingAuthInfoMain=view.findViewById(R.id.signingAuthInfoMain)
-        signingAuthInfoChild=view.findViewById(R.id.signingAuthInfoChild)
-        signingAuthInfoName=view.findViewById(R.id.signingAuthInfoName)
-        signingAuthInfoPhone=view.findViewById(R.id.signingAuthInfoPhone)
-        signingAuthInfoTitle=view.findViewById(R.id.signingAuthInfoTitle)
-
-        contactInfoMain=view.findViewById(R.id.contactInfoMain)
-        contactInfoChild=view.findViewById(R.id.contactInfoChild)
-        contactInfoAddress=view.findViewById(R.id.contactInfoAddress)
-        contactInfoCounty=view.findViewById(R.id.contactInfoCounty)
-        contactInfostate=view.findViewById(R.id.contactInfostate)
-        contactInfocity=view.findViewById(R.id.contactInfocity)
-        contactInfoZipCode=view.findViewById(R.id.contactInfoZipCode)
-        contactInfoPhoneNumber=view.findViewById(R.id.contactInfoPhoneNumber)
-        contactInfoEmailAddress=view.findViewById(R.id.contactInfoEmailAddress)
-
-        thirdPartydesignMain=view.findViewById(R.id.thirdPartydesignMain)
-        thirdPartydesignChild=view.findViewById(R.id.thirdPartydesignChild)
-        thirdPartydesign_checkbox=view.findViewById(R.id.thirdPartydesign_checkbox)
-        thirdPartydesign_childtwo=view.findViewById(R.id.thirdPartydesign_childtwo)
-        ThirdPartyDesignName=view.findViewById(R.id.ThirdPartyDesignName)
-        ThirdPartyDesignPhonenumber=view.findViewById(R.id.ThirdPartyDesignPhonenumber)
-
-        addNewBusinessCancel=view.findViewById(R.id.addNewBusinessCancel)
-        addNewBusinessSubmit=view.findViewById(R.id.addNewBusinessSubmit)*/
-
-/*
-
-        arguments?.let {
-            val id = it.getString("businessId")
-            if (id != null && id.isNotEmpty()) {
-                println("mEditBusinessListResponse "+id)
-                mBusinessViewModel.editBusinessList(id)
-            }
-        }
-
-        businessProfileBusinessType?.setFocusable(false)
-        businessProfileBusinessType?.setClickable(true)
-        contactInfoCounty?.setFocusable(false)
-        contactInfoCounty?.setClickable(true)
-        contactInfostate?.setFocusable(false)
-        contactInfostate?.setClickable(true)
-        signingAuthInfoTitle?.setFocusable(false)
-        signingAuthInfoTitle?.setClickable(true)
-
-        mBusinessViewModel.getCountry()
-        mBusinessViewModel.getBusinessTypeRequestItem()
-
-        commonContactCallMain?.setOnClickListener {
-            commonCallAndMailFunction()
-        }
-
-        businessProfileBusinessType?.setOnClickListener {
-            // call to open dialog
-            showBusinessType()
-        }
-
-        signingAuthInfoTitle?.setOnClickListener {
-            signinAuthTitle()
-        }
-        contactInfoCounty?.setOnClickListener {
-            if (mgetCountryAdapterList.isNullOrEmpty()){
-                mBusinessViewModel.getCountry()
-            }else{
-                contactInfoCountry()
-            }
-
-        }
-        contactInfostate?.setOnClickListener {
-            if (mGetStateReponse.isNullOrEmpty()){
-                mBusinessViewModel.getCountryState(contactInfoCountyID.toString())
-            }else{
-                contactState()
-            }
-        }
-
-
-
-       // businessProfileBusinessType?.setText("Individual")
-
-        test?.setOnClickListener {
-
-        }
-
-        businessProfileChild?.setVisibility(View.VISIBLE)
-        businessProfileMain?.setOnClickListener {
-            if (businessProfileChild?.visibility== View.GONE){
-                TransitionManager.beginDelayedTransition(
-                    businessProfileChild!!,
-                    AutoTransition()
-                )
-                businessProfileChild?.setVisibility(View.VISIBLE)
-            }else{
-                TransitionManager.beginDelayedTransition(
-                    businessProfileChild!!,
-                    AutoTransition()
-                )
-                businessProfileChild?.setVisibility(View.GONE)
-            }
-        }
-
-        signingAuthInfoMain?.setOnClickListener {
-
-            if (signingAuthInfoChild?.visibility== View.GONE){
-                TransitionManager.beginDelayedTransition(
-                    signingAuthInfoChild!!,
-                    AutoTransition()
-                )
-                signingAuthInfoChild?.setVisibility(View.VISIBLE)
-            }else{
-                TransitionManager.beginDelayedTransition(
-                    signingAuthInfoChild!!,
-                    AutoTransition()
-                )
-                signingAuthInfoChild?.setVisibility(View.GONE)
-            }
-        }
-        contactInfoMain?.setOnClickListener {
-
-            if (contactInfoChild?.visibility== View.GONE){
-                TransitionManager.beginDelayedTransition(
-                    contactInfoChild!!,
-                    AutoTransition()
-                )
-                contactInfoChild?.setVisibility(View.VISIBLE)
-            }else{
-                TransitionManager.beginDelayedTransition(
-                    contactInfoChild!!,
-                    AutoTransition()
-                )
-                contactInfoChild?.setVisibility(View.GONE)
-            }
-        }
-
-        thirdPartydesignMain?.setOnClickListener {
-            if (thirdPartydesignChild?.visibility== View.GONE){
-                TransitionManager.beginDelayedTransition(
-                    thirdPartydesignChild!!,
-                    AutoTransition()
-                )
-                thirdPartydesignChild?.setVisibility(View.VISIBLE)
-            }else{
-                TransitionManager.beginDelayedTransition(
-                    thirdPartydesignChild!!,
-                    AutoTransition()
-                )
-                thirdPartydesignChild?.setVisibility(View.GONE)
-            }
-        }
-
-        thirdPartydesign_checkbox?.setOnCheckedChangeListener { buttonView, isChecked ->
-
-            if (isChecked){
-                checkboxBoolean=true
-                    TransitionManager.beginDelayedTransition(
-                        thirdPartydesign_childtwo!!,
-                        AutoTransition()
-                    )
-                thirdPartydesign_childtwo?.setVisibility(View.VISIBLE)
-
-            }else{
-                checkboxBoolean=false
-                TransitionManager.beginDelayedTransition(
-                    thirdPartydesign_childtwo!!,
-                    AutoTransition()
-                )
-                thirdPartydesign_childtwo?.setVisibility(View.GONE)
-            }
-        }
-
-
-        addNewBusinessCancel?.setOnClickListener {
-            requireActivity().onBackPressed()
-        }
-        addNewBusinessSubmit?.setOnClickListener {
-            //createNewBusiness(UPDATE,response.id.toString())
-
-            if (addNewBusinessSubmit?.text.toString().equals("Submit")){
-                createNewBusiness(ADD,"")
-            }else{
-                createNewBusiness(UPDATE, BusinessId.toString())
-            }
-
-
-        }
-*/
-
         return view
     }
 
@@ -610,6 +379,7 @@ class AddNewBusinessFragment : BaseFragment() {
             contactInfoCountyID=id
             contactInfostate?.setText("")
             contactInfostateId=""
+            mBusinessViewModel.getCountryState(contactInfoCountyID.toString())
             customDialog.dismiss()
         }
 

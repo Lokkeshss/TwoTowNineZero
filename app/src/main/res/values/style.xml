@@ -3,24 +3,25 @@
 
     <style name="loginTextInputEditText" parent="ThemeOverlay.MaterialComponents.TextInputEditText.OutlinedBox.Dense">
         <item name="android:textColor">@color/black</item>
-        <item name="android:padding">15dp</item>
+        <item name="android:padding">@dimen/dp_15</item>
+        <item name="android:textSize">@dimen/page_title_textsize</item>
         <item name="android:textCursorDrawable">@drawable/edittext_cursor_white</item>
     </style>
 
     <style name="loginTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="android:textColorHint">@color/lightGray</item>
         <item name="boxStrokeColor">@color/lightGray</item>
-        <item name="boxCornerRadiusBottomEnd">10dp</item>
-        <item name="boxCornerRadiusBottomStart">10dp</item>
-        <item name="boxCornerRadiusTopEnd">10dp</item>
-        <item name="boxCornerRadiusTopStart">10dp</item>
+        <item name="boxCornerRadiusBottomEnd">@dimen/dp_10</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/dp_10</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/dp_10</item>
+        <item name="boxCornerRadiusTopStart">@dimen/dp_10</item>
         <item name="colorControlActivated">@color/lightGray</item>
         <item name="colorControlHighlight">@color/lightGray</item>
         <item name="hintTextAppearance">@style/TextLabel</item>
     </style>
 
     <style name="TextLabel" parent="TextAppearance.Design.Hint">
-        <item name="android:textSize">13dp</item>
+        <item name="android:textSize">@dimen/page_title_textsize</item>
     </style>
 
 

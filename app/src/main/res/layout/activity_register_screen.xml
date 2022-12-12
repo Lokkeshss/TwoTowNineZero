@@ -17,7 +17,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <include layout="@layout/common_header_loginsignup" />
-            <ScrollView
+            <androidx.core.widget.NestedScrollView
                 android:background="@color/loginheadercolor"
                 android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
@@ -41,10 +41,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
-                        android:fontFamily="@font/roboto_bold"
+                        android:fontFamily="@font/roboto_black"
                         android:text="Register"
                         android:textColor="@color/black"
-                        android:textSize="24sp" />
+                        android:textSize="@dimen/page_topheading_textsize" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -53,7 +53,7 @@
                         android:fontFamily="@font/roboto_bold"
                         android:text="Sign into your account"
                         android:textColor="@color/loginsmalltextcolor"
-                        android:textSize="14sp" />
+                        android:textSize="@dimen/page_maintitle_textsize" />
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/tv_fname"
@@ -67,7 +67,6 @@
 
                         <EditText
                             android:fontFamily="@font/roboto_regular"
-                            android:textSize="14sp"
                             android:id="@+id/edt_fname"
                             style="@style/loginTextInputEditText"
                             android:layout_width="match_parent"
@@ -89,7 +88,6 @@
 
                         <EditText
                             android:fontFamily="@font/roboto_regular"
-                            android:textSize="14sp"
                             android:id="@+id/edt_email"
                             style="@style/loginTextInputEditText"
                             android:layout_width="match_parent"
@@ -111,7 +109,6 @@
 
                         <EditText
                             android:fontFamily="@font/roboto_regular"
-                            android:textSize="14sp"
                             android:id="@+id/edt_cfemail"
                             style="@style/loginTextInputEditText"
                             android:layout_width="match_parent"
@@ -135,7 +132,6 @@
 
                         <EditText
                             android:fontFamily="@font/roboto_regular"
-                            android:textSize="14sp"
                             android:id="@+id/edt_password"
                             style="@style/loginTextInputEditText"
                             android:layout_width="match_parent"
@@ -186,13 +182,12 @@
                                 android:id="@+id/imTaxPayer"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-
                                 android:layout_marginTop="30dp"
                                 android:layout_marginBottom="30dp"
                                 android:fontFamily="@font/roboto_regular"
                                 android:text="I am a Tax Preparer"
                                 android:textColor="@color/next"
-                                android:textSize="13sp" />
+                                android:textSize="@dimen/page_title_textsize" />
 
                             <CheckBox
                                 android:id="@+id/termsandcondition"
@@ -201,7 +196,7 @@
                                 android:fontFamily="@font/roboto_regular"
                                 android:text="@string/by_clicking"
                                 android:textColor="@color/black"
-                                android:textSize="9sp" />
+                                android:textSize="@dimen/page_title_textsize" />
 
                             <androidx.appcompat.widget.AppCompatButton
                                 android:id="@+id/register"
@@ -213,7 +208,7 @@
                                 android:text="Register"
                                 android:textAllCaps="false"
                                 android:textColor="@color/white"
-                                android:textSize="16sp" />
+                                android:textSize="@dimen/page_button_textsize" />
 
 
                             <LinearLayout
@@ -226,11 +221,12 @@
                                 android:padding="10dp">
 
                                 <TextView
+                                    android:fontFamily="@font/roboto_regular"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Already have an account "
                                     android:textColor="@color/lightGray"
-                                    android:textSize="14sp" />
+                                    android:textSize="@dimen/page_title_textsize" />
 
                                 <TextView
                                     android:id="@+id/loginHere"
@@ -239,7 +235,7 @@
                                     android:fontFamily="@font/roboto_bold"
                                     android:text="Login Here"
                                     android:textColor="@color/bt_color"
-                                    android:textSize="14sp" />
+                                    android:textSize="@dimen/page_title_textsize" />
                             </LinearLayout>
 
                         </LinearLayout>
@@ -271,7 +267,7 @@
 
             </androidx.cardview.widget.CardView>
 
-            </ScrollView>
+            </androidx.core.widget.NestedScrollView>
         </LinearLayout>
 
 

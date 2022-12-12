@@ -1,13 +1,24 @@
 package com.example.twotwoninezero.dashboard.bottomnavigation.filling.vehicles_tax.lowmileagevehicles
 
+import android.Manifest
 import android.app.DatePickerDialog
+import android.content.Context
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Base64
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.ActivityResultCallback
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,13 +26,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.twotwoninezero.R
 import com.example.twotwoninezero.base.BaseFragment
 import com.example.twotwoninezero.common.TaxableWeightSpinnerAdapter
+import com.example.twotwoninezero.common.getOnlyDateFromDate
+import com.example.twotwoninezero.common.getOnlyMonthFromDate
+import com.example.twotwoninezero.common.getOnlyyearFromDate
 import com.example.twotwoninezero.dashboard.bottomnavigation.filling.model.FillingViewModel
-import com.example.twotwoninezero.dashboard.bottomnavigation.filling.taxyear_and_forms.TaxYearAndFormFragment.Companion.filingId
+import com.example.twotwoninezero.dashboard.bottomnavigation.filling.taxyear_and_forms.TaxYearAndFormFragment
 import com.example.twotwoninezero.service.SaveLowMileageVehicleRequest
 import com.example.twotwoninezero.service.TaxableWeightResponse
 import com.example.twotwoninezero.service.UpdateLowMileageVehicleRequest
 import kotlinx.android.synthetic.main.fragment_add_new_low_mileage_vehicle.*
 import kotlinx.android.synthetic.main.fragment_add_new_sold_destroyedor_stolen_vehicle.*
+import java.io.ByteArrayOutputStream
+import java.io.IOException
+import java.io.InputStream
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -35,9 +52,14 @@ class AddNewLowMileageVehicleFragment : BaseFragment() {
     var weight:String=""
     var weightCategory:String=""
     var id:String=""
+    var filingId:String=""
     private var mTaxableWeightList: List<TaxableWeightResponse> = ArrayList()
     var mTaxableWeightSpinnerAdapter: TaxableWeightSpinnerAdapter?=null
     val myCalendarToDate = Calendar.getInstance()
+
+    var minDate:String=""
+    var maxDate:String=""
+    var resultLauncher: ActivityResultLauncher<Intent>? = null
     override fun initViewModel() {
         mFillingViewModel = ViewModelProvider(viewModelStore,defaultViewModelProviderFactory).get(FillingViewModel::class.java)
         setViewModel(mFillingViewModel)
@@ -56,6 +78,11 @@ class AddNewLowMileageVehicleFragment : BaseFragment() {
             firstUsedMonth=it.firstUsedMonth
             isLogging=it.isLogging
 
+        })
+
+        mFillingViewModel.mGetLowMileageDateResponse.observe(this, Observer {
+            minDate=it.minDate
+            maxDate=it.maxDate
         })
 
         mFillingViewModel.mSaveLowMileageVehicleResponse.observe(this, Observer {
@@ -92,9 +119,10 @@ class AddNewLowMileageVehicleFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         arguments?.let {
 
-            val filingId = it.getString("filingId")
+             filingId = it.getString("filingId").toString()
             id = it.getString("id").toString()
             weight = it.getString("weight").toString()
 
@@ -104,6 +132,7 @@ class AddNewLowMileageVehicleFragment : BaseFragment() {
             }
 
         }
+        mFillingViewModel.getLowMileageDate(filingId)
         mFillingViewModel.gettaxableweight()
         lowMileageVehicleTaxableWeight.isFocusable=false
         lowMileageVehicleTaxableWeight.isClickable=false
@@ -124,7 +153,6 @@ class AddNewLowMileageVehicleFragment : BaseFragment() {
             }
         }
 
-
         val toDate: DatePickerDialog.OnDateSetListener = object : DatePickerDialog.OnDateSetListener {
             override fun onDateSet(
                 view: android.widget.DatePicker?,
@@ -140,17 +168,33 @@ class AddNewLowMileageVehicleFragment : BaseFragment() {
         }
 
         lowMileageVehicleFirstUsedMonth.setOnClickListener {
-            DatePickerDialog(
+            val mDialog= DatePickerDialog(
                 requireContext(),
                 toDate,
                 myCalendarToDate[Calendar.YEAR],
                 myCalendarToDate[Calendar.MONTH],
                 myCalendarToDate[Calendar.DAY_OF_MONTH]
-            ).show()
+            )
+            val minDay = getOnlyDateFromDate(minDate).toInt()
+            val minMonth =  getOnlyMonthFromDate(minDate).toInt()
+            val minYear =  getOnlyyearFromDate(minDate).toInt()
+            myCalendarToDate.set(minYear, minMonth-1, minDay)
+            mDialog.datePicker.minDate = myCalendarToDate.timeInMillis
+
+            // Changing mCalendar date from current to
+            // some random MAX day 20/08/2021 20 Aug 2021
+            val maxDay = getOnlyDateFromDate(maxDate).toInt()
+            val maxMonth = getOnlyMonthFromDate(maxDate).toInt()
+            val maxYear = getOnlyyearFromDate(maxDate).toInt()
+            myCalendarToDate.set(maxYear, maxMonth-1, maxDay)
+            mDialog.datePicker.maxDate = myCalendarToDate.timeInMillis
+            mDialog.show()
         }
 
         lowMileageVehicleSubmit.setOnClickListener {
             if (lowMileageVehicleVIN.text.toString().isNullOrEmpty()){
+                showToast("Vehicle identification number is required")
+            }else if (lowMileageVehicleVIN.text.toString().length<17){
                 showToast("VIN must be at least 17 characters long.")
             }else if (firstUsedMonth.isNullOrEmpty()){
                 showToast("Select First Used Month")
@@ -173,6 +217,24 @@ class AddNewLowMileageVehicleFragment : BaseFragment() {
 
                 }
 
+            }
+        }
+
+        resultLauncher = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult(),
+            ActivityResultCallback<ActivityResult> { result ->
+                val data = result.data
+                if (data != null) {
+                    val sUri: Uri? = data.data
+                    ConvertToString(sUri!!)
+                }
+            })
+
+        lowMileageVehicleUploadDocument.setOnClickListener {
+            if (checkPermission(Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                selectPDF()
+            } else {
+                requestPermission(Manifest.permission.READ_EXTERNAL_STORAGE, 300)
             }
         }
     }
@@ -221,6 +283,59 @@ class AddNewLowMileageVehicleFragment : BaseFragment() {
         }
     }
 
+
+    private fun checkPermission(permission: String): Boolean {
+        return ContextCompat.checkSelfPermission(context as Context,permission) == PackageManager.PERMISSION_GRANTED
+    }
+
+
+    private fun requestPermission(permission: String, requestCode: Int) {
+        requestPermissions(arrayOf(permission),requestCode)
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String?>,
+        grantResults: IntArray
+    ) {
+        when (requestCode) {
+            300 ->
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    selectPDF()
+                } else {
+                    requestPermission(Manifest.permission.READ_EXTERNAL_STORAGE, 300)
+                }
+        }
+    }
+
+    private fun selectPDF() {
+        val intent = Intent(Intent.ACTION_GET_CONTENT)
+        intent.type = "application/pdf"
+        resultLauncher!!.launch(intent)
+    }
+
+    fun ConvertToString(uri: Uri) {
+        try {
+            val ins: InputStream? = requireActivity().getContentResolver().openInputStream(uri)
+            val bytes = getBytes(ins!!)
+            documentName = Base64.encodeToString(bytes, Base64.NO_WRAP)
+        } catch (e: java.lang.Exception) {
+            e.printStackTrace()
+            Log.d("error", "onActivityResult: $e")
+        }
+    }
+
+    @Throws(IOException::class)
+    fun getBytes(inputStream: InputStream): ByteArray? {
+        val byteBuffer = ByteArrayOutputStream()
+        val bufferSize = 1024
+        val buffer = ByteArray(bufferSize)
+        var len = 0
+        while (inputStream.read(buffer).also { len = it } != -1) {
+            byteBuffer.write(buffer, 0, len)
+        }
+        return byteBuffer.toByteArray()
+    }
 
 
 }

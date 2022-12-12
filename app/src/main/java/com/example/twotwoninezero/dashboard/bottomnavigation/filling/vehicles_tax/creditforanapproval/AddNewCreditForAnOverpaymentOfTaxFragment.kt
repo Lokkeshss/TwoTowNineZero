@@ -1,22 +1,38 @@
 package com.example.twotwoninezero.dashboard.bottomnavigation.filling.vehicles_tax.creditforanapproval
 
+import android.Manifest
 import android.app.DatePickerDialog
+import android.content.Context
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Base64
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.ActivityResultCallback
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.example.twotwoninezero.R
 import com.example.twotwoninezero.base.BaseFragment
+import com.example.twotwoninezero.common.getOnlyDateFromDate
+import com.example.twotwoninezero.common.getOnlyMonthFromDate
+import com.example.twotwoninezero.common.getOnlyyearFromDate
 import com.example.twotwoninezero.dashboard.bottomnavigation.filling.model.FillingViewModel
-import com.example.twotwoninezero.dashboard.bottomnavigation.filling.taxyear_and_forms.TaxYearAndFormFragment.Companion.filingId
 import com.example.twotwoninezero.service.SaveCreditOverPaymentRequest
 import com.example.twotwoninezero.service.UpdateCreditOverPaymentRequest
 import kotlinx.android.synthetic.main.fragment_add_new_credit_for_an_overpayment_of_tax.*
-import kotlinx.android.synthetic.main.fragment_add_new_sold_destroyedor_stolen_vehicle.*
+import java.io.ByteArrayOutputStream
+import java.io.IOException
+import java.io.InputStream
 import java.text.SimpleDateFormat
 import java.util.*
+
 
 
 class AddNewCreditForAnOverpaymentOfTaxFragment : BaseFragment() {
@@ -26,7 +42,13 @@ class AddNewCreditForAnOverpaymentOfTaxFragment : BaseFragment() {
     var dateOfTaxPayment:String=""
     var documentName:String=""
     var id:String=""
+    var filingId:String=""
     var paymentPrice:Int=0
+
+    var minDate:String=""
+    var maxDate:String=""
+    var resultLauncher: ActivityResultLauncher<Intent>? = null
+
     override fun initViewModel() {
         mFillingViewModel = ViewModelProvider(
             viewModelStore,
@@ -59,6 +81,11 @@ class AddNewCreditForAnOverpaymentOfTaxFragment : BaseFragment() {
                 showToast(it.message)
             }
         })
+
+        mFillingViewModel.mGetCreditOverPaymentDateResponse.observe(this, androidx.lifecycle.Observer {
+            minDate=it.minDate
+            maxDate=it.maxDate
+        })
     }
 
 
@@ -82,6 +109,11 @@ class AddNewCreditForAnOverpaymentOfTaxFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        arguments?.let {
+            filingId= it.getString("filingId").toString()
+        }
+
+        mFillingViewModel.getCreditOverPaymentDate(filingId)
 
         arguments?.let {
 
@@ -113,13 +145,27 @@ class AddNewCreditForAnOverpaymentOfTaxFragment : BaseFragment() {
         }
 
         creditForAnOverPaymentDateOfPayment.setOnClickListener {
-            DatePickerDialog(
+            val mDialog= DatePickerDialog(
                 requireContext(),
                 toDate,
                 myCalendarToDate[Calendar.YEAR],
                 myCalendarToDate[Calendar.MONTH],
                 myCalendarToDate[Calendar.DAY_OF_MONTH]
-            ).show()
+            )
+            val minDay = getOnlyDateFromDate(minDate).toInt()
+            val minMonth =  getOnlyMonthFromDate(minDate).toInt()
+            val minYear =  getOnlyyearFromDate(minDate).toInt()
+            myCalendarToDate.set(minYear, minMonth-1, minDay)
+            mDialog.datePicker.minDate = myCalendarToDate.timeInMillis
+
+            // Changing mCalendar date from current to
+            // some random MAX day 20/08/2021 20 Aug 2021
+            val maxDay = getOnlyDateFromDate(maxDate).toInt()
+            val maxMonth = getOnlyMonthFromDate(maxDate).toInt()
+            val maxYear = getOnlyyearFromDate(maxDate).toInt()
+            myCalendarToDate.set(maxYear, maxMonth-1, maxDay)
+            mDialog.datePicker.maxDate = myCalendarToDate.timeInMillis
+            mDialog.show()
         }
 
         creditForAnOverpaymentminus.setOnClickListener {
@@ -145,6 +191,8 @@ class AddNewCreditForAnOverpaymentOfTaxFragment : BaseFragment() {
             }else if (dateOfTaxPayment.isNullOrEmpty()){
                 showToast("Select Date of tax payment")
             }else if (creditForAnOverPaymentVIN.text.toString().isNullOrEmpty()){
+                showToast("Vehicle identification number is required")
+            }else if (creditForAnOverPaymentVIN.text.toString().length<17){
                 showToast("VIN must be at least 17 characters long")
             }else{
                 if (creditForAnOverPaymentSubmit.text.toString().equals("Save ")){
@@ -168,6 +216,25 @@ class AddNewCreditForAnOverpaymentOfTaxFragment : BaseFragment() {
         creditForAnOverPaymentCancel.setOnClickListener {
 
         }
+
+        resultLauncher = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult(),
+            ActivityResultCallback<ActivityResult> { result ->
+                val data = result.data
+                if (data != null) {
+                    val sUri: Uri? = data.data
+                    ConvertToString(sUri!!)
+                }
+            })
+
+        creditForAnOverpaymentuploadDocument.setOnClickListener {
+            if (checkPermission(Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                selectPDF()
+            } else {
+                requestPermission(Manifest.permission.READ_EXTERNAL_STORAGE, 300)
+            }
+        }
+
     }
 
     private fun updateLabelToDate() {
@@ -177,7 +244,59 @@ class AddNewCreditForAnOverpaymentOfTaxFragment : BaseFragment() {
         val myFormatS = "yyyy-MM-dd"
         val dateFormatS = SimpleDateFormat(myFormatS, Locale.US)
         dateOfTaxPayment=dateFormatS.format(myCalendarToDate.time)
-        // filterToDateValue=dateFormatS.format(myCalendarFromDate.time)
+    }
+
+    private fun checkPermission(permission: String): Boolean {
+        return ContextCompat.checkSelfPermission(context as Context,permission) == PackageManager.PERMISSION_GRANTED
+    }
+
+
+    private fun requestPermission(permission: String, requestCode: Int) {
+        requestPermissions(arrayOf(permission),requestCode)
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String?>,
+        grantResults: IntArray
+    ) {
+        when (requestCode) {
+            300 ->
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    selectPDF()
+                } else {
+                    requestPermission(Manifest.permission.READ_EXTERNAL_STORAGE, 300)
+                }
+        }
+    }
+
+    private fun selectPDF() {
+        val intent = Intent(Intent.ACTION_GET_CONTENT)
+        intent.type = "application/pdf"
+        resultLauncher!!.launch(intent)
+    }
+
+    fun ConvertToString(uri: Uri) {
+            try {
+            val ins: InputStream? = requireActivity().getContentResolver().openInputStream(uri)
+            val bytes = getBytes(ins!!)
+                documentName = Base64.encodeToString(bytes, Base64.NO_WRAP)
+        } catch (e: java.lang.Exception) {
+            e.printStackTrace()
+            Log.d("error", "onActivityResult: $e")
+        }
+    }
+
+    @Throws(IOException::class)
+    fun getBytes(inputStream: InputStream): ByteArray? {
+        val byteBuffer = ByteArrayOutputStream()
+        val bufferSize = 1024
+        val buffer = ByteArray(bufferSize)
+        var len = 0
+        while (inputStream.read(buffer).also { len = it } != -1) {
+            byteBuffer.write(buffer, 0, len)
+        }
+        return byteBuffer.toByteArray()
     }
 
 }

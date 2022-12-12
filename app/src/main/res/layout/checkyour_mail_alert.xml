@@ -29,9 +29,9 @@
             android:id="@+id/alertMainText"
             android:layout_marginTop="40dp"
             android:layout_marginBottom="20dp"
-            android:fontFamily="@font/roboto_bold"
+            android:fontFamily="@font/roboto_black"
             android:textColor="@color/black"
-            android:textSize="24sp"
+            android:textSize="@dimen/page_topheading_textsize"
             android:text="Check your mail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -41,7 +41,7 @@
             android:layout_marginBottom="30dp"
             android:fontFamily="@font/roboto_medium"
             android:textColor="@color/checkmailtext"
-            android:textSize="14sp"
+            android:textSize="@dimen/page_maintitle_textsize"
             android:text="Password has been sent to your registered maildID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -49,7 +49,7 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/mailOk"
             android:textColor="@color/white"
-            android:textSize="16sp"
+            android:textSize="@dimen/page_button_textsize"
             android:text="Ok"
             android:textAllCaps="false"
             android:background="@drawable/btn_bg_roundcornor"

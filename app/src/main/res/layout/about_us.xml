@@ -50,14 +50,14 @@
         android:gravity="center"
         android:text="Why Simple Truck Tax"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textSize="@dimen/page_topheading_textsize"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/fragmentBack"
+        android:id="@+id/aboutUsfragmentBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -74,7 +74,7 @@
             android:layout_marginTop="@dimen/dp_30"
             android:fontFamily="@font/roboto_medium"
             android:textAlignment="textStart"
-            android:textSize="13sp"
+            android:textSize="@dimen/page_title_textsize"
             android:textColor="@color/textcolor"
             android:text="@string/aboutus_firstpara"
             android:layout_width="match_parent"
@@ -85,7 +85,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/dp_30"
             android:fontFamily="@font/roboto_bold"
-            android:textSize="13sp"
+            android:textSize="@dimen/page_title_textsize"
             android:textColor="@color/black"
             android:text="Just 3 simple steps to complete your 2290 filing"
             android:layout_width="match_parent"
@@ -142,7 +142,7 @@
                         android:paddingStart="10dp"
                         android:fontFamily="@font/roboto_medium"
                         android:textColor="@color/black"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/page_title_textsize"
                         android:text="Business Information"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
@@ -152,7 +152,7 @@
                         android:paddingStart="10dp"
                         android:fontFamily="@font/roboto_regular"
                         android:textColor="@color/textcolor"
-                        android:textSize="11sp"
+                        android:textSize="@dimen/page_value_textsize"
                         android:text="Name,Address,EIN"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
@@ -228,7 +228,7 @@
                         android:paddingStart="10dp"
                         android:fontFamily="@font/roboto_medium"
                         android:textColor="@color/black"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/page_title_textsize"
                         android:text="Truck Information"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
@@ -238,7 +238,7 @@
                         android:paddingStart="10dp"
                         android:fontFamily="@font/roboto_regular"
                         android:textColor="@color/textcolor"
-                        android:textSize="11sp"
+                        android:textSize="@dimen/page_value_textsize"
                         android:text="VIN,Taxable gross weight of \nthe vehicle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
@@ -310,7 +310,7 @@
                         android:paddingStart="10dp"
                         android:fontFamily="@font/roboto_medium"
                         android:textColor="@color/black"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/page_title_textsize"
                         android:text="Payment Information"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
@@ -320,7 +320,7 @@
                         android:paddingStart="10dp"
                         android:fontFamily="@font/roboto_regular"
                         android:textColor="@color/textcolor"
-                        android:textSize="11sp"
+                        android:textSize="@dimen/page_value_textsize"
                         android:text="Credit card/Debit Card or \nAccount Information"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>

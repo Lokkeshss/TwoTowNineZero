@@ -89,7 +89,7 @@ class BusinessScreenFragment : BaseFragment() {
                         }else if (type==2){
                             findNavController().navigate(
                                 BusinessScreenFragmentDirections.actionBusinessScreenFragmentToTaxYearAndFormFragment(
-                                    businessName,businessId
+                                    businessName,businessId,""
                                 )
                             )
                         }

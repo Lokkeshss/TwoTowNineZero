@@ -18,7 +18,8 @@
 
     <include layout="@layout/common_header_loginsignup" />
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
+        android:layout_weight="1"
         android:background="@color/loginheadercolor"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -43,10 +44,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
-        android:fontFamily="@font/roboto_regular"
+        android:fontFamily="@font/roboto_bold"
         android:text="Add New Vehicle"
         android:textColor="@color/black"
-        android:textSize="21sp"/>
+        android:textSize="@dimen/page_topheading_textsize"/>
 
     <TextView
         android:layout_gravity="start"
@@ -54,10 +55,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp_10"
         android:layout_marginBottom="@dimen/dp_10"
-        android:fontFamily="@font/roboto_regular"
+        android:fontFamily="@font/roboto_bold"
         android:text="Business Name"
         android:textColor="@color/black"
-        android:textSize="21sp"/>
+        android:textSize="@dimen/page_maintitle_textsize"/>
 
 
         <com.google.android.material.card.MaterialCardView
@@ -90,7 +91,6 @@
                     android:id="@+id/addnewDestroyedStolenVehicleVIN"
                     android:textAllCaps="true"
                     android:fontFamily="@font/roboto_regular"
-                    android:textSize="14sp"
                     style="@style/loginTextInputLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -115,7 +115,6 @@
                     android:id="@+id/addnewDestroyedStolenVehicleTaxableWeight"
                     android:textAllCaps="true"
                     android:fontFamily="@font/roboto_regular"
-                    android:textSize="14sp"
                     style="@style/loginTextInputLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -140,7 +139,6 @@
                     android:id="@+id/addnewDestroyedStolenVehicleFirstUsedMonth"
                     android:textAllCaps="true"
                     android:fontFamily="@font/roboto_regular"
-                    android:textSize="14sp"
                     style="@style/loginTextInputLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -165,7 +163,6 @@
                     android:id="@+id/addnewDestroyedSoldVehicleDestroyedDate"
                     android:textAllCaps="true"
                     android:fontFamily="@font/roboto_regular"
-                    android:textSize="14sp"
                     style="@style/loginTextInputLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -189,7 +186,6 @@
                     android:drawableEnd="@drawable/edittextdropdownicon"
                     android:id="@+id/addnewDestroyedStolenVehicleTypeLoss"
                     android:fontFamily="@font/roboto_regular"
-                    android:textSize="14sp"
                     style="@style/loginTextInputLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -208,6 +204,8 @@
 
 
                 <TextView
+                    android:fontFamily="@font/roboto_regular"
+                    android:textSize="@dimen/page_title_textsize"
                     android:layout_marginStart="@dimen/dp_10"
                     android:layout_marginTop="@dimen/dp_20"
                     android:layout_marginEnd="@dimen/dp_5"
@@ -241,7 +239,6 @@
                     android:id="@+id/addnewDestroyedStolenVehicleVINCorrection"
                     android:textAllCaps="true"
                     android:fontFamily="@font/roboto_regular"
-                    android:textSize="14sp"
                     style="@style/loginTextInputLayout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -252,6 +249,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
+                android:id="@+id/addnewDestroyedUploadDocument"
                 android:layout_marginTop="@dimen/dp_10"
                 android:padding="@dimen/dp_20"
                 android:gravity="center"
@@ -265,8 +263,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
+                    android:fontFamily="@font/roboto_regular"
+                    android:textSize="@dimen/page_title_textsize"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/dp_10"
                     android:textAlignment="center"
                     android:text="Select a supporting PDF document file to Upload"
                     android:layout_width="match_parent"
@@ -276,9 +275,17 @@
         </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
+
+
+
+    </LinearLayout>
+    </androidx.cardview.widget.CardView>
+    </androidx.core.widget.NestedScrollView>
+
         <LinearLayout
+            android:background="@color/transparant"
             android:padding="@dimen/dp_5"
-            android:layout_marginTop="@dimen/dp_40"
+            android:layout_marginBottom="@dimen/dp_20"
             android:gravity="center"
             android:layout_gravity="center"
             android:orientation="horizontal"
@@ -286,10 +293,25 @@
             android:layout_height="wrap_content">
 
             <TextView
+                android:id="@+id/addnewDestroyedStolenVehicleCancel"
+                android:fontFamily="@font/roboto_medium"
+                android:textSize="@dimen/page_button_textsize"
+                android:layout_marginEnd="@dimen/dp_20"
+                android:drawablePadding="@dimen/dp_20"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:padding="15dp"
+                android:background="@drawable/button_withwhite_roundcoronor_color"
+                android:drawableStart="@drawable/addbusiness_cancelbuttonicon"
+                android:text="Cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
                 android:id="@+id/addnewDestroyedStolenVehicleSubmit"
                 android:fontFamily="@font/roboto_medium"
-                android:textSize="12sp"
-                android:layout_marginEnd="@dimen/dp_20"
+                android:textSize="@dimen/page_button_textsize"
+                android:layout_marginStart="@dimen/dp_20"
                 android:drawablePadding="@dimen/dp_20"
                 android:gravity="center"
                 android:layout_gravity="center"
@@ -301,26 +323,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
-            <TextView
-                android:id="@+id/addnewDestroyedStolenVehicleCancel"
-                android:fontFamily="@font/roboto_medium"
-                android:textSize="12sp"
-                android:layout_marginStart="@dimen/dp_20"
-                android:drawablePadding="@dimen/dp_20"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:padding="15dp"
-                android:background="@drawable/button_withwhite_roundcoronor_color"
-                android:drawableStart="@drawable/addbusiness_cancelbuttonicon"
-                android:text="Cancel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+
 
         </LinearLayout>
-
-
-    </LinearLayout>
-    </androidx.cardview.widget.CardView>
-    </ScrollView>
     </LinearLayout>
 </FrameLayout>

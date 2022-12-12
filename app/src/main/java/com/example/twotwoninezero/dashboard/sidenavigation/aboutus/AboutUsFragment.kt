@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.twotwoninezero.R
+import kotlinx.android.synthetic.main.about_us.*
 
 class AboutUsFragment : Fragment() {
 
@@ -21,6 +22,14 @@ class AboutUsFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.about_us, container, false)
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        aboutUsfragmentBack.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
     }
 
 }

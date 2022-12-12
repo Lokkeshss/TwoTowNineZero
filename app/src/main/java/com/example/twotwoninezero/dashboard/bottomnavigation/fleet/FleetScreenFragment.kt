@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.twotwoninezero.R
 import com.example.twotwoninezero.base.BaseFragment
 import com.example.twotwoninezero.common.FleetBusinessnameSpinnerAdapter
+import com.example.twotwoninezero.dashboard.bottomnavigation.business.BusinessScreenFragmentDirections
 import com.example.twotwoninezero.dashboard.bottomnavigation.fleet.adapter.FleetListAdapter
 import com.example.twotwoninezero.dashboard.bottomnavigation.fleet.model.FleetViewModel
 import com.example.twotwoninezero.service.GetBusinessNameResponse
@@ -38,6 +39,11 @@ class FleetScreenFragment : BaseFragment() {
 
         mFleetViewModel.mGetBusinessNameList.observe(this, Observer {
             mgetBusinessNameList = it
+            if (mgetBusinessNameList.isEmpty()){
+                addNewFleetText.setText("Add New Business")
+            }else{
+                addNewFleetText.setText("Add New Fleet")
+            }
         })
 
         mFleetViewModel.mDeleteFleetResponse.observe(this, Observer {
@@ -109,16 +115,10 @@ class FleetScreenFragment : BaseFragment() {
     }
 
     var mFleetBusinessnameSpinnerAdapter: FleetBusinessnameSpinnerAdapter?=null
-   /* var addNewFleet:LinearLayout?=null
-    var fleetListRV:RecyclerView?=null
-    var edt_tv_searchByBusinessName:EditText?=null*/
     private var mgetBusinessNameList: List<GetBusinessNameResponse> = ArrayList()
     private var mGetFleetList: List<GetFleetListResponse> = ArrayList()
     var edt_tv_searchByBusinessNameId:String?=null
     var mFleetListAdapter: FleetListAdapter?=null
-   /* var emptyFleetList: CardView?=null
-    var commonContactCallMain:ImageView?=null*/
-   // var notification:ImageView?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -126,13 +126,6 @@ class FleetScreenFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-/*        commonContactCallMain = view.findViewById(R.id.commonContactCallMain)
-        notification = view.findViewById(R.id.notification)
-
-        addNewFleet=view.findViewById(R.id.addNewFleet)
-        fleetListRV=view.findViewById(R.id.fleetListRV)
-        emptyFleetList=view.findViewById(R.id.emptyFleetList)
-        edt_tv_searchByBusinessName=view.findViewById(R.id.edt_tv_searchByBusinessName)*/
 
         edt_tv_searchByBusinessName?.setFocusable(false)
         edt_tv_searchByBusinessName?.setClickable(true)
@@ -149,9 +142,19 @@ class FleetScreenFragment : BaseFragment() {
         }
 
         addNewFleet?.setOnClickListener {
-            findNavController().navigate(
-                FleetScreenFragmentDirections.actionFleetScreenFragmentToAddFleetFragment("","","")
-            )
+
+            if (addNewFleetText.text.toString().equals("Add New Business")){
+                findNavController().navigate(
+                    FleetScreenFragmentDirections.actionFleetScreenFragmentToAddNewBusinessFragment(
+                        ""
+                    )
+                )
+            }else{
+                findNavController().navigate(
+                    FleetScreenFragmentDirections.actionFleetScreenFragmentToAddFleetFragment("","","")
+                )
+            }
+
         }
 
         edt_tv_searchByBusinessName?.setOnClickListener {
@@ -165,37 +168,6 @@ class FleetScreenFragment : BaseFragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_fleet_screen, container, false)
-       /* commonContactCallMain = view.findViewById(R.id.commonContactCallMain)
-        notification = view.findViewById(R.id.notification)
-
-        addNewFleet=view.findViewById(R.id.addNewFleet)
-        fleetListRV=view.findViewById(R.id.fleetListRV)
-        emptyFleetList=view.findViewById(R.id.emptyFleetList)
-        edt_tv_searchByBusinessName=view.findViewById(R.id.edt_tv_searchByBusinessName)
-
-        edt_tv_searchByBusinessName?.setFocusable(false)
-        edt_tv_searchByBusinessName?.setClickable(true)
-
-      //  mFleetViewModel.getFleetById("")
-      //  mFleetViewModel.getfleetlist("")
-        mFleetViewModel.getbusinessname()
-        if (!edt_tv_searchByBusinessNameId.isNullOrEmpty()){
-            mFleetViewModel.getfleetlist(edt_tv_searchByBusinessNameId!!)
-        }
-
-        commonContactCallMain?.setOnClickListener {
-            commonCallAndMailFunction()
-        }
-
-        addNewFleet?.setOnClickListener {
-            findNavController().navigate(
-                FleetScreenFragmentDirections.actionFleetScreenFragmentToAddFleetFragment("","","")
-            )
-        }
-
-        edt_tv_searchByBusinessName?.setOnClickListener {
-            showBusinessName()
-        }*/
 
         return view
     }

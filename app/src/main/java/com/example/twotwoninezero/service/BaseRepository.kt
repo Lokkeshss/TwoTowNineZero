@@ -1,7 +1,11 @@
 package com.example.twotwoninezero.service
 
 import android.accounts.NetworkErrorException
+import android.content.Intent
 import android.util.Log
+import androidx.core.content.ContextCompat.startActivity
+import com.example.twotwoninezero.ThisApplication
+import com.example.twotwoninezero.loginsignup.LoginScreenActivity
 import okhttp3.internal.http2.StreamResetException
 import org.json.JSONObject
 import retrofit2.Response
@@ -23,8 +27,9 @@ open class BaseRepository {
 
         try {
             val result : Result<T, ApiErrorResponse> = onApiResult(call)
-
+            println("helooooooo  "+result.toString())
             when(result) {
+
                 is Result.Success -> {
                     data = result.data
                     apiResponse.data = data
@@ -35,6 +40,7 @@ open class BaseRepository {
                     var apiErrorResponse: ApiErrorResponse = result.data
                     apiResponse.msg = apiErrorResponse.errMsg
                     apiResponse.error = true
+
                 }
                 is Result.Error -> {
                     //Log.d("1.DataRepository", "!!! Exception - ${result.exception}")
@@ -138,10 +144,16 @@ open class BaseRepository {
         /*ThisApplication.publicPrefs.appMeta = ""
         ThisApplication.publicPrefs.profile = ""
         ThisApplication.publicPrefs.jwtToken = ""
-        ThisApplication.publicPrefs.rememberMe = false
+        ThisApplication.publicPrefs.rememberMe = false*/
 
-        val intent = Intent(ThisApplication.application, LoginActivity::class.java)
+        ThisApplication.publicPrefs.jwtToken=""
+        val intent = Intent(ThisApplication.application, LoginScreenActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-        ThisApplication.application.startActivity(intent)*/
+        ThisApplication.application.startActivity(intent)
+/*
+        ThisApplication.publicPrefs.jwtToken=""
+        val i= Intent(requireActivity(), LoginScreenActivity::class.java)
+        startActivity(i)
+        finish()*/
     }
 }

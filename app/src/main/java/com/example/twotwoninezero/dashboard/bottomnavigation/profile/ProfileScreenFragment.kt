@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.navigation.fragment.findNavController
 import com.example.twotwoninezero.R
 import com.example.twotwoninezero.base.BaseFragment
+import kotlinx.android.synthetic.main.fragment_profile_screen.*
 
 class ProfileScreenFragment : BaseFragment() {
     override fun initViewModel() {
@@ -28,6 +29,35 @@ class ProfileScreenFragment : BaseFragment() {
         val view  = inflater.inflate(R.layout.fragment_profile_screen, container, false)
 
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        profileEditMyProfile.setOnClickListener {
+            findNavController().navigate(ProfileScreenFragmentDirections.actionProfileScreenFragmentToEditMyProfileFragment())
+        }
+
+        profileChangePassword.setOnClickListener {
+            findNavController().navigate(ProfileScreenFragmentDirections.actionProfileScreenFragmentToChangePasswordFragment())
+
+        }
+
+        profileMyTransactions.setOnClickListener {
+            findNavController().navigate(ProfileScreenFragmentDirections.actionProfileScreenFragmentToMyTransactionListFragment())
+
+        }
+
+
+        profileChangeLoginMail.setOnClickListener {
+            findNavController().navigate(ProfileScreenFragmentDirections.actionProfileScreenFragmentToChangeLoginEmailFragment())
+
+        }
+
+        profileTaxPreparerInformation.setOnClickListener {
+            findNavController().navigate(ProfileScreenFragmentDirections.actionProfileScreenFragmentToTaxPreparerFragment())
+
+        }
     }
 
 

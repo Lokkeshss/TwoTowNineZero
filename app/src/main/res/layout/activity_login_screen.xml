@@ -20,7 +20,7 @@
 
             <include layout="@layout/common_header_loginsignup" />
 
-            <ScrollView
+            <androidx.core.widget.NestedScrollView
                 android:layout_marginTop="20dp"
                 android:background="@color/loginheadercolor"
                 android:layout_width="match_parent"
@@ -44,10 +44,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
-                        android:fontFamily="@font/roboto_bold"
+                        android:fontFamily="@font/roboto_black"
                         android:text="Login"
                         android:textColor="@color/black"
-                        android:textSize="24sp" />
+                        android:textSize="@dimen/page_topheading_textsize" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -56,7 +56,7 @@
                         android:fontFamily="@font/roboto_bold"
                         android:text="Sign into your account"
                         android:textColor="@color/loginsmalltextcolor"
-                        android:textSize="14sp" />
+                        android:textSize="@dimen/page_maintitle_textsize" />
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/tv_email"
@@ -70,7 +70,6 @@
 
                         <EditText
                             android:fontFamily="@font/roboto_regular"
-                            android:textSize="14sp"
                             android:id="@+id/edt_email"
                             style="@style/loginTextInputEditText"
                             android:layout_width="match_parent"
@@ -88,19 +87,18 @@
                         android:layout_marginTop="30dp"
                         android:hint="Password"
                         app:hintTextColor="@color/lightGray"
-                        app:passwordToggleEnabled="true"
                         app:passwordToggleTint="@color/next"
+                        app:passwordToggleEnabled="true"
                         app:layout_constraintTop_toBottomOf="@+id/textView">
 
                         <EditText
                             android:fontFamily="@font/roboto_regular"
-                            android:textSize="14sp"
                             android:id="@+id/edt_password"
                             style="@style/loginTextInputEditText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
-                            android:inputType="textPassword"
+                            android:inputType="text"
                             android:text="" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -114,7 +112,7 @@
                         android:padding="10dp"
                         android:text="Reset Password ?"
                         android:textColor="@color/next"
-                        android:textSize="12sp" />
+                        android:textSize="@dimen/page_title_textsize" />
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/login"
@@ -126,7 +124,7 @@
                         android:text="Login"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
-                        android:textSize="16sp" />
+                        android:textSize="@dimen/page_button_textsize" />
 
 
                     <LinearLayout
@@ -144,7 +142,7 @@
                             android:layout_height="wrap_content"
                             android:text="New to Simpletruckertax?"
                             android:textColor="@color/lightGray"
-                            android:textSize="14sp" />
+                            android:textSize="@dimen/page_title_textsize" />
 
                         <TextView
                             android:id="@+id/registerHere"
@@ -153,7 +151,7 @@
                             android:fontFamily="@font/roboto_bold"
                             android:text="Register Here"
                             android:textColor="@color/bt_color"
-                            android:textSize="14sp" />
+                            android:textSize="@dimen/page_title_textsize" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -161,7 +159,7 @@
 
             </androidx.cardview.widget.CardView>
 
-            </ScrollView>
+            </androidx.core.widget.NestedScrollView>
         </LinearLayout>
 
 

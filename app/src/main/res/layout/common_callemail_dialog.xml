@@ -28,6 +28,7 @@
             android:padding="@dimen/dp_10">
 
             <TextView
+                android:textSize="@dimen/page_title_textsize"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -60,6 +61,7 @@
             android:padding="@dimen/dp_10">
 
             <TextView
+                android:textSize="@dimen/page_title_textsize"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -92,6 +94,7 @@
             android:padding="@dimen/dp_10">
 
             <TextView
+                android:textSize="@dimen/page_title_textsize"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -113,6 +116,8 @@
 
 
         <TextView
+            android:textSize="@dimen/page_title_textsize"
+            android:fontFamily="@font/roboto_regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -124,6 +129,7 @@
             android:text="(Mon-Fri ) 7am to 8pm CST" />
 
         <TextView
+            android:textSize="@dimen/page_title_textsize"
             android:padding="@dimen/dp_10"
             android:id="@+id/ok"
             android:layout_marginBottom="@dimen/dp_10"

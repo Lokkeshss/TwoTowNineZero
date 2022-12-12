@@ -36,7 +36,7 @@
                 android:padding="10dp"
                 android:text="@string/aboutus"
                 android:textColor="@color/textcolor"
-                android:textSize="13sp" />
+                android:textSize="@dimen/page_title_textsize" />
         </LinearLayout>
 
     </com.google.android.material.card.MaterialCardView>

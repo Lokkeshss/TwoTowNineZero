@@ -85,6 +85,44 @@ data class SaveTaxableVehicleRequest(
     val weightCategory: String
 )
 
+data class SaveBulkTaxableVehicleRequest(
+    val filingId: String,
+    val isLogging: String,
+    val vin: String,
+    val weightCategory: String
+)
+
+data class SaveBulkCurrentSuspendedRequest(
+    val filingId: String,
+    val isAgriculture: String,
+    val isLogging: String,
+    val vin: String
+)
+
+data class SaveUpdateTGWIncreaseRequest(
+    val changedCategory: String,
+    val isLogging: String,
+    val previousCategory: String,
+    val vin: String,
+    val filingId: String
+)
+
+data class SaveUpdateExceededMileageRequest(
+    val filingId: String,
+    val isLogging: String,
+    val vin: String,
+    val weightCategory: String
+)
+
+data class SaveUpdateVinCorrectionRequest(
+    val correctVin: String,
+    val explanation: String,
+    val filingId: String,
+    val isLogging: String,
+    val previousVin: String,
+    val vinType: String,
+    val weightCategory: String
+)
 
 data class SaveAndUpdateFilingRequest(
     val addressChange: String,
@@ -124,14 +162,6 @@ data class SaveFeedbackRequest(
 )
 
 data class SaveUpdateTaxableVehicleRequest(
-    val isLogging: String,
-    val vin: String,
-    val weightCategory: String
-)
-
-class SaveBulkTaxableVehicleRequest : ArrayList<SaveBulkTaxableVehicleRequestItem>()
-
-data class SaveBulkTaxableVehicleRequestItem(
     val isLogging: String,
     val vin: String,
     val weightCategory: String
@@ -284,4 +314,110 @@ data class UpdateSoldDestroyedVehicleRequest(
     val soldDate: String,
     val vin: String,
     val weightCategory: String
+)
+
+
+data class UpdateMyAccountDetailsRequest(
+    val address: String,
+    val countryId: Int,
+    val decryptEmail: String,
+    val decryptPhone: String,
+    val decryptUserFirstName: String,
+    val email: String,
+    val emailLc: String,
+    val emailToken: String,
+    val firstName: String,
+    val isLinkedinLogin: String,
+    val isTaxPreparer: String,
+    val isTwitterLogin: String,
+    val languagePreference: String,
+    val lastName: String?,
+    val otherReferBy: String,
+    val phone: String,
+    val pinCode: String,
+    val referedBy: String,
+    val tokenGenerationDate: String
+)
+
+data class ChangePasswordRequest(
+    val confirmPassword:String,
+    val loginPassword:String,
+    val newPassword:String
+)
+
+data class ChangeLoginEmailRequest(
+    val confirmMail:String,
+    val email:String,
+    val newEmailId:String,
+    val requesterName:String,
+)
+
+data class TaxPreparerRequest(
+    val address1: String,
+    val address2: String,
+    val city: String,
+    val countryId: String,
+    val emailAddress: String,
+    val firmEIN: String,
+    val firmName: String,
+    val foreignAddress: String,
+    val foreignPhone: String,
+    val optradio: String,
+    val optradio1: String,
+    val phone: String,
+    val preparerName: String,
+    val preparerType: String,
+    val ptin: String,
+    val selfEmployed: String,
+    val state: String,
+    val taxPreparer: String,
+    val zipCode: String,
+
+)
+
+data class SavePaymentOptionRequest(
+    val acctNumber: String,
+    val acctType: String,
+    val bankName: String,
+    val checkBox: String,
+    val checkBox1: String,
+    val checkBox2: String,
+    val filingId: String,
+    val id: String,
+    val paymentMode: String,
+    val retypebankAccNo: String,
+    val routingTransitNo: String
+)
+
+data class ApplyCouponRequest(
+    val couponCode:String =""
+)
+data class UpdateConsentDisclosureRequest(
+    val consentDisclosure: String,
+    val couponCode: String = ""
+)
+
+data class CaptureCCPaymentRequest(
+    val accountNumber: String,
+    val acctType: String,
+    val bankAccountType: String,
+    val bankName: String,
+    val billingAddress: String,
+    val cardCode: String,
+    val cardNumber: String,
+    val city: String,
+    val countryCode: String,
+    val diffBillAdd: Boolean,
+    val expDate: String,
+    val firstName: String,
+    val isCreditDetails: Boolean,
+    val isDebitDetails: Boolean,
+    val lastName: String,
+    val nameOnAccount: String,
+    val payAmt: Double,
+    val refId: String,
+    val routingNumber: String,
+    val selectedPaymentMethod: String,
+    val state: String,
+    val zipCode: String
 )

@@ -1,0 +1,1337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".dashboard.bottomnavigation.filling.form_summary.FormSummaryVehicleSummaryFragment">
+
+    <LinearLayout
+        android:background="@color/loginheadercolor"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    <include layout="@layout/common_header_loginsignup" />
+
+    <androidx.core.widget.NestedScrollView
+        android:background="@color/loginheadercolor"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/loginCardView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp">
+
+        <TextView
+            android:id="@+id/test"
+            android:layout_width="wrap_content"
+            android:layout_height="18dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/roboto_bold"
+            android:text="Add New Filing"
+            android:textColor="@color/black"
+            android:textSize="@dimen/page_topheading_textsize" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:id="@+id/taxableVehicleInformationMC"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="2dp"
+        app:strokeWidth="1dp"
+        android:padding="@dimen/dp_10"
+        app:strokeColor="@color/blacklignt">
+
+    <LinearLayout
+        android:padding="@dimen/dp_10"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_gravity="center"
+            android:padding="@dimen/dp_10"
+            android:src="@drawable/vehiclesummaryicon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:fontFamily="@font/roboto_medium"
+            android:textSize="@dimen/page_maintitle_textsize"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:id="@+id/taxableVehicleInformation"
+            android:drawablePadding="@dimen/dp_10"
+            android:padding="@dimen/dp_10"
+            android:text="Vehicle Summary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/vehicleSummaryFormTypeLL"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/TaxableVehicle_NoofVehicleMC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_20"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="2dp"
+            app:strokeWidth="1dp"
+            app:strokeColor="@color/blacklignt">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                <TextView
+                    android:fontFamily="@font/roboto_medium"
+                    android:textSize="@dimen/page_title_textsize"
+                    android:textColor="@color/black"
+                    android:layout_weight="1"
+                    android:padding="@dimen/dp_10"
+                    android:text="Taxable Vehicle Information"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                    <ImageView
+                        android:id="@+id/TaxableVehicle_Edit"
+                        android:layout_gravity="center"
+                        android:padding="@dimen/dp_10"
+                        android:src="@drawable/editiconblack"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:fontFamily="@font/roboto_medium"
+                        android:textSize="@dimen/page_value_textsize"
+                        android:textColor="@color/textcolor"
+                        android:layout_weight="1"
+                        android:padding="@dimen/dp_10"
+                        android:text="No of Vehicles"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:src="@drawable/vehiclesummary_arrowmarkicon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:gravity="end"
+                        android:layout_weight="2"
+                        android:id="@+id/TaxableVehicle_NoofVehicle"
+                        android:fontFamily="@font/roboto_medium"
+                        android:textSize="@dimen/page_value_textsize"
+                        android:textColor="@color/textcolor"
+                        android:padding="@dimen/dp_10"
+                        android:text="0"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:fontFamily="@font/roboto_medium"
+                        android:textSize="@dimen/page_value_textsize"
+                        android:textColor="@color/textcolor"
+                        android:layout_weight="1"
+                        android:padding="@dimen/dp_10"
+                        android:text="Total Tax Amount ($)"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:src="@drawable/vehiclesummary_arrowmarkicon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/TaxableVehicle_TotalTaxAmount"
+                        android:fontFamily="@font/roboto_medium"
+                        android:textSize="@dimen/page_value_textsize"
+                        android:textColor="@color/textcolor"
+                        android:padding="@dimen/dp_10"
+                        android:text="0.00"
+                        android:gravity="end"
+                        android:layout_weight="2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/currentsuspendedvehicle_NoofVehicleMC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_20"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="2dp"
+            app:strokeWidth="1dp"
+            app:strokeColor="@color/blacklignt">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:fontFamily="@font/roboto_medium"
+                        android:textSize="@dimen/page_title_textsize"
+                        android:textColor="@color/black"
+                        android:layout_weight="1"
+                        android:padding="@dimen/dp_10"
+                        android:text="Add Current year suspended vehicle information "
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <ImageView
+                        android:id="@+id/currentsuspendedvehicle_Edit"
+                        android:layout_gravity="center"
+                        android:padding="@dimen/dp_10"
+                        android:src="@drawable/editiconblack"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:fontFamily="@font/roboto_medium"
+                        android:textSize="@dimen/page_value_textsize"
+                        android:textColor="@color/textcolor"
+                        android:layout_weight="1"
+                        android:padding="@dimen/dp_10"
+                        android:text="No of Vehicles"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:src="@drawable/vehiclesummary_arrowmarkicon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/currentsuspendedvehicle_NoofVehicle"
+                        android:fontFamily="@font/roboto_medium"
+                        android:textSize="@dimen/page_value_textsize"
+                        android:textColor="@color/textcolor"
+                        android:padding="@dimen/dp_10"
+                        android:text="0"
+                        android:gravity="end"
+                        android:layout_weight="2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:fontFamily="@font/roboto_medium"
+                        android:textSize="@dimen/page_value_textsize"
+                        android:textColor="@color/textcolor"
+                        android:layout_weight="1"
+                        android:padding="@dimen/dp_10"
+                        android:text="Total Tax Amount ($)"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:src="@drawable/vehiclesummary_arrowmarkicon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/currentsuspendedvehicle_TotalTaxAmount"
+                        android:fontFamily="@font/roboto_medium"
+                        android:textSize="@dimen/page_value_textsize"
+                        android:textColor="@color/textcolor"
+                        android:padding="@dimen/dp_10"
+                        android:text="0.00"
+                        android:gravity="end"
+                        android:layout_weight="2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/Prioryearsuspended_NoofVehicleMC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_20"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="2dp"
+            app:strokeWidth="1dp"
+            app:strokeColor="@color/blacklignt">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:fontFamily="@font/roboto_medium"
+                        android:textSize="@dimen/page_title_textsize"
+                        android:textColor="@color/black"
+                        android:layout_weight="1"
+                        android:padding="@dimen/dp_10"
+                        android:text="Add Prior year suspended vehicle information"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <ImageView
+                        android:id="@+id/Prioryearsuspended_Edit"
+                        android:layout_gravity="center"
+                        android:padding="@dimen/dp_10"
+                        android:src="@drawable/editiconblack"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:fontFamily="@font/roboto_medium"
+                        android:textSize="@dimen/page_value_textsize"
+                        android:textColor="@color/textcolor"
+                        android:layout_weight="1"
+                        android:padding="@dimen/dp_10"
+                        android:text="No of Vehicles"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:src="@drawable/vehiclesummary_arrowmarkicon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/Prioryearsuspended_NoofVehicle"
+                        android:fontFamily="@font/roboto_medium"
+                        android:textSize="@dimen/page_value_textsize"
+                        android:textColor="@color/textcolor"
+                        android:padding="@dimen/dp_10"
+                        android:text="0"
+                        android:gravity="end"
+                        android:layout_weight="2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:fontFamily="@font/roboto_medium"
+                        android:textSize="@dimen/page_value_textsize"
+                        android:textColor="@color/textcolor"
+                        android:layout_weight="1"
+                        android:padding="@dimen/dp_10"
+                        android:text="Total Tax Amount ($)"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:src="@drawable/vehiclesummary_arrowmarkicon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/Prioryearsuspended_TotalTaxAmount"
+                        android:fontFamily="@font/roboto_medium"
+                        android:textSize="@dimen/page_value_textsize"
+                        android:textColor="@color/textcolor"
+                        android:padding="@dimen/dp_10"
+                        android:text="0.00"
+                        android:gravity="end"
+                        android:layout_weight="2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/SoldDestroyedCredits_NoofVehicleMC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_20"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="2dp"
+            app:strokeWidth="1dp"
+            app:strokeColor="@color/blacklignt">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:fontFamily="@font/roboto_medium"
+                        android:textSize="@dimen/page_title_textsize"
+                        android:textColor="@color/black"
+                        android:layout_weight="1"
+                        android:padding="@dimen/dp_10"
+                        android:text="Sold/Destroyed Credits "
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <ImageView
+                        android:id="@+id/SoldDestroyedCredits_Edit"
+                        android:layout_gravity="center"
+                        android:padding="@dimen/dp_10"
+                        android:src="@drawable/editiconblack"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:fontFamily="@font/roboto_medium"
+                        android:textSize="@dimen/page_value_textsize"
+                        android:textColor="@color/textcolor"
+                        android:layout_weight="1"
+                        android:padding="@dimen/dp_10"
+                        android:text="No of Vehicles"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:src="@drawable/vehiclesummary_arrowmarkicon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/SoldDestroyedCredits_NoofVehicle"
+                        android:fontFamily="@font/roboto_medium"
+                        android:textSize="@dimen/page_value_textsize"
+                        android:textColor="@color/textcolor"
+                        android:padding="@dimen/dp_10"
+                        android:text="0"
+                        android:gravity="end"
+                        android:layout_weight="2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:fontFamily="@font/roboto_medium"
+                        android:textSize="@dimen/page_value_textsize"
+                        android:textColor="@color/textcolor"
+                        android:layout_weight="1"
+                        android:padding="@dimen/dp_10"
+                        android:text="Total Tax Amount ($)"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:src="@drawable/vehiclesummary_arrowmarkicon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/SoldDestroyedCredits_TotalTaxAmount"
+                        android:fontFamily="@font/roboto_medium"
+                        android:textSize="@dimen/page_value_textsize"
+                        android:textColor="@color/textcolor"
+                        android:padding="@dimen/dp_10"
+                        android:text="0.00"
+                        android:gravity="end"
+                        android:layout_weight="2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/LowMileageCredits_NoofVehicleMC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_20"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="2dp"
+            app:strokeWidth="1dp"
+            app:strokeColor="@color/blacklignt">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:fontFamily="@font/roboto_medium"
+                        android:textSize="@dimen/page_title_textsize"
+                        android:textColor="@color/black"
+                        android:layout_weight="1"
+                        android:padding="@dimen/dp_10"
+                        android:text="Low Mileage Credits"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <ImageView
+                        android:id="@+id/LowMileageCredits_Edit"
+                        android:layout_gravity="center"
+                        android:padding="@dimen/dp_10"
+                        android:src="@drawable/editiconblack"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:fontFamily="@font/roboto_medium"
+                        android:textSize="@dimen/page_value_textsize"
+                        android:textColor="@color/textcolor"
+                        android:layout_weight="1"
+                        android:padding="@dimen/dp_10"
+                        android:text="No of Vehicles"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:src="@drawable/vehiclesummary_arrowmarkicon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/LowMileageCredits_NoofVehicle"
+                        android:fontFamily="@font/roboto_medium"
+                        android:textSize="@dimen/page_value_textsize"
+                        android:textColor="@color/textcolor"
+                        android:padding="@dimen/dp_10"
+                        android:text="0"
+                        android:gravity="end"
+                        android:layout_weight="2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:fontFamily="@font/roboto_medium"
+                        android:textSize="@dimen/page_value_textsize"
+                        android:textColor="@color/textcolor"
+                        android:layout_weight="1"
+                        android:padding="@dimen/dp_10"
+                        android:text="Total Tax Amount ($)"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:src="@drawable/vehiclesummary_arrowmarkicon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/LowMileageCredits_TotalTaxAmount"
+                        android:fontFamily="@font/roboto_medium"
+                        android:textSize="@dimen/page_value_textsize"
+                        android:textColor="@color/textcolor"
+                        android:padding="@dimen/dp_10"
+                        android:text="0.00"
+                        android:gravity="end"
+                        android:layout_weight="2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/vehicleSummaryAmendementOneTypeLL"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/TaxableGrossWeight_NoofVehicleMC"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_20"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="2dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="@color/blacklignt">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:fontFamily="@font/roboto_medium"
+                            android:textSize="@dimen/page_title_textsize"
+                            android:textColor="@color/black"
+                            android:layout_weight="1"
+                            android:padding="@dimen/dp_10"
+                            android:text="TAXABLE GROSS WEIGHT INCREASE INFORMATION"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <ImageView
+                            android:id="@+id/TaxableGrossWeight_Edit"
+                            android:layout_gravity="center"
+                            android:padding="@dimen/dp_10"
+                            android:src="@drawable/editiconblack"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:fontFamily="@font/roboto_medium"
+                            android:textSize="@dimen/page_value_textsize"
+                            android:textColor="@color/textcolor"
+                            android:layout_weight="1"
+                            android:padding="@dimen/dp_10"
+                            android:text="No of Vehicles"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:src="@drawable/vehiclesummary_arrowmarkicon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:id="@+id/TaxableGrossWeight_NoofVehicle"
+                            android:fontFamily="@font/roboto_medium"
+                            android:textSize="@dimen/page_value_textsize"
+                            android:textColor="@color/textcolor"
+                            android:padding="@dimen/dp_10"
+                            android:text="0"
+                            android:gravity="end"
+                            android:layout_weight="2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+
+                    </LinearLayout>
+
+
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:fontFamily="@font/roboto_medium"
+                            android:textSize="@dimen/page_value_textsize"
+                            android:textColor="@color/textcolor"
+                            android:layout_weight="1"
+                            android:padding="@dimen/dp_10"
+                            android:text="Total Tax Amount ($)"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:src="@drawable/vehiclesummary_arrowmarkicon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:id="@+id/TaxableGrossWeight_TotalTaxAmount"
+                            android:fontFamily="@font/roboto_medium"
+                            android:textSize="@dimen/page_value_textsize"
+                            android:textColor="@color/textcolor"
+                            android:padding="@dimen/dp_10"
+                            android:text="0.00"
+                            android:gravity="end"
+                            android:layout_weight="2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/vehicleSummaryAmendementTwoTypeLL"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.google.android.material.card.MaterialCardView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_20"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="2dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="@color/blacklignt">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:fontFamily="@font/roboto_medium"
+                            android:textSize="@dimen/page_title_textsize"
+                            android:textColor="@color/black"
+                            android:layout_weight="1"
+                            android:padding="@dimen/dp_10"
+                            android:text="EXCEEDED MILEAGE VEHICLES INFORMATION"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <ImageView
+                            android:id="@+id/exceededMilage_Edit"
+                            android:layout_gravity="center"
+                            android:padding="@dimen/dp_10"
+                            android:src="@drawable/editiconblack"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:fontFamily="@font/roboto_medium"
+                            android:textSize="@dimen/page_value_textsize"
+                            android:textColor="@color/textcolor"
+                            android:layout_weight="1"
+                            android:padding="@dimen/dp_10"
+                            android:text="No of Vehicles"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:src="@drawable/vehiclesummary_arrowmarkicon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:id="@+id/exceededMilage_NoofVehicle"
+                            android:fontFamily="@font/roboto_medium"
+                            android:textSize="@dimen/page_value_textsize"
+                            android:textColor="@color/textcolor"
+                            android:padding="@dimen/dp_10"
+                            android:text="0"
+                            android:gravity="end"
+                            android:layout_weight="2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+
+                    </LinearLayout>
+
+
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:fontFamily="@font/roboto_medium"
+                            android:textSize="@dimen/page_value_textsize"
+                            android:textColor="@color/textcolor"
+                            android:layout_weight="1"
+                            android:padding="@dimen/dp_10"
+                            android:text="Total Tax Amount ($)"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:src="@drawable/vehiclesummary_arrowmarkicon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:id="@+id/exceededMilage_TotalTaxAmount"
+                            android:fontFamily="@font/roboto_medium"
+                            android:textSize="@dimen/page_value_textsize"
+                            android:textColor="@color/textcolor"
+                            android:padding="@dimen/dp_10"
+                            android:text="0.00"
+                            android:gravity="end"
+                            android:layout_weight="2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/vehicleSummaryVinCorrectionTypeLL"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_20"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="2dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="@color/blacklignt">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:fontFamily="@font/roboto_medium"
+                            android:textSize="@dimen/page_title_textsize"
+                            android:textColor="@color/black"
+                            android:layout_weight="1"
+                            android:padding="@dimen/dp_10"
+                            android:text="VIN CORRECTION INFORMATION"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <ImageView
+                            android:id="@+id/vinCorrection_Edit"
+                            android:layout_gravity="center"
+                            android:padding="@dimen/dp_10"
+                            android:src="@drawable/editiconblack"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:fontFamily="@font/roboto_medium"
+                            android:textSize="@dimen/page_value_textsize"
+                            android:textColor="@color/textcolor"
+                            android:layout_weight="1"
+                            android:padding="@dimen/dp_10"
+                            android:text="No of Vehicles"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:src="@drawable/vehiclesummary_arrowmarkicon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:id="@+id/vinCorrection_NoofVehicle"
+                            android:fontFamily="@font/roboto_medium"
+                            android:textSize="@dimen/page_value_textsize"
+                            android:textColor="@color/textcolor"
+                            android:padding="@dimen/dp_10"
+                            android:text="0"
+                            android:gravity="end"
+                            android:layout_weight="2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+
+                    </LinearLayout>
+
+
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:fontFamily="@font/roboto_medium"
+                            android:textSize="@dimen/page_value_textsize"
+                            android:textColor="@color/textcolor"
+                            android:layout_weight="1"
+                            android:padding="@dimen/dp_10"
+                            android:text="Total Tax Amount ($)"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:src="@drawable/vehiclesummary_arrowmarkicon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:id="@+id/vinCorrection_TotalTaxAmount"
+                            android:fontFamily="@font/roboto_medium"
+                            android:textSize="@dimen/page_value_textsize"
+                            android:textColor="@color/textcolor"
+                            android:padding="@dimen/dp_10"
+                            android:text="0.00"
+                            android:gravity="end"
+                            android:layout_weight="2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/vehicleSummaryFormeightTypeLL"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/soldDestroyed_NoofVehicleMC"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_20"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="2dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="@color/blacklignt">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:fontFamily="@font/roboto_medium"
+                            android:textSize="@dimen/page_title_textsize"
+                            android:textColor="@color/black"
+                            android:layout_weight="1"
+                            android:padding="@dimen/dp_10"
+                            android:text="SOLD/DESTROYED CREDITS"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <ImageView
+                            android:id="@+id/soldDestroyed_Edit"
+                            android:layout_gravity="center"
+                            android:padding="@dimen/dp_10"
+                            android:src="@drawable/editiconblack"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:fontFamily="@font/roboto_medium"
+                            android:textSize="@dimen/page_value_textsize"
+                            android:textColor="@color/textcolor"
+                            android:layout_weight="1"
+                            android:padding="@dimen/dp_10"
+                            android:text="No of Vehicles"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:src="@drawable/vehiclesummary_arrowmarkicon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:id="@+id/soldDestroyed_NoofVehicle"
+                            android:fontFamily="@font/roboto_medium"
+                            android:textSize="@dimen/page_value_textsize"
+                            android:textColor="@color/textcolor"
+                            android:padding="@dimen/dp_10"
+                            android:text="0"
+                            android:gravity="end"
+                            android:layout_weight="2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+
+                    </LinearLayout>
+
+
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:fontFamily="@font/roboto_medium"
+                            android:textSize="@dimen/page_value_textsize"
+                            android:textColor="@color/textcolor"
+                            android:layout_weight="1"
+                            android:padding="@dimen/dp_10"
+                            android:text="Total Tax Amount ($)"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:src="@drawable/vehiclesummary_arrowmarkicon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:id="@+id/soldDestroyed_TotalTaxAmount"
+                            android:fontFamily="@font/roboto_medium"
+                            android:textSize="@dimen/page_value_textsize"
+                            android:textColor="@color/textcolor"
+                            android:padding="@dimen/dp_10"
+                            android:text="0.00"
+                            android:gravity="end"
+                            android:layout_weight="2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/lowMileageCredits_NoofVehicleMC"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_20"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="2dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="@color/blacklignt">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:fontFamily="@font/roboto_medium"
+                            android:textSize="@dimen/page_title_textsize"
+                            android:textColor="@color/black"
+                            android:layout_weight="1"
+                            android:padding="@dimen/dp_10"
+                            android:text="LOW MILEAGE CREDITS"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <ImageView
+                            android:id="@+id/lowMileageCredits_Edit"
+                            android:layout_gravity="center"
+                            android:padding="@dimen/dp_10"
+                            android:src="@drawable/editiconblack"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:fontFamily="@font/roboto_medium"
+                            android:textSize="@dimen/page_value_textsize"
+                            android:textColor="@color/textcolor"
+                            android:layout_weight="1"
+                            android:padding="@dimen/dp_10"
+                            android:text="No of Vehicles"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:src="@drawable/vehiclesummary_arrowmarkicon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:id="@+id/lowMileageCredits_NoofVehicle"
+                            android:fontFamily="@font/roboto_medium"
+                            android:textSize="@dimen/page_value_textsize"
+                            android:textColor="@color/textcolor"
+                            android:padding="@dimen/dp_10"
+                            android:text="0"
+                            android:gravity="end"
+                            android:layout_weight="2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+
+                    </LinearLayout>
+
+
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:fontFamily="@font/roboto_medium"
+                            android:textSize="@dimen/page_value_textsize"
+                            android:textColor="@color/textcolor"
+                            android:layout_weight="1"
+                            android:padding="@dimen/dp_10"
+                            android:text="Total Tax Amount ($)"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:src="@drawable/vehiclesummary_arrowmarkicon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:id="@+id/lowMileageCredits_TotalTaxAmount"
+                            android:fontFamily="@font/roboto_medium"
+                            android:textSize="@dimen/page_value_textsize"
+                            android:textColor="@color/textcolor"
+                            android:padding="@dimen/dp_10"
+                            android:text="0.00"
+                            android:gravity="end"
+                            android:layout_weight="2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/creditForOverpayment_NoofVehicleMC"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_20"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="2dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="@color/blacklignt">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:fontFamily="@font/roboto_medium"
+                            android:textSize="@dimen/page_title_textsize"
+                            android:textColor="@color/black"
+                            android:layout_weight="1"
+                            android:padding="@dimen/dp_10"
+                            android:text="CREDIT FOR AN OVERPAYMENT OF TAX"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <ImageView
+                            android:id="@+id/creditForOverpayment_Edit"
+                            android:layout_gravity="center"
+                            android:padding="@dimen/dp_10"
+                            android:src="@drawable/editiconblack"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:fontFamily="@font/roboto_medium"
+                            android:textSize="@dimen/page_value_textsize"
+                            android:textColor="@color/textcolor"
+                            android:layout_weight="1"
+                            android:padding="@dimen/dp_10"
+                            android:text="No of Vehicles"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:src="@drawable/vehiclesummary_arrowmarkicon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:id="@+id/creditForOverpayment_NoofVehicle"
+                            android:fontFamily="@font/roboto_medium"
+                            android:textSize="@dimen/page_value_textsize"
+                            android:textColor="@color/textcolor"
+                            android:padding="@dimen/dp_10"
+                            android:text="0"
+                            android:gravity="end"
+                            android:layout_weight="2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+
+                    </LinearLayout>
+
+
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:fontFamily="@font/roboto_medium"
+                            android:textSize="@dimen/page_value_textsize"
+                            android:textColor="@color/textcolor"
+                            android:layout_weight="1"
+                            android:padding="@dimen/dp_10"
+                            android:text="Total Tax Amount ($)"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:src="@drawable/vehiclesummary_arrowmarkicon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:id="@+id/creditForOverpayment_TotalTaxAmount"
+                            android:fontFamily="@font/roboto_medium"
+                            android:textSize="@dimen/page_value_textsize"
+                            android:textColor="@color/textcolor"
+                            android:padding="@dimen/dp_10"
+                            android:text="0.00"
+                            android:gravity="end"
+                            android:layout_weight="2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+    </androidx.cardview.widget.CardView>
+    </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+
+
+</FrameLayout>

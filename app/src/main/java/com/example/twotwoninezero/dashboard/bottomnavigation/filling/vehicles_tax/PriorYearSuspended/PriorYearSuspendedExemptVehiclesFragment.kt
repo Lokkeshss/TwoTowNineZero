@@ -19,31 +19,39 @@ import com.example.twotwoninezero.dashboard.bottomnavigation.filling.adapter.Rep
 import com.example.twotwoninezero.dashboard.bottomnavigation.filling.model.FillingViewModel
 import com.example.twotwoninezero.dashboard.bottomnavigation.filling.taxyear_and_forms.TaxYearAndFormFragment
 import com.example.twotwoninezero.dashboard.bottomnavigation.filling.vehicles_tax.ReportingSuspended.ReportingSuspendedExemptVehicleFragmentDirections
+import com.example.twotwoninezero.dashboard.bottomnavigation.filling.vehicles_tax.TaxableVehicleInformation.TaxableVehicleInformationFragmentDirections
+import com.example.twotwoninezero.dashboard.bottomnavigation.filling.vehicles_tax.lowmileagevehicles.LowMileageVehicleFragmentDirections
 import kotlinx.android.synthetic.main.fragment_prior_year_suspended_exempt_vehicles.*
 import kotlinx.android.synthetic.main.fragment_reporting_suspended_exempt_vehicle.*
+import kotlinx.android.synthetic.main.progress_bar_view.*
+import kotlin.math.max
 
 
 class PriorYearSuspendedExemptVehiclesFragment : BaseFragment() {
     private lateinit var mFillingViewModel : FillingViewModel
     var mPriorYearSuspendedAdapter: PriorYearSuspendedAdapter?=null
     private var customDialog: AlertDialog?=null
+    var filingId:String=""
     override fun initViewModel() {
         mFillingViewModel = ViewModelProvider(
             viewModelStore,
             defaultViewModelProviderFactory
         ).get(FillingViewModel::class.java)
         setViewModel(mFillingViewModel)
+
+
+
         mFillingViewModel.mGetPriorSuspendedByFilingIdResponse.observe(this, Observer {
             println("itttttttttttttttt    "+it.size)
             mPriorYearSuspendedAdapter =
                 PriorYearSuspendedAdapter(it){ id,requestType->
                     if (requestType==0){
                         // delete
-                        deleteOrReactiveFilingId(id, TaxYearAndFormFragment.filingId)
+                        deleteOrReactiveFilingId(id, filingId)
                     }else if (requestType==1){
                         // edit
                         findNavController().navigate(
-                            PriorYearSuspendedExemptVehiclesFragmentDirections.actionPriorYearSuspendedExemptVehiclesFragmentToAddNewPriorYearSuspendedExemptVehicles(id)
+                            PriorYearSuspendedExemptVehiclesFragmentDirections.actionPriorYearSuspendedExemptVehiclesFragmentToAddNewPriorYearSuspendedExemptVehicles(id,filingId)
                         )
                     }
 
@@ -57,12 +65,42 @@ class PriorYearSuspendedExemptVehiclesFragment : BaseFragment() {
         mFillingViewModel.mDeletePriorSuspendedResponse.observe(this, Observer {
             if (it.code==200){
                 showToast(it.message)
-                mFillingViewModel.getPriorSuspendedByFilingId(TaxYearAndFormFragment.filingId)
+                mFillingViewModel.getPriorSuspendedByFilingId(filingId)
             }else{
                 showToast(it.message)
             }
 
             customDialog?.dismiss()
+        })
+
+        mFillingViewModel.mGetSummaryDetailsByFilingIdResponse.observe(this, Observer {
+
+            if (it.filingInfo.formType.equals("2290")){
+                if (it.totalDueToIRS.equals("0.00") && it.totalCreditAmt.equals("0.00") && it.totalTaxAmt.equals("0.00")){
+                    // form summary
+                    findNavController().navigate(PriorYearSuspendedExemptVehiclesFragmentDirections.actionPriorYearSuspendedExemptVehiclesFragmentToFormSummaryFragment(filingId))
+
+                }else{
+
+                    if (it.irsPayment!!.paymentMode.isNullOrEmpty()){
+                        // irs payment option
+                        findNavController().navigate(PriorYearSuspendedExemptVehiclesFragmentDirections.actionPriorYearSuspendedExemptVehiclesFragmentToIRSPaymentOptionsFragment(filingId))
+                    }else{
+
+                        // form summary
+                        findNavController().navigate(PriorYearSuspendedExemptVehiclesFragmentDirections.actionPriorYearSuspendedExemptVehiclesFragmentToFormSummaryFragment(filingId))
+
+                    }
+
+                }
+            }
+
+        })
+
+        mFillingViewModel.mGetSummaryDetailsByFilingIdResponseBack.observe(this, Observer {
+
+            findNavController().navigate(PriorYearSuspendedExemptVehiclesFragmentDirections.actionPriorYearSuspendedExemptVehiclesFragmentToTaxableVehicleInformation(filingId,it.filingInfo.formType))
+
         })
 
     }
@@ -87,11 +125,30 @@ class PriorYearSuspendedExemptVehiclesFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        mFillingViewModel.getPriorSuspendedByFilingId(TaxYearAndFormFragment.filingId)
+
+        arguments?.let {
+            filingId= it.getString("filingId").toString()
+        }
+
+        progress_bar.progress=33
+        progress_text.setText("2 of 6")
+
+
+        mFillingViewModel.getPriorSuspendedByFilingId(filingId)
 
         PriorYearSuspendedAddNewVechicle.setOnClickListener {
                 findNavController().navigate(
-                    PriorYearSuspendedExemptVehiclesFragmentDirections.actionPriorYearSuspendedExemptVehiclesFragmentToAddNewPriorYearSuspendedExemptVehicles(""))
+                    PriorYearSuspendedExemptVehiclesFragmentDirections.actionPriorYearSuspendedExemptVehiclesFragmentToAddNewPriorYearSuspendedExemptVehicles("",""))
+        }
+
+        PriorYearSuspendedNext.setOnClickListener {
+
+            mFillingViewModel.GetSummaryDetailsByFilingIdResponse(filingId)
+        }
+
+        PriorYearSuspendedCancel.setOnClickListener {
+            mFillingViewModel.GetSummaryDetailsByFilingIdResponseForBack(filingId)
+
         }
 
     }

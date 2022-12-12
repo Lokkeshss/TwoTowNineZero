@@ -1,7 +1,6 @@
 package com.example.twotwoninezero.dashboard.bottomnavigation.filling.vehicles_tax.creditforanapproval
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,19 +14,19 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.twotwoninezero.R
 import com.example.twotwoninezero.base.BaseFragment
 import com.example.twotwoninezero.dashboard.bottomnavigation.filling.adapter.CreditForAnOverPaymentAdapter
-import com.example.twotwoninezero.dashboard.bottomnavigation.filling.adapter.SoldDestroyedAdapter
 import com.example.twotwoninezero.dashboard.bottomnavigation.filling.model.FillingViewModel
 import com.example.twotwoninezero.dashboard.bottomnavigation.filling.taxyear_and_forms.TaxYearAndFormFragment
-import com.example.twotwoninezero.dashboard.bottomnavigation.filling.taxyear_and_forms.TaxYearAndFormFragment.Companion.filingId
+import com.example.twotwoninezero.dashboard.bottomnavigation.filling.vehicles_tax.lowmileagevehicles.LowMileageVehicleFragmentDirections
 import com.example.twotwoninezero.dashboard.bottomnavigation.filling.vehicles_tax.solddestroyedstolenvehicle.SoldDestroyedorStolenVehicleFragmentDirections
 import kotlinx.android.synthetic.main.fragment_credit_for_an_overpayment_of_tax.*
 import kotlinx.android.synthetic.main.fragment_sold_destroyedor_stolen_vehicle.*
-
+import kotlinx.android.synthetic.main.progress_bar_view.*
 
 class CreditForAnOverpaymentOfTaxFragment : BaseFragment() {
     private lateinit var mFillingViewModel: FillingViewModel
     var mCreditForAnOverPaymentAdapter: CreditForAnOverPaymentAdapter?=null
     private var customDialog: AlertDialog?=null
+    var filingId:String=""
     override fun initViewModel() {
         mFillingViewModel = ViewModelProvider(viewModelStore,defaultViewModelProviderFactory).get(FillingViewModel::class.java)
         setViewModel(mFillingViewModel)
@@ -36,7 +35,7 @@ class CreditForAnOverpaymentOfTaxFragment : BaseFragment() {
             mCreditForAnOverPaymentAdapter= CreditForAnOverPaymentAdapter(it){id, requestType->
                 if (requestType==0){
                     // delete
-                    deleteOrReactiveFilingId(id, TaxYearAndFormFragment.filingId)
+                    deleteOrReactiveFilingId(id, filingId)
                 }else if (requestType==1){
                     // edit
                     findNavController().navigate(
@@ -52,12 +51,18 @@ class CreditForAnOverpaymentOfTaxFragment : BaseFragment() {
         mFillingViewModel.mDeleteCreditOverPaymentById.observe(this, Observer {
             if (it.code==200){
                 showToast(it.message)
-                mFillingViewModel.getCreditOverPaymentByFilingId(TaxYearAndFormFragment.filingId)
+                mFillingViewModel.getCreditOverPaymentByFilingId(filingId)
             }else{
                 showToast(it.message)
             }
 
             customDialog?.dismiss()
+        })
+
+        mFillingViewModel.mGetSummaryDetailsByFilingIdResponseBack.observe(this, Observer {
+
+            findNavController().navigate(CreditForAnOverpaymentOfTaxFragmentDirections.actionCreditForAnOverpaymentOfTaxFragmentToTaxableVehicleInformation(filingId,it.filingInfo.formType))
+
         })
 
 
@@ -83,11 +88,32 @@ class CreditForAnOverpaymentOfTaxFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        mFillingViewModel.getCreditOverPaymentByFilingId(TaxYearAndFormFragment.filingId)
+
+        arguments?.let {
+            filingId= it.getString("filingId").toString()
+        }
+
+        progress_bar.progress=33
+        progress_text.setText("2 of 6")
+
+        mFillingViewModel.getCreditOverPaymentByFilingId(filingId)
 
         creditForAnOverpaymentAddNewVechicle.setOnClickListener {
             findNavController().navigate(CreditForAnOverpaymentOfTaxFragmentDirections.actionCreditForAnOverpaymentOfTaxFragmentToAddNewCreditForAnOverpaymentOfTaxFragment("",""))
         }
+
+        creditForAnOverpaymentNext.setOnClickListener {
+            findNavController().navigate(CreditForAnOverpaymentOfTaxFragmentDirections.actionCreditForAnOverpaymentOfTaxFragmentToFormSummaryFragment(filingId))
+
+        }
+
+
+        creditForAnOverpaymentCancel.setOnClickListener {
+            mFillingViewModel.GetSummaryDetailsByFilingIdResponseForBack(filingId)
+
+        }
+
+
 
     }
 

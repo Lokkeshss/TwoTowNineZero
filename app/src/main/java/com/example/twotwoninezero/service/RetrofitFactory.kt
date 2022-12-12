@@ -1,7 +1,10 @@
 package com.example.twotwoninezero.service
 
+import android.content.Intent
+import androidx.core.content.ContextCompat.startActivity
 import com.example.twotwoninezero.ThisApplication
 import com.example.twotwoninezero.common.AppConstants
+import com.example.twotwoninezero.loginsignup.LoginScreenActivity
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import kotlinx.coroutines.runBlocking
 import okhttp3.Dispatcher
@@ -15,7 +18,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 
-object RetrofitFactory {
+object RetrofitFactory :BaseRepository(){  // i have added this BaseRepository() on 2 dec 2022 to check logout function
 
     private val newAuthInterceptor = Interceptor { chain ->
         synchronized(this) {
@@ -34,6 +37,9 @@ object RetrofitFactory {
 
                     when {
                         initialResponse.code() == 401 -> {
+
+                            println("Logout process ")
+                            logout() // for timebeeing using this logout on 2 dec 2022
                             //RUN BLOCKING!!
                             val resp = runBlocking {
                                 val jsonString = "{\"tkn\":\"${tkn}\"}"

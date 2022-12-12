@@ -1,21 +1,36 @@
 package com.example.twotwoninezero.dashboard.bottomnavigation.filling.vehicles_tax.solddestroyedstolenvehicle
 
+import android.Manifest
 import android.app.DatePickerDialog
+import android.content.Context
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
+import android.util.Base64
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.ActivityResultCallback
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.twotwoninezero.R
 import com.example.twotwoninezero.base.BaseFragment
 import com.example.twotwoninezero.common.TaxableWeightSpinnerAdapter
+import com.example.twotwoninezero.common.getOnlyDateFromDate
+import com.example.twotwoninezero.common.getOnlyMonthFromDate
+import com.example.twotwoninezero.common.getOnlyyearFromDate
 import com.example.twotwoninezero.dashboard.bottomnavigation.filling.adapter.*
 import com.example.twotwoninezero.dashboard.bottomnavigation.filling.model.FillingViewModel
-import com.example.twotwoninezero.dashboard.bottomnavigation.filling.taxyear_and_forms.TaxYearAndFormFragment.Companion.filingId
+import com.example.twotwoninezero.dashboard.bottomnavigation.filling.taxyear_and_forms.TaxYearAndFormFragment
 import com.example.twotwoninezero.service.SaveSoldDestroyedVehicleRequest
 import com.example.twotwoninezero.service.TaxableWeightResponse
 import com.example.twotwoninezero.service.UpdateSoldDestroyedVehicleRequest
@@ -23,6 +38,9 @@ import kotlinx.android.synthetic.main.fragment_add_new_prior_year_suspended_exem
 import kotlinx.android.synthetic.main.fragment_add_new_reporting_suspended_exempt_vehicles.*
 import kotlinx.android.synthetic.main.fragment_add_new_sold_destroyedor_stolen_vehicle.*
 import kotlinx.android.synthetic.main.taxyear_and_forms.*
+import java.io.ByteArrayOutputStream
+import java.io.IOException
+import java.io.InputStream
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -42,6 +60,11 @@ class AddNewSoldDestroyedorStolenVehicle : BaseFragment() {
     var mTaxableWeightSpinnerAdapter: TaxableWeightSpinnerAdapter?=null
     var id:String=""
     var editWeight=""
+
+    var resultLauncher: ActivityResultLauncher<Intent>? = null
+    var minDate:String=""
+    var maxDate:String=""
+    var filingId:String=""
     override fun initViewModel() {
         mFillingViewModel = ViewModelProvider(
             viewModelStore,
@@ -52,6 +75,11 @@ class AddNewSoldDestroyedorStolenVehicle : BaseFragment() {
 
         mFillingViewModel.mTaxableWeightResponseList.observe(this, androidx.lifecycle.Observer {
             mTaxableWeightList=it
+        })
+
+        mFillingViewModel.mGetSoldAndDestoryDateResponse.observe(this, androidx.lifecycle.Observer {
+            minDate=it.minDate
+            maxDate=it.maxDate
         })
 
         mFillingViewModel.mEditgetSoldDestroyedByIdResponse.observe(this, androidx.lifecycle.Observer {
@@ -110,7 +138,7 @@ class AddNewSoldDestroyedorStolenVehicle : BaseFragment() {
         arguments?.let {
 
             editWeight = it.getString("weight").toString()
-            val filingId = it.getString("filingId")
+             filingId = it.getString("filingId").toString()
 
             id = it.getString("id").toString()
 
@@ -120,7 +148,7 @@ class AddNewSoldDestroyedorStolenVehicle : BaseFragment() {
             }
 
         }
-
+        mFillingViewModel.getSoldAndDestoryDate(filingId)
 
         addnewDestroyedStolenVehicleTaxableWeight.isFocusable=false
         addnewDestroyedStolenVehicleTaxableWeight.isClickable=false
@@ -168,23 +196,52 @@ class AddNewSoldDestroyedorStolenVehicle : BaseFragment() {
         }
 
         addnewDestroyedStolenVehicleFirstUsedMonth.setOnClickListener {
-            DatePickerDialog(
+            val mDialog= DatePickerDialog(
                 requireContext(),
                 toDate,
                 myCalendarToDate[Calendar.YEAR],
                 myCalendarToDate[Calendar.MONTH],
                 myCalendarToDate[Calendar.DAY_OF_MONTH]
-            ).show()
+            )
+            val minDay = getOnlyDateFromDate(minDate).toInt()
+            val minMonth =  getOnlyMonthFromDate(minDate).toInt()
+            val minYear =  getOnlyyearFromDate(minDate).toInt()
+            myCalendarToDate.set(minYear, minMonth-1, minDay)
+            mDialog.datePicker.minDate = myCalendarToDate.timeInMillis
+
+            // Changing mCalendar date from current to
+            // some random MAX day 20/08/2021 20 Aug 2021
+            val maxDay = getOnlyDateFromDate(maxDate).toInt()
+            val maxMonth = getOnlyMonthFromDate(maxDate).toInt()
+            val maxYear = getOnlyyearFromDate(maxDate).toInt()
+            myCalendarToDate.set(maxYear, maxMonth-1, maxDay)
+            mDialog.datePicker.maxDate = myCalendarToDate.timeInMillis
+            mDialog.show()
+
         }
 
         addnewDestroyedSoldVehicleDestroyedDate.setOnClickListener {
-            DatePickerDialog(
+            val mDialog = DatePickerDialog(
                 requireContext(),
                 soldDate,
                 myCalendarSoldDate[Calendar.YEAR],
                 myCalendarSoldDate[Calendar.MONTH],
                 myCalendarSoldDate[Calendar.DAY_OF_MONTH]
-            ).show()
+            )
+            val minDay = getOnlyDateFromDate(minDate).toInt()
+            val minMonth =  getOnlyMonthFromDate(minDate).toInt()
+            val minYear =  getOnlyyearFromDate(minDate).toInt()
+            myCalendarToDate.set(minYear, minMonth-1, minDay)
+            mDialog.datePicker.minDate = myCalendarToDate.timeInMillis
+
+            // Changing mCalendar date from current to
+            // some random MAX day 20/08/2021 20 Aug 2021
+            val maxDay = getOnlyDateFromDate(maxDate).toInt()
+            val maxMonth = getOnlyMonthFromDate(maxDate).toInt()
+            val maxYear = getOnlyyearFromDate(maxDate).toInt()
+            myCalendarToDate.set(maxYear, maxMonth-1, maxDay)
+            mDialog.datePicker.maxDate = myCalendarToDate.timeInMillis
+            mDialog.show()
         }
 
         addnewDestroyedStolenVehicleTypeLoss.setOnClickListener {
@@ -204,6 +261,8 @@ class AddNewSoldDestroyedorStolenVehicle : BaseFragment() {
 
         addnewDestroyedStolenVehicleSubmit.setOnClickListener {
             if (addnewDestroyedStolenVehicleVIN.text.toString().isNullOrEmpty()){
+                showToast("Vehicle identification number is required")
+            }else if (addnewDestroyedStolenVehicleVIN.text.toString().length<17){
                 showToast("VIN must be at least 17 characters long.")
             }else if (firstUsedMonth.isNullOrEmpty()){
                 showToast("Select First Used Month")
@@ -216,22 +275,39 @@ class AddNewSoldDestroyedorStolenVehicle : BaseFragment() {
             }else if (soldDateText.isNullOrEmpty()){
                 showToast("Select Sold Date Month")
             }else if (weightCategory.isNullOrEmpty()){
-                showToast("Select Taxable Gross Weight")
+                showToast("Select first used month is required")
             }else{
-                if (addnewDestroyedStolenVehicleSubmit.text.toString().equals("Save ")){
-                    val i = SaveSoldDestroyedVehicleRequest(documentName, filingId,firstUsedMonth,isLogging,
-                        addnewDestroyedStolenVehicleTypeLoss.text.toString(),addnewDestroyedStolenVehicleVINCorrection.text.toString(),
-                        soldDateText,
-                        addnewDestroyedStolenVehicleVIN.text.toString(),weightCategory)
-                    mFillingViewModel.saveSoldDestroyedVehicle(filingId,i)
-                }else{
-                    val i = UpdateSoldDestroyedVehicleRequest(documentName,firstUsedMonth,isLogging,addnewDestroyedStolenVehicleTypeLoss.text.toString(),
-                        addnewDestroyedStolenVehicleVINCorrection.text.toString(),soldDateText,
-                        addnewDestroyedStolenVehicleVIN.text.toString(),weightCategory)
+                val dateFormateFrom = SimpleDateFormat("yyyy-MM-dd");
 
-                    mFillingViewModel.updateSoldDestroyedVehicle(id,filingId,i)
+                val dateFormateTo= SimpleDateFormat("yyyy-MM-dd");
 
+                val objDateFrom = dateFormateFrom.parse(firstUsedMonth);
+                val objDateTo = dateFormateTo.parse(soldDateText);
+
+                if (objDateFrom.before(objDateTo)) {
+                    // In the past!
+                    showToast("Date should be greater than the first used month")
+                }else {
+                    // In the present!
+                    // In the future!
+
+                    if (addnewDestroyedStolenVehicleSubmit.text.toString().equals("Save ")){
+                        val i = SaveSoldDestroyedVehicleRequest(documentName, filingId,firstUsedMonth,isLogging,
+                            addnewDestroyedStolenVehicleTypeLoss.text.toString(),addnewDestroyedStolenVehicleVINCorrection.text.toString(),
+                            soldDateText,
+                            addnewDestroyedStolenVehicleVIN.text.toString(),weightCategory)
+                        mFillingViewModel.saveSoldDestroyedVehicle(filingId,i)
+                    }else{
+                        val i = UpdateSoldDestroyedVehicleRequest(documentName,firstUsedMonth,isLogging,addnewDestroyedStolenVehicleTypeLoss.text.toString(),
+                            addnewDestroyedStolenVehicleVINCorrection.text.toString(),soldDateText,
+                            addnewDestroyedStolenVehicleVIN.text.toString(),weightCategory)
+
+                        mFillingViewModel.updateSoldDestroyedVehicle(id,filingId,i)
+
+                    }
                 }
+
+
 
 
             }
@@ -241,8 +317,23 @@ class AddNewSoldDestroyedorStolenVehicle : BaseFragment() {
 
         }
 
+        resultLauncher = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult(),
+            ActivityResultCallback<ActivityResult> { result ->
+                val data = result.data
+                if (data != null) {
+                    val sUri: Uri? = data.data
+                    ConvertToString(sUri!!)
+                }
+            })
 
-
+        addnewDestroyedUploadDocument.setOnClickListener {
+            if (checkPermission(Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                selectPDF()
+            } else {
+                requestPermission(Manifest.permission.READ_EXTERNAL_STORAGE, 300)
+            }
+        }
     }
 
     private fun showAdapterList() {
@@ -333,5 +424,58 @@ class AddNewSoldDestroyedorStolenVehicle : BaseFragment() {
         }
     }
 
+
+    private fun checkPermission(permission: String): Boolean {
+        return ContextCompat.checkSelfPermission(context as Context,permission) == PackageManager.PERMISSION_GRANTED
+    }
+
+
+    private fun requestPermission(permission: String, requestCode: Int) {
+        requestPermissions(arrayOf(permission),requestCode)
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String?>,
+        grantResults: IntArray
+    ) {
+        when (requestCode) {
+            300 ->
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    selectPDF()
+                } else {
+                    requestPermission(Manifest.permission.READ_EXTERNAL_STORAGE, 300)
+                }
+        }
+    }
+
+    private fun selectPDF() {
+        val intent = Intent(Intent.ACTION_GET_CONTENT)
+        intent.type = "application/pdf"
+        resultLauncher!!.launch(intent)
+    }
+
+    fun ConvertToString(uri: Uri) {
+        try {
+            val ins: InputStream? = requireActivity().getContentResolver().openInputStream(uri)
+            val bytes = getBytes(ins!!)
+            documentName = Base64.encodeToString(bytes, Base64.NO_WRAP)
+        } catch (e: java.lang.Exception) {
+            e.printStackTrace()
+            Log.d("error", "onActivityResult: $e")
+        }
+    }
+
+    @Throws(IOException::class)
+    fun getBytes(inputStream: InputStream): ByteArray? {
+        val byteBuffer = ByteArrayOutputStream()
+        val bufferSize = 1024
+        val buffer = ByteArray(bufferSize)
+        var len = 0
+        while (inputStream.read(buffer).also { len = it } != -1) {
+            byteBuffer.write(buffer, 0, len)
+        }
+        return byteBuffer.toByteArray()
+    }
 
 }

@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/taxableVehicleMain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:cardBackgroundColor="@color/businesslistbackground"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="@color/blacklignt"
+        app:strokeWidth="1dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/dp_10">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_5"
+                android:layout_marginBottom="@dimen/dp_10"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/taxableVehicleName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_10"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="JOHN LLC"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="Business Name"
+                        android:textColor="@color/textcolor"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/taxableVehicleDeleteDummy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/dp_10"
+                        android:src="@drawable/deletelist_icon" />
+
+                    <ImageView
+                        android:id="@+id/taxableVehicleEditDummy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/dp_10"
+                        android:src="@drawable/editlist_icon" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp_10"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_10"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="VIN"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/page_title_textsize" />
+
+                    <TextView
+                        android:id="@+id/addFromFleetTaxableVehicleVIN"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/roboto_regular"
+                        android:gravity="center|start"
+                        android:text="Business Name"
+                        android:textColor="@color/textcolor"
+                        android:textSize="@dimen/page_value_textsize" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_10"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="Logging"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/page_title_textsize" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <androidx.appcompat.widget.SwitchCompat
+                            android:id="@+id/addFromFleetTaxableVehicleLogging"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_10"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="Taxable Gross Weight(lbs)"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/page_title_textsize" />
+
+                    <TextView
+                        android:id="@+id/addFromFleetTaxableVehicleWeight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/roboto_regular"
+                        android:gravity="center|start"
+                        android:text="Business Name"
+                        android:textColor="@color/textcolor"
+                        android:textSize="@dimen/page_value_textsize" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_10"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="Select/Deselect"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/page_title_textsize" />
+
+                    <CheckBox
+                        android:id="@+id/addFromFleetTaxableVehicleCheckMe"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/roboto_regular"
+                        android:gravity="center|start"
+                        android:text="Check me"
+                        android:textColor="@color/next"
+                        android:textSize="@dimen/page_value_textsize" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/taxableVehicleMain" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

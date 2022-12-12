@@ -43,6 +43,7 @@ class HomeFilingDetailsViewFragment : BaseFragment() {
             val status = it.getString("status")
             val invoiceStatus = it.getString("invoiceStatus")
 
+            println("invoiceNo "+invoiceNo)
             filterInvoiceNumber?.isFocusable = false
             filterInvoiceNumber?.isClickable = true
 

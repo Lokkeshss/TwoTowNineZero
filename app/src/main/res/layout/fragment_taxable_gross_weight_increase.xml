@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".dashboard.bottomnavigation.filling.vehicles_tax.taxablegrossweightincrease.TaxableGrossWeightIncreaseFragment">
+
+    <LinearLayout
+        android:background="@color/loginheadercolor"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <include layout="@layout/common_header_loginsignup" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_weight="1"
+            android:background="@color/loginheadercolor"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/loginCardView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:paddingStart="@dimen/dp_10"
+                        android:paddingEnd="@dimen/dp_10">
+                        <TextView
+                            android:id="@+id/test"
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="20dp"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="Add New Filing"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/page_topheading_textsize"/>
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <include
+                                android:layout_gravity="center"
+                                android:id="@+id/dutyCycleTimeLayout"
+                                layout="@layout/progress_bar_view"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                />
+                            <!--    app:progressMaxValue="@{analysis.getWeekDutyMax() + 0}"
+                                            app:progressValue="@{analysis.getWeekDutyTotal() + 0}"
+                                            app:progressText="@{util.spannedProgressTime(util.millisToHHmm(analysis.getWeekDutyTotal()),@string/weekHours)}" -->
+                            <TextView
+                                android:layout_marginStart="@dimen/dp_10"
+                                android:layout_gravity="center"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginBottom="20dp"
+                                android:fontFamily="@font/roboto_bold"
+                                android:text="Vehicle Tax"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/page_maintitle_textsize"/>
+
+                        </LinearLayout>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_20"
+                            app:cardCornerRadius="8dp"
+                            app:cardElevation="2dp"
+                            app:strokeWidth="1dp"
+                            android:padding="@dimen/dp_10"
+                            app:strokeColor="@color/blacklignt">
+
+                            <LinearLayout
+                                android:padding="@dimen/dp_10"
+                                android:orientation="vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:fontFamily="@font/roboto_medium"
+                                    android:textSize="@dimen/page_title_textsize"
+                                    android:id="@+id/taxableVehicleInformation"
+                                    android:drawablePadding="@dimen/dp_10"
+                                    android:padding="@dimen/dp_10"
+                                    android:drawableStart="@drawable/taxablevehicleinformationicon"
+                                    android:text="Taxable Gross Weight Increase"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"/>
+
+
+                            </LinearLayout>
+
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <LinearLayout
+                            android:layout_marginTop="@dimen/dp_20"
+                            android:gravity="center"
+                            android:layout_gravity="center"
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <LinearLayout
+                                android:padding="@dimen/dp_10"
+                                android:id="@+id/taxableGroxxWeightAddNewVehicle"
+                                android:gravity="center"
+                                android:layout_gravity="center"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/businessscreen_roundborder_blue"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_marginTop="@dimen/dp_5"
+                                    android:src="@drawable/addnewvehicle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+
+                                <TextView
+                                    android:layout_marginStart="@dimen/dp_20"
+                                    android:layout_marginEnd="@dimen/dp_20"
+                                    android:fontFamily="@font/roboto_regular"
+                                    android:textColor="@color/addnewbusinesstextcolor"
+                                    android:textSize="12sp"
+                                    android:layout_marginTop="@dimen/dp_5"
+                                    android:layout_marginBottom="@dimen/dp_5"
+                                    android:text="Add New Vehicle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                            </LinearLayout>
+
+                        </LinearLayout>
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/taxableGroxxWeightRecyclerView"
+                            android:layout_marginTop="@dimen/dp_10"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </androidx.core.widget.NestedScrollView>
+        <LinearLayout
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:background="@color/transparant"
+            android:padding="@dimen/dp_5"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginBottom="@dimen/dp_10"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/taxableGroxxWeightPrevious"
+                android:fontFamily="@font/roboto_medium"
+                android:textSize="@dimen/page_button_textsize"
+                android:layout_marginEnd="20dp"
+                android:drawablePadding="20dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:padding="15dp"
+                android:background="@drawable/button_withwhite_roundcoronor_color"
+                android:drawableStart="@drawable/previousicon_blue"
+                android:text="Previous"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/taxableGroxxWeightNext"
+                android:fontFamily="@font/roboto_medium"
+                android:textSize="@dimen/page_button_textsize"
+                android:layout_marginStart="20dp"
+                android:drawablePadding="20dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:padding="15dp"
+                android:textColor="@color/white"
+                android:background="@drawable/btn_bg_round_cornor_with_moreround_cornor"
+                android:drawableEnd="@drawable/nexticonwhite"
+                android:text="  Next  "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</FrameLayout>

@@ -18,7 +18,8 @@
 
     <include layout="@layout/common_header_loginsignup" />
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
+        android:layout_weight="1"
         android:background="@color/loginheadercolor"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -43,22 +44,23 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
-        android:fontFamily="@font/roboto_regular"
+        android:fontFamily="@font/roboto_bold"
         android:text="Add New Filing"
         android:textColor="@color/black"
-        android:textSize="21sp"/>
+        android:textSize="@dimen/page_topheading_textsize"/>
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <include
+                android:layout_gravity="center"
                 android:id="@+id/dutyCycleTimeLayout"
-                layout="@layout/common_filling_header_progressbar"
+                layout="@layout/progress_bar_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-            />
+                />
 <!--    app:progressMaxValue="@{analysis.getWeekDutyMax() + 0}"
                 app:progressValue="@{analysis.getWeekDutyTotal() + 0}"
                 app:progressText="@{util.spannedProgressTime(util.millisToHHmm(analysis.getWeekDutyTotal()),@string/weekHours)}" -->
@@ -69,10 +71,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
-                android:fontFamily="@font/roboto_regular"
+                android:fontFamily="@font/roboto_bold"
                 android:text="Tax Years &amp; Forms"
                 android:textColor="@color/black"
-                android:textSize="21sp"/>
+                android:textSize="@dimen/page_maintitle_textsize"/>
         </LinearLayout>
 
 
@@ -108,7 +110,6 @@
                             android:id="@+id/fillingBusinessName"
                             android:textAllCaps="true"
                             android:fontFamily="@font/roboto_regular"
-                            android:textSize="14sp"
                             style="@style/loginTextInputLayout"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -132,7 +133,6 @@
                             android:drawableEnd="@drawable/edittextdropdownicon"
                             android:textAllCaps="true"
                             android:fontFamily="@font/roboto_regular"
-                            android:textSize="14sp"
                             style="@style/loginTextInputLayout"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -156,7 +156,6 @@
                             android:id="@+id/fillingTaxYear"
                             android:textAllCaps="true"
                             android:fontFamily="@font/roboto_regular"
-                            android:textSize="14sp"
                             style="@style/loginTextInputLayout"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -180,7 +179,6 @@
                             android:id="@+id/fillingFirstUserMonth"
                             android:textAllCaps="true"
                             android:fontFamily="@font/roboto_regular"
-                            android:textSize="14sp"
                             style="@style/loginTextInputLayout"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -204,7 +202,6 @@
                             android:id="@+id/fillingAmendmentMonth"
                             android:textAllCaps="true"
                             android:fontFamily="@font/roboto_regular"
-                            android:textSize="14sp"
                             style="@style/loginTextInputLayout"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -228,7 +225,6 @@
                             android:id="@+id/fillingYourIncomeTax"
                             android:textAllCaps="true"
                             android:fontFamily="@font/roboto_regular"
-                            android:textSize="14sp"
                             style="@style/loginTextInputLayout"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -246,6 +242,8 @@
 
 
                     <TextView
+                        android:textSize="@dimen/page_title_textsize"
+                        android:fontFamily="@font/roboto_medium"
                         android:layout_marginStart="@dimen/dp_10"
                         android:layout_marginTop="@dimen/dp_10"
                         android:layout_marginEnd="@dimen/dp_5"
@@ -262,6 +260,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                     <TextView
+                        android:textSize="@dimen/page_title_textsize"
+                        android:fontFamily="@font/roboto_medium"
                         android:layout_marginStart="@dimen/dp_10"
                         android:layout_marginTop="@dimen/dp_10"
                         android:layout_marginEnd="@dimen/dp_5"
@@ -271,6 +271,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                     <TextView
+                        android:textSize="@dimen/page_title_textsize"
+                        android:fontFamily="@font/roboto_medium"
                         android:layout_marginStart="@dimen/dp_10"
                         android:layout_marginTop="@dimen/dp_10"
                         android:layout_marginEnd="@dimen/dp_5"
@@ -294,15 +296,25 @@
 
         </com.google.android.material.card.MaterialCardView>
 
+
+
+
+    </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    </androidx.core.widget.NestedScrollView>
+
         <LinearLayout
             android:padding="@dimen/dp_5"
-            android:layout_marginTop="@dimen/dp_40"
+            android:layout_marginTop="@dimen/dp_10"
             android:gravity="center"
             android:layout_gravity="center"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
+                android:visibility="gone"
                 android:id="@+id/fillingCancel"
                 android:fontFamily="@font/roboto_medium"
                 android:textSize="12sp"
@@ -320,8 +332,7 @@
             <TextView
                 android:id="@+id/fillingSubmit"
                 android:fontFamily="@font/roboto_medium"
-                android:textSize="12sp"
-                android:layout_marginStart="20dp"
+                android:textSize="@dimen/page_button_textsize"
                 android:drawablePadding="20dp"
                 android:gravity="center"
                 android:layout_gravity="center"
@@ -329,17 +340,10 @@
                 android:textColor="@color/white"
                 android:background="@drawable/btn_bg_round_cornor_with_moreround_cornor"
                 android:drawableEnd="@drawable/nexticonwhite"
-                android:text="Next"
+                android:text="Submit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
-
-
-    </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
-
-    </ScrollView>
 
     </LinearLayout>
 

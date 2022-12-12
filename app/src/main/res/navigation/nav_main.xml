@@ -28,6 +28,9 @@
         <action
             android:id="@+id/action_homeScreenFragment_to_homeFilingDetailsViewFragment"
             app:destination="@id/homeFilingDetailsViewFragment" />
+        <action
+            android:id="@+id/action_homeScreenFragment_to_formSummaryFragment"
+            app:destination="@id/formSummaryFragment" />
     </fragment>
     <fragment
         android:id="@+id/fleetScreenFragment"
@@ -38,6 +41,9 @@
         <action
             android:id="@+id/action_fleetScreenFragment_to_addFleetFragment"
             app:destination="@id/addFleetFragment" />
+        <action
+            android:id="@+id/action_fleetScreenFragment_to_addNewBusinessFragment"
+            app:destination="@id/addNewBusinessFragment" />
     </fragment>
     <fragment
         android:id="@+id/businessScreenFragment"
@@ -59,6 +65,21 @@
         android:label="ProfileScreenFragment"
         tools:layout="@layout/fragment_profile_screen">
 
+        <action
+            android:id="@+id/action_profileScreenFragment_to_editMyProfileFragment"
+            app:destination="@id/editMyProfileFragment" />
+        <action
+            android:id="@+id/action_profileScreenFragment_to_myTransactionListFragment"
+            app:destination="@id/myTransactionListFragment" />
+        <action
+            android:id="@+id/action_profileScreenFragment_to_changePasswordFragment"
+            app:destination="@id/changePasswordFragment" />
+        <action
+            android:id="@+id/action_profileScreenFragment_to_changeLoginEmailFragment"
+            app:destination="@id/changeLoginEmailFragment" />
+        <action
+            android:id="@+id/action_profileScreenFragment_to_taxPreparerFragment"
+            app:destination="@id/taxPreparerFragment" />
     </fragment>
 
     <fragment
@@ -135,6 +156,7 @@
             app:destination="@id/taxableVehicleInformation" />
         <argument android:name="businessName" />
         <argument android:name="businessId" />
+        <argument android:name="filingId" />
     </fragment>
     <fragment
         android:id="@+id/taxableVehicleInformation"
@@ -159,6 +181,26 @@
         <action
             android:id="@+id/action_taxableVehicleInformation_to_creditForAnOverpaymentOfTaxFragment"
             app:destination="@id/creditForAnOverpaymentOfTaxFragment" />
+        <action
+            android:id="@+id/action_taxableVehicleInformation_to_taxableGrossWeightIncreaseFragment"
+            app:destination="@id/taxableGrossWeightIncreaseFragment" />
+        <action
+            android:id="@+id/action_taxableVehicleInformation_to_exceededMileageVehiclesFragment"
+            app:destination="@id/exceededMileageVehiclesFragment" />
+        <action
+            android:id="@+id/action_taxableVehicleInformation_to_vinCorrectionTaxableVehicleFragment"
+            app:destination="@id/vinCorrectionTaxableVehicleFragment" />
+        <argument android:name="filingId" />
+        <argument android:name="formType" />
+        <action
+            android:id="@+id/action_taxableVehicleInformation_to_taxYearAndFormFragment"
+            app:destination="@id/taxYearAndFormFragment" />
+        <action
+            android:id="@+id/action_taxableVehicleInformation_to_formSummaryFragment"
+            app:destination="@id/formSummaryFragment" />
+        <action
+            android:id="@+id/action_taxableVehicleInformation_to_IRSPaymentOptionsFragment"
+            app:destination="@id/IRSPaymentOptionsFragment" />
     </fragment>
     <fragment
         android:id="@+id/taxableVehicleInformationFragment"
@@ -168,6 +210,17 @@
         <action
             android:id="@+id/action_taxableVehicleInformationFragment_to_addNewVehicalFragment"
             app:destination="@id/addNewVehicalFragment" />
+        <argument android:name="filingId" />
+        <action
+            android:id="@+id/action_taxableVehicleInformationFragment_to_IRSPaymentOptionsFragment"
+            app:destination="@id/IRSPaymentOptionsFragment" />
+        <action
+            android:id="@+id/action_taxableVehicleInformationFragment_to_formSummaryFragment"
+            app:destination="@id/formSummaryFragment" />
+        <action
+            android:id="@+id/action_taxableVehicleInformationFragment_to_taxableVehicleInformation"
+            app:destination="@id/taxableVehicleInformation" />
+
     </fragment>
     <fragment
         android:id="@+id/addNewVehicalFragment"
@@ -177,6 +230,7 @@
         <argument android:name="weight" />
         <argument android:name="weight_category" />
         <argument android:name="id" />
+        <argument android:name="filingId" />
     </fragment>
     <fragment
         android:id="@+id/filingFilterFragment"
@@ -216,6 +270,16 @@
         <action
             android:id="@+id/action_reportingSuspendedExemptVehicleFragment_to_addNewReportingSuspendedExemptVehicles"
             app:destination="@id/addNewReportingSuspendedExemptVehicles" />
+        <argument android:name="filingId" />
+        <action
+            android:id="@+id/action_reportingSuspendedExemptVehicleFragment_to_IRSPaymentOptionsFragment"
+            app:destination="@id/IRSPaymentOptionsFragment" />
+        <action
+            android:id="@+id/action_reportingSuspendedExemptVehicleFragment_to_formSummaryFragment"
+            app:destination="@id/formSummaryFragment" />
+        <action
+            android:id="@+id/action_reportingSuspendedExemptVehicleFragment_to_taxableVehicleInformation"
+            app:destination="@id/taxableVehicleInformation" />
     </fragment>
     <fragment
         android:id="@+id/priorYearSuspendedExemptVehiclesFragment"
@@ -225,6 +289,16 @@
         <action
             android:id="@+id/action_priorYearSuspendedExemptVehiclesFragment_to_addNewPriorYearSuspendedExemptVehicles"
             app:destination="@id/addNewPriorYearSuspendedExemptVehicles" />
+        <argument android:name="filingId" />
+        <action
+            android:id="@+id/action_priorYearSuspendedExemptVehiclesFragment_to_IRSPaymentOptionsFragment"
+            app:destination="@id/IRSPaymentOptionsFragment" />
+        <action
+            android:id="@+id/action_priorYearSuspendedExemptVehiclesFragment_to_formSummaryFragment"
+            app:destination="@id/formSummaryFragment" />
+        <action
+            android:id="@+id/action_priorYearSuspendedExemptVehiclesFragment_to_taxableVehicleInformation"
+            app:destination="@id/taxableVehicleInformation" />
     </fragment>
     <fragment
         android:id="@+id/addNewPriorYearSuspendedExemptVehicles"
@@ -232,6 +306,7 @@
         android:label="fragment_add_new_prior_year_suspended_exempt_vehicles"
         tools:layout="@layout/fragment_add_new_prior_year_suspended_exempt_vehicles" >
         <argument android:name="id" />
+        <argument android:name="filingId" />
     </fragment>
     <fragment
         android:id="@+id/soldDestroyedorStolenVehicleFragment"
@@ -241,6 +316,19 @@
         <action
             android:id="@+id/action_soldDestroyedorStolenVehicleFragment_to_addNewSoldDestroyedorStolenVehicle"
             app:destination="@id/addNewSoldDestroyedorStolenVehicle" />
+        <argument android:name="filingId" />
+        <action
+            android:id="@+id/action_soldDestroyedorStolenVehicleFragment_self"
+            app:destination="@id/soldDestroyedorStolenVehicleFragment" />
+        <action
+            android:id="@+id/action_soldDestroyedorStolenVehicleFragment_to_IRSPaymentOptionsFragment"
+            app:destination="@id/IRSPaymentOptionsFragment" />
+        <action
+            android:id="@+id/action_soldDestroyedorStolenVehicleFragment_to_formSummaryFragment"
+            app:destination="@id/formSummaryFragment" />
+        <action
+            android:id="@+id/action_soldDestroyedorStolenVehicleFragment_to_taxableVehicleInformation"
+            app:destination="@id/taxableVehicleInformation" />
     </fragment>
     <fragment
         android:id="@+id/addNewSoldDestroyedorStolenVehicle"
@@ -263,6 +351,16 @@
         <action
             android:id="@+id/action_lowMileageVehicleFragment_to_addNewLowMileageVehicleFragment"
             app:destination="@id/addNewLowMileageVehicleFragment" />
+        <argument android:name="filingId" />
+        <action
+            android:id="@+id/action_lowMileageVehicleFragment_to_IRSPaymentOptionsFragment"
+            app:destination="@id/IRSPaymentOptionsFragment" />
+        <action
+            android:id="@+id/action_lowMileageVehicleFragment_to_formSummaryFragment"
+            app:destination="@id/formSummaryFragment" />
+        <action
+            android:id="@+id/action_lowMileageVehicleFragment_to_taxableVehicleInformation"
+            app:destination="@id/taxableVehicleInformation" />
     </fragment>
     <fragment
         android:id="@+id/addNewLowMileageVehicleFragment"
@@ -283,6 +381,16 @@
         <action
             android:id="@+id/action_creditForAnOverpaymentOfTaxFragment_to_addNewCreditForAnOverpaymentOfTaxFragment"
             app:destination="@id/addNewCreditForAnOverpaymentOfTaxFragment" />
+        <argument android:name="filingId" />
+        <action
+            android:id="@+id/action_creditForAnOverpaymentOfTaxFragment_to_formSummaryFragment"
+            app:destination="@id/formSummaryFragment" />
+        <action
+            android:id="@+id/action_creditForAnOverpaymentOfTaxFragment_to_IRSPaymentOptionsFragment"
+            app:destination="@id/IRSPaymentOptionsFragment" />
+        <action
+            android:id="@+id/action_creditForAnOverpaymentOfTaxFragment_to_taxableVehicleInformation"
+            app:destination="@id/taxableVehicleInformation" />
     </fragment>
     <fragment
         android:id="@+id/addNewCreditForAnOverpaymentOfTaxFragment"
@@ -290,6 +398,247 @@
         android:label="fragment_add_new_credit_for_an_overpayment_of_tax"
         tools:layout="@layout/fragment_add_new_credit_for_an_overpayment_of_tax" >
         <argument android:name="id" />
+        <argument android:name="filingId" />
+    </fragment>
+    <fragment
+        android:id="@+id/addNewTaxableGrossWeightIncreaseFragment"
+        android:name="com.example.twotwoninezero.dashboard.bottomnavigation.filling.vehicles_tax.taxablegrossweightincrease.AddNewTaxableGrossWeightIncreaseFragment"
+        android:label="fragment_add_new_taxable_gross_weight_increase"
+        tools:layout="@layout/fragment_add_new_taxable_gross_weight_increase" >
+        <argument android:name="id" />
+        <argument android:name="filingId" />
+        <argument android:name="previousweight" />
+        <argument android:name="changedweight" />
+    </fragment>
+    <fragment
+        android:id="@+id/taxableGrossWeightIncreaseFragment"
+        android:name="com.example.twotwoninezero.dashboard.bottomnavigation.filling.vehicles_tax.taxablegrossweightincrease.TaxableGrossWeightIncreaseFragment"
+        android:label="fragment_taxable_gross_weight_increase"
+        tools:layout="@layout/fragment_taxable_gross_weight_increase" >
+        <action
+            android:id="@+id/action_taxableGrossWeightIncreaseFragment_to_addNewTaxableGrossWeightIncreaseFragment"
+            app:destination="@id/addNewTaxableGrossWeightIncreaseFragment" />
+        <argument android:name="filingId" />
+        <action
+            android:id="@+id/action_taxableGrossWeightIncreaseFragment_to_IRSPaymentOptionsFragment"
+            app:destination="@id/IRSPaymentOptionsFragment" />
+        <action
+            android:id="@+id/action_taxableGrossWeightIncreaseFragment_to_formSummaryFragment"
+            app:destination="@id/formSummaryFragment" />
+        <action
+            android:id="@+id/action_taxableGrossWeightIncreaseFragment_to_taxYearAndFormFragment"
+            app:destination="@id/taxYearAndFormFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/exceededMileageVehiclesFragment"
+        android:name="com.example.twotwoninezero.dashboard.bottomnavigation.filling.vehicles_tax.exceededmileagevehicles.ExceededMileageVehiclesFragment"
+        android:label="fragment_exceeded_mileage_vehicles"
+        tools:layout="@layout/fragment_exceeded_mileage_vehicles" >
+        <action
+            android:id="@+id/action_exceededMileageVehiclesFragment_to_addNewExceededMileageVehiclesFragment"
+            app:destination="@id/addNewExceededMileageVehiclesFragment" />
+        <argument android:name="filingId" />
+        <action
+            android:id="@+id/action_exceededMileageVehiclesFragment_to_IRSPaymentOptionsFragment"
+            app:destination="@id/IRSPaymentOptionsFragment" />
+        <action
+            android:id="@+id/action_exceededMileageVehiclesFragment_to_formSummaryFragment"
+            app:destination="@id/formSummaryFragment" />
+        <action
+            android:id="@+id/action_exceededMileageVehiclesFragment_to_taxYearAndFormFragment"
+            app:destination="@id/taxYearAndFormFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addNewExceededMileageVehiclesFragment"
+        android:name="com.example.twotwoninezero.dashboard.bottomnavigation.filling.vehicles_tax.exceededmileagevehicles.AddNewExceededMileageVehiclesFragment"
+        android:label="fragment_add_new_exceeded_mileage_vehicles"
+        tools:layout="@layout/fragment_add_new_exceeded_mileage_vehicles" >
+        <argument android:name="id" />
+        <argument android:name="weight" />
+        <argument android:name="filingId" />
+    </fragment>
+    <fragment
+        android:id="@+id/addNewVinCorrectionTaxableVehicleFragment"
+        android:name="com.example.twotwoninezero.dashboard.bottomnavigation.filling.vehicles_tax.vincorrectiontaxablevehicleinformation.AddNewVinCorrectionTaxableVehicleFragment"
+        android:label="fragment_add_new_taxable_vehicle_information"
+        tools:layout="@layout/fragment_add_new_taxable_vehicle_information" >
+        <argument android:name="id" />
+        <argument android:name="filingId" />
+        <argument android:name="weight" />
+    </fragment>
+    <fragment
+        android:id="@+id/vinCorrectionTaxableVehicleFragment"
+        android:name="com.example.twotwoninezero.dashboard.bottomnavigation.filling.vehicles_tax.vincorrectiontaxablevehicleinformation.VinCorrectionTaxableVehicleFragment"
+        android:label="fragment_taxable_vehicle_information2"
+        tools:layout="@layout/fragment_taxable_vehicle_information2" >
+        <action
+            android:id="@+id/action_vinCorrectionTaxableVehicleFragment_to_addNewVinCorrectionTaxableVehicleFragment"
+            app:destination="@id/addNewVinCorrectionTaxableVehicleFragment" />
+        <argument android:name="filingId" />
+        <action
+            android:id="@+id/action_vinCorrectionTaxableVehicleFragment_to_IRSPaymentOptionsFragment"
+            app:destination="@id/IRSPaymentOptionsFragment" />
+        <action
+            android:id="@+id/action_vinCorrectionTaxableVehicleFragment_to_formSummaryFragment"
+            app:destination="@id/formSummaryFragment" />
+        <action
+            android:id="@+id/action_vinCorrectionTaxableVehicleFragment_to_taxYearAndFormFragment"
+            app:destination="@id/taxYearAndFormFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editMyProfileFragment"
+        android:name="com.example.twotwoninezero.dashboard.bottomnavigation.profile.EditMyProfileFragment"
+        android:label="fragment_edit_my_profile"
+        tools:layout="@layout/fragment_edit_my_profile" />
+    <fragment
+        android:id="@+id/changePasswordFragment"
+        android:name="com.example.twotwoninezero.dashboard.bottomnavigation.profile.ChangePasswordFragment"
+        android:label="fragment_change_password"
+        tools:layout="@layout/fragment_change_password" />
+    <fragment
+        android:id="@+id/myTransactionListFragment"
+        android:name="com.example.twotwoninezero.dashboard.bottomnavigation.profile.MyTransactionListFragment"
+        android:label="fragment_my_transaction_list"
+        tools:layout="@layout/fragment_my_transaction_list" />
+    <fragment
+        android:id="@+id/changeLoginEmailFragment"
+        android:name="com.example.twotwoninezero.dashboard.bottomnavigation.profile.ChangeLoginEmailFragment"
+        android:label="fragment_change_login_email"
+        tools:layout="@layout/fragment_change_login_email" />
+    <fragment
+        android:id="@+id/taxPreparerFragment"
+        android:name="com.example.twotwoninezero.dashboard.bottomnavigation.profile.TaxPreparerFragment"
+        android:label="fragment_tax_preparer"
+        tools:layout="@layout/fragment_tax_preparer" />
+    <fragment
+        android:id="@+id/formSummaryFragment"
+        android:name="com.example.twotwoninezero.dashboard.bottomnavigation.filling.form_summary.FormSummaryFragment"
+        android:label="fragment_form_summary"
+        tools:layout="@layout/fragment_form_summary" >
+        <action
+            android:id="@+id/action_formSummaryFragment_to_formSummaryBusinessInformationFragment"
+            app:destination="@id/formSummaryBusinessInformationFragment" />
+        <argument android:name="filingId" />
+        <action
+            android:id="@+id/action_formSummaryFragment_to_formSummaryVehicleSummaryFragment"
+            app:destination="@id/formSummaryVehicleSummaryFragment" />
+        <action
+            android:id="@+id/action_formSummaryFragment_to_formSummaryPaymentMethod"
+            app:destination="@id/formSummaryPaymentMethod" />
+        <action
+            android:id="@+id/action_formSummaryFragment_to_formSummaryTaxYearInformationFragment"
+            app:destination="@id/formSummaryTaxYearInformationFragment" />
+        <action
+            android:id="@+id/action_formSummaryFragment_to_paymentandIRSsubmissionFragment"
+            app:destination="@id/paymentandIRSsubmissionFragment" />
+        <action
+            android:id="@+id/action_formSummaryFragment_to_IRSPaymentOptionsFragment"
+            app:destination="@id/IRSPaymentOptionsFragment" />
+        <action
+            android:id="@+id/action_formSummaryFragment_to_taxableVehicleInformation"
+            app:destination="@id/taxableVehicleInformation" />
+        <action
+            android:id="@+id/action_formSummaryFragment_to_vinCorrectionTaxableVehicleFragment"
+            app:destination="@id/vinCorrectionTaxableVehicleFragment" />
+        <action
+            android:id="@+id/action_formSummaryFragment_to_exceededMileageVehiclesFragment"
+            app:destination="@id/exceededMileageVehiclesFragment" />
+        <action
+            android:id="@+id/action_formSummaryFragment_to_taxableGrossWeightIncreaseFragment"
+            app:destination="@id/taxableGrossWeightIncreaseFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/formSummaryBusinessInformationFragment"
+        android:name="com.example.twotwoninezero.dashboard.bottomnavigation.filling.form_summary.FormSummaryBusinessInformationFragment"
+        android:label="fragment_form_summary_business_information"
+        tools:layout="@layout/fragment_form_summary_business_information" >
+        <action
+            android:id="@+id/action_formSummaryBusinessInformationFragment_to_addNewBusinessFragment"
+            app:destination="@id/addNewBusinessFragment" />
+        <argument android:name="filingId" />
+    </fragment>
+    <fragment
+        android:id="@+id/formSummaryVehicleSummaryFragment"
+        android:name="com.example.twotwoninezero.dashboard.bottomnavigation.filling.form_summary.FormSummaryVehicleSummaryFragment"
+        android:label="fragment_form_summary_vehicle_summary"
+        tools:layout="@layout/fragment_form_summary_vehicle_summary" >
+        <action
+            android:id="@+id/action_formSummaryVehicleSummaryFragment_to_taxableVehicleInformationFragment"
+            app:destination="@id/taxableVehicleInformationFragment" />
+        <action
+            android:id="@+id/action_formSummaryVehicleSummaryFragment_to_reportingSuspendedExemptVehicleFragment"
+            app:destination="@id/reportingSuspendedExemptVehicleFragment" />
+        <action
+            android:id="@+id/action_formSummaryVehicleSummaryFragment_to_priorYearSuspendedExemptVehiclesFragment"
+            app:destination="@id/priorYearSuspendedExemptVehiclesFragment" />
+        <action
+            android:id="@+id/action_formSummaryVehicleSummaryFragment_to_soldDestroyedorStolenVehicleFragment"
+            app:destination="@id/soldDestroyedorStolenVehicleFragment" />
+        <action
+            android:id="@+id/action_formSummaryVehicleSummaryFragment_to_lowMileageVehicleFragment"
+            app:destination="@id/lowMileageVehicleFragment" />
+        <action
+            android:id="@+id/action_formSummaryVehicleSummaryFragment_to_creditForAnOverpaymentOfTaxFragment"
+            app:destination="@id/creditForAnOverpaymentOfTaxFragment" />
+        <action
+            android:id="@+id/action_formSummaryVehicleSummaryFragment_to_taxableGrossWeightIncreaseFragment"
+            app:destination="@id/taxableGrossWeightIncreaseFragment" />
+        <action
+            android:id="@+id/action_formSummaryVehicleSummaryFragment_to_exceededMileageVehiclesFragment"
+            app:destination="@id/exceededMileageVehiclesFragment" />
+        <action
+            android:id="@+id/action_formSummaryVehicleSummaryFragment_to_vinCorrectionTaxableVehicleFragment"
+            app:destination="@id/vinCorrectionTaxableVehicleFragment" />
+        <argument android:name="filingId" />
+    </fragment>
+    <fragment
+        android:id="@+id/formSummaryPaymentMethod"
+        android:name="com.example.twotwoninezero.dashboard.bottomnavigation.filling.form_summary.FormSummaryPaymentMethod"
+        android:label="fragment_form_summary_payment_method"
+        tools:layout="@layout/fragment_form_summary_payment_method" >
+        <argument android:name="filingId" />
+        <action
+            android:id="@+id/action_formSummaryPaymentMethod_to_IRSPaymentOptionsFragment"
+            app:destination="@id/IRSPaymentOptionsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/IRSPaymentOptionsFragment"
+        android:name="com.example.twotwoninezero.dashboard.bottomnavigation.filling.isr_paymentoption.IRSPaymentOptionsFragment"
+        android:label="fragment_i_r_s_payment_options"
+        tools:layout="@layout/fragment_i_r_s_payment_options" >
+        <argument android:name="filingId" />
+        <action
+            android:id="@+id/action_IRSPaymentOptionsFragment_to_formSummaryFragment"
+            app:destination="@id/formSummaryFragment" />
+        <action
+            android:id="@+id/action_IRSPaymentOptionsFragment_to_taxableVehicleInformation"
+            app:destination="@id/taxableVehicleInformation" />
+    </fragment>
+    <fragment
+        android:id="@+id/formSummaryTaxYearInformationFragment"
+        android:name="com.example.twotwoninezero.dashboard.bottomnavigation.filling.form_summary.FormSummaryTaxYearInformationFragment"
+        android:label="fragment_form_summary_tax_year_information"
+        tools:layout="@layout/fragment_form_summary_tax_year_information" >
+        <argument android:name="filingId" />
+        <action
+            android:id="@+id/action_formSummaryTaxYearInformationFragment_to_taxYearAndFormFragment"
+            app:destination="@id/taxYearAndFormFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/paymentandIRSsubmissionFragment"
+        android:name="com.example.twotwoninezero.dashboard.bottomnavigation.filling.payment_and_irssubmition.PaymentandIRSsubmissionFragment"
+        android:label="fragment_paymentand_i_r_ssubmission"
+        tools:layout="@layout/fragment_paymentand_i_r_ssubmission" >
+        <argument android:name="filingId" />
+        <action
+            android:id="@+id/action_paymentandIRSsubmissionFragment_to_IRSPaymentSubmissionFeePaymentOptionFragment"
+            app:destination="@id/IRSPaymentSubmissionFeePaymentOptionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/IRSPaymentSubmissionFeePaymentOptionFragment"
+        android:name="com.example.twotwoninezero.dashboard.bottomnavigation.filling.isr_paymentoption.IRSPaymentSubmissionFeePaymentOptionFragment"
+        android:label="fragment_i_r_s_payment_submission_fee_payment_option"
+        tools:layout="@layout/fragment_i_r_s_payment_submission_fee_payment_option" >
         <argument android:name="filingId" />
     </fragment>
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.google.android.material.card.MaterialCardView
@@ -27,8 +27,8 @@
             android:layout_height="wrap_content">
 
             <LinearLayout
-                android:layout_marginTop="@dimen/dp_10"
-                android:layout_marginBottom="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_5"
+                android:layout_marginBottom="@dimen/dp_5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -44,7 +44,7 @@
                         android:fontFamily="@font/roboto_medium"
                         android:text="VIN"
                         android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        android:textSize="@dimen/page_title_textsize" />
 
                     <TextView
                         android:layout_marginTop="@dimen/dp_10"
@@ -55,7 +55,7 @@
                         android:fontFamily="@font/roboto_regular"
                         android:text="Business Name"
                         android:textColor="@color/textcolor"
-                        android:textSize="16sp" />
+                        android:textSize="@dimen/page_value_textsize" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -69,7 +69,7 @@
                         android:fontFamily="@font/roboto_medium"
                         android:text="Taxable Gross Weight"
                         android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        android:textSize="@dimen/page_title_textsize" />
                     <TextView
                         android:layout_marginTop="@dimen/dp_10"
                         android:gravity="center|start"
@@ -79,15 +79,15 @@
                         android:fontFamily="@font/roboto_regular"
                         android:text="Business Name"
                         android:textColor="@color/textcolor"
-                        android:textSize="16sp" />
+                        android:textSize="@dimen/page_value_textsize" />
                 </LinearLayout>
 
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_marginTop="@dimen/dp_20"
-                android:layout_marginBottom="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_5"
+                android:layout_marginBottom="@dimen/dp_5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -104,7 +104,7 @@
                         android:fontFamily="@font/roboto_medium"
                         android:text="First Used Month"
                         android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        android:textSize="@dimen/page_title_textsize" />
 
                     <TextView
                         android:layout_marginTop="@dimen/dp_10"
@@ -116,7 +116,7 @@
                         android:fontFamily="@font/roboto_regular"
                         android:text="Business Name"
                         android:textColor="@color/textcolor"
-                        android:textSize="16sp" />
+                        android:textSize="@dimen/page_value_textsize" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -131,7 +131,7 @@
                         android:fontFamily="@font/roboto_medium"
                         android:text="Sold/Destroyed/Stolen"
                         android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        android:textSize="@dimen/page_title_textsize" />
                     <TextView
                         android:layout_marginTop="@dimen/dp_10"
                         android:gravity="center|start"
@@ -141,14 +141,15 @@
                         android:fontFamily="@font/roboto_regular"
                         android:text="Business Name"
                         android:textColor="@color/textcolor"
-                        android:textSize="16sp" />
+                        android:textSize="@dimen/page_value_textsize" />
                 </LinearLayout>
 
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_marginBottom="@dimen/dp_10"
+                android:layout_marginBottom="@dimen/dp_5"
+                android:layout_marginTop="@dimen/dp_5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -165,7 +166,7 @@
                         android:fontFamily="@font/roboto_medium"
                         android:text="Type"
                         android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        android:textSize="@dimen/page_title_textsize" />
 
                     <TextView
                         android:gravity="center|start"
@@ -175,7 +176,7 @@
                         android:fontFamily="@font/roboto_regular"
                         android:text="Business Name"
                         android:textColor="@color/textcolor"
-                        android:textSize="16sp" />
+                        android:textSize="@dimen/page_value_textsize" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_weight="1"
@@ -189,7 +190,7 @@
                         android:fontFamily="@font/roboto_medium"
                         android:text="Logging"
                         android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        android:textSize="@dimen/page_title_textsize" />
 
                     <androidx.appcompat.widget.SwitchCompat
                         android:clickable="false"
@@ -202,8 +203,8 @@
 
 
             <LinearLayout
-                android:layout_marginTop="@dimen/dp_10"
-                android:layout_marginBottom="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_5"
+                android:layout_marginBottom="@dimen/dp_5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -220,7 +221,7 @@
                         android:fontFamily="@font/roboto_medium"
                         android:text="Amount"
                         android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        android:textSize="@dimen/page_title_textsize" />
 
                     <TextView
                         android:gravity="center|start"
@@ -230,7 +231,7 @@
                         android:fontFamily="@font/roboto_regular"
                         android:text="Business Name"
                         android:textColor="@color/next"
-                        android:textSize="16sp" />
+                        android:textSize="@dimen/page_value_textsize" />
                 </LinearLayout>
 
                 <LinearLayout

@@ -45,7 +45,7 @@
                         android:fontFamily="@font/roboto_medium"
                         android:text="JOHN LLC"
                         android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        android:textSize="@dimen/page_title_textsize" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -53,7 +53,7 @@
                         android:fontFamily="@font/roboto_regular"
                         android:text="Business Name"
                         android:textColor="@color/textcolor"
-                        android:textSize="16sp" />
+                        android:textSize="@dimen/page_value_textsize" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_gravity="end"
@@ -95,7 +95,7 @@
                         android:fontFamily="@font/roboto_medium"
                         android:text="VIN"
                         android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        android:textSize="@dimen/page_title_textsize" />
 
                     <TextView
                         android:gravity="center|start"
@@ -105,7 +105,7 @@
                         android:fontFamily="@font/roboto_regular"
                         android:text="Business Name"
                         android:textColor="@color/textcolor"
-                        android:textSize="16sp" />
+                        android:textSize="@dimen/page_value_textsize" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_weight="1.5"
@@ -119,7 +119,7 @@
                         android:fontFamily="@font/roboto_medium"
                         android:text="Logging Vehicle"
                         android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        android:textSize="@dimen/page_title_textsize" />
 
                     <androidx.appcompat.widget.SwitchCompat
                         android:clickable="false"
@@ -146,7 +146,7 @@
                         android:fontFamily="@font/roboto_medium"
                         android:text="Taxable Gross Weight(lbs)"
                         android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        android:textSize="@dimen/page_title_textsize" />
 
                     <TextView
                         android:gravity="center|start"
@@ -156,7 +156,7 @@
                         android:fontFamily="@font/roboto_regular"
                         android:text="Business Name"
                         android:textColor="@color/textcolor"
-                        android:textSize="16sp" />
+                        android:textSize="@dimen/page_value_textsize" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -171,7 +171,7 @@
                         android:fontFamily="@font/roboto_medium"
                         android:text="Agricultural Vehicle"
                         android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        android:textSize="@dimen/page_title_textsize" />
 
                     <androidx.appcompat.widget.SwitchCompat
                         android:clickable="false"

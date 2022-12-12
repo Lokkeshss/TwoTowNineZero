@@ -18,7 +18,8 @@
 
     <include layout="@layout/common_header_loginsignup" />
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
+        android:layout_weight="1"
         android:background="@color/loginheadercolor"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -47,18 +48,19 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
-        android:fontFamily="@font/roboto_regular"
+        android:fontFamily="@font/roboto_bold"
         android:text="Add New Filing"
         android:textColor="@color/black"
-        android:textSize="21sp"/>
+        android:textSize="@dimen/page_topheading_textsize"/>
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <include
+            android:layout_gravity="center"
             android:id="@+id/dutyCycleTimeLayout"
-            layout="@layout/common_filling_header_progressbar"
+            layout="@layout/progress_bar_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -73,10 +75,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
-            android:fontFamily="@font/roboto_regular"
+            android:fontFamily="@font/roboto_bold"
             android:text="Vehicle Tax"
             android:textColor="@color/black"
-            android:textSize="21sp"/>
+            android:textSize="@dimen/page_maintitle_textsize"/>
 
     </LinearLayout>
 
@@ -97,6 +99,8 @@
             android:layout_height="wrap_content">
 
             <TextView
+                android:fontFamily="@font/roboto_medium"
+                android:textSize="@dimen/page_title_textsize"
                 android:id="@+id/taxableVehicleInformation"
                 android:drawablePadding="@dimen/dp_10"
                 android:padding="@dimen/dp_10"
@@ -129,7 +133,7 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_marginTop="@dimen/dp_20"
+                    android:layout_marginTop="@dimen/dp_5"
                     android:src="@drawable/addnewvehicle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -140,8 +144,8 @@
                     android:fontFamily="@font/roboto_regular"
                     android:textColor="@color/addnewbusinesstextcolor"
                     android:textSize="12sp"
-                    android:layout_marginTop="@dimen/dp_10"
-                    android:layout_marginBottom="@dimen/dp_20"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:layout_marginBottom="@dimen/dp_5"
                     android:text="Add New Vehicle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
@@ -154,19 +158,21 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
     </LinearLayout>
+
+    </LinearLayout>
+    </androidx.cardview.widget.CardView>
+    </androidx.core.widget.NestedScrollView>
         <LinearLayout
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:background="@color/transparant"
             android:padding="@dimen/dp_5"
             android:layout_marginTop="@dimen/dp_10"
             android:layout_marginBottom="@dimen/dp_10"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <View
-                android:layout_weight="4"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"/>
             <TextView
-                android:layout_weight="2"
                 android:id="@+id/soldDestoryedStolenCancel"
                 android:fontFamily="@font/roboto_medium"
                 android:textSize="12sp"
@@ -178,14 +184,9 @@
                 android:background="@drawable/button_withwhite_roundcoronor_color"
                 android:drawableStart="@drawable/previousicon_blue"
                 android:text="Previous"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
-            <View
-                android:layout_weight="4"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"/>
             <TextView
-                android:layout_weight="2"
                 android:id="@+id/soldDestoryedStolenNext"
                 android:fontFamily="@font/roboto_medium"
                 android:textSize="12sp"
@@ -197,17 +198,10 @@
                 android:textColor="@color/white"
                 android:background="@drawable/btn_bg_round_cornor_with_moreround_cornor"
                 android:drawableEnd="@drawable/nexticonwhite"
-                android:text="Next"
-                android:layout_width="match_parent"
+                android:text="  Next  "
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
-            <View
-                android:layout_weight="4"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"/>
         </LinearLayout>
-    </LinearLayout>
-    </androidx.cardview.widget.CardView>
-    </ScrollView>
     </LinearLayout>
 
 </FrameLayout>

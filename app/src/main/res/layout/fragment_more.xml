@@ -43,10 +43,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
-            android:fontFamily="@font/roboto_regular"
+            android:fontFamily="@font/roboto_bold"
             android:text="More"
             android:textColor="@color/black"
-            android:textSize="21sp"/>
+            android:textSize="@dimen/page_topheading_textsize"/>
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
@@ -67,7 +67,7 @@
                     android:layout_marginStart="10dp"
                     android:drawablePadding="15dp"
                     android:padding="15dp"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/page_maintitle_textsize"
                     android:textColor="@color/textcolor"
                     android:fontFamily="@font/roboto_medium"
                     android:drawableStart="@drawable/aboutusicon"
@@ -96,7 +96,7 @@
                     android:layout_marginStart="10dp"
                     android:drawablePadding="15dp"
                     android:padding="15dp"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/page_maintitle_textsize"
                     android:textColor="@color/textcolor"
                     android:fontFamily="@font/roboto_medium"
                     android:drawableStart="@drawable/contacticon"
@@ -114,7 +114,7 @@
             android:layout_marginStart="10dp"
             android:drawablePadding="15dp"
             android:padding="15dp"
-            android:textSize="14sp"
+            android:textSize="@dimen/page_maintitle_textsize"
             android:textColor="@color/textred"
             android:fontFamily="@font/roboto_medium"
             android:drawableStart="@drawable/signout"

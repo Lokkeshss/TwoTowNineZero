@@ -2,25 +2,20 @@ package com.example.twotwoninezero.dashboard.bottomnavigation.home
 
 import android.app.DatePickerDialog
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.twotwoninezero.R
 import com.example.twotwoninezero.base.BaseFragment
 import com.example.twotwoninezero.dashboard.bottomnavigation.home.adapter.FilterCategoryAdapter
-import com.example.twotwoninezero.dashboard.bottomnavigation.home.model.HomeViewModel
-import com.example.twotwoninezero.service.FilingFilterRequest
 import com.example.twotwoninezero.service.FilterCategory
 import kotlinx.android.synthetic.main.fragment_filing_filter.*
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 
 class FilingFilterFragment : BaseFragment() {
@@ -136,7 +131,7 @@ class FilingFilterFragment : BaseFragment() {
                 }
                 findNavController().navigate(FilingFilterFragmentDirections.actionFilingFilterFragmentToHomeScreenFragment(
                     filterSearchCategoryId,filterFromDateValue,"",filterKeyWord.text.toString(),
-                    "10", listType,"0",filterToDateValue,"YES"
+                    "0", listType,"0",filterToDateValue,"YES"
                 ))
 
             }
@@ -168,11 +163,18 @@ class FilingFilterFragment : BaseFragment() {
 
     private fun FilterCategory() {
         val dialogView = layoutInflater.inflate(R.layout.spinner_dialog_custom, null)
-
         val customDialog = AlertDialog.Builder(requireContext())
             .setView(dialogView)
             .show()
+        val window: Window = customDialog.getWindow()!!
+        val wlp: WindowManager.LayoutParams = window.getAttributes()
+
+        wlp.gravity = Gravity.CENTER
+        wlp.flags = wlp.flags and WindowManager.LayoutParams.FLAG_BLUR_BEHIND.inv()
+        window.setAttributes(wlp)
+        customDialog.getWindow()!!.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
         customDialog.setCancelable(false)
+
         val cancel = dialogView.findViewById<TextView>(R.id.cancel)
         val ok = dialogView.findViewById<TextView>(R.id.ok)
         val custom_rv = dialogView.findViewById<RecyclerView>(R.id.custom_rv)

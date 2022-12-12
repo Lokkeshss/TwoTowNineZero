@@ -12,6 +12,7 @@ class ThisApplication : MultiDexApplication() {
     override fun onCreate() {
         super.onCreate()
         application = this
+        cont=this
         publicPrefs = SharedPrefs.getInstance(applicationContext)
         // for sustom crashlytics
     }
@@ -24,6 +25,7 @@ class ThisApplication : MultiDexApplication() {
     companion object{
         lateinit var publicPrefs: SharedPrefs
         lateinit var application: ThisApplication
+        lateinit var cont:Context
             private set
 
     }

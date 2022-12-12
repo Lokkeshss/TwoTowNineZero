@@ -16,6 +16,53 @@ class FillingRepo(private val api: Api) : BaseRepository()  {
         return resp
     }*/
 
+    suspend fun GetSummaryDetailsByFilingIdResponse(filing: String): ApiResponse<GetSummaryDetailsByFilingIdResponse>? {
+        val resp = doApiCall { api.GetSummaryDetailsByFilingIdResponse(filing).await() }
+        return resp
+    }
+    suspend fun getPaymentOptionByFilingId(filing: String): ApiResponse<PaymentOptionMethodResponse>? {
+        val resp = doApiCall { api.getPaymentOptionByFilingId(filing).await() }
+        return resp
+    }
+
+    suspend fun savePaymentOption(filing: String,i:SavePaymentOptionRequest): ApiResponse<SavePaymentOptionResponse>? {
+        val resp = doApiCall { api.savePaymentOption(filing,i).await() }
+        return resp
+    }
+
+    suspend fun validateXML(filingId: String): ApiResponse<ValidateXMLResponse>? {
+        val resp = doApiCall { api.validateXML(filingId).await() }
+        return resp
+    }
+    suspend fun updateRejErrorDesc(filingId: String): ApiResponse<Int>? {
+        val resp = doApiCall { api.updateRejErrorDesc(filingId).await() }
+        return resp
+    }
+
+    suspend fun submissionFee(filingId: String): ApiResponse<SubmissionFeeResponse>? {
+        val resp = doApiCall { api.submissionFee(filingId).await() }
+        return resp
+    }
+
+    suspend fun applyCoupon(filingId: String,i:ApplyCouponRequest): ApiResponse<SubmissionFeeResponse>? {
+        val resp = doApiCall { api.applyCoupon(filingId,i).await() }
+        return resp
+    }
+
+    suspend fun updateConsentDisclosure(filingId: String,i:UpdateConsentDisclosureRequest): ApiResponse<UpdateConsentDisclosureResponse>? {
+        val resp = doApiCall { api.updateConsentDisclosure(filingId,i).await() }
+        return resp
+    }
+
+    suspend fun getPaymentDet(filingId: String): ApiResponse<GetPaymentDetResponse>? {
+        val resp = doApiCall { api.getPaymentDet(filingId).await() }
+        return resp
+    }
+    suspend fun captureCCPayment(filingId: String,i:CaptureCCPaymentRequest): ApiResponse<CaptureCCPaymentResponse>? {
+        val resp = doApiCall { api.captureCCPayment(filingId,i).await() }
+        return resp
+    }
+
     suspend fun getFormType(): ApiResponse<List<GetFillingFormResponse>>? {
         val resp = doApiCall { api.getFormType().await() }
         return resp
@@ -26,8 +73,8 @@ class FillingRepo(private val api: Api) : BaseRepository()  {
         return resp
     }
 
-    suspend fun getFirstUsedMonth(formtype: String): ApiResponse<List<getFillingFirstUsedMonthResponse>>? {
-        val resp = doApiCall { api.getFirstUsedMonth(formtype).await() }
+    suspend fun getFirstUsedMonth(taxYear: String,formtype: String): ApiResponse<List<getFillingFirstUsedMonthResponse>>? {
+        val resp = doApiCall { api.getFirstUsedMonth(taxYear,formtype).await() }
         return resp
     }
 
@@ -35,13 +82,76 @@ class FillingRepo(private val api: Api) : BaseRepository()  {
         val resp = doApiCall { api.getTaxableVehicleByFilingId(filing).await() }
         return resp
     }
+    suspend fun loadFleetList(filing: String): ApiResponse<List<LoadFleetListResponse>>? {
+        val resp = doApiCall { api.loadFleetList(filing).await() }
+        return resp
+    }
+    suspend fun getTGWIncreaseByFilingId(filing: String): ApiResponse<List<GetTGWIncreaseByFilingIdResponse>>? {
+        val resp = doApiCall { api.getTGWIncreaseByFilingId(filing).await() }
+        return resp
+    }
+
+    suspend fun getExceededMileageByFilingId(filing: String): ApiResponse<List<GetExceededMileageByFilingIdResponse>>? {
+        val resp = doApiCall { api.getExceededMileageByFilingId(filing).await() }
+        return resp
+    }
+
+    suspend fun getVinCorrectionByFilingId(filing: String): ApiResponse<List<GetVinCorrectionByFilingIdResponse>>? {
+        val resp = doApiCall { api.getVinCorrectionByFilingId(filing).await() }
+        return resp
+    }
 
     suspend fun gettaxableweight(): ApiResponse<List<TaxableWeightResponse>>? {
         val resp = doApiCall { api.gettaxableweight().await() }
         return resp
     }
+    suspend fun getTGWIncreaseById(id: String, filing: String): ApiResponse<GetTGWIncreaseByIdResponse>? {
+        val resp = doApiCall { api.getTGWIncreaseById(id,filing).await() }
+        return resp
+    }
+    suspend fun getExceededMileageById(id: String, filing: String): ApiResponse<GetExceededMileageByIdResponse>? {
+        val resp = doApiCall { api.getExceededMileageById(id,filing).await() }
+        return resp
+    }
+    suspend fun getVinCorrectionById(id: String, filing: String): ApiResponse<GetVinCorrectionByIdResponse>? {
+        val resp = doApiCall { api.getVinCorrectionById(id,filing).await() }
+        return resp
+    }
     suspend fun saveTaxableVehicle(filling:String,i: SaveTaxableVehicleRequest?): ApiResponse<SaveTaxableVehicleResponse>? {
         val resp = doApiCall { api.saveTaxableVehicle(filling,i).await() }
+        return resp
+    }
+    suspend fun saveBulkTaxableVehicle(filling:String,i: List<SaveBulkTaxableVehicleRequest>?): ApiResponse<saveBulkTaxableVehicleResponse>? {
+        val resp = doApiCall { api.saveBulkTaxableVehicle(filling,i).await() }
+        return resp
+    }
+   suspend fun saveBulkCurrentSuspended(filling:String,i: List<SaveBulkCurrentSuspendedRequest>?): ApiResponse<saveBulkReportingSuspendedResponse>? {
+        val resp = doApiCall { api.saveBulkCurrentSuspended(filling,i).await() }
+        return resp
+    }
+
+    suspend fun saveTGWIncrease(filling:String,i: SaveUpdateTGWIncreaseRequest?): ApiResponse<SaveUpdateTGWIncreaseResponse>? {
+        val resp = doApiCall { api.saveTGWIncrease(filling,i).await() }
+        return resp
+    }
+    suspend fun saveExceededMileage(filling:String,i: SaveUpdateExceededMileageRequest?): ApiResponse<SaveUpdateExceededMileageResponse>? {
+        val resp = doApiCall { api.saveExceededMileage(filling,i).await() }
+        return resp
+    }
+    suspend fun saveVinCorrection(filling:String,i: SaveUpdateVinCorrectionRequest?): ApiResponse<SaveUpdateVinCorrectionResponse>? {
+        val resp = doApiCall { api.saveVinCorrection(filling,i).await() }
+        return resp
+    }
+    suspend fun updateExceededMileage(id:String,filling:String,i: SaveUpdateExceededMileageRequest?): ApiResponse<SaveUpdateExceededMileageResponse>? {
+        val resp = doApiCall { api.updateExceededMileage(id,filling,i).await() }
+        return resp
+    }
+    suspend fun updateVinCorrection(id:String,filling:String,i: SaveUpdateVinCorrectionRequest?): ApiResponse<SaveUpdateVinCorrectionResponse>? {
+        val resp = doApiCall { api.updateVinCorrection(id,filling,i).await() }
+        return resp
+    }
+    suspend fun updateTGWIncrease(id: String,filling:String,i: SaveUpdateTGWIncreaseRequest?): ApiResponse<SaveUpdateTGWIncreaseResponse>? {
+        val resp = doApiCall { api.updateTGWIncrease(id,filling,i).await() }
         return resp
     }
     suspend fun updateTaxableVehicle(businessId:String,filling:String,i: SaveTaxableVehicleRequest?): ApiResponse<SaveTaxableVehicleResponse>? {
@@ -50,6 +160,19 @@ class FillingRepo(private val api: Api) : BaseRepository()  {
     }
     suspend fun deleteTaxableVehicleById(businessId:String,filling:String): ApiResponse<DeleteTaxableVehicleResponse>? {
         val resp = doApiCall { api.deleteTaxableVehicleById(businessId,filling).await() }
+        return resp
+    }
+    suspend fun deleteTGWIncreaseById(businessId:String,filling:String): ApiResponse<DeleteTGWIncreaseByIdResponse>? {
+        val resp = doApiCall { api.deleteTGWIncreaseById(businessId,filling).await() }
+        return resp
+    }
+    suspend fun deleteExceededMileageById(businessId:String,filling:String): ApiResponse<DeleteExceededMileageByIdResponse>? {
+        val resp = doApiCall { api.deleteExceededMileageById(businessId,filling).await() }
+        return resp
+    }
+
+    suspend fun deleteVinCorrectionById(businessId:String,filling:String): ApiResponse<DeleteVinCorrectionByIdResponse>? {
+        val resp = doApiCall { api.deleteVinCorrectionById(businessId,filling).await() }
         return resp
     }
     suspend fun deleteCurrentSuspendedeById(businessId:String,filling:String): ApiResponse<DeleteCurrentSuspendedeById>? {
@@ -103,6 +226,22 @@ class FillingRepo(private val api: Api) : BaseRepository()  {
 
     suspend fun getPriorSuspendedByFilingId(filling:String): ApiResponse<List<GetPriorSuspendedByFilingIdResponse>>? {
         val resp = doApiCall { api.getPriorSuspendedByFilingId(filling).await() }
+        return resp
+    }
+    suspend fun getPriorSoldDate(filling:String): ApiResponse<GetPriorSoldDateResponse>? {
+        val resp = doApiCall { api.getPriorSoldDate(filling).await() }
+        return resp
+    }
+    suspend fun getSoldAndDestoryDate(filling:String): ApiResponse<GetSoldAndDestoryDateResponse>? {
+        val resp = doApiCall { api.getSoldAndDestoryDate(filling).await() }
+        return resp
+    }
+    suspend fun getLowMileageDate(filling:String): ApiResponse<GetLowMileageDateResponse>? {
+        val resp = doApiCall { api.getLowMileageDate(filling).await() }
+        return resp
+    }
+    suspend fun getCreditOverPaymentDate(filling:String): ApiResponse<GetCreditOverPaymentDateResponse>? {
+        val resp = doApiCall { api.getCreditOverPaymentDate(filling).await() }
         return resp
     }
 
@@ -167,6 +306,11 @@ class FillingRepo(private val api: Api) : BaseRepository()  {
         return resp
     }
 
+    suspend fun updateFiling(filingId: String,i: SaveUpdateFilingRequest?): ApiResponse<SaveUpdateFilingResponse>? {
+        val resp = doApiCall { api.updateFiling(filingId,i).await() }
+        return resp
+    }
+
 
 
     suspend fun getCountry(): ApiResponse<List<GetCountryItem>>? {
@@ -179,6 +323,10 @@ class FillingRepo(private val api: Api) : BaseRepository()  {
         return resp
     }
 
+    suspend fun getFilingById(filingId: String?): ApiResponse<GetFilingByIdResponse>? {
+        val resp = doApiCall { api.getFilingById(filingId).await() }
+        return resp
+    }
     suspend fun getallbusinesslist( listType: String?,limit: String?,offset: String?): ApiResponse<List<AllAndSearchBusinessListResponse>>? {
         val resp = doApiCall { api.getallbusinesslist(listType,limit,offset).await() }
         return resp
