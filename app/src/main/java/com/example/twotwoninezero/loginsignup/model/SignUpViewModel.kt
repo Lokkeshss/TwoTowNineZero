@@ -6,10 +6,16 @@ import com.example.twotwoninezero.base.BaseViewModel
 import com.example.twotwoninezero.loginsignup.repo.SignUpRepo
 import com.example.twotwoninezero.service.*
 import kotlinx.coroutines.launch
+import org.json.JSONArray
+import org.json.JSONException
+import org.json.JSONObject
+import java.lang.String
+import kotlin.toString
 
 class SignUpViewModel:BaseViewModel() {
     var mLoginResponse : MutableLiveData<LoginResponse> = MutableLiveData()
     var mRegistrationRequest : MutableLiveData<RegisterResponse> = MutableLiveData()
+    var mRegistrationRequestList : MutableLiveData<List<RegisterResponseList>>? = MutableLiveData()
     var mForgotPasswordResponse : MutableLiveData<ForgotPasswordResponse> = MutableLiveData()
     private val repository : SignUpRepo = SignUpRepo(ApiFactory.ttApi)
 
@@ -48,13 +54,26 @@ class SignUpViewModel:BaseViewModel() {
                 val registerResp = apiResponse?.data as RegisterResponse
                 Log.d(" API SUCCESS ", registerResp.toString())
                 mRegistrationRequest.postValue(registerResp)
-                /*  val someresp = repository.getAppMeta()
+                 /* val someresp = repository.getAppMeta()
                 if (someresp?.error == true) {
                     mFailureMessage.postValue("Error in retreiving Application Defaults!")
                 }*/
             }
         }
     }
+
+/*
+    fun registerFunction(i: RegistrationRequest) {
+        mIsLoading.postValue(true)
+        scope.launch {
+            val apiResponse = repository.doRegister(i)
+            mIsLoading.postValue(false)
+
+        println("apiResponse "+apiResponse?.data.toString())
+
+        }
+    }
+*/
 
     fun forgotPasswordFunction(i: ForgotPasswordEmailRequest) {
         mIsLoading.postValue(true)

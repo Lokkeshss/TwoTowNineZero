@@ -33,6 +33,8 @@ class HomeScreenFragment : BaseFragment() {
     var usethis:String?=null
     var ActiverequestCount=10
     var DeleterequestCount=10
+    var ActiverequestOffSetCount=0
+    var DeleterequestOffSetCount=0
 
     companion object{
         var requestType="active"
@@ -65,7 +67,7 @@ class HomeScreenFragment : BaseFragment() {
 
                                 findNavController().navigate(HomeScreenFragmentDirections.actionHomeScreenFragmentToHomeFilingDetailsViewFragment(
                                     filingIdorBusinessName,formtype,paymentStatus,
-                                    firstusedMonth,createdDate,filingstaus,filingStatus
+                                    firstusedMonth,createdDate,filingstaus,filingStatus, ""
                                 ))
                             }else{
 
@@ -95,11 +97,12 @@ class HomeScreenFragment : BaseFragment() {
                             println("totalItemCount "+lastVisibleItemPosition)
 
                            // DeleterequestCount= DeleterequestCount+10
+                            DeleterequestOffSetCount+=1
                             if (requestType.equals("archive")){
-                                val i= HomeScreenGetFilingsByUserIdRequest(DeleterequestCount,requestType,0)
+                                val i= HomeScreenGetFilingsByUserIdRequest(DeleterequestCount,requestType,DeleterequestOffSetCount)
                                 homeViewModel.getFilingsByUserId(i,requestType)
                             }else{
-                                val i= HomeScreenGetFilingsByUserIdRequest(ActiverequestCount,requestType,0)
+                                val i= HomeScreenGetFilingsByUserIdRequest(ActiverequestCount,requestType,ActiverequestOffSetCount)
                                 homeViewModel.getFilingsByUserId(i,requestType)
                             }
 
@@ -121,7 +124,7 @@ class HomeScreenFragment : BaseFragment() {
 
             if (!it.isNullOrEmpty()){
                 if (it.size<=10){
-                    mHomeScreenAdapterActivate= HomeScreenAdapterActivate(it){ businessId, filingIdorBusinessName, formtype, createdDate, filingstaus,firstusedMonth,paymentStatus,filingStatus, type->
+                    mHomeScreenAdapterActivate= HomeScreenAdapterActivate(it){ filindID,businessId, filingIdorBusinessName, formtype, createdDate, filingstaus,firstusedMonth,paymentStatus,filingStatus, type->
                         if (type==0){
 
                             deleteOrReactiveFilingId(filingIdorBusinessName,"archive")
@@ -133,7 +136,7 @@ class HomeScreenFragment : BaseFragment() {
 
                             findNavController().navigate(HomeScreenFragmentDirections.actionHomeScreenFragmentToHomeFilingDetailsViewFragment(
                                 filingIdorBusinessName,formtype,paymentStatus,
-                                firstusedMonth,createdDate,filingstaus,filingStatus
+                                firstusedMonth,createdDate,filingstaus,filingStatus,filindID
                             ))
                         }else{
 
@@ -162,11 +165,12 @@ class HomeScreenFragment : BaseFragment() {
                             println("totalItemCount "+totalItemCount)
                             println("totalItemCount "+lastVisibleItemPosition)
                            // ActiverequestCount = ActiverequestCount+10
+                            ActiverequestOffSetCount+=1
                             if (requestType.equals("archive")){
-                                val i= HomeScreenGetFilingsByUserIdRequest(DeleterequestCount,requestType,0)
+                                val i= HomeScreenGetFilingsByUserIdRequest(DeleterequestCount,requestType,DeleterequestOffSetCount)
                                 homeViewModel.getFilingsByUserId(i,requestType)
                             }else{
-                                val i= HomeScreenGetFilingsByUserIdRequest(ActiverequestCount,requestType,0)
+                                val i= HomeScreenGetFilingsByUserIdRequest(ActiverequestCount,requestType,ActiverequestOffSetCount)
                                 homeViewModel.getFilingsByUserId(i,requestType)
                             }
 
@@ -183,10 +187,10 @@ class HomeScreenFragment : BaseFragment() {
                     showToast(it.message)
                     customDialog?.dismiss()
                     if (requestType.equals("archive")){
-                        val i= HomeScreenGetFilingsByUserIdRequest(DeleterequestCount,requestType,0)
+                        val i= HomeScreenGetFilingsByUserIdRequest(DeleterequestCount,requestType,DeleterequestOffSetCount)
                         homeViewModel.getFilingsByUserId(i,requestType)
                     }else{
-                        val i= HomeScreenGetFilingsByUserIdRequest(ActiverequestCount,requestType,0)
+                        val i= HomeScreenGetFilingsByUserIdRequest(ActiverequestCount,requestType,ActiverequestOffSetCount)
                         homeViewModel.getFilingsByUserId(i,requestType)
                     }
 
@@ -201,10 +205,10 @@ class HomeScreenFragment : BaseFragment() {
                     showToast(it.message)
                     customDialog?.dismiss()
                     if (requestType.equals("archive")){
-                        val i= HomeScreenGetFilingsByUserIdRequest(DeleterequestCount,requestType,0)
+                        val i= HomeScreenGetFilingsByUserIdRequest(DeleterequestCount,requestType,DeleterequestOffSetCount)
                         homeViewModel.getFilingsByUserId(i,requestType)
                     }else{
-                        val i= HomeScreenGetFilingsByUserIdRequest(ActiverequestCount,requestType,0)
+                        val i= HomeScreenGetFilingsByUserIdRequest(ActiverequestCount,requestType,ActiverequestOffSetCount)
                         homeViewModel.getFilingsByUserId(i,requestType)
                     }
                    /* val i= HomeScreenGetFilingsByUserIdRequest(10,requestType,0)
@@ -212,6 +216,10 @@ class HomeScreenFragment : BaseFragment() {
                 }else{
                     showToast(it.message)
                 }
+        })
+
+        homeViewModel.mGetIRSRejectionDetailsResponse.observe(this, Observer {
+            showToast(it.irsRejectArray.get(0).toString())
         })
     }
 
@@ -251,10 +259,10 @@ class HomeScreenFragment : BaseFragment() {
                  homeViewModel.filterHomeScreenFiling(fi,requestType)
             }else{
                 if (requestType.equals("archive")){
-                    val i= HomeScreenGetFilingsByUserIdRequest(DeleterequestCount,requestType,0)
+                    val i= HomeScreenGetFilingsByUserIdRequest(DeleterequestCount,requestType,DeleterequestOffSetCount)
                     homeViewModel.getFilingsByUserId(i,requestType)
                 }else{
-                    val i= HomeScreenGetFilingsByUserIdRequest(ActiverequestCount,requestType,0)
+                    val i= HomeScreenGetFilingsByUserIdRequest(ActiverequestCount,requestType,ActiverequestOffSetCount)
                     homeViewModel.getFilingsByUserId(i,requestType)
                 }
 
@@ -314,10 +322,10 @@ class HomeScreenFragment : BaseFragment() {
             }
 
             if (requestType.equals("archive")){
-                val i= HomeScreenGetFilingsByUserIdRequest(DeleterequestCount,requestType,0)
+                val i= HomeScreenGetFilingsByUserIdRequest(DeleterequestCount,requestType,DeleterequestOffSetCount)
                 homeViewModel.getFilingsByUserId(i,requestType)
             }else{
-                val i= HomeScreenGetFilingsByUserIdRequest(ActiverequestCount,requestType,0)
+                val i= HomeScreenGetFilingsByUserIdRequest(ActiverequestCount,requestType,ActiverequestOffSetCount)
                 homeViewModel.getFilingsByUserId(i,requestType)
             }
 

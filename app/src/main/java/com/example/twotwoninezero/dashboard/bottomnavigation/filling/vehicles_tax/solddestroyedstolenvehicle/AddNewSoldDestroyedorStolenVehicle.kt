@@ -146,9 +146,9 @@ class AddNewSoldDestroyedorStolenVehicle : BaseFragment() {
                 mFillingViewModel.editgetSoldDestroyedById(id, filingId.toString())
                 addnewDestroyedStolenVehicleSubmit.setText("Update")
             }
-
+            mFillingViewModel.getSoldAndDestoryDate(filingId)
         }
-        mFillingViewModel.getSoldAndDestoryDate(filingId)
+
 
         addnewDestroyedStolenVehicleTaxableWeight.isFocusable=false
         addnewDestroyedStolenVehicleTaxableWeight.isClickable=false

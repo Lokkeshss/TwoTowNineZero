@@ -1,18 +1,35 @@
 package com.example.twotwoninezero.dashboard.bottomnavigation.filling.isr_confirmation
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.twotwoninezero.R
 import com.example.twotwoninezero.base.BaseFragment
+import com.example.twotwoninezero.dashboard.bottomnavigation.filling.form_summary.filingformviewmodel.FIllingFormSummaryViewModel
+import kotlinx.android.synthetic.main.fragment_irs_confirmation.*
 import kotlinx.android.synthetic.main.progress_bar_view.*
 
 
 class IrsConfirmationFragment : BaseFragment() {
-    override fun initViewModel() {
 
+    private lateinit var mFillingViewModel : FIllingFormSummaryViewModel
+    var filingId:String=""
+    override fun initViewModel() {
+        mFillingViewModel = ViewModelProvider(
+            viewModelStore,
+            defaultViewModelProviderFactory
+        ).get(FIllingFormSummaryViewModel::class.java)
+        setViewModel(mFillingViewModel)
+
+        mFillingViewModel.mPaymentOptionMethodResponse.observe(this, Observer {
+
+            //abc(it.paymentMode)
+
+        })
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,6 +51,34 @@ class IrsConfirmationFragment : BaseFragment() {
         progress_bar.progress=100
         progress_text.setText("6 of 6")
 
+
+        arguments?.let {
+            filingId = it.getString("filingId").toString()
+            //mFillingViewModel.getPaymentOptionByFilingId(filingId)
+
+            transactionID.setText(it.getString("transactionID").toString())
+            transactionVoucherNo.setText(it.getString("transactionVoucherNo").toString())
+            transactionPaymentStatus.setText(it.getString("transactionPaymentStatus").toString())
+            transactionPaidAmount.setText(it.getString("transactionPaidAmount").toString())
+
+        }
+
+        transactionSubmit.setOnClickListener {
+            findNavController().navigate(
+                IrsConfirmationFragmentDirections.actionIrsConfirmationFragmentToHomeScreenFragment("",
+                    "","","","","","","","")
+            )
+            //requireActivity().finish()
+        }
+
+
     }
+
+/*    fun abc(paymentMode: String) {
+        transactionID.setText(transactionId)
+        transactionVoucherNo.setText(refId)
+        transactionPaymentStatus.setText(status)
+        transactionPaidAmount.setText(amount)
+    }*/
 
 }

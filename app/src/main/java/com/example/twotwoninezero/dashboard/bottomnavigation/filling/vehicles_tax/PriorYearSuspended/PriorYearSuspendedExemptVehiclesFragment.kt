@@ -138,7 +138,7 @@ class PriorYearSuspendedExemptVehiclesFragment : BaseFragment() {
 
         PriorYearSuspendedAddNewVechicle.setOnClickListener {
                 findNavController().navigate(
-                    PriorYearSuspendedExemptVehiclesFragmentDirections.actionPriorYearSuspendedExemptVehiclesFragmentToAddNewPriorYearSuspendedExemptVehicles("",""))
+                    PriorYearSuspendedExemptVehiclesFragmentDirections.actionPriorYearSuspendedExemptVehiclesFragmentToAddNewPriorYearSuspendedExemptVehicles("",filingId))
         }
 
         PriorYearSuspendedNext.setOnClickListener {

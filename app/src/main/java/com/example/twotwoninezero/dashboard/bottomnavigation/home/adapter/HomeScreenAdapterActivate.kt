@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.twotwoninezero.R
 import com.example.twotwoninezero.service.HomeScreenListResponse
 
-class HomeScreenAdapterActivate (var datalist: List<HomeScreenListResponse>, var OnMenuClick: (String,String, String, String, String,String,String,String, Int) -> Unit):
+class HomeScreenAdapterActivate (var datalist: List<HomeScreenListResponse>, var OnMenuClick: (String,String,String, String, String, String,String,String,String, Int) -> Unit):
     RecyclerView.Adapter<HomeScreenAdapterActivate.MyHolder>() {
     class MyHolder(itemview: View): RecyclerView.ViewHolder(itemview) {
         val homeScreenBusinessName=itemview.findViewById<View>(R.id.homeScreenBusinessName) as TextView
@@ -44,17 +44,17 @@ class HomeScreenAdapterActivate (var datalist: List<HomeScreenListResponse>, var
 
         holder.homeScreenDelete.setOnClickListener {
             if (!data.filingStatus.equals("IRS_APPROVED")){
-                OnMenuClick.invoke(data.businessId.toString(),data.filingId.toString(),data.formType,data.createdDate,data.filingStatus,data.filingMonth,data.paymentStatus,data.filingStatus,0)
+                OnMenuClick.invoke(data.filingId.toString(),data.businessId.toString(),data.filingId.toString(),data.formType,data.createdDate,data.filingStatus,data.filingMonth,data.paymentStatus,data.filingStatus,0)
             }
         }
         holder.homeScreenEdit.setOnClickListener {
             if (!data.filingStatus.equals("IRS_APPROVED")){
-                OnMenuClick.invoke(data.businessId.toString(),data.filingId.toString(),data.formType,data.createdDate,data.filingStatus,data.filingMonth,data.paymentStatus,data.filingStatus,1)
+                OnMenuClick.invoke(data.filingId.toString(),data.businessId.toString(),data.filingId.toString(),data.formType,data.createdDate,data.filingStatus,data.filingMonth,data.paymentStatus,data.filingStatus,1)
             }
         }
 
         holder.itemView.setOnClickListener {
-            OnMenuClick.invoke(data.businessId.toString(),data.businessName,data.formType,data.createdDate,data.filingStatus,data.filingMonth,data.paymentStatus,data.filingStatus,2)
+            OnMenuClick.invoke(data.filingId.toString(),data.businessId.toString(),data.businessName,data.formType,data.createdDate,data.filingStatus,data.filingMonth,data.paymentStatus,data.filingStatus,2)
         }
 
     }

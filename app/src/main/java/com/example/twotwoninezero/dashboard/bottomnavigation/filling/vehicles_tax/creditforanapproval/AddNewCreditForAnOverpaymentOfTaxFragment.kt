@@ -111,13 +111,7 @@ class AddNewCreditForAnOverpaymentOfTaxFragment : BaseFragment() {
 
         arguments?.let {
             filingId= it.getString("filingId").toString()
-        }
-
-        mFillingViewModel.getCreditOverPaymentDate(filingId)
-
-        arguments?.let {
-
-            val filingId = it.getString("filingId").toString()
+           // val filingId = it.getString("filingId").toString()
 
             id = it.getString("id").toString()
 
@@ -125,6 +119,8 @@ class AddNewCreditForAnOverpaymentOfTaxFragment : BaseFragment() {
                 mFillingViewModel.getCreditOverPaymentById(id,filingId)
                 creditForAnOverPaymentSubmit.setText("Update")
             }
+
+            mFillingViewModel.getCreditOverPaymentDate(filingId)
 
         }
 

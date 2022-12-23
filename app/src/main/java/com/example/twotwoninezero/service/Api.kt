@@ -2,9 +2,10 @@ package com.example.twotwoninezero.service
 
 import kotlinx.coroutines.Deferred
 import okhttp3.ResponseBody
+import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
-
+/*https://dev1.simpletrucktax.com/trucktax/customerfeedback/saveFeedback/2120*/
 interface Api {
     /*signuprepo*/
     @POST("users/createUser")
@@ -462,6 +463,10 @@ interface Api {
 
     /* Home */
 
+    @GET("formSummary/getIRSRejectionDetails/{filing}")
+    @Headers("Content-Type: application/json")
+    fun getIRSRejectionDetails(@Path("filing") filing: String):Deferred<Response<GetIRSRejectionDetailsResponse>>
+
     @POST("filings/getFilingsByUserId")
     @Headers("Content-Type: application/json")
     fun getFilingsByUserId(@Body i:HomeScreenGetFilingsByUserIdRequest):Deferred<Response<List<HomeScreenListResponse>>>
@@ -563,6 +568,12 @@ interface Api {
     @GET("downloadPDF/{filingId}")
     @Headers("Content-Type: application/json")
     fun downloadPDF(@Path("filingId") filingId: String,): Deferred<Response<ResponseBody>>
+
+
+
+    @POST("login")
+    @Headers("Content-Type: application/json", "No-Authentication: true")
+    fun loginRequests(@Body i: LoginRequest?): Call<ResponseBody?>?
 
 
 }

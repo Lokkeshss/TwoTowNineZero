@@ -43,7 +43,6 @@ class HomeScreenAdapterArchive (var datalist: List<HomeScreenListResponse>, var 
 
     fun setpageNation(it: List<HomeScreenListResponse>) {
         datalist=it
-
     }
 
 

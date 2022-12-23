@@ -130,9 +130,9 @@ class AddNewLowMileageVehicleFragment : BaseFragment() {
                 mFillingViewModel.getLowMileageById(id, filingId.toString())
                 lowMileageVehicleSubmit.setText("Update")
             }
-
+            mFillingViewModel.getLowMileageDate(filingId)
         }
-        mFillingViewModel.getLowMileageDate(filingId)
+
         mFillingViewModel.gettaxableweight()
         lowMileageVehicleTaxableWeight.isFocusable=false
         lowMileageVehicleTaxableWeight.isClickable=false

@@ -46,9 +46,6 @@ class VehiclesTaxMainMenu : BaseFragment() {
                         }
                     }
 
-
-
-
                 }
             }else if (it.filingInfo.formType.equals("8849S6")){
 

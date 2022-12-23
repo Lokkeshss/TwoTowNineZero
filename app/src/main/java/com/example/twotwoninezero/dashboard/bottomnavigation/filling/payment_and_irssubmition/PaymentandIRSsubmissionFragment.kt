@@ -58,6 +58,18 @@ class PaymentandIRSsubmissionFragment : BaseFragment() {
                 }
         })
 
+        mFillingViewModel.mGetSummaryDetailsByFilingIdResponse.observe(this, Observer {
+
+            mFillingViewModel.submissionFee(filingId)
+
+            if (it.filingInfo.formType.equals("2290V")){
+                irsPaymentOptionCreditCardMain.visibility=View.GONE
+            }else{
+                irsPaymentOptionCreditCardMain.visibility=View.VISIBLE
+            }
+
+        })
+
 
     }
 
@@ -80,7 +92,7 @@ class PaymentandIRSsubmissionFragment : BaseFragment() {
             filingId = it.getString("filingId").toString()
 
             if (filingId != null && filingId.isNotEmpty()) {
-                mFillingViewModel.submissionFee(filingId)
+                mFillingViewModel.GetSummaryDetailsByFilingIdResponse(filingId)
             }
         }
 

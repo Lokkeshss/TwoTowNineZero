@@ -2,6 +2,7 @@ package com.example.twotwoninezero.loginsignup.repo
 
 import com.example.twotwoninezero.ThisApplication
 import com.example.twotwoninezero.service.*
+import retrofit2.await
 
 class SignUpRepo (private val api: Api) : BaseRepository() {
 
@@ -19,19 +20,24 @@ class SignUpRepo (private val api: Api) : BaseRepository() {
 
         return resp
     }
+
+
     suspend fun doRegister(i: RegistrationRequest): ApiResponse<RegisterResponse>? {
         val resp = doApiCall { api.registerRequest(i).await() }
         if (resp?.error == false) {
             // store the token in application
             val registerResp = resp.data as RegisterResponse
             ThisApplication.publicPrefs.jwtToken = registerResp.token
-            /*   ThisApplication.publicPrefs.roleId = loginResp.role_id.toString()
-               if (rememberMe!!) {
-                   ThisApplication.publicPrefs.rememberMe = rememberMe
-               }*/
+
         }
         return resp
     }
+
+  /*  suspend fun doRegister(i: RegistrationRequest): ApiResponse<String>? {
+        val resp = doApiCall { api.registerRequest(i).await() }
+        println("MainRegisterResponse "+resp?.data.toString())
+        return resp
+    }*/
 
     suspend fun doForgotPassword(i: ForgotPasswordEmailRequest): ApiResponse<ForgotPasswordResponse>? {
         val resp = doApiCall { api.forgotPasswordRequest(i).await() }

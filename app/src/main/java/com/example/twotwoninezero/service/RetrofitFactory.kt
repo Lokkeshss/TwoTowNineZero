@@ -34,11 +34,12 @@ object RetrofitFactory :BaseRepository(){  // i have added this BaseRepository()
                         .build()
 
                     val initialResponse = chain.proceed(authenticationRequest)
+                    println("Logout process "+initialResponse.code().toString())
 
                     when {
                         initialResponse.code() == 401 -> {
 
-                            println("Logout process ")
+                            println("Logout process "+initialResponse.code().toString())
                             logout() // for timebeeing using this logout on 2 dec 2022
                             //RUN BLOCKING!!
                             val resp = runBlocking {

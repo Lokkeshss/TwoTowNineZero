@@ -10,6 +10,10 @@ import java.io.InputStream
 class HomeRepo(private val api: Api):BaseRepository() {
 
 
+    suspend fun getIRSRejectionDetails(i: String): ApiResponse<GetIRSRejectionDetailsResponse>? {
+        val resp = doApiCall { api.getIRSRejectionDetails(i).await() }
+        return resp
+    }
     suspend fun getFilingsByUserId(i:HomeScreenGetFilingsByUserIdRequest): ApiResponse<List<HomeScreenListResponse>>? {
         val resp = doApiCall { api.getFilingsByUserId(i).await() }
         return resp

@@ -17,6 +17,25 @@ class HomeViewModel:BaseViewModel() {
     var mReactivateHomeScreenFilingResponse : MutableLiveData<ReactivateHomeScreenFilingResponse> = MutableLiveData()
     var mEditTaxableVehicleByIdResponse : MutableLiveData<EditTaxableVehicleByIdResponse> = MutableLiveData()
     var mFileDownloadResponse : MutableLiveData<FileDownloadResponse> = MutableLiveData()
+    var mGetIRSRejectionDetailsResponse : MutableLiveData<GetIRSRejectionDetailsResponse> = MutableLiveData()
+
+    fun getIRSRejectionDetails(i: String) {
+
+        mIsLoading.postValue(true)
+        scope.launch {
+            val apiResponse = repository.getIRSRejectionDetails(i)
+            mIsLoading.postValue(false)
+            if (apiResponse?.error == true) {
+                Log.d("API Error", apiResponse?.msg.toString())
+                mFailureMessage.postValue(apiResponse?.msg)
+            } else {
+                val loginResp = apiResponse?.data as GetIRSRejectionDetailsResponse
+                Log.d(" API SUCCESS ", loginResp.toString())
+                mGetIRSRejectionDetailsResponse.postValue(loginResp)
+                // println("loginResploginResp "+loginResp.toString())
+            }
+        }
+    }
 
     fun getFilingsByUserId(i: HomeScreenGetFilingsByUserIdRequest,requestType:String) {
 
@@ -39,6 +58,7 @@ class HomeViewModel:BaseViewModel() {
             }
         }
     }
+
     fun deleteFiling(filing: String) {
 
         mIsLoading.postValue(true)

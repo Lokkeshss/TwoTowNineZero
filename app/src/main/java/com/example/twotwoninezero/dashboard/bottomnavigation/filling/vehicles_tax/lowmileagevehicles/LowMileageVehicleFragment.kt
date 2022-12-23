@@ -120,7 +120,7 @@ class LowMileageVehicleFragment : BaseFragment() {
         mFillingViewModel.getLowMileageByFilingId(filingId)
 
         lowMileageVehicleAddNewVechicle.setOnClickListener {
-            findNavController().navigate(LowMileageVehicleFragmentDirections.actionLowMileageVehicleFragmentToAddNewLowMileageVehicleFragment("","",""))
+            findNavController().navigate(LowMileageVehicleFragmentDirections.actionLowMileageVehicleFragmentToAddNewLowMileageVehicleFragment("",filingId,""))
         }
 
         lowMileageVehicleNext.setOnClickListener {

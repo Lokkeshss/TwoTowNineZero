@@ -253,6 +253,7 @@
         <argument android:name="createdDate" />
         <argument android:name="status" />
         <argument android:name="invoiceStatus" />
+        <argument android:name="filingId" />
     </fragment>
     <fragment
         android:id="@+id/addNewReportingSuspendedExemptVehicles"
@@ -640,6 +641,24 @@
         android:label="fragment_i_r_s_payment_submission_fee_payment_option"
         tools:layout="@layout/fragment_i_r_s_payment_submission_fee_payment_option" >
         <argument android:name="filingId" />
+        <action
+            android:id="@+id/action_IRSPaymentSubmissionFeePaymentOptionFragment_to_irsConfirmationFragment"
+            app:destination="@id/irsConfirmationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/irsConfirmationFragment"
+        android:name="com.example.twotwoninezero.dashboard.bottomnavigation.filling.isr_confirmation.IrsConfirmationFragment"
+        android:label="fragment_irs_confirmation"
+        tools:layout="@layout/fragment_irs_confirmation" >
+        <argument android:name="transactionID" />
+        <argument android:name="transactionVoucherNo" />
+        <argument android:name="transactionPaymentStatus" />
+        <argument android:name="transactionPaidAmount" />
+        <action
+            android:id="@+id/action_irsConfirmationFragment_to_homeScreenFragment"
+            app:destination="@id/homeScreenFragment"
+            app:popUpTo="@id/irsConfirmationFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 
 </navigation>

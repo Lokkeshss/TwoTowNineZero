@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.twotwoninezero.R
@@ -37,6 +38,7 @@ class IRSPaymentSubmissionFeePaymentOptionFragment : BaseFragment() {
     var mgetCountryAdapterList:List<GetCountryItem> = ArrayList()
     var mCountryListSpinnerAdapter: CountryListSpinnerAdapter?=null
     var mStateListSpinnerAdapter: StateListSpinnerAdapter?=null
+
     override fun initViewModel() {
         mFillingViewModel = ViewModelProvider(
             viewModelStore,
@@ -63,9 +65,15 @@ class IRSPaymentSubmissionFeePaymentOptionFragment : BaseFragment() {
         mFillingViewModel.mCaptureCCPaymentResponse.observe(this, Observer {
                 if (it.status.equals("success")){
                     showToast(it.resDescription)
+                    findNavController().navigate(IRSPaymentSubmissionFeePaymentOptionFragmentDirections.
+                    actionIRSPaymentSubmissionFeePaymentOptionFragmentToIrsConfirmationFragment(it.transactionId?:"",
+                        it.refId?:"",
+                        it.status?:"",
+                        it.amount?:""))
                 }else{
                     showToast(it.resDescription)
                 }
+
 
         })
 
@@ -129,7 +137,7 @@ class IRSPaymentSubmissionFeePaymentOptionFragment : BaseFragment() {
                 paymentOptionViewAddress.visibility=View.GONE
             }
         }
-111
+
         paymentOptionPrevious.setOnClickListener {
 
         }

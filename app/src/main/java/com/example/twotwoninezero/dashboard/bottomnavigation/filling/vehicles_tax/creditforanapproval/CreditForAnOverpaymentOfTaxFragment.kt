@@ -99,7 +99,7 @@ class CreditForAnOverpaymentOfTaxFragment : BaseFragment() {
         mFillingViewModel.getCreditOverPaymentByFilingId(filingId)
 
         creditForAnOverpaymentAddNewVechicle.setOnClickListener {
-            findNavController().navigate(CreditForAnOverpaymentOfTaxFragmentDirections.actionCreditForAnOverpaymentOfTaxFragmentToAddNewCreditForAnOverpaymentOfTaxFragment("",""))
+            findNavController().navigate(CreditForAnOverpaymentOfTaxFragmentDirections.actionCreditForAnOverpaymentOfTaxFragmentToAddNewCreditForAnOverpaymentOfTaxFragment("",filingId))
         }
 
         creditForAnOverpaymentNext.setOnClickListener {

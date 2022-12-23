@@ -93,7 +93,7 @@ class VinCorrectionTaxableVehicleFragment : BaseFragment() {
 
         vinCorrectionAddNewVechicle.setOnClickListener {
             findNavController().navigate(VinCorrectionTaxableVehicleFragmentDirections.
-            actionVinCorrectionTaxableVehicleFragmentToAddNewVinCorrectionTaxableVehicleFragment("","",""))
+            actionVinCorrectionTaxableVehicleFragmentToAddNewVinCorrectionTaxableVehicleFragment("",filingId,""))
         }
 
         vinCorrectionNext.setOnClickListener {

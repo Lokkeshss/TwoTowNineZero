@@ -120,7 +120,7 @@ class TaxableGrossWeightIncreaseFragment : BaseFragment() {
 
         taxableGroxxWeightAddNewVehicle.setOnClickListener {
             findNavController().navigate(
-                TaxableGrossWeightIncreaseFragmentDirections.actionTaxableGrossWeightIncreaseFragmentToAddNewTaxableGrossWeightIncreaseFragment("","","",""))
+                TaxableGrossWeightIncreaseFragmentDirections.actionTaxableGrossWeightIncreaseFragmentToAddNewTaxableGrossWeightIncreaseFragment("",filingId,"",""))
         }
 
         taxableGroxxWeightNext.setOnClickListener {

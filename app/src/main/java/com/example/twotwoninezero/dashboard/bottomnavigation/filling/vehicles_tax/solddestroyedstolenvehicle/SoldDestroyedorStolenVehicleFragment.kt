@@ -131,7 +131,7 @@ class SoldDestroyedorStolenVehicleFragment : BaseFragment() {
 
         soldDestoryedStolenAddNewVechicle.setOnClickListener {
             findNavController().navigate(
-                SoldDestroyedorStolenVehicleFragmentDirections.actionSoldDestroyedorStolenVehicleFragmentToAddNewSoldDestroyedorStolenVehicle("","",""))
+                SoldDestroyedorStolenVehicleFragmentDirections.actionSoldDestroyedorStolenVehicleFragmentToAddNewSoldDestroyedorStolenVehicle("","",filingId))
         }
 
         soldDestoryedStolenNext.setOnClickListener {

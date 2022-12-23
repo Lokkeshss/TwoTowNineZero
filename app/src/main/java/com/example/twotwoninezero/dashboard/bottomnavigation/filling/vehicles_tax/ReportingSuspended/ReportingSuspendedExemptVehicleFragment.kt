@@ -162,7 +162,7 @@ class ReportingSuspendedExemptVehicleFragment : BaseFragment() {
 
         reportingsuspendedAddNewVechicle.setOnClickListener {
             findNavController().navigate(
-                ReportingSuspendedExemptVehicleFragmentDirections.actionReportingSuspendedExemptVehicleFragmentToAddNewReportingSuspendedExemptVehicles("","")
+                ReportingSuspendedExemptVehicleFragmentDirections.actionReportingSuspendedExemptVehicleFragmentToAddNewReportingSuspendedExemptVehicles("",filingId)
             )
         }
 

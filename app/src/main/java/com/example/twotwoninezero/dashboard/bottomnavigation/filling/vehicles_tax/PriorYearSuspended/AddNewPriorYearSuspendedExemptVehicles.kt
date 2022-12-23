@@ -133,9 +133,9 @@ class AddNewPriorYearSuspendedExemptVehicles : BaseFragment() {
                 mFillingViewModel.getPriorSuspendedById(id!!, filingId.toString())
                 addNewPriorYearSubmit.setText("Update")
             }
-
+            mFillingViewModel.getPriorSoldDate(filingId)
         }
-        mFillingViewModel.getPriorSoldDate(filingId)
+
 
         addNewPriorYearDateOfTransferTL.setBackgroundResource(R.color.blacklignt)
         addNewPriorYearSoldTransferredTL.setBackgroundResource(R.color.blacklignt)

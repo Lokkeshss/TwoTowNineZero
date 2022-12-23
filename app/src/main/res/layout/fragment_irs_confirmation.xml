@@ -122,12 +122,13 @@
                     app:hintTextColor="@color/lightGray">
 
                     <EditText
+                        android:enabled="false"
+                        android:id="@+id/transactionID"
                         android:textAllCaps="true"
                         android:fontFamily="@font/roboto_regular"
                         style="@style/loginTextInputEditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890. "
                         android:inputType="text"
                         android:text="" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -143,12 +144,13 @@
                     app:hintTextColor="@color/lightGray">
 
                     <EditText
+                        android:enabled="false"
+                        android:id="@+id/transactionVoucherNo"
                         android:textAllCaps="true"
                         android:fontFamily="@font/roboto_regular"
                         style="@style/loginTextInputEditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890. "
                         android:inputType="text"
                         android:text="" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -164,12 +166,13 @@
                     app:hintTextColor="@color/lightGray">
 
                     <EditText
+                        android:enabled="false"
+                        android:id="@+id/transactionPaymentStatus"
                         android:textAllCaps="true"
                         android:fontFamily="@font/roboto_regular"
                         style="@style/loginTextInputEditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890. "
                         android:inputType="text"
                         android:text="" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -185,12 +188,13 @@
                     app:hintTextColor="@color/lightGray">
 
                     <EditText
+                        android:enabled="false"
+                        android:id="@+id/transactionPaidAmount"
                         android:textAllCaps="true"
                         android:fontFamily="@font/roboto_regular"
                         style="@style/loginTextInputEditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890. "
                         android:inputType="text"
                         android:text="" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -287,7 +291,7 @@
             android:textSize="@dimen/page_button_textsize"
             android:layout_marginTop="@dimen/dp_10"
             android:layout_marginBottom="@dimen/dp_10"
-            android:id="@+id/addNewBusinessSubmit"
+            android:id="@+id/transactionSubmit"
             android:fontFamily="@font/roboto_medium"
             android:gravity="center"
             android:layout_gravity="center"

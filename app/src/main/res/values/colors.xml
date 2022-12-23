@@ -16,6 +16,7 @@
     <color name="on_boardingtextcolor">#EF823F</color>
     <color name="bt_color">#007BFF</color>
     <color name="download_bt_color">#28A745</color>
+    <color name="download_bt_red_color">#DC3545</color>
     <color name="lightGray">#939393</color>
     <color name="checkmailtext">#0E4375</color>
     <color name="loginheadercolor">#FFFFFF</color>

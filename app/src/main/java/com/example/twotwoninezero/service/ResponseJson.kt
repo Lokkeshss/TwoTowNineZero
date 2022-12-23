@@ -16,6 +16,10 @@ data class ApiResponse<T>(
 data class RegisterResponse(var code:Int,var message:String,var messageList:String,var filingId:String,
 var userId:String,var token:String)
 
+data class RegisterResponseList(var Error:String)
+
+data class MainRegisterResponse(var registerResponse:RegisterResponse?,var registerResponseList:List<RegisterResponseList>?=null)
+
 data class LoginResponse(var code:Int,var message:String,var messageList:String,var filingId:String,
 var userId:String,var token:String)
 
@@ -411,6 +415,10 @@ data class HomeScreenListResponse(
     val xmlSubmitted: Int
 )
 
+data class GetIRSRejectionDetailsResponse(
+    val irsRejectArray: List<String>
+)
+
 data class FilterCategory(var name:String,var id:String)
 
 data class EditTaxableVehicleByIdResponse(
@@ -604,7 +612,7 @@ data class GetSummaryDetailsByFilingIdResponse(
     val currentSuspended: List<CurrentSuspended>,
     val filingInfo: FilingInfo,
     val irsPayment: IrsPayment?,
-    val irsRejectArray: List<String>,
+    val irsRejectArray: String,/*    val irsRejectArray: List<String>,*/
     val lowMileage: List<LowMileage>,
     val mileageTotal: String,
     val priorSuspended: List<PriorSuspended>,

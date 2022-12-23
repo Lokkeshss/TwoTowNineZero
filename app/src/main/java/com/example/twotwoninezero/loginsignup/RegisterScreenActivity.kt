@@ -3,6 +3,8 @@ package com.example.twotwoninezero.loginsignup
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.text.TextUtils
+import android.util.Patterns
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
@@ -14,10 +16,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.twotwoninezero.R
 import com.example.twotwoninezero.base.BaseActivity
 import com.example.twotwoninezero.common.SearchAdapter
-import com.example.twotwoninezero.dashboard.DashBoardActivity
 import com.example.twotwoninezero.loginsignup.model.SignUpViewModel
 import com.example.twotwoninezero.service.RegistrationRequest
 import com.google.gson.Gson
+
 
 class RegisterScreenActivity : BaseActivity() {
 
@@ -60,6 +62,15 @@ class RegisterScreenActivity : BaseActivity() {
             }else{
                 showMessage(it.message)
             }
+
+        })
+
+        mSignUpViewModel.mRegistrationRequestList?.observe(this, Observer {
+
+            if (!it.isNullOrEmpty()){
+                showMessage(it.get(0).Error)
+            }
+
 
         })
 
@@ -114,8 +125,12 @@ class RegisterScreenActivity : BaseActivity() {
                 showMessage("Enter full name")
             }else if (edt_email?.text.toString().isNullOrEmpty()){
                 showMessage("Enter your email")
+            }else if (!isValidEmail(edt_email?.text.toString())){
+                showMessage("Invalid Email Address")
             }else if (edt_cfemail?.text.toString().isNullOrEmpty()){
                 showMessage("ReEnter your email")
+            }else if (!isValidEmail(edt_cfemail?.text.toString())){
+                showMessage("Invalid Email Address")
             }else if (!edt_email?.text.toString().equals(edt_cfemail?.text.toString())){
                 showMessage("Email id mismatch")
             }else if (edt_password?.text.toString().isNullOrEmpty()){
@@ -181,5 +196,9 @@ class RegisterScreenActivity : BaseActivity() {
         }
         builder.setCanceledOnTouchOutside(false)
         builder.show()
+    }
+
+    fun isValidEmail(target: CharSequence?): Boolean {
+        return !TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches()
     }
 }

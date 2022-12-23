@@ -117,7 +117,7 @@ class ExceededMileageVehiclesFragment : BaseFragment() {
         mFillingViewModel.getExceededMileageByFilingId(filingId)
 
         exceededMileageVehiclesAddNew.setOnClickListener {
-           findNavController().navigate(ExceededMileageVehiclesFragmentDirections.actionExceededMileageVehiclesFragmentToAddNewExceededMileageVehiclesFragment("","",""))
+           findNavController().navigate(ExceededMileageVehiclesFragmentDirections.actionExceededMileageVehiclesFragmentToAddNewExceededMileageVehiclesFragment("","",filingId))
         }
 
 
