@@ -9,6 +9,7 @@ import android.webkit.WebViewClient
 import com.example.twotwoninezero.R
 import com.example.twotwoninezero.base.BaseFragment
 import kotlinx.android.synthetic.main.about_us.*
+import kotlinx.android.synthetic.main.common_header_loginsignup.*
 import kotlinx.android.synthetic.main.contact_us.*
 
 
@@ -51,6 +52,9 @@ class ContactUsFragment : BaseFragment() {
 
         contactUsfragmentBack.setOnClickListener {
             requireActivity().onBackPressed()
+        }
+        commonContactCallMain?.setOnClickListener {
+            commonCallAndMailFunction()
         }
     }
 

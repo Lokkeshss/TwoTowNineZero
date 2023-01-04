@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.navigation.fragment.findNavController
 import com.example.twotwoninezero.R
 import com.example.twotwoninezero.base.BaseFragment
+import kotlinx.android.synthetic.main.common_header_loginsignup.*
 import kotlinx.android.synthetic.main.fragment_profile_screen.*
 
 class ProfileScreenFragment : BaseFragment() {
@@ -33,6 +34,10 @@ class ProfileScreenFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        commonContactCallMain?.setOnClickListener {
+            commonCallAndMailFunction()
+        }
 
         profileEditMyProfile.setOnClickListener {
             findNavController().navigate(ProfileScreenFragmentDirections.actionProfileScreenFragmentToEditMyProfileFragment())

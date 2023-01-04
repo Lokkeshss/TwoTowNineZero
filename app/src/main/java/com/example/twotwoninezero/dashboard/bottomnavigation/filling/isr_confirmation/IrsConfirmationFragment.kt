@@ -54,6 +54,23 @@ class IrsConfirmationFragment : BaseFragment() {
 
         arguments?.let {
             filingId = it.getString("filingId").toString()
+            var formtype = it.getString("formtype").toString()
+            var finalreturnvalue = it.getString("finalreturnvalue").toString()
+            if (!formtype.isNullOrEmpty()){
+                irsPaymentOptionCreditCardMain.visibility=View.GONE
+                irsPaymentOptionCreditCardfeeDetails.visibility=View.GONE
+            }else{
+                irsPaymentOptionCreditCardMain.visibility=View.VISIBLE
+                irsPaymentOptionCreditCardfeeDetails.visibility=View.VISIBLE
+            }
+
+            if (finalreturnvalue.equals("0")){
+                irsPaymentOptionCreditCardMain.visibility=View.GONE
+                irsPaymentOptionCreditCardfeeDetails.visibility=View.GONE
+            }else{
+                irsPaymentOptionCreditCardMain.visibility=View.VISIBLE
+                irsPaymentOptionCreditCardfeeDetails.visibility=View.VISIBLE
+            }
             //mFillingViewModel.getPaymentOptionByFilingId(filingId)
 
             transactionID.setText(it.getString("transactionID").toString())

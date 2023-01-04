@@ -16,6 +16,7 @@ import com.example.twotwoninezero.dashboard.bottomnavigation.filling.taxyear_and
 import com.example.twotwoninezero.dashboard.bottomnavigation.filling.vehicles_tax.exceededmileagevehicles.ExceededMileageVehiclesFragmentDirections
 import com.example.twotwoninezero.dashboard.bottomnavigation.profile.adapter.MyTransactionAdapter
 import com.example.twotwoninezero.dashboard.bottomnavigation.profile.model.ProfileViewModel
+import kotlinx.android.synthetic.main.common_header_loginsignup.*
 import kotlinx.android.synthetic.main.fragment_change_password.*
 import kotlinx.android.synthetic.main.fragment_exceeded_mileage_vehicles.*
 import kotlinx.android.synthetic.main.fragment_my_transaction_list.*
@@ -56,14 +57,22 @@ class MyTransactionListFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        mProfileViewModel.getTransactionDetailsuserID()
+        if (isOnline()) {
+            mProfileViewModel.getTransactionDetailsuserID()
+        }else{
+            showToast(getString(R.string.internet_required))
+        }
+
+        commonContactCallMain?.setOnClickListener {
+            commonCallAndMailFunction()
+        }
 
 
         myTransactionDownload.setOnClickListener {
 
         }
 
-        myTransactionfragmentBack.setOnClickListener {
+        transactionfragmentBack.setOnClickListener {
             requireActivity().onBackPressed()
         }
 

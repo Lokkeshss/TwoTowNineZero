@@ -547,6 +547,10 @@ interface Api {
     @Headers("Content-Type: application/json")
     fun updateConsentDisclosure(@Path("filingId") filingId: String,@Body i:UpdateConsentDisclosureRequest): Deferred<Response<UpdateConsentDisclosureResponse>>
 
+    @POST("irsSubmission/saveConsentSubmit/{filingId}")
+    @Headers("Content-Type: application/json")
+    fun saveConsentSubmit(@Path("filingId") filingId: String,@Body i:SaveConsentSubmit): Deferred<Response<SaveConsentSubmitResponse>>
+
     /* payment and irs submission*/
 
 

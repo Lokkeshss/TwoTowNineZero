@@ -20,6 +20,7 @@ import com.example.twotwoninezero.service.GetCountryItem
 import com.example.twotwoninezero.service.GetStateReponse
 import com.example.twotwoninezero.service.SaveUpdateTaxableVehicleRequest
 import com.example.twotwoninezero.service.TaxPreparerRequest
+import kotlinx.android.synthetic.main.common_header_loginsignup.*
 import kotlinx.android.synthetic.main.fragment_add_new_business.*
 import kotlinx.android.synthetic.main.fragment_tax_preparer.*
 
@@ -90,8 +91,13 @@ class TaxPreparerFragment : BaseFragment() {
             state=it.state
             taxPayerCity.setText(it.city)
             taxPayerZipCode.setText(it.zipCode)
+            if (isOnline()) {
+                mProfileViewModel.getCountry()
+            }else{
+                showToast(getString(R.string.internet_required))
+            }
 
-            mProfileViewModel.getCountry()
+
         })
 
         mProfileViewModel.mGetCountry.observe(this, Observer {
@@ -152,6 +158,10 @@ class TaxPreparerFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        commonContactCallMain?.setOnClickListener {
+            commonCallAndMailFunction()
+        }
+
         mProfileViewModel.getTaxPreparer()
 
         taxPayerCountry.isFocusable=false
@@ -164,11 +174,21 @@ class TaxPreparerFragment : BaseFragment() {
             requireActivity().onBackPressed()
         }
 
+        taxPayerCancel.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
+
         taxPayerCountry.setOnClickListener {
             manualCountry="Yes"
 
             if (mgetCountryAdapterList.isNullOrEmpty()){
-                mProfileViewModel.getCountry()
+                if (isOnline()) {
+                    mProfileViewModel.getCountry()
+                }else{
+                    showToast(getString(R.string.internet_required))
+                }
+
+
             }else{
                 contactInfoCountry()
             }

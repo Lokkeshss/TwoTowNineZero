@@ -15,17 +15,22 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.twotwoninezero.R
 import com.example.twotwoninezero.base.BaseFragment
 import com.example.twotwoninezero.dashboard.bottomnavigation.filling.form_summary.filingformviewmodel.FIllingFormSummaryViewModel
+import com.example.twotwoninezero.dashboard.bottomnavigation.filling.vehicles_tax.VehiclesTaxMainMenuDirections
 import com.example.twotwoninezero.dashboard.bottomnavigation.home.adapter.FilterCategoryAdapter
 import com.example.twotwoninezero.service.ApplyCouponRequest
+import com.example.twotwoninezero.service.SaveConsentSubmit
 import com.example.twotwoninezero.service.UpdateConsentDisclosureRequest
 import kotlinx.android.synthetic.main.fragment_filing_filter.*
 import kotlinx.android.synthetic.main.fragment_paymentand_i_r_ssubmission.*
 import kotlinx.android.synthetic.main.progress_bar_view.*
+import kotlinx.android.synthetic.main.vehicles_tax_main_menu.*
 
 class PaymentandIRSsubmissionFragment : BaseFragment() {
     private lateinit var mFillingViewModel : FIllingFormSummaryViewModel
     var filingId:String=""
     var consentDisclosure:String="0"
+    var formTypeForRedirect = ""
+    var finalreturnvalue = ""
     override fun initViewModel() {
         mFillingViewModel = ViewModelProvider(
             viewModelStore,
@@ -52,21 +57,100 @@ class PaymentandIRSsubmissionFragment : BaseFragment() {
 
         mFillingViewModel.mUpdateConsentDisclosureResponse.observe(this, Observer {
                 if (it.code==200){
-                  findNavController().navigate(PaymentandIRSsubmissionFragmentDirections.actionPaymentandIRSsubmissionFragmentToIRSPaymentSubmissionFeePaymentOptionFragment(filingId))
+                  /*  if (formTypeForRedirect.equals("2290V")){
+                        findNavController().navigate(PaymentandIRSsubmissionFragmentDirections.
+                        actionPaymentandIRSsubmissionFragmentToIrsConfirmationFragment("","","","",formTypeForRedirect))
+                    }else{
+                    }*/
+
+                    findNavController().navigate(PaymentandIRSsubmissionFragmentDirections.actionPaymentandIRSsubmissionFragmentToIRSPaymentSubmissionFeePaymentOptionFragment(filingId))
+
                 }else{
                     showToast(it.message)
                 }
+        })
+
+        mFillingViewModel.mSaveConsentSubmitResponse.observe(this, Observer {
+
+            if (it.submitStatus.isNullOrEmpty()){
+
+            }
+            else{
+
+                findNavController().navigate(PaymentandIRSsubmissionFragmentDirections.
+                actionPaymentandIRSsubmissionFragmentToIrsConfirmationFragment("","","","",formTypeForRedirect,finalreturnvalue))
+
+            }
+
         })
 
         mFillingViewModel.mGetSummaryDetailsByFilingIdResponse.observe(this, Observer {
 
             mFillingViewModel.submissionFee(filingId)
 
-            if (it.filingInfo.formType.equals("2290V")){
-                irsPaymentOptionCreditCardMain.visibility=View.GONE
+            formTypeForRedirect = it.filingInfo.formType
+           val forLocalUseSummaryDetails = it
+
+            if (it.filingInfo.finalReturn.equals("1")){
+
+                if (it.filingInfo.formType.equals("2290")){
+                    if (forLocalUseSummaryDetails?.totalDueToIRS.equals("0.00") &&
+                        forLocalUseSummaryDetails?.totalCreditAmt.equals("0.00") &&
+                        forLocalUseSummaryDetails?.totalTaxAmt.equals("0.00")) {
+
+                        irsPaymentOptionCreditCardMain.visibility=View.GONE
+                        finalreturnvalue="0"
+                    }else{
+                        irsPaymentOptionCreditCardMain.visibility=View.VISIBLE
+                        finalreturnvalue="1"
+                    }
+
+                }else if (it.filingInfo.formType.equals("2290A1")){
+                    if (forLocalUseSummaryDetails?.totalDueToIRS.equals("0.00") &&
+                        forLocalUseSummaryDetails?.totalTaxAmt.equals("0.00")) {
+
+                        irsPaymentOptionCreditCardMain.visibility=View.GONE
+                        finalreturnvalue="0"
+                    }else{
+                        irsPaymentOptionCreditCardMain.visibility=View.VISIBLE
+                        finalreturnvalue="1"
+                    }
+                }else if (it.filingInfo.formType.equals("2290A2")){
+                    if (forLocalUseSummaryDetails?.totalDueToIRS.equals("0.00") &&
+                        forLocalUseSummaryDetails?.totalTaxAmt.equals("0.00")) {
+
+                        irsPaymentOptionCreditCardMain.visibility=View.GONE
+                        finalreturnvalue="0"
+                    }else{
+                        irsPaymentOptionCreditCardMain.visibility=View.VISIBLE
+                        finalreturnvalue="1"
+                    }
+                }else if (it.filingInfo.formType.equals("2290V")){
+                    finalreturnvalue="0"
+                    irsPaymentOptionCreditCardMain.visibility=View.GONE
+                }else if (it.filingInfo.formType.equals("8849S6")){
+                    if (forLocalUseSummaryDetails?.totalDueToIRS.equals("0.00") &&
+                        forLocalUseSummaryDetails?.totalCreditAmt.equals("0.00")) {
+
+                        irsPaymentOptionCreditCardMain.visibility=View.GONE
+                        finalreturnvalue="0"
+                    }else{
+                        finalreturnvalue="1"
+                        irsPaymentOptionCreditCardMain.visibility=View.VISIBLE
+
+                    }
+                }
             }else{
-                irsPaymentOptionCreditCardMain.visibility=View.VISIBLE
+                if (it.filingInfo.formType.equals("2290V")){
+                    finalreturnvalue="0"
+                    irsPaymentOptionCreditCardMain.visibility=View.GONE
+                }else{
+                    finalreturnvalue="1"
+                    irsPaymentOptionCreditCardMain.visibility=View.VISIBLE
+                }
             }
+
+
 
         })
 
@@ -127,10 +211,27 @@ class PaymentandIRSsubmissionFragment : BaseFragment() {
             if (consentDisclosure.equals("0")){
                 showToast("Please click the Consent for Submission checkbox to continue")
             }else{
-                val i = UpdateConsentDisclosureRequest(consentDisclosure,irsPaymentOptionCouponCode.text.toString())
-                mFillingViewModel.updateConsentDisclosure(filingId,i)
+
+                  if (formTypeForRedirect.equals("2290V")){
+                      val i = SaveConsentSubmit(consentDisclosure)
+                      mFillingViewModel.saveConsentSubmit(filingId,i)
+                  }else{
+                      if (finalreturnvalue.equals("0")){
+                          val i = SaveConsentSubmit(consentDisclosure)
+                          mFillingViewModel.saveConsentSubmit(filingId,i)
+                      }else{
+                          val i = UpdateConsentDisclosureRequest(consentDisclosure,irsPaymentOptionCouponCode.text.toString())
+                          mFillingViewModel.updateConsentDisclosure(filingId,i)
+                      }
+
+                  }
+
 
             }
+        }
+
+        irsPaymentOptionCancel.setOnClickListener {
+            requireActivity().onBackPressed()
         }
 
     }

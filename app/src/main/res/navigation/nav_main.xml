@@ -634,6 +634,9 @@
         <action
             android:id="@+id/action_paymentandIRSsubmissionFragment_to_IRSPaymentSubmissionFeePaymentOptionFragment"
             app:destination="@id/IRSPaymentSubmissionFeePaymentOptionFragment" />
+        <action
+            android:id="@+id/action_paymentandIRSsubmissionFragment_to_irsConfirmationFragment"
+            app:destination="@id/irsConfirmationFragment" />
     </fragment>
     <fragment
         android:id="@+id/IRSPaymentSubmissionFeePaymentOptionFragment"
@@ -659,6 +662,8 @@
             app:destination="@id/homeScreenFragment"
             app:popUpTo="@id/irsConfirmationFragment"
             app:popUpToInclusive="true" />
+        <argument android:name="formtype" />
+        <argument android:name="finalreturnvalue" />
     </fragment>
 
 </navigation>

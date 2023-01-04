@@ -11,6 +11,7 @@ import com.example.twotwoninezero.R
 import com.example.twotwoninezero.base.BaseFragment
 import com.example.twotwoninezero.dashboard.bottomnavigation.filling.form_summary.filingformviewmodel.FIllingFormSummaryViewModel
 import com.example.twotwoninezero.dashboard.bottomnavigation.filling.taxyear_and_forms.TaxYearAndFormFragment
+import kotlinx.android.synthetic.main.common_header_loginsignup.*
 import kotlinx.android.synthetic.main.progress_bar_view.*
 import kotlinx.android.synthetic.main.vehicles_tax_main_menu.*
 
@@ -88,7 +89,9 @@ class VehiclesTaxMainMenu : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        commonContactCallMain?.setOnClickListener {
+            commonCallAndMailFunction()
+        }
         arguments?.let {
             filingId= it.getString("filingId").toString()
             formType= it.getString("formType").toString()

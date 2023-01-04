@@ -254,14 +254,65 @@ class FormSummaryFragment : BaseFragment() {
                         forLocalUseSummaryDetails?.totalCreditAmt.equals("0.00") &&
                         forLocalUseSummaryDetails?.totalTaxAmt.equals("0.00")) {
 
-                    }else{
+                        if (forLocalUseSummaryDetails!!.filingInfo.finalReturn.equals("1")){
+                            mFillingViewModel.updateRejErrorDesc(filingId)
+                        }else{
+                            showToast("Please check the value")
+                        }
 
+                    }else{
+                        mFillingViewModel.updateRejErrorDesc(filingId)
+                    }
+                }else if (forLocalUseSummaryDetails?.filingInfo?.formType.equals("2290A1")) {
+                    if (forLocalUseSummaryDetails?.totalDueToIRS.equals("0.00") &&
+                        forLocalUseSummaryDetails?.totalTaxAmt.equals("0.00")) {
+
+                        if (forLocalUseSummaryDetails!!.filingInfo.finalReturn.equals("1")){
+                            mFillingViewModel.updateRejErrorDesc(filingId)
+                        }else{
+                            showToast("Please check the value")
+                        }
+
+                    }else{
+                        mFillingViewModel.updateRejErrorDesc(filingId)
+                    }
+                }else if (forLocalUseSummaryDetails?.filingInfo?.formType.equals("2290A2")) {
+                    if (forLocalUseSummaryDetails?.totalDueToIRS.equals("0.00") &&
+                        forLocalUseSummaryDetails?.totalTaxAmt.equals("0.00")) {
+
+                        if (forLocalUseSummaryDetails!!.filingInfo.finalReturn.equals("1")){
+                            mFillingViewModel.updateRejErrorDesc(filingId)
+                        }else{
+                            showToast("Please check the value")
+                        }
+
+                    }else{
+                        mFillingViewModel.updateRejErrorDesc(filingId)
+                    }
+                }else if (forLocalUseSummaryDetails?.filingInfo?.formType.equals("2290V")) {
+                    if (forLocalUseSummaryDetails!!.vinCorrection.isNotEmpty()){
+                        mFillingViewModel.updateRejErrorDesc(filingId)
+                    }else{
+                        showToast("Please check the value")
+                    }
+
+
+                }else if (forLocalUseSummaryDetails?.filingInfo?.formType.equals("8849S6")) {
+                    if (forLocalUseSummaryDetails?.totalDueToIRS.equals("0.00") &&
+                        forLocalUseSummaryDetails?.totalCreditAmt.equals("0.00")) {
+
+
+                            showToast("Please check the value")
+
+
+                    }else{
+                        mFillingViewModel.updateRejErrorDesc(filingId)
                     }
                 }
             }
 
 
-                        mFillingViewModel.updateRejErrorDesc(filingId)
+
 
         }
 

@@ -26,6 +26,7 @@ import com.example.twotwoninezero.common.getOnlyyearFromDate
 import com.example.twotwoninezero.dashboard.bottomnavigation.filling.model.FillingViewModel
 import com.example.twotwoninezero.service.SaveCreditOverPaymentRequest
 import com.example.twotwoninezero.service.UpdateCreditOverPaymentRequest
+import kotlinx.android.synthetic.main.common_header_loginsignup.*
 import kotlinx.android.synthetic.main.fragment_add_new_credit_for_an_overpayment_of_tax.*
 import java.io.ByteArrayOutputStream
 import java.io.IOException
@@ -108,6 +109,14 @@ class AddNewCreditForAnOverpaymentOfTaxFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        commonContactCallMain?.setOnClickListener {
+            commonCallAndMailFunction()
+        }
+
+        creditForAnOverPaymentCancel.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
 
         arguments?.let {
             filingId= it.getString("filingId").toString()
@@ -206,10 +215,6 @@ class AddNewCreditForAnOverpaymentOfTaxFragment : BaseFragment() {
 
             }
 
-
-        }
-
-        creditForAnOverPaymentCancel.setOnClickListener {
 
         }
 

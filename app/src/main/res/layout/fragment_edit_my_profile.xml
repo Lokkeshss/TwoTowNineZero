@@ -11,8 +11,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <include layout="@layout/common_header_loginsignup" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:visibility="gone"
         android:orientation="horizontal"
         android:layout_marginTop="@dimen/dp_30"
         android:layout_width="match_parent"
@@ -235,11 +237,6 @@
 
 
         </com.google.android.material.card.MaterialCardView>
-
-    </LinearLayout>
-    </androidx.cardview.widget.CardView>
-    </androidx.core.widget.NestedScrollView>
-
         <LinearLayout
             android:background="@color/transparant"
             android:padding="@dimen/dp_5"
@@ -285,6 +282,11 @@
 
 
         </LinearLayout>
+    </LinearLayout>
+    </androidx.cardview.widget.CardView>
+    </androidx.core.widget.NestedScrollView>
+
+
 
     </LinearLayout>
 

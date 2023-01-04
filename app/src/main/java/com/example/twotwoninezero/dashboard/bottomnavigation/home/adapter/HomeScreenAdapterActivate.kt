@@ -44,12 +44,20 @@ class HomeScreenAdapterActivate (var datalist: List<HomeScreenListResponse>, var
 
         holder.homeScreenDelete.setOnClickListener {
             if (!data.filingStatus.equals("IRS_APPROVED")){
-                OnMenuClick.invoke(data.filingId.toString(),data.businessId.toString(),data.filingId.toString(),data.formType,data.createdDate,data.filingStatus,data.filingMonth,data.paymentStatus,data.filingStatus,0)
+                if (!data.filingStatus.equals("APPROVAL_PENDING")){
+                    if (!data.filingStatus.equals("PENDING_SUBMISSION")){
+                      OnMenuClick.invoke(data.filingId.toString(),data.businessId.toString(),data.filingId.toString(),data.formType,data.createdDate,data.filingStatus,data.filingMonth,data.paymentStatus,data.filingStatus,0)
+                    }
+                }
             }
         }
         holder.homeScreenEdit.setOnClickListener {
             if (!data.filingStatus.equals("IRS_APPROVED")){
-                OnMenuClick.invoke(data.filingId.toString(),data.businessId.toString(),data.filingId.toString(),data.formType,data.createdDate,data.filingStatus,data.filingMonth,data.paymentStatus,data.filingStatus,1)
+                if (!data.filingStatus.equals("APPROVAL_PENDING")){
+                  if (!data.filingStatus.equals("PENDING_SUBMISSION")){
+                    OnMenuClick.invoke(data.filingId.toString(),data.businessId.toString(),data.filingId.toString(),data.formType,data.createdDate,data.filingStatus,data.filingMonth,data.paymentStatus,data.filingStatus,1)
+                  }
+                }
             }
         }
 

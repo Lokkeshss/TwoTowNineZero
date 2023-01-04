@@ -76,6 +76,10 @@ class FormSummaryTaxYearInformationFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        taxyearBack.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
+
         arguments?.let{
             filingId = it.getString("filingId").toString()
 

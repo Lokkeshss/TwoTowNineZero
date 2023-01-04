@@ -80,6 +80,10 @@ class FormSummaryBusinessInformationFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        businessBack.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
+
         arguments?.let{
             filingId = it.getString("filingId").toString()
 

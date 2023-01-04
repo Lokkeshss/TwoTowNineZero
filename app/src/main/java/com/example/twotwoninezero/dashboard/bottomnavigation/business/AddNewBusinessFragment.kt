@@ -25,6 +25,10 @@ import com.example.twotwoninezero.service.*
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.common_header_loginsignup.*
 import kotlinx.android.synthetic.main.fragment_add_new_business.*
+import kotlinx.android.synthetic.main.fragment_add_new_business.test
+import kotlinx.android.synthetic.main.fragment_i_r_s_payment_submission_fee_payment_option.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 class AddNewBusinessFragment : BaseFragment() {
 
@@ -87,7 +91,6 @@ class AddNewBusinessFragment : BaseFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -106,7 +109,13 @@ class AddNewBusinessFragment : BaseFragment() {
             val id = it.getString("businessId")
             if (id != null && id.isNotEmpty()) {
                 println("mEditBusinessListResponse "+id)
-                mBusinessViewModel.editBusinessList(id)
+                if (isOnline()) {
+                    mBusinessViewModel.editBusinessList(id)
+
+                }else{
+                    showToast(getString(R.string.internet_required))
+                }
+
             }
         }
 
@@ -119,8 +128,19 @@ class AddNewBusinessFragment : BaseFragment() {
         signingAuthInfoTitle?.setFocusable(false)
         signingAuthInfoTitle?.setClickable(true)
 
-        mBusinessViewModel.getCountry()
-        mBusinessViewModel.getBusinessTypeRequestItem()
+
+        if (isOnline()) {
+            mBusinessViewModel.getCountry()
+        }else{
+            showToast(getString(R.string.internet_required))
+        }
+
+        if (isOnline()) {
+            mBusinessViewModel.getBusinessTypeRequestItem()
+        }else{
+            showToast(getString(R.string.internet_required))
+        }
+
 
         commonContactCallMain?.setOnClickListener {
             commonCallAndMailFunction()
@@ -136,7 +156,14 @@ class AddNewBusinessFragment : BaseFragment() {
         }
         contactInfoCounty?.setOnClickListener {
             if (mgetCountryAdapterList.isNullOrEmpty()){
-                mBusinessViewModel.getCountry()
+
+                if (isOnline()) {
+                    mBusinessViewModel.getCountry()
+                }else{
+                    showToast(getString(R.string.internet_required))
+                }
+
+
             }else{
                 contactInfoCountry()
             }
@@ -144,7 +171,12 @@ class AddNewBusinessFragment : BaseFragment() {
         }
         contactInfostate?.setOnClickListener {
             if (mGetStateReponse.isNullOrEmpty()){
-                mBusinessViewModel.getCountryState(contactInfoCountyID.toString())
+                if (isOnline()) {
+                    mBusinessViewModel.getCountryState(contactInfoCountyID.toString())
+                }else{
+                    showToast(getString(R.string.internet_required))
+                }
+
             }else{
                 contactState()
             }
@@ -259,6 +291,107 @@ class AddNewBusinessFragment : BaseFragment() {
 
 
         }
+
+        businessProfileEin.addTextChangedListener(object : TextWatcher {
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                var working = s.toString()
+                var isValid = true
+                if (working.length == 2 && before == 0) {
+
+                        working += "-"
+                        businessProfileEin.setText(working)
+                        businessProfileEin.setSelection(working.length)
+
+                }
+            }
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun afterTextChanged(p0: Editable) {
+
+            }
+        })
+
+        signingAuthInfoPhone.addTextChangedListener(object : TextWatcher {
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                var working = s.toString()
+                if (working.length == 3 && before == 0) {
+
+                    working += "-"
+                    signingAuthInfoPhone.setText(working)
+                    signingAuthInfoPhone.setSelection(working.length)
+
+                }
+                if (working.length == 7){
+                    working += "-"
+                    signingAuthInfoPhone.setText(working)
+                    signingAuthInfoPhone.setSelection(working.length)
+                }
+            }
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun afterTextChanged(p0: Editable) {
+
+            }
+        })
+
+
+
+
+        contactInfoPhoneNumber.addTextChangedListener(object : TextWatcher {
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                var working = s.toString()
+                if (working.length == 3 && before == 0) {
+
+                    working += "-"
+                    contactInfoPhoneNumber.setText(working)
+                    contactInfoPhoneNumber.setSelection(working.length)
+
+                }
+                if (working.length == 7){
+                    working += "-"
+                    contactInfoPhoneNumber.setText(working)
+                    contactInfoPhoneNumber.setSelection(working.length)
+                }
+            }
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun afterTextChanged(p0: Editable) {
+
+            }
+        })
+
+
+
+        ThirdPartyDesignPhonenumber.addTextChangedListener(object : TextWatcher {
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                var working = s.toString()
+                if (working.length == 3 && before == 0) {
+
+                    working += "-"
+                    ThirdPartyDesignPhonenumber.setText(working)
+                    ThirdPartyDesignPhonenumber.setSelection(working.length)
+
+                }
+                if (working.length == 7){
+                    working += "-"
+                    ThirdPartyDesignPhonenumber.setText(working)
+                    ThirdPartyDesignPhonenumber.setSelection(working.length)
+                }
+            }
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun afterTextChanged(p0: Editable) {
+
+            }
+        })
 
 
     }
@@ -395,8 +528,13 @@ class AddNewBusinessFragment : BaseFragment() {
             customDialog.dismiss()
         }
         ok.setOnClickListener {
-            mBusinessViewModel.getCountryState(contactInfoCountyID.toString())
-            customDialog.dismiss()
+            if (isOnline()) {
+                mBusinessViewModel.getCountryState(contactInfoCountyID.toString())
+                customDialog.dismiss()
+            }else{
+                showToast(getString(R.string.internet_required))
+            }
+
         }
     }
 
@@ -406,18 +544,25 @@ class AddNewBusinessFragment : BaseFragment() {
         contactInfoAddress?.setText(response.address1)
         businessProfileBusinessName?.setText(response.businessName)
         contactInfocity?.setText(response.city)
-        signingAuthInfoPhone?.setText(response.signingAuthorityPhone)
-        businessProfileEin?.setText(response.ein)
+        val first= response.signingAuthorityPhone.replaceRange(3,3,"-")
+        val signingAuthorityPhone= first.replaceRange(7,7,"-")
+        signingAuthInfoPhone?.setText(signingAuthorityPhone)
+        val ein = response.ein.replaceRange(2,2,"-")
+        businessProfileEin?.setText(ein)
         contactInfostate?.setText(response.stateName)
         contactInfoCounty?.setText(response.countryName)
         thirdPartydesign_checkbox?.isChecked=response.thirdpartyStatus
         businessProfileBusinessType?.setText(response.bizType)
         contactInfoEmailAddress?.setText(response.email)
-        contactInfoPhoneNumber?.setText(response.phone)
+        val firstphone= response.phone.replaceRange(3,3,"-")
+        val phone= firstphone.replaceRange(7,7,"-")
+        contactInfoPhoneNumber?.setText(phone)
         signingAuthInfoName?.setText(response.signingAuthorityName)
         signingAuthInfoTitle?.setText(response.signingAuthorityTitle)
         ThirdPartyDesignName?.setText(response.thirdPartyDesigneeName)
-        ThirdPartyDesignPhonenumber?.setText(response.thirdPartyDesigneePhone)
+        val firstthirdpartyphone= response.thirdPartyDesigneePhone.replaceRange(3,3,"-")
+        val thirdPartyDesigneePhone= firstthirdpartyphone.replaceRange(7,7,"-")
+        ThirdPartyDesignPhonenumber?.setText(thirdPartyDesigneePhone)
         contactInfoZipCode?.setText(response.zipCode)
 
         contactInfoCountyID=response.countryId
@@ -426,8 +571,12 @@ class AddNewBusinessFragment : BaseFragment() {
         checkboxBoolean=response.thirdpartyStatus
 
         BusinessId=response.id.toString()
+        if (isOnline()) {
+            mBusinessViewModel.getCountryState(contactInfoCountyID.toString())
+        }else{
+            showToast(getString(R.string.internet_required))
+        }
 
-        mBusinessViewModel.getCountryState(contactInfoCountyID.toString())
 
        /* businessProfileBusinessTypeId!!,
         contactInfoCountyID.toString(),
@@ -476,11 +625,11 @@ class AddNewBusinessFragment : BaseFragment() {
                 val i = CreateAndUpdateBusinessRequest(
                     contactInfoAddress?.text.toString(),businessProfileBusinessName?.text.toString(),
                     businessProfileBusinessTypeId!!,contactInfocity?.text.toString(),contactInfoCountyID.toString(),
-                    signingAuthInfoPhone?.text.toString(),businessProfileEin?.text.toString(),
+                    signingAuthInfoPhone?.text.toString().replace("-", ""),businessProfileEin?.text.toString().replace("-", ""),
                     contactInfoEmailAddress?.text.toString(),
-                    contactInfoPhoneNumber?.text.toString(),signingAuthInfoName?.text.toString(),
+                    contactInfoPhoneNumber?.text.toString().replace("-", ""),signingAuthInfoName?.text.toString(),
                     signingAuthInfoTitle?.text.toString(),contactInfostateId.toString(),ThirdPartyDesignName?.text.toString(),
-                    ThirdPartyDesignPhonenumber?.text.toString(), checkboxBoolean!!,
+                    ThirdPartyDesignPhonenumber?.text.toString().replace("-", ""), checkboxBoolean!!,
                     contactInfoZipCode?.text.toString(),"89768","11111"
                 )
 
@@ -488,10 +637,15 @@ class AddNewBusinessFragment : BaseFragment() {
                 val jsonbranch: String = gson.toJson(i)
 
                 println("jsonbranch business  "+jsonbranch)
-                if (type.equals("ADD")){
-                    mBusinessViewModel.addNewBusiness(i)
+                if (isOnline()) {
+                    if (type.equals("ADD")){
+                        mBusinessViewModel.addNewBusiness(i)
+                    }else{
+                        mBusinessViewModel.updateNewBusiness(businessId,i)
+                    }
+
                 }else{
-                    mBusinessViewModel.updateNewBusiness(businessId,i)
+                    showToast(getString(R.string.internet_required))
                 }
 
             }
@@ -499,12 +653,12 @@ class AddNewBusinessFragment : BaseFragment() {
             val i = CreateAndUpdateBusinessRequest(
                 contactInfoAddress?.text.toString(),businessProfileBusinessName?.text.toString(),
                 businessProfileBusinessTypeId!!,contactInfocity?.text.toString(), contactInfoCountyID.toString(),
-                signingAuthInfoPhone?.text.toString(),businessProfileEin?.text.toString(),
+                signingAuthInfoPhone?.text.toString().replace("-", ""),businessProfileEin?.text.toString().replace("-", ""),
                 contactInfoEmailAddress?.text.toString(),
-                contactInfoPhoneNumber?.text.toString(),signingAuthInfoName?.text.toString(),
+                contactInfoPhoneNumber?.text.toString().replace("-", ""),signingAuthInfoName?.text.toString(),
                 signingAuthInfoTitle?.text.toString(),
                 contactInfostateId.toString(),ThirdPartyDesignName?.text.toString(),
-                ThirdPartyDesignPhonenumber?.text.toString(), checkboxBoolean!!,
+                ThirdPartyDesignPhonenumber?.text.toString().replace("-", ""), checkboxBoolean!!,
                 contactInfoZipCode?.text.toString(),"89768","11111"
             )
 
@@ -512,12 +666,16 @@ class AddNewBusinessFragment : BaseFragment() {
             val jsonbranch: String = gson.toJson(i)
 
             println("jsonbranch business  "+jsonbranch)
-
-            if (type.equals("ADD")){
-                mBusinessViewModel.addNewBusiness(i)
+            if (isOnline()) {
+                if (type.equals("ADD")){
+                    mBusinessViewModel.addNewBusiness(i)
+                }else{
+                    mBusinessViewModel.updateNewBusiness(businessId,i)
+                }
             }else{
-                mBusinessViewModel.updateNewBusiness(businessId,i)
+                showToast(getString(R.string.internet_required))
             }
+
         }
     }
 

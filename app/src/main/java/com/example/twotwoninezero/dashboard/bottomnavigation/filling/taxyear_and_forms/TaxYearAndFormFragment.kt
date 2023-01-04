@@ -21,6 +21,7 @@ import com.example.twotwoninezero.dashboard.bottomnavigation.filling.vehicles_ta
 import com.example.twotwoninezero.dashboard.bottomnavigation.home.adapter.FilterCategoryAdapter
 import com.example.twotwoninezero.service.*
 import com.google.gson.Gson
+import kotlinx.android.synthetic.main.common_header_loginsignup.*
 import kotlinx.android.synthetic.main.fragment_filing_filter.*
 import kotlinx.android.synthetic.main.progress_bar_view.*
 import kotlinx.android.synthetic.main.taxyear_and_forms.*
@@ -253,6 +254,13 @@ class TaxYearAndFormFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        commonContactCallMain?.setOnClickListener {
+            commonCallAndMailFunction()
+        }
+        addnewfilingBack.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
 
         arguments?.let {
             val name = it.getString("businessName")

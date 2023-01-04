@@ -13,6 +13,7 @@ import com.example.twotwoninezero.R
 import com.example.twotwoninezero.base.BaseFragment
 import com.example.twotwoninezero.dashboard.bottomnavigation.home.adapter.FilterCategoryAdapter
 import com.example.twotwoninezero.service.FilterCategory
+import kotlinx.android.synthetic.main.common_header_loginsignup.*
 import kotlinx.android.synthetic.main.fragment_filing_filter.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -45,6 +46,11 @@ class FilingFilterFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        commonContactCallMain?.setOnClickListener {
+            commonCallAndMailFunction()
+        }
+
         filterCategoryList.clear()
         val i = FilterCategory("Business Name","bname")
         filterCategoryList.add(i)
@@ -114,32 +120,39 @@ class FilingFilterFragment : BaseFragment() {
         }
 
         filterSearch.setOnClickListener {
-
-            if (filterFromDate.text.toString().isNullOrEmpty()
-                &&filterToDate.text.toString().isNullOrEmpty()
-                &&filterKeyWord.text.toString().isNullOrEmpty()
-                &&filterSearchCategory.text.toString().isNullOrEmpty()){
-                findNavController().navigate(FilingFilterFragmentDirections.actionFilingFilterFragmentToHomeScreenFragment(
-                    "","","","","","","","","NO"
-                ))
-            }else{
-                var listType=""
-                if (HomeScreenFragment.requestType.equals("active")){
-                      listType="archive"
+            if (isOnline()) {
+                if (filterFromDate.text.toString().isNullOrEmpty()
+                    &&filterToDate.text.toString().isNullOrEmpty()
+                    &&filterKeyWord.text.toString().isNullOrEmpty()
+                    &&filterSearchCategory.text.toString().isNullOrEmpty()){
+                    findNavController().navigate(FilingFilterFragmentDirections.actionFilingFilterFragmentToHomeScreenFragment(
+                        "","","","","","","","","NO"
+                    ))
                 }else{
-                    listType="active"
-                }
-                findNavController().navigate(FilingFilterFragmentDirections.actionFilingFilterFragmentToHomeScreenFragment(
-                    filterSearchCategoryId,filterFromDateValue,"",filterKeyWord.text.toString(),
-                    "0", listType,"0",filterToDateValue,"YES"
-                ))
+                    var listType=""
+                    if (HomeScreenFragment.requestType.equals("active")){
+                        listType="archive"
+                    }else{
+                        listType="active"
+                    }
+                    findNavController().navigate(FilingFilterFragmentDirections.actionFilingFilterFragmentToHomeScreenFragment(
+                        filterSearchCategoryId,filterFromDateValue,"",filterKeyWord.text.toString(),
+                        "0", listType,"0",filterToDateValue,"YES"
+                    ))
 
+                }
+
+            }else{
+                showToast(getString(R.string.internet_required))
             }
+
 
 /*
           val fi =  FilingFilterRequest(filterSearchCategoryId,filterFromDateValue,"",filterKeyWord.text.toString(),"10","active","0",filterToDateValue)
             FilingFilterRequest("","","","","","","","")
            // homeViewModel.filterHomeScreenFiling(fi)*/
+
+
         }
 
     }

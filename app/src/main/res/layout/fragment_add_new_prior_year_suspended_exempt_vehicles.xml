@@ -216,10 +216,6 @@
 
     </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
-
-    </LinearLayout>
-    </androidx.cardview.widget.CardView>
-    </androidx.core.widget.NestedScrollView>
         <LinearLayout
             android:padding="@dimen/dp_5"
             android:layout_marginTop="@dimen/dp_40"
@@ -231,10 +227,26 @@
             android:layout_height="wrap_content">
 
             <TextView
+                android:id="@+id/addNewPriorYearCancel"
+                android:fontFamily="@font/roboto_medium"
+                android:textSize="@dimen/page_button_textsize"
+
+                android:layout_marginEnd="@dimen/dp_20"
+                android:drawablePadding="@dimen/dp_20"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:padding="15dp"
+                android:background="@drawable/button_withwhite_roundcoronor_color"
+                android:drawableStart="@drawable/addbusiness_cancelbuttonicon"
+                android:text="Cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
                 android:id="@+id/addNewPriorYearSubmit"
                 android:fontFamily="@font/roboto_medium"
                 android:textSize="@dimen/page_button_textsize"
-                android:layout_marginEnd="@dimen/dp_20"
+                android:layout_marginStart="@dimen/dp_20"
                 android:drawablePadding="@dimen/dp_20"
                 android:gravity="center"
                 android:layout_gravity="center"
@@ -246,21 +258,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
-            <TextView
-                android:id="@+id/addNewPriorYearCancel"
-                android:fontFamily="@font/roboto_medium"
-                android:textSize="@dimen/page_button_textsize"
-                android:layout_marginStart="@dimen/dp_20"
-                android:drawablePadding="@dimen/dp_20"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:padding="15dp"
-                android:background="@drawable/button_withwhite_roundcoronor_color"
-                android:drawableStart="@drawable/addbusiness_cancelbuttonicon"
-                android:text="Cancel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
         </LinearLayout>
+    </LinearLayout>
+    </androidx.cardview.widget.CardView>
+    </androidx.core.widget.NestedScrollView>
+
     </LinearLayout>
 </FrameLayout>

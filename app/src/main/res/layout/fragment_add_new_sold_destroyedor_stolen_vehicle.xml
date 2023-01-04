@@ -277,14 +277,10 @@
 
 
 
-
-    </LinearLayout>
-    </androidx.cardview.widget.CardView>
-    </androidx.core.widget.NestedScrollView>
-
         <LinearLayout
             android:background="@color/transparant"
             android:padding="@dimen/dp_5"
+            android:layout_marginTop="@dimen/dp_20"
             android:layout_marginBottom="@dimen/dp_20"
             android:gravity="center"
             android:layout_gravity="center"
@@ -326,5 +322,10 @@
 
 
         </LinearLayout>
+    </LinearLayout>
+    </androidx.cardview.widget.CardView>
+    </androidx.core.widget.NestedScrollView>
+
+
     </LinearLayout>
 </FrameLayout>

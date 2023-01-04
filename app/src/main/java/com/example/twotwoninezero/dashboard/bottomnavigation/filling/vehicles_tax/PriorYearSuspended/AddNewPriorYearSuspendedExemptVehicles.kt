@@ -14,6 +14,7 @@ import com.example.twotwoninezero.dashboard.bottomnavigation.filling.model.Filli
 import com.example.twotwoninezero.dashboard.bottomnavigation.filling.taxyear_and_forms.TaxYearAndFormFragment
 import com.example.twotwoninezero.service.SavePriorSuspendedRequest
 import com.example.twotwoninezero.service.UpdatePriorSuspendedRequest
+import kotlinx.android.synthetic.main.common_header_loginsignup.*
 import kotlinx.android.synthetic.main.fragment_add_new_prior_year_suspended_exempt_vehicles.*
 import kotlinx.android.synthetic.main.fragment_add_new_reporting_suspended_exempt_vehicles.*
 import java.text.SimpleDateFormat
@@ -118,7 +119,9 @@ class AddNewPriorYearSuspendedExemptVehicles : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
+        commonContactCallMain?.setOnClickListener {
+            commonCallAndMailFunction()
+        }
 
         addNewPriorYearDateOfTransfer?.isFocusable = false
         addNewPriorYearDateOfTransfer?.isClickable = true
@@ -127,7 +130,7 @@ class AddNewPriorYearSuspendedExemptVehicles : BaseFragment() {
         arguments?.let {
 
             id = it.getString("id").toString()
-            id = it.getString("filingId").toString()
+            filingId = it.getString("filingId").toString()
 
             if (id != null && !id.isNullOrEmpty()) {
                 mFillingViewModel.getPriorSuspendedById(id!!, filingId.toString())

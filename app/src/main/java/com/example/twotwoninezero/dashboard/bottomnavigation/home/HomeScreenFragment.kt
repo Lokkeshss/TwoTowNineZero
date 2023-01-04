@@ -1,6 +1,7 @@
 package com.example.twotwoninezero.dashboard.bottomnavigation.home
 
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.os.Environment
 import android.view.LayoutInflater
@@ -21,10 +22,14 @@ import com.example.twotwoninezero.dashboard.bottomnavigation.home.adapter.HomeSc
 import com.example.twotwoninezero.dashboard.bottomnavigation.home.model.HomeViewModel
 import com.example.twotwoninezero.service.FilingFilterRequest
 import com.example.twotwoninezero.service.HomeScreenGetFilingsByUserIdRequest
+import com.example.twotwoninezero.service.HomeScreenListResponse
+import kotlinx.android.synthetic.main.common_header_loginsignup.*
 import kotlinx.android.synthetic.main.fragment_home_screen.*
 import java.io.File
 
 class HomeScreenFragment : BaseFragment() {
+    private var setpageNationArchiveList: ArrayList<HomeScreenListResponse>? = ArrayList()
+    private var setpageNationActiveList: ArrayList<HomeScreenListResponse>? = ArrayList()
     private var mLayoutManager: LinearLayoutManager? = null
     private lateinit var homeViewModel: HomeViewModel
     var mHomeScreenAdapterActivate: HomeScreenAdapterActivate?=null
@@ -77,9 +82,9 @@ class HomeScreenFragment : BaseFragment() {
                         homeScreenRV?.layoutManager = mLayoutManager
                         homeScreenRV?.adapter = mHomeScreenAdapterArchive
                     }else{
-                        mHomeScreenAdapterArchive?.setpageNation(it)
-                       // mHomeScreenAdapterArchive?.notifyItemChanged(DeleterequestCount)
-                        mHomeScreenAdapterArchive?.notifyDataSetChanged()
+                        setpagnationArchiveAdapter(it)
+
+
                     }
                 }
 
@@ -97,14 +102,19 @@ class HomeScreenFragment : BaseFragment() {
                             println("totalItemCount "+lastVisibleItemPosition)
 
                            // DeleterequestCount= DeleterequestCount+10
-                            DeleterequestOffSetCount+=1
-                            if (requestType.equals("archive")){
-                                val i= HomeScreenGetFilingsByUserIdRequest(DeleterequestCount,requestType,DeleterequestOffSetCount)
-                                homeViewModel.getFilingsByUserId(i,requestType)
+                            if (isOnline()) {
+                                DeleterequestOffSetCount+=1
+                                if (requestType.equals("archive")){
+                                    val i= HomeScreenGetFilingsByUserIdRequest(DeleterequestCount,requestType,DeleterequestOffSetCount)
+                                    homeViewModel.getFilingsByUserId(i,requestType)
+                                }else{
+                                    val i= HomeScreenGetFilingsByUserIdRequest(ActiverequestCount,requestType,ActiverequestOffSetCount)
+                                    homeViewModel.getFilingsByUserId(i,requestType)
+                                }
                             }else{
-                                val i= HomeScreenGetFilingsByUserIdRequest(ActiverequestCount,requestType,ActiverequestOffSetCount)
-                                homeViewModel.getFilingsByUserId(i,requestType)
+                                showToast(getString(R.string.internet_required))
                             }
+
 
 
                         }
@@ -146,9 +156,8 @@ class HomeScreenFragment : BaseFragment() {
                     homeScreenRV?.layoutManager = mLayoutManager
                     homeScreenRV?.adapter = mHomeScreenAdapterActivate
                 }else{
-                    mHomeScreenAdapterActivate?.setpageNation(it)
-                   // mHomeScreenAdapterActivate?.notifyItemChanged(ActiverequestCount)
-                    mHomeScreenAdapterActivate?.notifyDataSetChanged()
+                    setpagnationActivateAdapter(it)
+
                 }
             }
 
@@ -165,14 +174,20 @@ class HomeScreenFragment : BaseFragment() {
                             println("totalItemCount "+totalItemCount)
                             println("totalItemCount "+lastVisibleItemPosition)
                            // ActiverequestCount = ActiverequestCount+10
-                            ActiverequestOffSetCount+=1
-                            if (requestType.equals("archive")){
-                                val i= HomeScreenGetFilingsByUserIdRequest(DeleterequestCount,requestType,DeleterequestOffSetCount)
-                                homeViewModel.getFilingsByUserId(i,requestType)
+                            if (isOnline()) {
+
+                                ActiverequestOffSetCount+=1
+                                if (requestType.equals("archive")){
+                                    val i= HomeScreenGetFilingsByUserIdRequest(DeleterequestCount,requestType,DeleterequestOffSetCount)
+                                    homeViewModel.getFilingsByUserId(i,requestType)
+                                }else{
+                                    val i= HomeScreenGetFilingsByUserIdRequest(ActiverequestCount,requestType,ActiverequestOffSetCount)
+                                    homeViewModel.getFilingsByUserId(i,requestType)
+                                }
                             }else{
-                                val i= HomeScreenGetFilingsByUserIdRequest(ActiverequestCount,requestType,ActiverequestOffSetCount)
-                                homeViewModel.getFilingsByUserId(i,requestType)
+                                showToast(getString(R.string.internet_required))
                             }
+
 
 
                         }
@@ -186,13 +201,18 @@ class HomeScreenFragment : BaseFragment() {
 
                     showToast(it.message)
                     customDialog?.dismiss()
-                    if (requestType.equals("archive")){
-                        val i= HomeScreenGetFilingsByUserIdRequest(DeleterequestCount,requestType,DeleterequestOffSetCount)
-                        homeViewModel.getFilingsByUserId(i,requestType)
+                    if (isOnline()) {
+                        if (requestType.equals("archive")){
+                            val i= HomeScreenGetFilingsByUserIdRequest(DeleterequestCount,requestType,DeleterequestOffSetCount)
+                            homeViewModel.getFilingsByUserId(i,requestType)
+                        }else{
+                            val i= HomeScreenGetFilingsByUserIdRequest(ActiverequestCount,requestType,ActiverequestOffSetCount)
+                            homeViewModel.getFilingsByUserId(i,requestType)
+                        }
                     }else{
-                        val i= HomeScreenGetFilingsByUserIdRequest(ActiverequestCount,requestType,ActiverequestOffSetCount)
-                        homeViewModel.getFilingsByUserId(i,requestType)
+                        showToast(getString(R.string.internet_required))
                     }
+
 
 
                 }else{
@@ -204,13 +224,20 @@ class HomeScreenFragment : BaseFragment() {
 
                     showToast(it.message)
                     customDialog?.dismiss()
-                    if (requestType.equals("archive")){
+                    if (isOnline()) {
+
+                        if (requestType.equals("archive")){
                         val i= HomeScreenGetFilingsByUserIdRequest(DeleterequestCount,requestType,DeleterequestOffSetCount)
                         homeViewModel.getFilingsByUserId(i,requestType)
                     }else{
                         val i= HomeScreenGetFilingsByUserIdRequest(ActiverequestCount,requestType,ActiverequestOffSetCount)
                         homeViewModel.getFilingsByUserId(i,requestType)
                     }
+
+                    }else{
+                        showToast(getString(R.string.internet_required))
+                    }
+
                    /* val i= HomeScreenGetFilingsByUserIdRequest(10,requestType,0)
                     homeViewModel.getFilingsByUserId(i,requestType)*/
                 }else{
@@ -222,6 +249,24 @@ class HomeScreenFragment : BaseFragment() {
             showToast(it.irsRejectArray.get(0).toString())
         })
     }
+
+    private fun setpagnationActivateAdapter(it: List<HomeScreenListResponse>) {
+
+        setpageNationActiveList!!.addAll(it)
+        mHomeScreenAdapterActivate?.setpageNation(setpageNationActiveList!!)
+        // mHomeScreenAdapterActivate?.notifyItemChanged(ActiverequestCount)
+        mHomeScreenAdapterActivate?.notifyDataSetChanged()
+    }
+
+    private fun setpagnationArchiveAdapter(it: List<HomeScreenListResponse>) {
+
+        setpageNationArchiveList!!.addAll(it)
+        mHomeScreenAdapterArchive?.setpageNation(setpageNationArchiveList!!)
+        // mHomeScreenAdapterArchive?.notifyItemChanged(DeleterequestCount)
+        mHomeScreenAdapterArchive?.notifyDataSetChanged()
+
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -241,6 +286,10 @@ class HomeScreenFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        commonContactCallMain?.setOnClickListener {
+            commonCallAndMailFunction()
+        }
+
         arguments?.let {
 
             val category = it.getString("category")
@@ -256,15 +305,25 @@ class HomeScreenFragment : BaseFragment() {
             if (usethis != null && !usethis.isNullOrEmpty() && usethis.equals("YES")) {
                 val fi =  FilingFilterRequest(category.toString(),fromDate.toString(),isPartial.toString(),keyword.toString(),limit.toString(),requestType
                     ,offset.toString(),toDate.toString())
-                 homeViewModel.filterHomeScreenFiling(fi,requestType)
-            }else{
-                if (requestType.equals("archive")){
-                    val i= HomeScreenGetFilingsByUserIdRequest(DeleterequestCount,requestType,DeleterequestOffSetCount)
-                    homeViewModel.getFilingsByUserId(i,requestType)
+                if (isOnline()) {
+                    homeViewModel.filterHomeScreenFiling(fi,requestType)
                 }else{
-                    val i= HomeScreenGetFilingsByUserIdRequest(ActiverequestCount,requestType,ActiverequestOffSetCount)
-                    homeViewModel.getFilingsByUserId(i,requestType)
+                    showToast(getString(R.string.internet_required))
                 }
+
+            }else{
+                if (isOnline()) {
+                    if (requestType.equals("archive")){
+                        val i= HomeScreenGetFilingsByUserIdRequest(DeleterequestCount,requestType,DeleterequestOffSetCount)
+                        homeViewModel.getFilingsByUserId(i,requestType)
+                    }else{
+                        val i= HomeScreenGetFilingsByUserIdRequest(ActiverequestCount,requestType,ActiverequestOffSetCount)
+                        homeViewModel.getFilingsByUserId(i,requestType)
+                    }
+                }else{
+                    showToast(getString(R.string.internet_required))
+                }
+
 
               /*  val i= HomeScreenGetFilingsByUserIdRequest(10,requestType,0)
                 homeViewModel.getFilingsByUserId(i,requestType)*/
@@ -306,28 +365,39 @@ class HomeScreenFragment : BaseFragment() {
         }
 
         textView2.setOnClickListener {
-            downloadFile("lokkeshfilepdf")
+            if (isOnline()) {
+                downloadFile("lokkeshfilepdf")
+            }else{
+                showToast(getString(R.string.internet_required))
+            }
+
         }
 
         activeORarchievFilingList.setOnClickListener {
 
-            if (requestType.equals("active")){
-                green()
-                requestType="archive"
-                archiveOrActiveText.setText("Activate Filing")
+            if (isOnline()) {
+                if (requestType.equals("active")){
+                    green()
+                    requestType="archive"
+                    archiveOrActiveText.setText("Activate Filing")
+                }else{
+                    blue()
+                    requestType="active"
+                    archiveOrActiveText.setText("Archived Filing")
+                }
+
+                if (requestType.equals("archive")){
+                    val i= HomeScreenGetFilingsByUserIdRequest(DeleterequestCount,requestType,DeleterequestOffSetCount)
+                    homeViewModel.getFilingsByUserId(i,requestType)
+                }else{
+                    val i= HomeScreenGetFilingsByUserIdRequest(ActiverequestCount,requestType,ActiverequestOffSetCount)
+                    homeViewModel.getFilingsByUserId(i,requestType)
+                }
             }else{
-                blue()
-                requestType="active"
-                archiveOrActiveText.setText("Archived Filing")
+                showToast(getString(R.string.internet_required))
             }
 
-            if (requestType.equals("archive")){
-                val i= HomeScreenGetFilingsByUserIdRequest(DeleterequestCount,requestType,DeleterequestOffSetCount)
-                homeViewModel.getFilingsByUserId(i,requestType)
-            }else{
-                val i= HomeScreenGetFilingsByUserIdRequest(ActiverequestCount,requestType,ActiverequestOffSetCount)
-                homeViewModel.getFilingsByUserId(i,requestType)
-            }
+
 
 /*            val i= HomeScreenGetFilingsByUserIdRequest(10,requestType,0)
             homeViewModel.getFilingsByUserId(i,requestType)*/
@@ -343,7 +413,7 @@ class HomeScreenFragment : BaseFragment() {
             .setView(dialogView)
             .show()
         customDialog?.setCancelable(false)
-
+        customDialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         val cancel = dialogView.findViewById<TextView>(R.id.cancel)
         val delete = dialogView.findViewById<TextView>(R.id.delete)
         val deleteText = dialogView.findViewById<TextView>(R.id.textfields)
@@ -364,11 +434,17 @@ class HomeScreenFragment : BaseFragment() {
 
         delete.setOnClickListener {
 
-            if (type.equals("activate")){
-                homeViewModel.reactivateFiling(filingId)
+            if (isOnline()) {
+                if (type.equals("activate")){
+                    homeViewModel.reactivateFiling(filingId)
+                }else{
+                    homeViewModel.deleteFiling(filingId)
+                }
             }else{
-                homeViewModel.deleteFiling(filingId)
+                showToast(getString(R.string.internet_required))
             }
+
+
 
         }
     }

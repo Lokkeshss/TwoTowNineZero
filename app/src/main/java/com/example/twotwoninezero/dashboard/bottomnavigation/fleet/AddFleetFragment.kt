@@ -49,8 +49,8 @@ class AddFleetFragment : BaseFragment() {
     var commonContactCallMain: ImageView?=null
     var notification: ImageView?=null
 
-    var fleetforLogginValue:String="no"
-    var fleetAgriVehicleValue:String="no"
+    var fleetforLogginValue:String="NO"
+    var fleetAgriVehicleValue:String="NO"
 
     override fun initViewModel() {
         mFleetViewModel = ViewModelProvider(
@@ -127,7 +127,12 @@ class AddFleetFragment : BaseFragment() {
             if (id != null && id.isNotEmpty()) {
                 addfleetBusinessNameArgument=businessName
                 addfleetBusinessNameweight=weight
-                mFleetViewModel.getFleetById(id)
+                if (isOnline()) {
+                    mFleetViewModel.getFleetById(id)
+                }else{
+                    showToast(getString(R.string.internet_required))
+                }
+
             }
         }
 
@@ -136,24 +141,34 @@ class AddFleetFragment : BaseFragment() {
             commonCallAndMailFunction()
         }
 
+        if (isOnline()) {
+            mFleetViewModel.getbusinessname()
+        }else{
+            showToast(getString(R.string.internet_required))
+        }
 
-        mFleetViewModel.getbusinessname()
-        mFleetViewModel.gettaxableweight()
+        if (isOnline()) {
+            mFleetViewModel.gettaxableweight()
+        }else{
+            showToast(getString(R.string.internet_required))
+        }
+
+
 
         fleetForLogging?.setOnCheckedChangeListener { buttonView, isChecked ->
 
             if (isChecked){
-                fleetforLogginValue="yes"
+                fleetforLogginValue="YES"
             }else{
-                fleetforLogginValue="no"
+                fleetforLogginValue="NO"
             }
         }
 
         fleetAgriVehicle?.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked){
-                fleetAgriVehicleValue="yes"
+                fleetAgriVehicleValue="YES"
             }else{
-                fleetAgriVehicleValue="no"
+                fleetAgriVehicleValue="NO"
             }
 
         }
@@ -187,19 +202,26 @@ class AddFleetFragment : BaseFragment() {
             showToast("Please Select Business Name")
         }else if (addFleetVinNo?.text.toString().isNullOrEmpty()){
             showToast("Please Enter VIN Number")
+        }else if (addFleetVinNo?.text.toString().length<17){
+            showToast("VIN should be 17 or 19 digit")
         }else if (addfleetSelectWeight?.text.toString().isNullOrEmpty()){
             showToast("Please Select Taxable Weight")
         }else{
-            val i = AddNewFleetBusinessRequest(addfleetBusinessNameId.toString(),addfleetBusinessName?.text.toString(),"",fleetAgriVehicleValue,fleetforLogginValue,
-                addfleetBusinessName?.text.toString(), addFleetVinNo?.text.toString(),addfleetSelectWeightId.toString())
-            val gson = Gson()
-            val jsonbranch: String = gson.toJson(i)
-            println("jsonbranch business  "+jsonbranch)
-            if (s.equals("Save")){
-                mFleetViewModel.addNewFleetBusinessRequest(i)
+            if (isOnline()) {
+                val i = AddNewFleetBusinessRequest(addfleetBusinessNameId.toString(),addfleetBusinessName?.text.toString(),"",fleetAgriVehicleValue,fleetforLogginValue,
+                    addfleetBusinessName?.text.toString(), addFleetVinNo?.text.toString(),addfleetSelectWeightId.toString())
+                val gson = Gson()
+                val jsonbranch: String = gson.toJson(i)
+                println("jsonbranch business  "+jsonbranch)
+                if (s.equals("Save")){
+                    mFleetViewModel.addNewFleetBusinessRequest(i)
+                }else{
+                    mFleetViewModel.updateFleetlineItem(addfleetId.toString(),i)
+                }
             }else{
-                mFleetViewModel.updateFleetlineItem(addfleetId.toString(),i)
+                showToast(getString(R.string.internet_required))
             }
+
         }
     }
 

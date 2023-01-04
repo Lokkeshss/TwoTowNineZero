@@ -1,5 +1,7 @@
 package com.example.twotwoninezero.dashboard.bottomnavigation.fleet
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -51,7 +53,12 @@ class FleetScreenFragment : BaseFragment() {
                 showToast(it.message)
                 customDialog?.dismiss()
                 if (!edt_tv_searchByBusinessNameId.isNullOrEmpty()){
-                    mFleetViewModel.getfleetlist(edt_tv_searchByBusinessNameId!!)
+                    if (isOnline()) {
+                        mFleetViewModel.getfleetlist(edt_tv_searchByBusinessNameId!!)
+                    }else{
+                        showToast(getString(R.string.internet_required))
+                    }
+
                 }
             }else{
                 customDialog?.dismiss()
@@ -96,7 +103,7 @@ class FleetScreenFragment : BaseFragment() {
             .setView(dialogView)
             .show()
         customDialog?.setCancelable(false)
-
+        customDialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         val cancel = dialogView.findViewById<TextView>(R.id.cancel)
         val delete = dialogView.findViewById<TextView>(R.id.delete)
         val deleteText = dialogView.findViewById<TextView>(R.id.textfields)
@@ -108,7 +115,12 @@ class FleetScreenFragment : BaseFragment() {
         }
 
         delete.setOnClickListener {
-            mFleetViewModel.deleteFleetlineItem(fleetId)
+            if (isOnline()) {
+                mFleetViewModel.deleteFleetlineItem(fleetId)
+            }else{
+                showToast(getString(R.string.internet_required))
+            }
+
             customDialog?.dismiss()
         }
 
@@ -132,10 +144,21 @@ class FleetScreenFragment : BaseFragment() {
 
         //  mFleetViewModel.getFleetById("")
         //  mFleetViewModel.getfleetlist("")
-        mFleetViewModel.getbusinessname()
-        if (!edt_tv_searchByBusinessNameId.isNullOrEmpty()){
-            mFleetViewModel.getfleetlist(edt_tv_searchByBusinessNameId!!)
+        if (isOnline()) {
+            mFleetViewModel.getbusinessname()
+        }else{
+            showToast(getString(R.string.internet_required))
         }
+
+        if (isOnline()) {
+            if (!edt_tv_searchByBusinessNameId.isNullOrEmpty()){
+                mFleetViewModel.getfleetlist(edt_tv_searchByBusinessNameId!!)
+            }
+        }else{
+            showToast(getString(R.string.internet_required))
+        }
+
+
 
         commonContactCallMain?.setOnClickListener {
             commonCallAndMailFunction()
@@ -188,7 +211,13 @@ class FleetScreenFragment : BaseFragment() {
         mFleetBusinessnameSpinnerAdapter= FleetBusinessnameSpinnerAdapter(mgetBusinessNameList){ businessname, id->
             edt_tv_searchByBusinessName?.setText(businessname)
             edt_tv_searchByBusinessNameId=id
-            mFleetViewModel.getfleetlist(edt_tv_searchByBusinessNameId!!)
+            if (isOnline()) {
+                mFleetViewModel.getfleetlist(edt_tv_searchByBusinessNameId!!)
+            }else{
+                showToast(getString(R.string.internet_required))
+            }
+
+
             customDialog?.dismiss()
         }
 

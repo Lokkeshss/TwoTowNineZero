@@ -12,6 +12,7 @@ import com.example.twotwoninezero.base.BaseFragment
 import com.example.twotwoninezero.dashboard.bottomnavigation.business.model.BusinessViewModel
 import com.example.twotwoninezero.dashboard.bottomnavigation.profile.model.ProfileViewModel
 import com.example.twotwoninezero.service.UpdateMyAccountDetailsRequest
+import kotlinx.android.synthetic.main.common_header_loginsignup.*
 import kotlinx.android.synthetic.main.fragment_edit_my_profile.*
 
 
@@ -56,7 +57,16 @@ class EditMyProfileFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mProfileViewModel.getMyAccountDetails()
+        if (isOnline()) {
+            mProfileViewModel.getMyAccountDetails()
+        }else{
+            showToast(getString(R.string.internet_required))
+        }
+
+        commonContactCallMain?.setOnClickListener {
+            commonCallAndMailFunction()
+        }
+
 
         editProfilefragmentBack.setOnClickListener {
             requireActivity().onBackPressed()
@@ -85,7 +95,13 @@ class EditMyProfileFragment : BaseFragment() {
                         "N","", "N","","","",editProfileContactNumber.text.toString(),editProfileZipCode.text.toString(),
                         "","")
 
-                    mProfileViewModel.updateUser(i)
+                    if (isOnline()) {
+                        mProfileViewModel.updateUser(i)
+                    }else{
+                        showToast(getString(R.string.internet_required))
+                    }
+
+
                 }
 
 

@@ -18,6 +18,7 @@ import com.example.twotwoninezero.dashboard.bottomnavigation.filling.model.Filli
 import com.example.twotwoninezero.dashboard.bottomnavigation.filling.taxyear_and_forms.TaxYearAndFormFragment
 import com.example.twotwoninezero.dashboard.bottomnavigation.filling.vehicles_tax.lowmileagevehicles.LowMileageVehicleFragmentDirections
 import com.example.twotwoninezero.dashboard.bottomnavigation.filling.vehicles_tax.solddestroyedstolenvehicle.SoldDestroyedorStolenVehicleFragmentDirections
+import kotlinx.android.synthetic.main.common_header_loginsignup.*
 import kotlinx.android.synthetic.main.fragment_credit_for_an_overpayment_of_tax.*
 import kotlinx.android.synthetic.main.fragment_sold_destroyedor_stolen_vehicle.*
 import kotlinx.android.synthetic.main.progress_bar_view.*
@@ -88,6 +89,9 @@ class CreditForAnOverpaymentOfTaxFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        commonContactCallMain?.setOnClickListener {
+            commonCallAndMailFunction()
+        }
 
         arguments?.let {
             filingId= it.getString("filingId").toString()

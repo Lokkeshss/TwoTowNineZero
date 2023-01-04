@@ -165,6 +165,18 @@ data class UpdateConsentDisclosureResponse(
     val message: String,
     val messageList: List<String>,
 )
+
+data class SaveConsentSubmitResponse(
+    val category: String,
+    val consentDisclosure: String,
+    val couponCode: String,
+    val fromDate: String,
+    val isPartial: String,
+    val keyword: String,
+    val prefilingContent: String,
+    val submitStatus: String,
+    val toDate: String
+)
 data class DeleteTGWIncreaseByIdResponse(
     val code: Int,
     val message: String,
@@ -612,7 +624,7 @@ data class GetSummaryDetailsByFilingIdResponse(
     val currentSuspended: List<CurrentSuspended>,
     val filingInfo: FilingInfo,
     val irsPayment: IrsPayment?,
-    val irsRejectArray: String,/*    val irsRejectArray: List<String>,*/
+    val irsRejectArray: List<String>,
     val lowMileage: List<LowMileage>,
     val mileageTotal: String,
     val priorSuspended: List<PriorSuspended>,

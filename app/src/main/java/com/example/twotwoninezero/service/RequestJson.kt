@@ -396,6 +396,9 @@ data class UpdateConsentDisclosureRequest(
     val consentDisclosure: String,
     val couponCode: String = ""
 )
+data class SaveConsentSubmit(
+    val consentDisclosure: String,
+)
 
 data class CaptureCCPaymentRequest(
     val accountNumber: String,
@@ -421,3 +424,5 @@ data class CaptureCCPaymentRequest(
     val state: String,
     val zipCode: String
 )
+
+

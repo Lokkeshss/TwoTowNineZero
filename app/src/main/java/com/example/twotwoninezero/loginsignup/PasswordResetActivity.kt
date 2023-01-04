@@ -14,6 +14,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.twotwoninezero.R
 import com.example.twotwoninezero.base.BaseActivity
+import com.example.twotwoninezero.common.showSuccessToast
 import com.example.twotwoninezero.dashboard.DashBoardActivity
 import com.example.twotwoninezero.loginsignup.model.SignUpViewModel
 import com.example.twotwoninezero.service.ForgotPasswordEmailRequest
@@ -70,9 +71,12 @@ class PasswordResetActivity : BaseActivity() {
             if (edt_email.text.toString().isNullOrEmpty()){
                 showMessage("Please Enter Register Email Id")
             }else{
-                val i = ForgotPasswordEmailRequest(edt_email.text.toString(),"email")
-                mSignUpViewModel.forgotPasswordFunction(i)
-
+                if (isOnline()) {
+                    val i = ForgotPasswordEmailRequest(edt_email.text.toString(),"email")
+                    mSignUpViewModel.forgotPasswordFunction(i)
+                }else{
+                    showToast(getString(R.string.internet_required))
+                }
             }
 
         }

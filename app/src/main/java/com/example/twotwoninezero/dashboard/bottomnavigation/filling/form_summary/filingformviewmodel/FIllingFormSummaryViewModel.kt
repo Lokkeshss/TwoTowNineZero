@@ -17,6 +17,7 @@ class FIllingFormSummaryViewModel: BaseViewModel() {
     var mupdateRejErrorDesc : MutableLiveData<Int> = MutableLiveData()
     var mSubmissionFeeResponse : MutableLiveData<SubmissionFeeResponse> = MutableLiveData()
     var mUpdateConsentDisclosureResponse : MutableLiveData<UpdateConsentDisclosureResponse> = MutableLiveData()
+    var mSaveConsentSubmitResponse : MutableLiveData<SaveConsentSubmitResponse> = MutableLiveData()
     var mGetPaymentDetResponse : MutableLiveData<GetPaymentDetResponse> = MutableLiveData()
     var mCaptureCCPaymentResponse : MutableLiveData<CaptureCCPaymentResponse> = MutableLiveData()
     var mGetCountry : MutableLiveData<List<GetCountryItem>> = MutableLiveData()
@@ -217,6 +218,25 @@ class FIllingFormSummaryViewModel: BaseViewModel() {
                 val loginResp = apiResponse?.data as UpdateConsentDisclosureResponse
                 Log.d(" API SUCCESS ", loginResp.toString())
                 mUpdateConsentDisclosureResponse.postValue(loginResp)
+                // println("loginResploginResp "+loginResp.toString())
+            }
+
+        }
+
+    }
+    fun saveConsentSubmit(filingId: String,i:SaveConsentSubmit) {
+
+        mIsLoading.postValue(true)
+        scope.launch {
+            val apiResponse = repository.saveConsentSubmit(filingId,i)
+            mIsLoading.postValue(false)
+            if (apiResponse?.error == true) {
+                Log.d("API Error", apiResponse?.msg.toString())
+                mFailureMessage.postValue(apiResponse?.msg)
+            } else {
+                val loginResp = apiResponse?.data as SaveConsentSubmitResponse
+                Log.d(" API SUCCESS ", loginResp.toString())
+                mSaveConsentSubmitResponse.postValue(loginResp)
                 // println("loginResploginResp "+loginResp.toString())
             }
 

@@ -99,6 +99,7 @@
             app:hintTextColor="@color/lightGray">
 
             <EditText
+                android:maxLength="19"
                 android:textAllCaps="true"
                 android:id="@+id/addFleetVinNo"
                 android:fontFamily="@font/roboto_regular"
@@ -173,15 +174,10 @@
     </com.google.android.material.card.MaterialCardView>
 
 
-
-    </LinearLayout>
-    </androidx.cardview.widget.CardView>
-    </androidx.core.widget.NestedScrollView>
-
         <LinearLayout
             android:background="@color/transparant"
             android:padding="@dimen/dp_5"
-            android:layout_marginTop="@dimen/dp_5"
+            android:layout_marginTop="@dimen/dp_10"
             android:layout_marginBottom="@dimen/dp_20"
             android:gravity="center"
             android:layout_gravity="center"
@@ -219,6 +215,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
+    </LinearLayout>
+    </androidx.cardview.widget.CardView>
+    </androidx.core.widget.NestedScrollView>
+
+
     </LinearLayout>
 
 

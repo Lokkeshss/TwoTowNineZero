@@ -13,6 +13,7 @@ import com.example.twotwoninezero.base.BaseFragment
 import com.example.twotwoninezero.dashboard.bottomnavigation.profile.model.ProfileViewModel
 import com.example.twotwoninezero.loginsignup.LoginScreenActivity
 import com.example.twotwoninezero.service.ChangeLoginEmailRequest
+import kotlinx.android.synthetic.main.common_header_loginsignup.*
 import kotlinx.android.synthetic.main.fragment_change_login_email.*
 import kotlinx.android.synthetic.main.fragment_change_password.*
 import kotlinx.android.synthetic.main.fragment_edit_my_profile.*
@@ -63,7 +64,16 @@ class ChangeLoginEmailFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mProfileViewModel.getMyAccountDetails()
+        if (isOnline()) {
+            mProfileViewModel.getMyAccountDetails()
+        }else{
+            showToast(getString(R.string.internet_required))
+        }
+
+        commonContactCallMain?.setOnClickListener {
+            commonCallAndMailFunction()
+        }
+
         changeLoginEmailRegistered.isEnabled=false
 
 
@@ -82,7 +92,12 @@ class ChangeLoginEmailFragment : BaseFragment() {
         }else{
             val i = ChangeLoginEmailRequest(changeLoginEmailConfirm.text.toString(),changeLoginEmailRegistered.text.toString(),
                 changeLoginEmailNew.text.toString(),requestName)
-            mProfileViewModel.changeLoginEmail(i)
+            if (isOnline()) {
+                mProfileViewModel.changeLoginEmail(i)
+            }else{
+                showToast(getString(R.string.internet_required))
+            }
+
         }
 
         }

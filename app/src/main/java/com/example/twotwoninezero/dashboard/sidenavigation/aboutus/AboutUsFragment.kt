@@ -6,9 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.twotwoninezero.R
+import com.example.twotwoninezero.base.BaseFragment
 import kotlinx.android.synthetic.main.about_us.*
+import kotlinx.android.synthetic.main.common_header_loginsignup.*
 
-class AboutUsFragment : Fragment() {
+class AboutUsFragment : BaseFragment() {
+    override fun initViewModel() {
+
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +34,9 @@ class AboutUsFragment : Fragment() {
 
         aboutUsfragmentBack.setOnClickListener {
             requireActivity().onBackPressed()
+        }
+        commonContactCallMain?.setOnClickListener {
+            commonCallAndMailFunction()
         }
     }
 

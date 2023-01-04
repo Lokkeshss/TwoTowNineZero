@@ -13,6 +13,7 @@ import com.example.twotwoninezero.base.BaseFragment
 import com.example.twotwoninezero.dashboard.bottomnavigation.profile.model.ProfileViewModel
 import com.example.twotwoninezero.loginsignup.LoginScreenActivity
 import com.example.twotwoninezero.service.ChangePasswordRequest
+import kotlinx.android.synthetic.main.common_header_loginsignup.*
 import kotlinx.android.synthetic.main.fragment_change_password.*
 
 
@@ -56,6 +57,10 @@ class ChangePasswordFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        commonContactCallMain?.setOnClickListener {
+            commonCallAndMailFunction()
+        }
+
         changePasswordUpdate.setOnClickListener {
 
             if (changePasswordCurrentPassword.text.toString().isNullOrEmpty()){
@@ -76,7 +81,12 @@ class ChangePasswordFragment : BaseFragment() {
                 val i= ChangePasswordRequest(changePasswordConfirmPassword.text.toString(),
                     changePasswordCurrentPassword.text.toString(),
                     changePasswordNewPassword.text.toString())
-                mProfileViewModel.changePassword(i)
+                if (isOnline()) {
+                    mProfileViewModel.changePassword(i)
+                }else{
+                    showToast(getString(R.string.internet_required))
+                }
+
             }
         }
         changePasswordCancel.setOnClickListener {

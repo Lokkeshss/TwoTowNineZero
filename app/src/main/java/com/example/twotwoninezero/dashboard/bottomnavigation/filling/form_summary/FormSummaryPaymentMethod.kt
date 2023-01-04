@@ -64,7 +64,9 @@ class FormSummaryPaymentMethod : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
+        paymentBack.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
         arguments?.let{
             filingId = it.getString("filingId").toString()
 

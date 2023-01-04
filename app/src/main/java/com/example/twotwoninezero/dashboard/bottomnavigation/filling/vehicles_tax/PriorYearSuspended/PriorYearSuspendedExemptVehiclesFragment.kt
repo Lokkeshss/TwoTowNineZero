@@ -21,6 +21,7 @@ import com.example.twotwoninezero.dashboard.bottomnavigation.filling.taxyear_and
 import com.example.twotwoninezero.dashboard.bottomnavigation.filling.vehicles_tax.ReportingSuspended.ReportingSuspendedExemptVehicleFragmentDirections
 import com.example.twotwoninezero.dashboard.bottomnavigation.filling.vehicles_tax.TaxableVehicleInformation.TaxableVehicleInformationFragmentDirections
 import com.example.twotwoninezero.dashboard.bottomnavigation.filling.vehicles_tax.lowmileagevehicles.LowMileageVehicleFragmentDirections
+import kotlinx.android.synthetic.main.common_header_loginsignup.*
 import kotlinx.android.synthetic.main.fragment_prior_year_suspended_exempt_vehicles.*
 import kotlinx.android.synthetic.main.fragment_reporting_suspended_exempt_vehicle.*
 import kotlinx.android.synthetic.main.progress_bar_view.*
@@ -125,6 +126,10 @@ class PriorYearSuspendedExemptVehiclesFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+        commonContactCallMain?.setOnClickListener {
+            commonCallAndMailFunction()
+        }
 
         arguments?.let {
             filingId= it.getString("filingId").toString()

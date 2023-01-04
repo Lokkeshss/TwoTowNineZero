@@ -30,8 +30,10 @@ class BusinessListAdapter(var datalist: List<AllAndSearchBusinessListResponse>, 
         val data=datalist[position]
         holder.businessName.text=data.businessName
         holder.business_type.text=data.businessTypeName
-        holder.business_ein.text=data.ein
-        holder.business_phone.text=data.phone
+        holder.business_ein.text=data.ein.replaceRange(2,2,"-")
+        val first= data.phone.replaceRange(3,3,"-")
+        val second= first.replaceRange(7,7,"-")
+        holder.business_phone.text=second
         holder.businessDelete.setOnClickListener {
             OnMenuClick.invoke(data.id.toString(),data.businessName,0)
         }

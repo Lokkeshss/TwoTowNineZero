@@ -133,15 +133,16 @@
                     android:hint="Card Number"
                     app:hintTextColor="@color/lightGray">
 
-                    <EditText
+                    <com.example.twotwoninezero.common.FormattedNumberEditText
                         android:textAllCaps="true"
                         android:id="@+id/paymentOptionCardNumber"
                         android:fontFamily="@font/roboto_regular"
                         style="@style/loginTextInputEditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="phone"
-                        android:maxLength="16"
+                        android:digits="01234 56789"
+                        android:inputType="number"
+                        android:maxLength="19"
                         android:text="" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -152,7 +153,7 @@
                     style="@style/loginTextInputLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Expiration Date"
+                    android:hint="Expiration Date(MM/YY)"
                     app:hintTextColor="@color/lightGray">
 
                     <EditText
@@ -161,6 +162,7 @@
                         style="@style/loginTextInputEditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:maxLength="5"
                         android:inputType="phone"
                         android:text="" />
                 </com.google.android.material.textfield.TextInputLayout>

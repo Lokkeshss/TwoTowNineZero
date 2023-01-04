@@ -34,6 +34,7 @@ import com.example.twotwoninezero.dashboard.bottomnavigation.filling.taxyear_and
 import com.example.twotwoninezero.service.SaveLowMileageVehicleRequest
 import com.example.twotwoninezero.service.TaxableWeightResponse
 import com.example.twotwoninezero.service.UpdateLowMileageVehicleRequest
+import kotlinx.android.synthetic.main.common_header_loginsignup.*
 import kotlinx.android.synthetic.main.fragment_add_new_low_mileage_vehicle.*
 import kotlinx.android.synthetic.main.fragment_add_new_sold_destroyedor_stolen_vehicle.*
 import java.io.ByteArrayOutputStream
@@ -119,6 +120,13 @@ class AddNewLowMileageVehicleFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        commonContactCallMain?.setOnClickListener {
+            commonCallAndMailFunction()
+        }
+
+        lowMileageVehicleCancel.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
 
         arguments?.let {
 

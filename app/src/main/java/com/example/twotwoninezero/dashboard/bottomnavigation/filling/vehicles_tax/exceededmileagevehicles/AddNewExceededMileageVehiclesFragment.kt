@@ -16,6 +16,7 @@ import com.example.twotwoninezero.common.TaxableWeightSpinnerAdapter
 import com.example.twotwoninezero.dashboard.bottomnavigation.filling.model.FillingViewModel
 import com.example.twotwoninezero.service.SaveUpdateExceededMileageRequest
 import com.example.twotwoninezero.service.TaxableWeightResponse
+import kotlinx.android.synthetic.main.common_header_loginsignup.*
 import kotlinx.android.synthetic.main.fragment_add_new_exceeded_mileage_vehicles.*
 
 
@@ -90,7 +91,13 @@ class AddNewExceededMileageVehiclesFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        commonContactCallMain?.setOnClickListener {
+            commonCallAndMailFunction()
+        }
 
+        exceededMileageVechicleCancel.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
 
         arguments?.let {
 

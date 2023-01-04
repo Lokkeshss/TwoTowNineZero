@@ -18,6 +18,7 @@ import com.example.twotwoninezero.dashboard.bottomnavigation.filling.adapter.Tax
 import com.example.twotwoninezero.dashboard.bottomnavigation.filling.adapter.TaxableVehicleInfoAdapter
 import com.example.twotwoninezero.dashboard.bottomnavigation.filling.model.FillingViewModel
 import com.example.twotwoninezero.dashboard.bottomnavigation.filling.vehicles_tax.TaxableVehicleInformation.TaxableVehicleInformationFragmentDirections
+import kotlinx.android.synthetic.main.common_header_loginsignup.*
 import kotlinx.android.synthetic.main.fragment_taxable_gross_weight_increase.*
 import kotlinx.android.synthetic.main.fragment_taxable_vehicle_information.*
 import kotlinx.android.synthetic.main.progress_bar_view.*
@@ -108,6 +109,9 @@ class TaxableGrossWeightIncreaseFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        commonContactCallMain?.setOnClickListener {
+            commonCallAndMailFunction()
+        }
 
         arguments?.let {
             filingId= it.getString("filingId").toString()

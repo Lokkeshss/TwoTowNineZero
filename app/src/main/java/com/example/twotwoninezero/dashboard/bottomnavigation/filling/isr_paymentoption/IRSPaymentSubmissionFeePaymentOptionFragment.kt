@@ -1,6 +1,8 @@
 package com.example.twotwoninezero.dashboard.bottomnavigation.filling.isr_paymentoption
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -22,6 +24,8 @@ import com.example.twotwoninezero.service.GetCountryItem
 import com.example.twotwoninezero.service.GetStateReponse
 import kotlinx.android.synthetic.main.fragment_add_new_business.*
 import kotlinx.android.synthetic.main.fragment_i_r_s_payment_submission_fee_payment_option.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 class IRSPaymentSubmissionFeePaymentOptionFragment : BaseFragment() {
     private lateinit var mFillingViewModel : FIllingFormSummaryViewModel
@@ -69,7 +73,7 @@ class IRSPaymentSubmissionFeePaymentOptionFragment : BaseFragment() {
                     actionIRSPaymentSubmissionFeePaymentOptionFragmentToIrsConfirmationFragment(it.transactionId?:"",
                         it.refId?:"",
                         it.status?:"",
-                        it.amount?:""))
+                        it.amount?:"","",""))
                 }else{
                     showToast(it.resDescription)
                 }
@@ -103,7 +107,14 @@ class IRSPaymentSubmissionFeePaymentOptionFragment : BaseFragment() {
 
             if (filingId != null && filingId.isNotEmpty()) {
                 mFillingViewModel.getPaymentDet(filingId)
-                mFillingViewModel.getCountry()
+
+                if (isOnline()) {
+                    mFillingViewModel.getCountry()
+                }else{
+                    showToast(getString(R.string.internet_required))
+                }
+
+
 
                // mFillingViewModel.getCountryState()
             }
@@ -144,9 +155,11 @@ class IRSPaymentSubmissionFeePaymentOptionFragment : BaseFragment() {
 
         paymentOptionSubmit.setOnClickListener {
 
+            val cardNumber = paymentOptionCardNumber.text.toString().filter { !it.isWhitespace() }
+
             val i = CaptureCCPaymentRequest(paymentOptionAccountNumber.text.toString(),"",paymentOptionAccountType.text.toString(),
                 paymentOptionBankName.text.toString(),paymentOptionBillingAddress.text.toString(),paymentOptionCVV.text.toString(),
-                paymentOptionCardNumber.text.toString(),paymentOptionCity.text.toString(),paymentOptionCountryID,diffBillAdd,
+                cardNumber,paymentOptionCity.text.toString(),paymentOptionCountryID,diffBillAdd,
                 paymentOptionExp.text.toString(),paymentOptionFirstName.text.toString(),isCreditDetails,
                 isDebitDetails,paymentOptionLastName.text.toString(),paymentOptionNameOnAccount.text.toString(),
                 paymentAmount,refId,paymentOptionRoutingNumber.text.toString(),
@@ -155,6 +168,7 @@ class IRSPaymentSubmissionFeePaymentOptionFragment : BaseFragment() {
             mFillingViewModel.captureCCPayment(filingId,i)
 
         }
+        //var str = "This is an example text".filter { !it.isWhitespace() }
 
         paymentOptionCountry.setOnClickListener {
             contactInfoCountry()
@@ -163,6 +177,49 @@ class IRSPaymentSubmissionFeePaymentOptionFragment : BaseFragment() {
         paymentOptionState.setOnClickListener {
             contactState()
         }
+
+
+        paymentOptionExp.addTextChangedListener(object : TextWatcher {
+
+            private var current = ""
+            private val ddmmyyyy = "MMYY"
+            private val cal = Calendar.getInstance()
+
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                var working = s.toString()
+                var isValid = true
+                if (working.length == 2 && before == 0) {
+                    if (Integer.parseInt(working) < 1 || Integer.parseInt(working) > 12) {
+                        isValid = false
+                    } else {
+                        working += "/"
+                        paymentOptionExp.setText(working)
+                        paymentOptionExp.setSelection(working.length)
+                    }
+                } else if (working.length == 5 && before == 0) {
+                    val enteredYear = working.substring(3)
+                    val currentYear = Calendar.getInstance().get(Calendar.YEAR) % 100//getting last 2 digits of current year i.e. 2018 % 100 = 18
+                    if (Integer.parseInt(enteredYear) < currentYear) {
+                        isValid = false
+                    }
+                } else if (working.length != 5) {
+                    isValid = false
+                }
+
+                if (!isValid) {
+                    paymentOptionExp.error ="mm/yy"
+                } else {
+                    paymentOptionExp.error = null
+                }
+            }
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun afterTextChanged(p0: Editable) {
+
+            }
+        })
 
     }
 

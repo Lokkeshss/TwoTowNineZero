@@ -18,6 +18,7 @@ import com.example.twotwoninezero.dashboard.bottomnavigation.filling.model.Filli
 import com.example.twotwoninezero.dashboard.bottomnavigation.filling.taxyear_and_forms.TaxYearAndFormFragment
 import com.example.twotwoninezero.service.SaveUpdateVinCorrectionRequest
 import com.example.twotwoninezero.service.TaxableWeightResponse
+import kotlinx.android.synthetic.main.common_header_loginsignup.*
 import kotlinx.android.synthetic.main.fragment_add_new_exceeded_mileage_vehicles.*
 import kotlinx.android.synthetic.main.fragment_add_new_sold_destroyedor_stolen_vehicle.*
 import kotlinx.android.synthetic.main.fragment_add_new_taxable_vehicle_information.*
@@ -94,6 +95,14 @@ class AddNewVinCorrectionTaxableVehicleFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        commonContactCallMain?.setOnClickListener {
+            commonCallAndMailFunction()
+        }
+
+        vinCorrectionCancel.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
 
         arguments?.let {
 

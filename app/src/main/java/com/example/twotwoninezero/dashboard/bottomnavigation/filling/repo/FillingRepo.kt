@@ -54,6 +54,11 @@ class FillingRepo(private val api: Api) : BaseRepository()  {
         return resp
     }
 
+    suspend fun saveConsentSubmit(filingId: String,i:SaveConsentSubmit): ApiResponse<SaveConsentSubmitResponse>? {
+        val resp = doApiCall { api.saveConsentSubmit(filingId,i).await() }
+        return resp
+    }
+
     suspend fun getPaymentDet(filingId: String): ApiResponse<GetPaymentDetResponse>? {
         val resp = doApiCall { api.getPaymentDet(filingId).await() }
         return resp

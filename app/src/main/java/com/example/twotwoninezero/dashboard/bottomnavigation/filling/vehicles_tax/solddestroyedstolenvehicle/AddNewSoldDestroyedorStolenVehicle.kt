@@ -34,6 +34,7 @@ import com.example.twotwoninezero.dashboard.bottomnavigation.filling.taxyear_and
 import com.example.twotwoninezero.service.SaveSoldDestroyedVehicleRequest
 import com.example.twotwoninezero.service.TaxableWeightResponse
 import com.example.twotwoninezero.service.UpdateSoldDestroyedVehicleRequest
+import kotlinx.android.synthetic.main.common_header_loginsignup.*
 import kotlinx.android.synthetic.main.fragment_add_new_prior_year_suspended_exempt_vehicles.*
 import kotlinx.android.synthetic.main.fragment_add_new_reporting_suspended_exempt_vehicles.*
 import kotlinx.android.synthetic.main.fragment_add_new_sold_destroyedor_stolen_vehicle.*
@@ -135,6 +136,14 @@ class AddNewSoldDestroyedorStolenVehicle : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        commonContactCallMain?.setOnClickListener {
+            commonCallAndMailFunction()
+        }
+
+        addnewDestroyedStolenVehicleCancel.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
+
         arguments?.let {
 
             editWeight = it.getString("weight").toString()
@@ -231,16 +240,16 @@ class AddNewSoldDestroyedorStolenVehicle : BaseFragment() {
             val minDay = getOnlyDateFromDate(minDate).toInt()
             val minMonth =  getOnlyMonthFromDate(minDate).toInt()
             val minYear =  getOnlyyearFromDate(minDate).toInt()
-            myCalendarToDate.set(minYear, minMonth-1, minDay)
-            mDialog.datePicker.minDate = myCalendarToDate.timeInMillis
+            myCalendarSoldDate.set(minYear, minMonth-1, minDay)
+            mDialog.datePicker.minDate = myCalendarSoldDate.timeInMillis
 
             // Changing mCalendar date from current to
             // some random MAX day 20/08/2021 20 Aug 2021
             val maxDay = getOnlyDateFromDate(maxDate).toInt()
             val maxMonth = getOnlyMonthFromDate(maxDate).toInt()
             val maxYear = getOnlyyearFromDate(maxDate).toInt()
-            myCalendarToDate.set(maxYear, maxMonth-1, maxDay)
-            mDialog.datePicker.maxDate = myCalendarToDate.timeInMillis
+            myCalendarSoldDate.set(maxYear, maxMonth-1, maxDay)
+            mDialog.datePicker.maxDate = myCalendarSoldDate.timeInMillis
             mDialog.show()
         }
 
@@ -284,7 +293,7 @@ class AddNewSoldDestroyedorStolenVehicle : BaseFragment() {
                 val objDateFrom = dateFormateFrom.parse(firstUsedMonth);
                 val objDateTo = dateFormateTo.parse(soldDateText);
 
-                if (objDateFrom.before(objDateTo)) {
+                if (objDateTo.before(objDateFrom)) {
                     // In the past!
                     showToast("Date should be greater than the first used month")
                 }else {
@@ -311,10 +320,6 @@ class AddNewSoldDestroyedorStolenVehicle : BaseFragment() {
 
 
             }
-        }
-
-        addnewDestroyedStolenVehicleCancel.setOnClickListener {
-
         }
 
         resultLauncher = registerForActivityResult(
@@ -381,10 +386,10 @@ class AddNewSoldDestroyedorStolenVehicle : BaseFragment() {
     private fun updateLabelSoldDate() {
         val myFormat = "dd/MM/yyyy"
         val dateFormat = SimpleDateFormat(myFormat, Locale.US)
-        addnewDestroyedSoldVehicleDestroyedDate?.setText(dateFormat.format(myCalendarToDate.time))
+        addnewDestroyedSoldVehicleDestroyedDate?.setText(dateFormat.format(myCalendarSoldDate.time))
         val myFormatS = "yyyy-MM-dd"
         val dateFormatS = SimpleDateFormat(myFormatS, Locale.US)
-        soldDateText=dateFormatS.format(myCalendarToDate.time)
+        soldDateText=dateFormatS.format(myCalendarSoldDate.time)
         // filterToDateValue=dateFormatS.format(myCalendarFromDate.time)
     }
 

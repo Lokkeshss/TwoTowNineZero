@@ -4,6 +4,8 @@ import android.app.Activity
 import android.content.Context
 import android.content.Context.CONNECTIVITY_SERVICE
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.net.Uri
@@ -59,6 +61,7 @@ abstract class BaseFragment: Fragment() {
        val customDialog = AlertDialog.Builder(requireContext())
             .setView(dialogView)
             .show()
+        customDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         customDialog?.setCancelable(false)
         val callone = dialogView.findViewById<ImageView>(R.id.callone)
         val calltwo = dialogView.findViewById<ImageView>(R.id.calltwo)

@@ -104,15 +104,13 @@
                         app:hintTextColor="@color/lightGray">
 
                         <EditText
-                            android:textAllCaps="true"
                             android:id="@+id/businessProfileBusinessName"
                             android:fontFamily="@font/roboto_regular"
                             style="@style/loginTextInputEditText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890. "
-                            android:inputType="text"
-                            android:text="" />
+                            android:inputType="textCapWords"
+                            />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -168,7 +166,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 "
-                            android:inputType="text"
+                            android:inputType="textCapWords"
                             android:text="" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -241,7 +239,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
-                            android:inputType="textCapSentences"
+                            android:inputType="textCapWords"
                             android:text="" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -256,6 +254,7 @@
                         app:hintTextColor="@color/lightGray">
 
                         <EditText
+                            android:maxLength="12"
                             android:id="@+id/signingAuthInfoPhone"
                             android:fontFamily="@font/roboto_regular"
                             style="@style/loginTextInputEditText"
@@ -286,7 +285,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@."
-                            android:inputType="text"
+                            android:inputType="textCapWords"
                             android:text="" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -361,7 +360,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@."
-                            android:inputType="textPostalAddress"
+                            android:inputType="textCapWords"
                             android:text="" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -426,7 +425,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@."
-                            android:inputType="text"
+                            android:inputType="textCapWords"
                             android:text="" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -441,7 +440,7 @@
                         app:hintTextColor="@color/lightGray">
 
                         <EditText
-                            android:maxLength="5"
+                            android:maxLength="10"
                             android:id="@+id/contactInfoZipCode"
                             android:fontFamily="@font/roboto_regular"
                             style="@style/loginTextInputEditText"
@@ -463,12 +462,13 @@
                         app:hintTextColor="@color/lightGray">
 
                         <EditText
+                            android:maxLength="12"
                             android:id="@+id/contactInfoPhoneNumber"
                             android:fontFamily="@font/roboto_regular"
                             style="@style/loginTextInputEditText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:digits="1234567890+"
+                            android:digits="1234567890+-"
                             android:inputType="phone"
                             android:text="" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -594,7 +594,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
-                            android:inputType="text"
+                            android:inputType="textCapWords"
                             android:text="" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -610,6 +610,7 @@
                         app:hintTextColor="@color/lightGray">
 
                         <EditText
+                            android:maxLength="12"
                             android:id="@+id/ThirdPartyDesignPhonenumber"
                             android:fontFamily="@font/roboto_regular"
                             android:textSize="14sp"
@@ -630,14 +631,10 @@
         </com.google.android.material.card.MaterialCardView>
 
 
-
-    </LinearLayout>
-    </androidx.cardview.widget.CardView>
-    </androidx.core.widget.NestedScrollView>
         <LinearLayout
             android:background="@color/transparant"
             android:padding="@dimen/dp_5"
-            android:layout_marginTop="@dimen/dp_5"
+            android:layout_marginTop="@dimen/dp_10"
             android:layout_marginBottom="@dimen/dp_20"
             android:gravity="center"
             android:layout_gravity="center"
@@ -675,6 +672,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
+    </LinearLayout>
+    </androidx.cardview.widget.CardView>
+    </androidx.core.widget.NestedScrollView>
+
     </LinearLayout>
 
 </FrameLayout>

@@ -16,6 +16,7 @@ import com.example.twotwoninezero.R
 import com.example.twotwoninezero.base.BaseFragment
 import com.example.twotwoninezero.dashboard.bottomnavigation.filling.adapter.VinCorrectionTaxableVehicleAdapter
 import com.example.twotwoninezero.dashboard.bottomnavigation.filling.model.FillingViewModel
+import kotlinx.android.synthetic.main.common_header_loginsignup.*
 import kotlinx.android.synthetic.main.fragment_taxable_vehicle_information2.*
 import kotlinx.android.synthetic.main.progress_bar_view.*
 
@@ -80,6 +81,11 @@ class VinCorrectionTaxableVehicleFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
+        commonContactCallMain?.setOnClickListener {
+            commonCallAndMailFunction()
+        }
 
         arguments?.let {
             filingId= it.getString("filingId").toString()

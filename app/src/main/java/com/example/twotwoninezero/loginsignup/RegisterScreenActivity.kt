@@ -171,8 +171,12 @@ class RegisterScreenActivity : BaseActivity() {
         val jsonbranch: String = gson.toJson(i)
 
         println("jsonbranch  "+jsonbranch)
+        if (isOnline()) {
+            mSignUpViewModel.registerFunction(i)
+        }else{
+            showToast(getString(R.string.internet_required))
+        }
 
-        mSignUpViewModel.registerFunction(i)
     }
 
 

@@ -21,6 +21,7 @@ import com.example.twotwoninezero.dashboard.bottomnavigation.filling.vehicles_ta
 import com.example.twotwoninezero.service.LoadFleetListResponse
 import com.example.twotwoninezero.service.SaveBulkTaxableVehicleRequest
 import com.example.twotwoninezero.service.TaxableWeightResponse
+import kotlinx.android.synthetic.main.common_header_loginsignup.*
 import kotlinx.android.synthetic.main.fragment_taxable_vehicle_information.*
 import kotlinx.android.synthetic.main.progress_bar_view.*
 
@@ -148,6 +149,11 @@ class TaxableVehicleInformationFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        commonContactCallMain?.setOnClickListener {
+            commonCallAndMailFunction()
+        }
+
         arguments?.let {
             filingId= it.getString("filingId").toString()
         }

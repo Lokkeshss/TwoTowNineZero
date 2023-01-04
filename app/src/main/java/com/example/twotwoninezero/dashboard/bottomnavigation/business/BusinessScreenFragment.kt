@@ -1,7 +1,11 @@
 package com.example.twotwoninezero.dashboard.bottomnavigation.business
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.os.Environment
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,6 +27,7 @@ import com.example.twotwoninezero.dashboard.bottomnavigation.business.adapter.De
 import com.example.twotwoninezero.dashboard.bottomnavigation.business.model.BusinessViewModel
 import com.example.twotwoninezero.service.AllAndSearchBusinessListResponse
 import com.example.twotwoninezero.service.SearchBusinessRequest
+import kotlinx.android.synthetic.main.fragment_add_new_business.*
 import java.io.File
 
 class BusinessScreenFragment : BaseFragment() {
@@ -35,6 +40,7 @@ class BusinessScreenFragment : BaseFragment() {
     var commonContactCallMain:ImageView?=null
     var notification:ImageView?=null
     var type:String?=null
+
     override fun initViewModel() {
         mBusinessViewModel = ViewModelProvider(
             viewModelStore,
@@ -107,7 +113,12 @@ class BusinessScreenFragment : BaseFragment() {
             if (it.code==200){
                 showToast(it.message)
                 customDialog?.dismiss()
-                mBusinessViewModel.getallbusinesslist("active","0","0","active")
+                if (isOnline()) {
+                    mBusinessViewModel.getallbusinesslist("active","0","0","active")
+                }else{
+                    showToast(getString(R.string.internet_required))
+                }
+
             }else{
                 showToast(it.message)
             }
@@ -116,7 +127,12 @@ class BusinessScreenFragment : BaseFragment() {
             if (it.code==200){
                 showToast(it.message)
                 customDialog?.dismiss()
-                mBusinessViewModel.getallbusinesslist("archive","0","0","archive")
+                if (isOnline()) {
+                    mBusinessViewModel.getallbusinesslist("archive","0","0","archive")
+                }else{
+                    showToast(getString(R.string.internet_required))
+                }
+
             }else{
                 showToast(it.message)
             }
@@ -130,6 +146,7 @@ class BusinessScreenFragment : BaseFragment() {
             .setView(dialogView)
             .show()
         customDialog?.setCancelable(false)
+        customDialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         val cancel = dialogView.findViewById<TextView>(R.id.cancel)
         val delete = dialogView.findViewById<TextView>(R.id.delete)
         val deleteText = dialogView.findViewById<TextView>(R.id.textfields)
@@ -149,11 +166,17 @@ class BusinessScreenFragment : BaseFragment() {
         }
 
         delete.setOnClickListener {
-            if (type.equals("activate")){
-                mBusinessViewModel.reActiveBusinesss(businessId)
+
+            if (isOnline()) {
+                if (type.equals("activate")){
+                    mBusinessViewModel.reActiveBusinesss(businessId)
+                }else{
+                    mBusinessViewModel.archiveBusinesss(businessId)
+                }
             }else{
-                mBusinessViewModel.archiveBusinesss(businessId)
+                showToast(getString(R.string.internet_required))
             }
+
 
         }
 
@@ -200,53 +223,79 @@ class BusinessScreenFragment : BaseFragment() {
 
 
         test?.setOnClickListener {
-            downloadFile("twotwoninezero")
+            if (isOnline()) {
+                downloadFile("twotwoninezero")
+            }else{
+                showToast(getString(R.string.internet_required))
+            }
+
         }
 
-        if (archiveOrActiveText?.text.toString().equals("Archieved Business")){
+        if (isOnline()) {
+            if (archiveOrActiveText?.text.toString().equals("Archieved Business")){
 
-            mBusinessViewModel.getallbusinesslist("active","10","0","active")
+                mBusinessViewModel.getallbusinesslist("active","10","0","active")
+            }else{
+                mBusinessViewModel.getallbusinesslist("archive","10","0","archive")
+
+            }
+
         }else{
-            mBusinessViewModel.getallbusinesslist("archive","10","0","archive")
-
+            showToast(getString(R.string.internet_required))
         }
+
+
 
 
         searcheinbusiness?.setOnClickListener {
             if (edt_tv_searchByBusinessName?.text.toString().isNullOrEmpty() &&
                 edt_tv_searchByEin?.text.toString().isNullOrEmpty()){
-                if (archiveOrActiveText?.text.toString().equals("Archieved Business")){
-                    type="active"
-                    mBusinessViewModel.getallbusinesslist("active","10","0","active")
-                }else{
-                    type="archive"
-                    mBusinessViewModel.getallbusinesslist("archive","10","0","archive")
+                if (isOnline()) {
+                    if (archiveOrActiveText?.text.toString().equals("Archieved Business")){
+                        type="active"
+                        mBusinessViewModel.getallbusinesslist("active","10","0","active")
+                    }else{
+                        type="archive"
+                        mBusinessViewModel.getallbusinesslist("archive","10","0","archive")
 
+                    }
+                }else{
+                    showToast(getString(R.string.internet_required))
                 }
+
             }else{
-                if (archiveOrActiveText?.text.toString().equals("Archieved Business")){
-                    type="active"
-                    val i = SearchBusinessRequest(edt_tv_searchByBusinessName?.text.toString(),edt_tv_searchByEin?.text.toString(),10,"active",0)
-                    mBusinessViewModel.searchBusiness(i,"active")
-                }else{
-                    type="archive"
-                    val i = SearchBusinessRequest(edt_tv_searchByBusinessName?.text.toString(),edt_tv_searchByEin?.text.toString(),10,"archive",0)
-                    mBusinessViewModel.searchBusiness(i,"archive")
+                if (isOnline()) {
+                    if (archiveOrActiveText?.text.toString().equals("Archieved Business")){
+                        type="active"
+                        val i = SearchBusinessRequest(edt_tv_searchByBusinessName?.text.toString(),edt_tv_searchByEin?.text.toString().replace("-", ""),10,"active",0)
+                        mBusinessViewModel.searchBusiness(i,"active")
+                    }else{
+                        type="archive"
+                        val i = SearchBusinessRequest(edt_tv_searchByBusinessName?.text.toString(),edt_tv_searchByEin?.text.toString().replace("-", ""),10,"archive",0)
+                        mBusinessViewModel.searchBusiness(i,"archive")
 
+                    }
+                }else{
+                    showToast(getString(R.string.internet_required))
                 }
+
             }
 
         }
 
 
         activeORarchievBusinessList?.setOnClickListener {
+            if (isOnline()) {
+                if (archiveOrActiveText?.text.toString().equals("Archieved Business")){
+                    type="active"
+                    mBusinessViewModel.getallbusinesslist("archive","10","0","archive")
+                }else{
+                    type="archive"
+                    mBusinessViewModel.getallbusinesslist("active","10","0","active")
+                }
 
-            if (archiveOrActiveText?.text.toString().equals("Archieved Business")){
-                type="active"
-                mBusinessViewModel.getallbusinesslist("archive","10","0","archive")
             }else{
-                type="archive"
-                mBusinessViewModel.getallbusinesslist("active","10","0","active")
+                showToast(getString(R.string.internet_required))
             }
 
         }
@@ -260,6 +309,45 @@ class BusinessScreenFragment : BaseFragment() {
                 )
         }
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        edt_tv_searchByEin?.addTextChangedListener(object : TextWatcher {
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                var working = s.toString()
+                var isValid = true
+                if (working.length == 2 && before == 0) {
+
+                        working += "-"
+                        edt_tv_searchByEin?.setText(working)
+                        edt_tv_searchByEin?.setSelection(working.length)
+
+                } /*else if (working.length == 5 && before == 0) {
+                    val enteredYear = working.substring(3)
+                    val currentYear = Calendar.getInstance().get(Calendar.YEAR) % 100//getting last 2 digits of current year i.e. 2018 % 100 = 18
+                    if (Integer.parseInt(enteredYear) < currentYear) {
+                        isValid = false
+                    }
+                } else if (working.length != 5) {
+                    isValid = false
+                }*/
+
+                /*   if (!isValid) {
+                       paymentOptionExp.error ="mm/yy"
+                   } else {
+                       paymentOptionExp.error = null
+                   }*/
+            }
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun afterTextChanged(p0: Editable) {
+
+            }
+        })
+
     }
 
     private fun contactInfoCountry() {

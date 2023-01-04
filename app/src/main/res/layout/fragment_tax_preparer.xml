@@ -11,7 +11,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <include layout="@layout/common_header_loginsignup" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:visibility="gone"
             android:orientation="horizontal"
             android:layout_marginTop="@dimen/dp_30"
             android:layout_width="match_parent"
@@ -424,56 +427,56 @@
 
 
                     </com.google.android.material.card.MaterialCardView>
+                    <LinearLayout
+                        android:background="@color/transparant"
+                        android:padding="@dimen/dp_5"
+                        android:layout_marginTop="@dimen/dp_10"
+                        android:layout_marginBottom="@dimen/dp_5"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
+                        <TextView
+                            android:id="@+id/taxPayerCancel"
+                            android:fontFamily="@font/roboto_medium"
+                            android:textSize="12sp"
+                            android:layout_marginEnd="@dimen/dp_20"
+                            android:drawablePadding="@dimen/dp_20"
+                            android:gravity="center"
+                            android:layout_gravity="center"
+                            android:padding="15dp"
+                            android:background="@drawable/button_withwhite_roundcoronor_color"
+                            android:drawableStart="@drawable/addbusiness_cancelbuttonicon"
+                            android:text="Cancel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:id="@+id/taxPayerSubmit"
+                            android:fontFamily="@font/roboto_medium"
+                            android:textSize="12sp"
+                            android:layout_marginStart="@dimen/dp_20"
+                            android:drawablePadding="@dimen/dp_20"
+                            android:gravity="center"
+                            android:layout_gravity="center"
+                            android:padding="15dp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/btn_bg_round_cornor_with_moreround_cornor"
+                            android:drawableStart="@drawable/updateicon"
+                            android:text="Update"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+
+
+                    </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
         </androidx.core.widget.NestedScrollView>
 
-        <LinearLayout
-            android:background="@color/transparant"
-            android:padding="@dimen/dp_5"
-            android:layout_marginTop="@dimen/dp_5"
-            android:layout_marginBottom="@dimen/dp_5"
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/taxPayerCancel"
-                android:fontFamily="@font/roboto_medium"
-                android:textSize="12sp"
-                android:layout_marginEnd="@dimen/dp_20"
-                android:drawablePadding="@dimen/dp_20"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:padding="15dp"
-                android:background="@drawable/button_withwhite_roundcoronor_color"
-                android:drawableStart="@drawable/addbusiness_cancelbuttonicon"
-                android:text="Cancel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-            <TextView
-                android:id="@+id/taxPayerSubmit"
-                android:fontFamily="@font/roboto_medium"
-                android:textSize="12sp"
-                android:layout_marginStart="@dimen/dp_20"
-                android:drawablePadding="@dimen/dp_20"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:padding="15dp"
-                android:textColor="@color/white"
-                android:background="@drawable/btn_bg_round_cornor_with_moreround_cornor"
-                android:drawableStart="@drawable/updateicon"
-                android:text="Update"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-
-
-        </LinearLayout>
 
     </LinearLayout>
 

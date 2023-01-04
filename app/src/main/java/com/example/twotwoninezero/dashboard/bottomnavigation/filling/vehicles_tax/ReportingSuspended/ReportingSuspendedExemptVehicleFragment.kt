@@ -23,6 +23,7 @@ import com.example.twotwoninezero.service.LoadFleetListResponse
 import com.example.twotwoninezero.service.SaveBulkCurrentSuspendedRequest
 import com.example.twotwoninezero.service.SaveBulkTaxableVehicleRequest
 import com.example.twotwoninezero.service.TaxableWeightResponse
+import kotlinx.android.synthetic.main.common_header_loginsignup.*
 import kotlinx.android.synthetic.main.fragment_reporting_suspended_exempt_vehicle.*
 import kotlinx.android.synthetic.main.progress_bar_view.*
 
@@ -147,6 +148,11 @@ class ReportingSuspendedExemptVehicleFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        commonContactCallMain?.setOnClickListener {
+            commonCallAndMailFunction()
+        }
+
 
 
         arguments?.let {

@@ -12,6 +12,7 @@ import com.example.twotwoninezero.dashboard.bottomnavigation.filling.model.Filli
 import com.example.twotwoninezero.dashboard.bottomnavigation.filling.taxyear_and_forms.TaxYearAndFormFragment
 import com.example.twotwoninezero.service.SaveCurrentSuspendRequest
 import com.example.twotwoninezero.service.UpdateCurrentSuspendRequest
+import kotlinx.android.synthetic.main.common_header_loginsignup.*
 import kotlinx.android.synthetic.main.fragment_add_new_reporting_suspended_exempt_vehicles.*
 
 
@@ -77,6 +78,13 @@ class AddNewReportingSuspendedExemptVehicles : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        commonContactCallMain?.setOnClickListener {
+            commonCallAndMailFunction()
+        }
+
+        addnewreportingsuspendedCancel.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
 
         arguments?.let {
 

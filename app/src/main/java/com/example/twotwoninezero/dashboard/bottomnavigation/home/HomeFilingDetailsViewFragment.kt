@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.twotwoninezero.R
 import com.example.twotwoninezero.base.BaseFragment
 import com.example.twotwoninezero.dashboard.bottomnavigation.home.model.HomeViewModel
+import kotlinx.android.synthetic.main.common_header_loginsignup.*
 import kotlinx.android.synthetic.main.fragment_filing_filter.*
 import kotlinx.android.synthetic.main.fragment_home_filing_details_view.*
 import kotlinx.android.synthetic.main.fragment_home_filing_details_view.fragmentBack
@@ -53,6 +54,10 @@ class HomeFilingDetailsViewFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        commonContactCallMain?.setOnClickListener {
+            commonCallAndMailFunction()
+        }
         arguments?.let {
 
              filingId = it.getString("filingId").toString()
@@ -96,7 +101,12 @@ class HomeFilingDetailsViewFragment : BaseFragment() {
 
         filterStatus.setOnClickListener {
             if (filterStatus.text.toString().equals("IRS_REJECTED")){
-                homeViewModel.getIRSRejectionDetails(filingId)
+                if (isOnline()) {
+                    homeViewModel.getIRSRejectionDetails(filingId)
+                }else{
+                    showToast(getString(R.string.internet_required))
+                }
+
             }
         }
 

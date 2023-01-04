@@ -3,9 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    android:background="@color/transparant"
     android:layout_height="wrap_content">
 
     <LinearLayout
+        android:background="@drawable/top_rounded_with_border"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -28,11 +30,12 @@
             android:padding="@dimen/dp_10">
 
             <TextView
+
                 android:textSize="@dimen/page_title_textsize"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:fontFamily="@font/roboto_regular"
+                android:fontFamily="@font/roboto_bold"
                 android:text="224-215-5888"
                 android:textColor="@color/textcolor" />
 
@@ -65,7 +68,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:fontFamily="@font/roboto_regular"
+                android:fontFamily="@font/roboto_bold"
                 android:text="224-215-5888  (Spanish)"
                 android:textColor="@color/textcolor" />
 
@@ -98,7 +101,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:fontFamily="@font/roboto_regular"
+                android:fontFamily="@font/roboto_bold"
                 android:text="support@simpletrucktax.com "
                 android:textColor="@color/textcolor" />
 
@@ -117,7 +120,7 @@
 
         <TextView
             android:textSize="@dimen/page_title_textsize"
-            android:fontFamily="@font/roboto_regular"
+            android:fontFamily="@font/roboto_bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -136,7 +139,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:fontFamily="@font/roboto_regular"
+            android:fontFamily="@font/roboto_bold"
             android:text="Ok"
             android:textColor="@color/next" />
 

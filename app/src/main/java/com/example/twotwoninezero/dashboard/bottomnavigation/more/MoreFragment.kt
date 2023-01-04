@@ -10,6 +10,8 @@ import android.widget.LinearLayout
 import com.example.twotwoninezero.R
 import com.example.twotwoninezero.base.BaseFragment
 import android.graphics.BitmapFactory
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
@@ -23,6 +25,8 @@ class MoreFragment :  BaseFragment() {
     var more_aboutus:LinearLayout?=null
     var more_contactus:LinearLayout?=null
     var more_logout:TextView?=null
+    var morefragmentBack:ImageView?=null
+    var commonContactCallMain:ImageView?=null
     override fun initViewModel() {
 
     }
@@ -43,6 +47,13 @@ class MoreFragment :  BaseFragment() {
         more_aboutus=view.findViewById(R.id.more_aboutus)
         more_contactus=view.findViewById(R.id.more_contactus)
         more_logout=view.findViewById(R.id.more_logout)
+        morefragmentBack=view.findViewById(R.id.morefragmentBack)
+
+        commonContactCallMain = view.findViewById(R.id.commonContactCallMain)
+
+        commonContactCallMain?.setOnClickListener {
+            commonCallAndMailFunction()
+        }
 
         more_aboutus?.setOnClickListener {
             findNavController().navigate(
@@ -56,6 +67,10 @@ class MoreFragment :  BaseFragment() {
                 MoreFragmentDirections.actionMorescreenFragmentToContactUs()
 
             )
+        }
+
+        morefragmentBack?.setOnClickListener {
+            requireActivity().onBackPressed()
         }
 
         more_logout?.setOnClickListener {
@@ -73,6 +88,7 @@ class MoreFragment :  BaseFragment() {
             .setView(dialogView)
             .show()
         customDialog?.setCancelable(false)
+        customDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         val textfieldsMain = dialogView.findViewById<TextView>(R.id.textfieldsMain)
         val cancel = dialogView.findViewById<TextView>(R.id.cancel)
         val delete = dialogView.findViewById<TextView>(R.id.delete)
@@ -81,8 +97,8 @@ class MoreFragment :  BaseFragment() {
 
         textfieldsMain.text="Log Out"
         deleteText.text="Are you sure want to log out?"
-        delete.text="Yes"
-        cancel.text="No"
+        delete.text="   Yes   "
+        cancel.text="    No    "
         deleteIcon.setImageResource(R.drawable.logouticon)
 
         cancel.setOnClickListener {
